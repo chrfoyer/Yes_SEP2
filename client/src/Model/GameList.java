@@ -96,6 +96,7 @@ public class GameList
       if (games.get(i).getName().equals(name))
       {
         games.remove(i);
+        break;
       }
     }
   }
