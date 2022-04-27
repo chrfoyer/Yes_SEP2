@@ -61,7 +61,7 @@ public class ModelManager implements Model
       throw new IllegalArgumentException("Game to rent cant be null");
     game.rentGame();
   }
-
+  
   /**
    * method to get a Gmae from GameList using a Game object
    * @param name of the game to be searched for
@@ -86,6 +86,7 @@ public class ModelManager implements Model
    * Method to get all non-rented games
    * @return an ArrayList containing all non-rented Games
    */
+
   @Override public ArrayList<Game> getALlAvailableGames()
   {
     return games.getAvailableGames();
