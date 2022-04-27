@@ -9,20 +9,17 @@ public class main
 {
   private static Scanner input = new Scanner(System.in);
   public static Model model = new ModelManager(); // for persistence
+  public static boolean running;
 
   public static void main(String[] args)
   {
-    System.out.println("Welcome to the system");
-
-    login();
-    System.out.println("Going to login again");
-
-    login();
-    System.out.println("Going to login again");
-
-    login();
-    System.out.println("Peace");
-
+    running = true;
+    while (running) {
+      System.out.println("Welcome to GaymerzRyzeUp!");
+      login();
+    }
+    System.out.println("Something something ethics in games journalism");
+    System.out.println("Goodbye");
   }
 
   public static void adminLoop(String username)
@@ -35,7 +32,8 @@ public class main
       System.out.println("1) ADD GAME");
       System.out.println("2) VIEW GAMES");
       System.out.println("3) DECREMENT DAY");
-      System.out.println("0) LOG OUT");
+      System.out.println("9) LOG OUT");
+      System.out.println("0) EXIT PROGRAM");
       int select = input.nextInt();
       input.nextLine();
       switch (select)
@@ -62,9 +60,15 @@ public class main
           model.decrementDay();
           break;
         }
-        case 0:
+        case 9:
           isLoggedIn = false;
           break;
+        case 0:
+        {
+          System.out.println("Exiting program...");
+          running = false;
+          break;
+        }
       }
     }
   }
@@ -78,7 +82,8 @@ public class main
       System.out.println("Choose action by inputting the appropriate number!");
       System.out.println("1) RENT GAME");
       System.out.println("2) VIEW GAMES");
-      System.out.println("3) LOG OUT");
+      System.out.println("9) LOG OUT");
+      System.out.println("0) EXIT PROGRAM");
       int select = input.nextInt();
       input.nextLine();
       switch (select)
@@ -92,11 +97,17 @@ public class main
           System.out.println("Game List:");
           System.out.println(model.getAllGames());
           break;
-        case 3:
+        case 9:
           isLoggedIn = false;
           break;
+        case 0:
+        {
+          System.out.println("Exiting program...");
+          running = false;
+          break;
+        }
         default:
-          System.out.println("UNKNOWN");
+          System.out.println("UNKNOWN INPUT! TRY AGAIN");
           break;
       }
     }
