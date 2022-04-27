@@ -75,7 +75,7 @@ public class main
     boolean isLoggedIn = true;
     while (isLoggedIn)
     {
-      System.out.println("Choose action by inputing the appropriate number!");
+      System.out.println("Choose action by inputting the appropriate number!");
       System.out.println("1) RENT GAME");
       System.out.println("2) VIEW GAMES");
       System.out.println("3) LOG OUT");
@@ -85,8 +85,9 @@ public class main
       {
         case 1:
           System.out.println("SELECT GAME: ");
-          Game game = new Game(input.nextLine());
-          model.removeGame(game);
+          Game game = model.getAllGames().get(0);
+          model.rentGame(game);
+          break;
         case 2:
           System.out.println("Game List:");
           System.out.println(model.getAllGames());
