@@ -34,7 +34,7 @@ public class Game
    * Checks if obj is equals to a game
    *
    * @param obj fed into method to compaare to a game
-   * @return boolean of wether it is a game or not
+   * @return boolean if the games are equal or not
    */
   public boolean equals(Object obj)
   {
