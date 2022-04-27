@@ -31,13 +31,18 @@ public class RmiClient implements RemoteModel
 
 
 
-  @Override public void rentGame()
-  {
 
+
+
+  @Override public void rentGame(Game game)
+  {
+    if (game == null)
+      throw new IllegalArgumentException("Game to rent cant be null");
+    game.rentGame();
   }
 
   @Override public String viewGames()
   {
-    return null;
+    return model.getAllGames().toString();
   }
 }
