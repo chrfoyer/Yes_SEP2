@@ -62,6 +62,16 @@ public class ModelManager implements Model
     game.rentGame();
   }
 
+  @Override
+  public Game getGame(String name) {
+    return games.getGame(name);
+  }
+
+  @Override
+  public Game getGame(Game game) {
+    return games.getGame(game);
+  }
+
   @Override public ArrayList<Game> getALlAvailableGames()
   {
     return games.getAvailableGames();
