@@ -28,6 +28,21 @@ public class GameList
   }
 
   /**
+   * Gets the game object from the game list using the name of the game.
+   *
+   * @param name The string name of the game
+   * @return The game object with the same name as the parameter
+   */
+  public Game getGame(String name) {
+    for (int i = 0; i< games.size(); i++){
+      if (games.get(i).getName().equals(name)){
+        return games.get(i);
+      }
+    }
+    return null;
+  }
+
+  /**
    *
    * @return list of all the games in the game arraylist
    */
@@ -37,6 +52,7 @@ public class GameList
 
   /**
    * Adds a game to the arraylist
+   *
    * @param game to be added to arraylist
    */
   public void addGame(Game game){
@@ -45,6 +61,7 @@ public class GameList
 
   /**
    * Removes a game from arraylist
+   *
    * @param game to be removed from list
    */
   public void removeGame(Game game){

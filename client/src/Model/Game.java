@@ -8,9 +8,10 @@ public class Game
 {
   private String name;
   private boolean rented;
+  private int daysLeft;
 
   /**
-   * Constructor for game
+   * Constructor for game using 14 days as a standard rental period for now.
    *
    * @param name argument for the name of the game
    */
@@ -18,12 +19,13 @@ public class Game
   {
     this.name = name;
     rented = false;
+    daysLeft = 14;
   }
 
   /**
    * Prints out a string of the game
    *
-   * @return name of game and wether the gamae is rented or not
+   * @return name of game and whether the game is rented or not
    */
   public String toString()
   {
@@ -64,5 +66,27 @@ public class Game
   public boolean getRented()
   {
     return rented;
+  }
+
+  /**
+   * Getter for the days left in the rental period for the game
+   *
+   * @return int of days left
+   */
+  public int getDaysLeft() {
+    return daysLeft;
+  }
+
+  /**
+   * Setter for the days left in the rental period for the game
+   *
+   * @param daysLeft in of days left in the rental per
+   */
+  public void setDaysLeft(int daysLeft) {
+    this.daysLeft = daysLeft;
+  }
+
+  public void decrementDaysLeft() {
+    daysLeft--;
   }
 }
