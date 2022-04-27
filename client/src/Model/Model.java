@@ -8,4 +8,6 @@ public interface Model
   public ArrayList<Game> getAllGames();
   public void removeGame(Game game);
   public void decrementDay();
+  public void rentGame(Game game);
+  public ArrayList<Game> getALlAvailableGames();
 }

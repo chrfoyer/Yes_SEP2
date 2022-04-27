@@ -24,6 +24,7 @@ public class ModelManager implements Model
 
   /**
    * returns all the games
+   *
    * @return arrayList<Game> of all the games
    */
   @Override public ArrayList<Game> getAllGames()
@@ -44,7 +45,25 @@ public class ModelManager implements Model
   /**
    * Decrements the days left in the rental period for all games in the list
    */
-  @Override public void decrementDay() {
+  @Override public void decrementDay()
+  {
     games.decrementDayForRented();
+  }
+
+  /**
+   * Sets the rented to true for given game
+   *
+   * @param game to be rented
+   */
+  @Override public void rentGame(Game game)
+  {
+    if (game == null)
+      throw new IllegalArgumentException("Game to rent cant be null");
+    game.rentGame();
+  }
+
+  @Override public ArrayList<Game> getALlAvailableGames()
+  {
+    return games.getAvailableGames();
   }
 }

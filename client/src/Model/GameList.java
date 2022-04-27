@@ -1,5 +1,6 @@
 package Model;
 
+import javax.swing.text.GapContent;
 import java.util.ArrayList;
 
 public class GameList
@@ -88,33 +89,42 @@ public class GameList
     games.remove(game);
   }
 
-  public void removeGame(String name) {
-    for (int i = 0; i < games.size(); i++) {
-      if (games.get(i).getName().equals(name)) {
+  public void removeGame(String name)
+  {
+    for (int i = 0; i < games.size(); i++)
+    {
+      if (games.get(i).getName().equals(name))
+      {
         games.remove(i);
       }
     }
   }
 
-  public GameList getAvailableGames()
+  /**
+   * Gets all non rented game
+   *
+   * @return returns an arrayList of games
+   */
+  public ArrayList<Game> getAvailableGames()
   {
-    GameList list = new GameList();
-    for (int i = 0; i < games.size(); i++)
+    ArrayList<Game> ret = new ArrayList<>();
+    for (Game game : games)
     {
-      if (!games.get(i).getRented())
-      {
-        list.addGame(games.get(i));
-      }
+      if (!game.isRented())
+        ret.add(game);
     }
-    return list;
+    return ret;
   }
 
   /**
    * Decrements the days left in all games that are rented within the list.
    */
-  public void decrementDayForRented() {
-    for (int i = 0; i < games.size(); i++) {
-      if (games.get(i).getRented()) {
+  public void decrementDayForRented()
+  {
+    for (int i = 0; i < games.size(); i++)
+    {
+      if (games.get(i).isRented())
+      {
         games.get(i).decrementDaysLeft();
       }
     }
