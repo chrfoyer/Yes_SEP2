@@ -89,7 +89,7 @@ public class GameList
       throw new IllegalArgumentException("Game to be removed cant be null");
     games.remove(game);
   }
-
+  
   public GameList getAvailableGames()
   {
     GameList list = new GameList();
@@ -103,4 +103,14 @@ public class GameList
     return list;
   }
 
+  /**
+   * Decrements the days left in all games that are rented within the list.
+   */
+  public void decrementDayForRented() {
+    for (int i = 0; i < games.size(); i++) {
+      if (games.get(i).getRented()) {
+        games.get(i).decrementDaysLeft();
+      }
+    }
+  }
 }

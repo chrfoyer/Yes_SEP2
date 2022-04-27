@@ -40,4 +40,11 @@ public class ModelManager implements Model
   {
     games.removeGame(game);
   }
+
+  /**
+   * Decrements the days left in the rental period for all games in the list
+   */
+  @Override public void decrementDay() {
+    games.decrementDayForRented();
+  }
 }

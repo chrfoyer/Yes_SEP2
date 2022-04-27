@@ -8,6 +8,7 @@ import java.util.SimpleTimeZone;
 public class main
 {
   private static Scanner input = new Scanner(System.in);
+  public static Model model = new ModelManager(); // for persistence
 
   public static void main(String[] args)
   {
@@ -25,7 +26,6 @@ public class main
 
   public static void adminLoop(String username)
   {
-    Model model = new ModelManager();
     System.out.println("Welcome " + username + "!");
     boolean isLoggedIn = true;
     while (isLoggedIn)
@@ -64,8 +64,7 @@ public class main
 
   public static void clientLoop(String username)
   {
-    Model model = new ModelManager();
-    System.out.println("Wellcome " + username + "!");
+    System.out.println("Welcome " + username + "!");
     boolean isLoggedIn = true;
     while (isLoggedIn)
     {

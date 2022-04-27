@@ -23,16 +23,6 @@ public class Game
   }
 
   /**
-   * Prints out a string of the game
-   *
-   * @return name of game and whether the game is rented or not
-   */
-  public String toString()
-  {
-    return "Name> " + name + ":Rented: " + rented;
-  }
-
-  /**
    * Checks if obj is equals to a game
    *
    * @param obj fed into method to compaare to a game
@@ -86,7 +76,28 @@ public class Game
     this.daysLeft = daysLeft;
   }
 
+  /**
+   * Decreases the days left in the rental period. If the game is not rented, an exception is thrown.
+   */
   public void decrementDaysLeft() {
-    daysLeft--;
+    if (rented) {
+      daysLeft--;
+    } else {
+      throw new IllegalStateException("Game is not currently rented, so the days can't be decreased.");
+    }
+  }
+
+  /**
+   * Prints out a string of the game
+   *
+   * @return name of game and whether the game is rented or not
+   */
+  public String toString()
+  {
+    String str = "Name: " + name + " Rented: " + rented;
+    if (rented) {
+      str += "\nDays Left: " + daysLeft;
+    }
+    return str;
   }
 }
