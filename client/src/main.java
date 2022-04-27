@@ -15,13 +15,14 @@ public class main
     System.out.println("Welcome to the system");
 
     login();
-    System.out.println("See you soon!");
+    System.out.println("Going to login again");
 
-  }
+    login();
+    System.out.println("Going to login again");
 
-  public static void renterLoop(String username)
-  {
-    // TODO: 20/04/2022  
+    login();
+    System.out.println("Peace");
+
   }
 
   public static void adminLoop(String username)
