@@ -33,7 +33,8 @@ public class main
       System.out.println("Choose action by inputting the appropriate number!");
       System.out.println("1) ADD GAME");
       System.out.println("2) VIEW GAMES");
-      System.out.println("3) LOG OUT");
+      System.out.println("3) DECREMENT DAY");
+      System.out.println("0) LOG OUT");
       int select = input.nextInt();
       input.nextLine();
       switch (select)
@@ -54,8 +55,13 @@ public class main
           }
           break;
         }
-
         case 3:
+        {
+          System.out.println("Manually advancing the day");
+          model.decrementDay();
+          break;
+        }
+        case 0:
           isLoggedIn = false;
           break;
       }

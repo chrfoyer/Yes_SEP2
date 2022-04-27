@@ -74,7 +74,7 @@ class GameListTest
   @Test void removeGame_Z()
   {
     assertThrows(IllegalArgumentException.class,
-        () -> gameList.removeGame(null));
+        () -> gameList.removeGame((Game) null));
   }
 
   @Test void removeGame_O()

@@ -20,7 +20,6 @@ public class GameList
    */
   public Game getGame(Game game)
   {
-
     if (game == null)
       throw new IllegalArgumentException("Cant find an empty game");
 
@@ -36,7 +35,6 @@ public class GameList
         }
       }
     }
-
     return null;
   }
 
@@ -89,7 +87,15 @@ public class GameList
       throw new IllegalArgumentException("Game to be removed cant be null");
     games.remove(game);
   }
-  
+
+  public void removeGame(String name) {
+    for (int i = 0; i < games.size(); i++) {
+      if (games.get(i).getName().equals(name)) {
+        games.remove(i);
+      }
+    }
+  }
+
   public GameList getAvailableGames()
   {
     GameList list = new GameList();
