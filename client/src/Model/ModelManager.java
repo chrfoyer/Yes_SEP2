@@ -62,16 +62,30 @@ public class ModelManager implements Model
     game.rentGame();
   }
 
+  /**
+   * method to get a Gmae from GameList using a Game object
+   * @param name of the game to be searched for
+   * @return the selected game from the GameList
+   */
   @Override
   public Game getGame(String name) {
     return games.getGame(name);
   }
 
+  /**
+   * method to get a Game from GameList using its name
+   * @param game to be searched for
+   * @return the selected game from the GameList
+   */
   @Override
   public Game getGame(Game game) {
     return games.getGame(game);
   }
 
+  /**
+   * Method to get all non-rented games
+   * @return an ArrayList containing all non-rented Games
+   */
   @Override public ArrayList<Game> getALlAvailableGames()
   {
     return games.getAvailableGames();
