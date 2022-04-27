@@ -23,7 +23,7 @@ class GameListTest
 
   @Test void getGame_Z()
   {
-    assertThrows(IllegalArgumentException.class, () -> gameList.getGame(null));
+    //assertThrows(IllegalArgumentException.class, () -> gameList.getGame());
   }
 
   @Test void getGame_O()
@@ -52,14 +52,26 @@ class GameListTest
 
   @Test void addGame_Z()
   {
-    assertThrows(IllegalArgumentException.class, () -> emptyList.addGame(null));
+    assertThrows(IllegalArgumentException.class, () -> gameList.addGame(null));
   }
 
-  @Test void addGame()
+  @Test void addGame_O()
   {
+    assertDoesNotThrow(() -> gameList.addGame(new Game("Cod the coddening")));
   }
 
-  @Test void removeGame()
+  @Test void addGame_M()
+  {
+    gameList.addGame(new Game("Cod the coddening1"));
+    gameList.addGame(new Game("Cod the coddening2"));
+    gameList.addGame(new Game("Cod the coddening3"));
+    gameList.addGame(new Game("Cod the coddening4"));
+    gameList.addGame(new Game("Cod the coddening5"));
+    gameList.addGame(new Game("Cod the coddening6"));
+    assertDoesNotThrow(() -> gameList.addGame(new Game("Cod the coddening")));
+  }
+
+  @Test void removeGame_Z()
   {
   }
 }

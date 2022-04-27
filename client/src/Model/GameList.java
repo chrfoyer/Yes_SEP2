@@ -85,6 +85,8 @@ public class GameList
    */
   public void removeGame(Game game)
   {
+    if (game == null)
+      throw new IllegalArgumentException("Game to be removed cant be null");
     games.remove(game);
   }
 
