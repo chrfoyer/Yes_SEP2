@@ -1,10 +1,12 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * The game is the object that is rented in the system. The attributes are
  * currently just the name, but more attributes will be included according the domain model
  */
-public class Game
+public class Game implements Serializable
 {
   private String name;
   private boolean rented;
