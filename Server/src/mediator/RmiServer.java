@@ -65,4 +65,16 @@ public class RmiServer implements RemoteModel
   public void decrementDay() {
     model.decrementDay();
   }
+
+  public Game getGame(String name) {
+    return model.getGame(name);
+  }
+
+  public void removeGame(String name) {
+    model.removeGame(name);
+  }
+
+  public void removeGame(Game game) {
+    model.removeGame(game);
+  }
 }

@@ -40,6 +40,13 @@ public class ModelManager implements Model {
     games.removeGame(game);
   }
 
+  // todo javadoc
+  // Remove game based on name
+  @Override
+  public void removeGame(String name) {
+    games.removeGame(getGame(name));
+  }
+
   /**
    * Decrements the days left in the rental period for all games in the list
    */
