@@ -9,5 +9,8 @@ public interface Model
   public void removeGame(Game game);
   public void decrementDay();
   public void rentGame(Game game);
+  public Game getGame(String name);
+  public Game getGame(Game game);
   public ArrayList<Game> getALlAvailableGames();
+  public GameList getGameList();
 }

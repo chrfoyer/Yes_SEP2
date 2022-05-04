@@ -1,6 +1,5 @@
 package Model;
 
-import javax.swing.text.GapContent;
 import java.util.ArrayList;
 
 public class GameList

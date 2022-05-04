@@ -12,4 +12,5 @@ public interface Model
   public Game getGame(String name);
   public Game getGame(Game game);
   public ArrayList<Game> getALlAvailableGames();
+  public GameList getGameList();
 }

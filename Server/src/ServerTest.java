@@ -1,16 +1,19 @@
+import Model.Game;
 import mediator.RmiServer;
 
+import java.net.MalformedURLException;
+import java.rmi.RemoteException;
 import java.util.Scanner;
 
 public class ServerTest {
     public static void main(String[] args) {
         boolean running = true;
 
+        RmiServer server = null;
         try {
-            RmiServer server = new RmiServer();
-        }
-        catch (Exception e) {
-            // cry
+            server = new RmiServer();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         Scanner input = new Scanner(System.in);
         while (running) {
@@ -24,6 +27,7 @@ public class ServerTest {
             switch (given) {
                 case 1:
                     System.out.println("yeet");
+                    server.addGame(new Game("Cod"));
                     break;
 
                 case 2:

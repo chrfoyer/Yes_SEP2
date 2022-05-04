@@ -5,22 +5,23 @@ import Model.Model;
 import java.beans.PropertyChangeSupport;
 import java.rmi.Naming;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import Model.*;
 
-public class RmiClient implements RemoteModel
+public class RmiClient
 {
 
   private RemoteModel server;
   private Model model;
 
-  public RmiClient()
+  public RmiClient() throws RemoteException
   {
     try
     {
       model = new ModelManager();
-       server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Case");
-      UnicastRemoteObject.exportObject( this, 0);
+       server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
+      // UnicastRemoteObject.exportObject( this, 0);   for callback
       System.out.println("Stub pulled");
     }
     catch (Exception ex)
@@ -29,20 +30,11 @@ public class RmiClient implements RemoteModel
     }
   }
 
-
-
-
-
-
-  @Override public void rentGame(Game game)
-  {
-    if (game == null)
-      throw new IllegalArgumentException("Game to rent cant be null");
-    game.rentGame();
+  public void rentGame(Game game) throws RemoteException {
+    server.rentGame(game);
   }
 
-  @Override public String viewGames()
-  {
-    return model.getAllGames().toString();
+  public GameList viewGames() throws RemoteException {
+    return server.viewGames();
   }
 }

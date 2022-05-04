@@ -33,11 +33,16 @@ public class RmiServer implements RemoteModel
       System.out.println("Registry already started? " + e.getMessage());
     }
   }
-
+  /**
+   * Use this to start the server
+   * Note: This method also calls startRegistry()
+   * @throws RemoteException
+   * @throws MalformedURLException
+   */
   private void startServer() throws RemoteException, MalformedURLException {
     startRegistry();
     UnicastRemoteObject.exportObject(this, 0);
-    Naming.rebind("Case", this);
+    Naming.rebind("Games", this);
     System.out.println("server started...");
   }
 
@@ -48,8 +53,16 @@ public class RmiServer implements RemoteModel
     game.rentGame();
   }
 
-  @Override public String viewGames()
+  @Override public GameList viewGames()
   {
-    return model.getAllGames().toString();
+    return model.getGameList();
+  }
+
+  public void addGame(Game game) {
+    model.addGame(game);
+  }
+
+  public void decrementDay() {
+    model.decrementDay();
   }
 }
