@@ -29,8 +29,8 @@ public class ServerTest {
             switch (given) {
                 case 1:
                     System.out.println("Enter the name of the game!");
-                    String name=input.nextLine();
-                    
+                    String name = input.nextLine();
+
                     server.addGame(new Game(name));
                     break;
 
@@ -45,20 +45,20 @@ public class ServerTest {
                     if (input.nextInt() == 1) {
                         System.out.println("Removing " + gameToRemove.getName());
                         server.removeGame(gameToRemove);
-                    }
-                    else {
+                    } else {
                         System.out.println("Cancelling removal of " + gameToRemove.getName());
                     }
                     break;
 
-                    case 3:
-                    for (Game game : server.viewGames().getGames()
-                    ) {
-                        System.out.println("Game -> " + game.getName() + " : " + game.getDaysLeft() + " days left");
-                        System.out.println("Rented: " + game.isRented());
-                    }
+                case 3:
+                    System.out.println(server.viewGames().toString());
                     break;
-                   
+                case 4:
+                    System.out.println("Advancing day...");
+                    //todo doesnt seem to do anything
+                    server.decrementDay();
+                    System.out.println("See you in tomorrow");
+                    break;
                 case 0:
                     running = false;
                     break;

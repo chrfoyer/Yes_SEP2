@@ -129,4 +129,17 @@ public class GameList implements Serializable
       }
     }
   }
+
+  @Override
+  public String toString() {
+
+    String ret = "";
+
+    for (Game game : games
+    ) {
+      ret += "Game -> " + game.getName() + " : " + game.getDaysLeft() + " days left\n";
+      ret += "Rented: " + game.isRented() + "\n";
+    }
+    return ret;
+  }
 }
