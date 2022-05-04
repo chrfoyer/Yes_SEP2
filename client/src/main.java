@@ -32,8 +32,7 @@ public class main
       System.out.println("1) ADD GAME");
       System.out.println("2) VIEW GAMES");
       System.out.println("3) DECREMENT DAY");
-      System.out.println("9) LOG OUT");
-      System.out.println("0) EXIT PROGRAM");
+      System.out.println("0) LOG OUT");
       int select = input.nextInt();
       input.nextLine();
       switch (select)
@@ -60,15 +59,9 @@ public class main
           model.decrementDay();
           break;
         }
-        case 9:
+        case 0:
           isLoggedIn = false;
           break;
-        case 0:
-        {
-          System.out.println("Exiting program...");
-          running = false;
-          break;
-        }
       }
     }
   }
@@ -82,8 +75,7 @@ public class main
       System.out.println("Choose action by inputting the appropriate number!");
       System.out.println("1) RENT GAME");
       System.out.println("2) VIEW GAMES");
-      System.out.println("9) LOG OUT");
-      System.out.println("0) EXIT PROGRAM");
+      System.out.println("0) LOG OUT");
       int select = input.nextInt();
       input.nextLine();
       switch (select)
@@ -97,15 +89,9 @@ public class main
           System.out.println("Game List:");
           System.out.println(model.getAllGames());
           break;
-        case 9:
+        case 0:
           isLoggedIn = false;
           break;
-        case 0:
-        {
-          System.out.println("Exiting program...");
-          running = false;
-          break;
-        }
         default:
           System.out.println("UNKNOWN INPUT! TRY AGAIN");
           break;
@@ -122,6 +108,7 @@ public class main
 
     System.out.println("Press [1] to login as an Admin");
     System.out.println("Press [2] to login as a Renter");
+    System.out.println("Press [0] to exit the program");
 
     int select = input.nextInt();
     input.nextLine();
@@ -134,6 +121,12 @@ public class main
       case 2:
         clientLoop(userName);
         break;
+      case 0:
+      {
+        System.out.println("Exiting program...");
+        running = false;
+        break;
+      }
       default:
         System.out.println("UNKNOWN");
         break;
