@@ -13,13 +13,11 @@ public class RmiClient
 {
 
   private RemoteModel server;
-  private Model model;
 
   public RmiClient() throws RemoteException
   {
     try
     {
-      model = new ModelManager();
        server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
       // UnicastRemoteObject.exportObject( this, 0);   for callback
       System.out.println("Stub pulled");
