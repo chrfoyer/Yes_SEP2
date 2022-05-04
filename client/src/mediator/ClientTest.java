@@ -45,7 +45,11 @@ public class ClientTest {
         case 2:
           System.out.println("Game List:");
 			try {
-				System.out.println(client.viewGames());
+				for (Game game : client.viewGames().getGames()
+                    ) {
+                        System.out.println("Game -> " + game.getName() + " : " + game.getDaysLeft() + " days left");
+                        System.out.println("Rented: " + game.isRented());
+                    }
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
