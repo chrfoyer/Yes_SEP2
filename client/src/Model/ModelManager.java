@@ -1,13 +1,12 @@
 package Model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ModelManager implements Model {
   private GameList games;
 
-  public ModelManager() {
-    this.games = new GameList();
+  public ModelManager(GameList games) {
+    this.games = games;
   }
 
   /**
@@ -27,7 +26,7 @@ public class ModelManager implements Model {
    */
   @Override
   public ArrayList<Game> getAllGames() {
-    return games.getGames();
+    return games.getGamesArrayCopy();
   }
 
   /**
@@ -38,6 +37,11 @@ public class ModelManager implements Model {
   @Override
   public void removeGame(Game game) {
     games.removeGame(game);
+  }
+
+  @Override
+  public void removeGame(String name) {
+    games.removeGame(name);
   }
 
   /**

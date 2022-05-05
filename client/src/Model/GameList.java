@@ -42,6 +42,7 @@ public class GameList implements Serializable {
     public Game getGame(String name) {
         for (int i = 0; i < games.size(); i++) {
             if (games.get(i).getName().equals(name)) {
+                System.out.println(games.get(i));
                 return games.get(i);
             }
         }
@@ -51,7 +52,7 @@ public class GameList implements Serializable {
     /**
      * @return list of all the games in the game arraylist
      */
-    public ArrayList<Game> getGames() {
+    public ArrayList<Game> getGamesArrayCopy() {
         return games;
     }
 

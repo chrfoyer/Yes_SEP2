@@ -7,6 +7,7 @@ import java.util.SimpleTimeZone;
 
 public class main
 {
+  /*
   private static Scanner input = new Scanner(System.in);
   public static Model model = new ModelManager(); // for persistence
   public static boolean running;
@@ -132,6 +133,8 @@ public class main
         break;
     }
   }
+
+   */
 }
 
 

@@ -17,8 +17,8 @@ public class RmiServer implements RemoteModel
   private GameList gameList;
 
   public RmiServer() throws RemoteException, MalformedURLException{
-    model = new ModelManager();
     gameList = new GameList();
+    model = new ModelManager(gameList);
     startServer();
   }
 

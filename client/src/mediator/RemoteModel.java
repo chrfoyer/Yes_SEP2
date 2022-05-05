@@ -10,4 +10,5 @@ public interface RemoteModel extends Remote
 {
   public void rentGame(Game game) throws RemoteException;
   public GameList viewGames() throws RemoteException;
+
 }
