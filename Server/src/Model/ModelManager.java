@@ -2,6 +2,9 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ * Implements the methods listed in the Model interface
+ */
 public class ModelManager implements Model {
   private GameList games;
 
@@ -39,6 +42,11 @@ public class ModelManager implements Model {
     games.removeGame(game);
   }
 
+  /**
+   * Removes a game from the GameList using its name
+   *
+   * @param name name of the game to be removed
+   */
   @Override
   public void removeGame(String name) {
     games.removeGame(name);
@@ -66,6 +74,11 @@ public class ModelManager implements Model {
     }
   }
 
+  /**
+   * Renting game using its name
+   *
+   * @param name name of the game to be rented
+   */
   @Override
   public void rentGame(String name) {
     if (name == null) {
@@ -111,6 +124,7 @@ public class ModelManager implements Model {
 
   /**
    * Method to get the GameList property for easier server usage
+   *
    * @return GameList containing everything
    */
   @Override

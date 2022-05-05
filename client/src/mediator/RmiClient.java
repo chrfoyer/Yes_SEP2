@@ -31,6 +31,9 @@ public class RmiClient
     }
   }
 
+  /**
+   * Starting the Client class functionality
+   */
   public void start() {
     Scanner input = new Scanner(System.in);
     boolean isLoggedIn = true;

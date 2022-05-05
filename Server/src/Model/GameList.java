@@ -3,6 +3,9 @@ package Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Class with an ArrayList of games, where games are added, removed and edited
+ */
 public class GameList implements Serializable {
     private ArrayList<Game> games;
 
@@ -50,6 +53,8 @@ public class GameList implements Serializable {
     }
 
     /**
+     * Returns the contents as an ArrayList not as a GameList
+     *
      * @return list of all the games in the game arraylist
      */
     public ArrayList<Game> getGamesArrayCopy() {
@@ -78,6 +83,11 @@ public class GameList implements Serializable {
         games.remove(game);
     }
 
+    /**
+     * Removes a game from arraylist
+     *
+     * @param name to be removed from list
+     */
     public void removeGame(String name) {
         for (int i = 0; i < games.size(); i++) {
             if (games.get(i).getName().equals(name)) {
@@ -112,6 +122,11 @@ public class GameList implements Serializable {
         }
     }
 
+    /**
+     * Rents a game using its name
+     *
+     * @param name game to be rented
+     */
     public void rentGame(String name) {
         Game rentTemp = getGame(name);
         removeGame(name);
