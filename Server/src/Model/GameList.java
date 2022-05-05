@@ -137,8 +137,11 @@ public class GameList implements Serializable
 
     for (Game game : games
     ) {
-      ret += "Game -> " + game.getName() + " : " + game.getDaysLeft() + " days left\n";
-      ret += "Rented: " + game.isRented() + "\n";
+      ret += "Game -> " + game.getName() + " : " + "Rented: " + game.isRented() + "\n";
+      if (game.isRented())
+      {
+        ret += game.getDaysLeft() + " days left\n";
+      }
     }
     return ret;
   }
