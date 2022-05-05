@@ -59,9 +59,21 @@ public class ModelManager implements Model {
    */
   @Override
   public void rentGame(Game game) {
-    if (game == null)
+    if (game == null) {
       throw new IllegalArgumentException("Game to rent cant be null");
-    game.rentGame();
+    } else {
+      game.rentGame();
+    }
+  }
+
+  @Override
+  public void rentGame(String name) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cant be null");
+    } else {
+      games.rentGame(name);
+    }
+
   }
 
   /**

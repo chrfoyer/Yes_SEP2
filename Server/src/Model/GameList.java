@@ -112,6 +112,13 @@ public class GameList implements Serializable {
         }
     }
 
+    public void rentGame(String name) {
+        Game rentTemp = getGame(name);
+        removeGame(name);
+        rentTemp.rentGame();
+        addGame(rentTemp);
+    }
+
     @Override
     public String toString() {
 

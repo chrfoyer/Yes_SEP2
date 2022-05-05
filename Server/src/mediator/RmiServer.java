@@ -20,8 +20,8 @@ public class RmiServer implements RemoteModel
   private GameList gameList;
 
   public RmiServer() throws RemoteException, MalformedURLException{
-    gameList = new GameList();
-    model = new ModelManager(gameList);
+    gameList = new GameList(); // to be deleted
+    model = new ModelManager(new GameList());
     startServer();
   }
 
@@ -51,11 +51,14 @@ public class RmiServer implements RemoteModel
 
   @Override public void rentGame(Game game)
   {
-    gameList.removeGame(game);
     if (game == null)
       throw new IllegalArgumentException("Game to rent cant be null");
-    game.rentGame();
-    gameList.addGame(game);
+    model.rentGame(game);
+  }
+
+  @Override
+  public void rentGame(String name) throws RemoteException {
+    model.rentGame(name);
   }
 
   @Override public GameList viewGames()

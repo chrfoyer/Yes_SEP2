@@ -116,7 +116,11 @@ public class Game implements Serializable
    */
   public void rentGame()
   {
-    this.rented = true;
+    if(rented) {
+      throw new IllegalStateException("Game is already rented!");
+    } else {
+      this.rented = true;
+    }
   }
 
   /**
@@ -124,7 +128,11 @@ public class Game implements Serializable
    */
   public void returnGame()
   {
-    this.rented = false;
+    if (!rented) {
+      throw new IllegalStateException("Game is not rented so it cannot be returned!");
+    } else {
+      this.rented = false;
+    }
   }
 
 }

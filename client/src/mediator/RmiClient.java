@@ -1,15 +1,9 @@
 package mediator;
 
-import Model.Model;
-
-import java.beans.PropertyChangeSupport;
 import java.rmi.Naming;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
-
-import Model.*;
 
 /**
  * Used to connect to the RmiServer class to establish the Client - Server relationship
@@ -28,8 +22,7 @@ public class RmiClient
   {
     try
     {
-       server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
-      // UnicastRemoteObject.exportObject( this, 0);   for callback
+      server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
       System.out.println("Stub pulled");
     }
     catch (Exception ex)
@@ -53,13 +46,9 @@ public class RmiClient
           System.out.println("Enter the name of the game");
           String gameName = input.nextLine();
           try {
-            // todo decouple method
-            // Game gameToRent = server.viewGames().getGame(gameName);
-            server.rentGame(server.viewGames().getGame(gameName));
+            server.rentGame(gameName);
             System.out.println("Rented " + gameName);
-            // This method is terrible
           } catch (RemoteException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
           }
           break;
@@ -68,7 +57,6 @@ public class RmiClient
           try {
             System.out.println(server.viewGames());
           } catch (RemoteException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
           }
           break;
