@@ -48,9 +48,11 @@ public class RmiServer implements RemoteModel
 
   @Override public void rentGame(Game game)
   {
+    gameList.removeGame(game);
     if (game == null)
       throw new IllegalArgumentException("Game to rent cant be null");
     game.rentGame();
+    gameList.addGame(game);
   }
 
   @Override public GameList viewGames()

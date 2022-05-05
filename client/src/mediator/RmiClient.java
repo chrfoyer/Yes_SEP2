@@ -49,7 +49,6 @@ public class RmiClient
             // Game gameToRent = server.viewGames().getGame(gameName);
             server.rentGame(server.viewGames().getGame(gameName));
             System.out.println("Rented " + gameName);
-            System.out.println("DEBUG -->" + server.viewGames().getGame(gameName));
             // This method is terrible
           } catch (RemoteException e1) {
             // TODO Auto-generated catch block
