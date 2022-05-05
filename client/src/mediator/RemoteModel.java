@@ -6,6 +6,9 @@ import Model.GameList;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+/**
+ *Interface used to establish Client - Server connection using RMI
+ */
 public interface RemoteModel extends Remote
 {
   public void rentGame(Game game) throws RemoteException;

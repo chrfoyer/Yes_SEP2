@@ -3,11 +3,14 @@ package Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Object that stores an ArrayList of games, given by the server when a client wants to view the games
+ */
 public class GameList implements Serializable {
     private ArrayList<Game> games;
 
     /**
-     * constructor that initializes arraylist
+     * Constructor that initializes arraylist
      */
     public GameList() {
         games = new ArrayList<>();
@@ -78,6 +81,11 @@ public class GameList implements Serializable {
         games.remove(game);
     }
 
+    /**
+     * Loops through all the games it holds and removes the given game
+     *
+     * @param name game to be removed from the ArrayList
+     */
     public void removeGame(String name) {
         for (int i = 0; i < games.size(); i++) {
             if (games.get(i).getName().equals(name)) {
@@ -112,6 +120,13 @@ public class GameList implements Serializable {
         }
     }
 
+    /**
+     * Gives the ArrayList in a given format
+     * "Game -> [Name] : [X] days left
+     *  Rented: true / false";
+     *
+     * @return formatted ArrayList
+     */
     @Override
     public String toString() {
 

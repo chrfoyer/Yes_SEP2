@@ -10,6 +10,9 @@ import java.rmi.server.UnicastRemoteObject;
 
 import Model.*;
 
+/**
+ * Connected to by the RmiClient class to establish the Client - Server relationship
+ */
 public class RmiServer implements RemoteModel
 {
 

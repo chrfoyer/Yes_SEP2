@@ -11,11 +11,19 @@ import java.util.Scanner;
 
 import Model.*;
 
+/**
+ * Used to connect to the RmiServer class to establish the Client - Server relationship
+ */
 public class RmiClient
 {
 
   private RemoteModel server;
 
+  /**
+   * Constructor to create a new RmiClient and connect to the server
+   *
+   * @throws RemoteException if it encounters any problems connecting or talking to the server
+   */
   public RmiClient() throws RemoteException
   {
     try

@@ -2,6 +2,9 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ * Implementation of methods in the Model interface
+ */
 public class ModelManager implements Model {
   private GameList games;
 
@@ -20,7 +23,7 @@ public class ModelManager implements Model {
   }
 
   /**
-   * returns all the games
+   * Returns all the games
    *
    * @return arrayList<Game> of all the games
    */
@@ -65,7 +68,7 @@ public class ModelManager implements Model {
   }
 
   /**
-   * method to get a Gmae from GameList using a Game object
+   * Method to get a Game from GameList using a Game object
    * 
    * @param name of the game to be searched for
    * @return the selected game from the GameList
@@ -76,7 +79,7 @@ public class ModelManager implements Model {
   }
 
   /**
-   * method to get a Game from GameList using its name
+   * Method to get a Game from GameList using its name
    * 
    * @param game to be searched for
    * @return the selected game from the GameList

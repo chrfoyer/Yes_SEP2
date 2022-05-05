@@ -2,6 +2,9 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ * Interface that holds all methods to be used by other packages
+ */
 public interface Model
 {
   public void addGame(Game game);
