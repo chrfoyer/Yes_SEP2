@@ -82,12 +82,20 @@ public class Game implements Serializable
 
   /**
    * Decreases the days left in the rental period. If the game is not rented, an exception is thrown.
+   * If the game ran out of days also sets rented to false
+   * @author Raedrim
    */
   public void decrementDaysLeft()
   {
     if (rented)
     {
       daysLeft--;
+      if (daysLeft<=0)
+      {
+          rented=false;
+          //todo debug statement probably remove
+          System.out.println(name+" Ran out of time, game not rented anymore");
+      }
     }
     else
     {

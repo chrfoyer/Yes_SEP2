@@ -1,4 +1,5 @@
 import Model.Game;
+import Model.GameList;
 import mediator.RmiServer;
 
 import java.net.MalformedURLException;
@@ -22,6 +23,7 @@ public class ServerTest {
             System.out.println("Press [2] to remove a game");
             System.out.println("Press [3] to view the games");
             System.out.println("Press [4] to decrement the day");
+            System.out.println("Press [5] to debug rental period");
             System.out.println("Press [0] to fuck off");
 
             int given = input.nextInt();
@@ -58,6 +60,12 @@ public class ServerTest {
                     //todo doesnt seem to do anything
                     server.decrementDay();
                     System.out.println("See you in tomorrow");
+                    break;
+
+                case 5:
+                    for (int i = 0; i < 14 ; i++) {
+                        server.decrementDay();
+                    }
                     break;
                 case 0:
                     running = false;
