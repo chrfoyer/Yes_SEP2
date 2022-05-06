@@ -5,6 +5,8 @@ import java.io.Serializable;
 /**
  * The game is the object that is rented in the system. The attributes are
  * currently just the name, but more attributes will be included according the domain model
+ * @author Chris,Martin,Levente,Kruno
+ * @version 0.2 5/5/22
  */
 public class Game implements Serializable
 {

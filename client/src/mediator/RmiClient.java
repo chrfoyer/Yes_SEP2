@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 /**
  * Used to connect to the RmiServer class to establish the Client - Server relationship
+ *
+ * @author Chris,Martin,Levente,Kruno
+ * @version 0.2 5/5/22
  */
 public class RmiClient {
 

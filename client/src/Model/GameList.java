@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 /**
  * Class with an ArrayList of games, where games are added, removed and edited
+ * @author Chris,Martin,Levente,Kruno
+ * @version 0.2 5/5/22
  */
 public class GameList implements Serializable {
     private ArrayList<Game> games;

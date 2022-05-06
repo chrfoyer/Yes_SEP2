@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Implements the methods listed in the Model interface
+ * @author Chris,Martin,Levente,Kruno
+ * @version 0.2 5/5/22
  */
 public class ModelManager implements Model {
     private GameList games;

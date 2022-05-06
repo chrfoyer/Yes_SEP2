@@ -8,6 +8,8 @@ import java.rmi.RemoteException;
 
 /**
  * Interface used to establish Client - Server connection using RMI
+ * @author Chris,Martin,Levente,Kruno
+ * @version 0.2 5/5/22
  */
 public interface RemoteModel extends Remote {
     void rentGame(Game game) throws RemoteException;

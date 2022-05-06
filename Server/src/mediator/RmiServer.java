@@ -12,6 +12,8 @@ import Model.*;
 
 /**
  * Connected to by the RmiClient class to establish the Client - Server relationship
+ * @author Chris,Martin,Levente,Kruno
+ * @version 0.2 5/5/22
  */
 public class RmiServer implements RemoteModel {
 

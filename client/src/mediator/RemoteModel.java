@@ -8,6 +8,9 @@ import java.rmi.RemoteException;
 
 /**
  *Interface used to establish Client - Server connection using RMI
+ *
+ * @author Chris,Levente,Kruno,Martin
+ * @version 0.2 5/5/22
  */
 public interface RemoteModel extends Remote
 {
