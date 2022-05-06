@@ -15,4 +15,5 @@ public interface RemoteModel extends Remote
   void rentGame(String name) throws RemoteException;
   Game getGame(String name) throws RemoteException;
   GameList viewGames() throws RemoteException;
+  boolean containsGame(String name) throws RemoteException;
 }
