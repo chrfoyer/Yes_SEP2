@@ -25,7 +25,7 @@ public class Game implements Serializable
    */
   public Game(String name, String producer, String esrb)
   {
-    if (esrb != "E" || esrb != "E10+" || esrb != "T" || esrb != "M" || esrb != "AO")
+    if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T") || esrb.equals("M") || esrb.equals("AO")))
     {
       throw new IllegalArgumentException("Unknown rating");
     }
@@ -142,6 +142,7 @@ public class Game implements Serializable
     } else {
       this.rented = true;
       this.daysLeft = 14;
+      new Transaction(this,"Rent","user");
     }
   }
 
@@ -155,6 +156,7 @@ public class Game implements Serializable
     } else {
       this.rented = false;
       this.daysLeft = 0;
+      new Transaction(this,"Return","User");
     }
   }
 
