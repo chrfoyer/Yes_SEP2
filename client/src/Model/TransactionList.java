@@ -6,6 +6,8 @@ public class TransactionList
 {
 
   private ArrayList<Transaction> transactions;
+  private static TransactionList instance;
+  private static Object lock = new Object();
 
   public TransactionList(){
     transactions = new ArrayList<>();
@@ -22,5 +24,16 @@ public class TransactionList
 
   public void removeTransaction(Transaction transaction){
     transactions.remove(transaction);
+  }
+
+  public static TransactionList getInstance(){
+    if (instance == null){
+      synchronized (lock){
+        if (instance == null){
+          instance = new TransactionList();
+        }
+      }
+    }
+    return instance;
   }
 }
