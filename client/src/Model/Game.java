@@ -131,6 +131,9 @@ public class Game implements Serializable
       throw new IllegalStateException("Game is already rented!");
     } else {
       this.rented = true;
+      Transaction transaction = new Transaction(this,"Rent","user");
+
+
     }
   }
 
