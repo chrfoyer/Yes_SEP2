@@ -5,25 +5,36 @@ import java.io.Serializable;
 /**
  * The game is the object that is rented in the system. The attributes are
  * currently just the name, but more attributes will be included according the domain model
+ *
  * @author Chris,Martin,Levente,Kruno
  * @version 0.2 5/5/22
  */
 public class Game implements Serializable
 {
   private String name;
+  private String producer;
   private boolean rented;
   private int daysLeft;
+  private float review;
+  private String esrb;
 
   /**
    * Constructor for game using 14 days as a standard rental period for now.
    *
    * @param name argument for the name of the game
    */
-  public Game(String name)
+  public Game(String name, String producer, String esrb)
   {
+    if (esrb != "E" || esrb != "E10+" || esrb != "T" || esrb != "M" || esrb != "AO")
+    {
+      throw new IllegalArgumentException("Unknown rating");
+    }
+    this.esrb = esrb;
+    this.review = 3;
+    this.producer = producer;
     this.name = name;
     rented = false;
-    daysLeft = 14;
+    daysLeft = 0;
   }
 
   /**
@@ -94,15 +105,15 @@ public class Game implements Serializable
       daysLeft--;
       if (daysLeft<=0)
       {
-          rented=false;
-          //todo debug statement probably remove
-          System.out.println(name+" Ran out of time, game not rented anymore");
+        rented=false;
+        //todo debug statement probably remove
+        System.out.println(name+" Ran out of time, game not rented anymore");
       }
     }
     else
     {
       throw new IllegalStateException(
-          "Game is not currently rented, so the days can't be decreased.");
+              "Game is not currently rented, so the days can't be decreased.");
     }
   }
 
@@ -130,6 +141,7 @@ public class Game implements Serializable
       throw new IllegalStateException("Game is already rented!");
     } else {
       this.rented = true;
+      this.daysLeft = 14;
     }
   }
 
@@ -142,7 +154,77 @@ public class Game implements Serializable
       throw new IllegalStateException("Game is not rented so it cannot be returned!");
     } else {
       this.rented = false;
+      this.daysLeft = 0;
     }
   }
 
+  /**
+   * Gets the production company of the game
+   *
+   * @return production company
+   */
+  public String getProducer()
+  {
+    return producer;
+  }
+
+  /**
+   * Gets the review of the game (1-5)
+   *
+   * @return a decimal number review of the game
+   */
+  public float getReview()
+  {
+    return review;
+  }
+
+  /**
+   * Gets the international video game rating for the game
+   *
+   * @return String of the ESRB rating
+   */
+  public String getEsrb()
+  {
+    return esrb;
+  }
+
+  /**
+   * Changes the name of the game to a new given name
+   *
+   * @param name new name of the game
+   */
+  public void setName(String name)
+  {
+    this.name = name;
+  }
+
+  /**
+   * Changes the production house of the game to a new given production house
+   *
+   * @param producer new production house of the game
+   */
+  public void setProducer(String producer)
+  {
+    this.producer = producer;
+  }
+
+  /**
+   * Changes the ESRB rating of the game to a new rating
+   *
+   * @param esrb new rating for the game
+   */
+  public void setEsrb(String esrb)
+  {
+    this.esrb = esrb;
+  }
+
+  /**
+   * Changes the review rating of the game to a new given production house
+   *
+   * @param review new review rating for the game
+   */
+  public void setReview(float review)
+  {
+    this.review = review;
+  }
 }
