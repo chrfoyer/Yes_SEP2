@@ -33,7 +33,7 @@ public class ServerTest {
                     System.out.println("Enter the name of the game!");
                     String name = input.nextLine();
 
-                    server.addGame(new Game(name));
+                    server.addGame(new Game(name,"Generic Studio","E"));
                     break;
 
                 case 2:

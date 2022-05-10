@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class RmiClient {
 
     private RemoteModel server;
+    private String username;
     private static Scanner input = new Scanner(System.in);
 
     /**
@@ -56,7 +57,7 @@ public class RmiClient {
                     break;
                 case 0:
                     isLoggedIn = false;
-                    System.out.println("Goodbye");
+                    System.out.println("Goodbye " + username);
                     break;
                 default:
                     System.out.println("UNKNOWN INPUT! TRY AGAIN");
@@ -82,4 +83,13 @@ public class RmiClient {
             ex.printStackTrace();
         }
     }
+
+    public void login()
+    {
+        System.out.println("What is your username?");
+
+        this.username = input.nextLine();
+        this.start();
+    }
+
 }

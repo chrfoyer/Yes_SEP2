@@ -143,11 +143,13 @@ public class ModelManager implements Model {
      */
     @Override
     public boolean containsGame(String name) {
-        Game input = new Game(name);
         boolean ret = false;
         for (Game game : games.getGamesArrayCopy()
         ) {
-            if (game.equals(input)) ret = true;
+            if (game.getName().equals(name))
+            {
+                ret = true;
+            }
         }
         return ret;
     }
