@@ -136,6 +136,11 @@ public class GameList implements Serializable {
         addGame(rentTemp);
     }
 
+    /**
+     * Returns a string containing the attributes of the game. If the game is not rented, the days left will not appear.
+     *
+     * @return The string with the information about the game object.
+     */
     @Override
     public String toString() {
 

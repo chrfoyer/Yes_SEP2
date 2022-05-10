@@ -105,8 +105,6 @@ public class Game implements Serializable
       daysLeft--;
       if (daysLeft<=0)
       {
-        rented=false;
-        //todo debug statement probably remove
         System.out.println(name+" Ran out of time, game not rented anymore");
       }
     }
