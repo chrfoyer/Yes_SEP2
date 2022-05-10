@@ -1,5 +1,7 @@
 import Model.Game;
 import Model.GameList;
+import Model.TransactionList;
+import Model.WriteTransaction;
 import mediator.RmiServer;
 
 import java.net.MalformedURLException;
@@ -24,6 +26,7 @@ public class ServerTest {
             System.out.println("Press [3] to view the games");
             System.out.println("Press [4] to decrement the day");
             System.out.println("Press [5] to debug rental period");
+            System.out.println("Press [6] to print transactions");
             System.out.println("Press [0] to fuck off");
 
             int given = input.nextInt();
@@ -66,6 +69,12 @@ public class ServerTest {
                     for (int i = 0; i < 14 ; i++) {
                         server.decrementDay();
                     }
+                    break;
+                case 6:
+                    System.out.println("Writing transactions...");
+                    TransactionList transactionList = TransactionList.getInstance();
+                    System.out.println(transactionList);
+                    WriteTransaction.writeTransactions(transactionList);
                     break;
                 case 0:
                     running = false;

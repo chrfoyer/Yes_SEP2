@@ -1,5 +1,6 @@
 package mediator;
 
+import Model.Transaction;
 import Model.TransactionList;
 import Model.WriteTransaction;
 
@@ -59,11 +60,6 @@ public class RmiClient {
                         e.printStackTrace();
                     }
                     break;
-                case 3:
-                {
-                    System.out.println("Writing transactions...");
-                    WriteTransaction.writeTransactions(TransactionList.getInstance());
-                }
                 case 0:
                     isLoggedIn = false;
                     System.out.println("Goodbye " + username);
