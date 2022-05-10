@@ -43,4 +43,12 @@ public class TransactionList
     }
     return instance;
   }
+
+  public int getSize(){
+    return transactions.size();
+  }
+
+  public ArrayList<Transaction> getList(){
+    return transactions;
+  }
 }
