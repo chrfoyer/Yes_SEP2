@@ -9,7 +9,7 @@ public class TransactionList
   private static TransactionList instance;
   private static Object lock = new Object();
 
-  private TransactionList()
+  public TransactionList()
   {
     transactions = new ArrayList<>();
   }

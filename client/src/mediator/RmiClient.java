@@ -1,5 +1,8 @@
 package mediator;
 
+import Model.TransactionList;
+import Model.WriteTransaction;
+
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -40,6 +43,7 @@ public class RmiClient {
             System.out.println("Choose action by inputting the appropriate number!");
             System.out.println("1) RENT GAME");
             System.out.println("2) VIEW GAMES");
+            System.out.println("3) PRINT TRANSACTIONS TO XML");
             System.out.println("0) LOG OUT");
             int select = input.nextInt();
             input.nextLine();
@@ -55,6 +59,11 @@ public class RmiClient {
                         e.printStackTrace();
                     }
                     break;
+                case 3:
+                {
+                    System.out.println("Writing transactions...");
+                    WriteTransaction.writeTransactions(TransactionList.getInstance());
+                }
                 case 0:
                     isLoggedIn = false;
                     System.out.println("Goodbye " + username);
