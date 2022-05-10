@@ -15,12 +15,14 @@ public class Transaction
     this.user = user;
     this.type = type;
     date = LocalDate.now();
+    TransactionList.getInstance().addTransaction(this);
   }
   //constructor for refunds
   public Transaction(String type, String user, double amount){
     this.type = type;
     this.user = user;
     this.amount = amount;
+    TransactionList.getInstance().addTransaction(this);
   }
 
   public double getAmount(){
@@ -42,23 +44,5 @@ public class Transaction
     return user;
   }
 
-  public void setAmount(double amount)
-  {
-    this.amount = amount;
-  }
 
-  public void setDate(LocalDate date)
-  {
-    this.date = date;
-  }
-
-  public void setType(String type)
-  {
-    this.type = type;
-  }
-
-  public void setUser(String user)
-  {
-    this.user = user;
-  }
 }

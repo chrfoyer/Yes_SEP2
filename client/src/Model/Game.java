@@ -142,6 +142,7 @@ public class Game implements Serializable
     } else {
       this.rented = true;
       this.daysLeft = 14;
+      new Transaction(this,"Rent","user");
     }
   }
 
@@ -155,6 +156,7 @@ public class Game implements Serializable
     } else {
       this.rented = false;
       this.daysLeft = 0;
+      new Transaction(this,"Return","User");
     }
   }
 

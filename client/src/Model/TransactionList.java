@@ -9,7 +9,8 @@ public class TransactionList
   private static TransactionList instance;
   private static Object lock = new Object();
 
-  public TransactionList(){
+  public TransactionList()
+  {
     transactions = new ArrayList<>();
   }
 
@@ -18,18 +19,24 @@ public class TransactionList
     return transactions;
   }
 
-  public void addTransaction(Transaction transaction){
+  public synchronized void addTransaction(Transaction transaction)
+  {
     transactions.add(transaction);
   }
 
-  public void removeTransaction(Transaction transaction){
+  public synchronized void removeTransaction(Transaction transaction)
+  {
     transactions.remove(transaction);
   }
 
-  public static TransactionList getInstance(){
-    if (instance == null){
-      synchronized (lock){
-        if (instance == null){
+  public static TransactionList getInstance()
+  {
+    if (instance == null)
+    {
+      synchronized (lock)
+      {
+        if (instance == null)
+        {
           instance = new TransactionList();
         }
       }
