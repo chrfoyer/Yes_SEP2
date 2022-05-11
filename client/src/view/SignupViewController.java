@@ -16,15 +16,23 @@ public class SignupViewController extends ViewController
 
   @Override protected void init()
   {
-    fullName.textProperty().bindBidirectional(getViewModelFactory().getSignupViewModel().getNameProperty());
-    address.textProperty().bindBidirectional(getViewModelFactory().getSignupViewModel().getAddressProperty());
-    email.textProperty().bindBidirectional(getViewModelFactory().getSignupViewModel().getEmailProperty());
-    username.textProperty().bindBidirectional(getViewModelFactory().getSignupViewModel().getUsernameProperty());
-    password.textProperty().bindBidirectional(getViewModelFactory().getSignupViewModel().getPasswordProperty());
-    confirmPassword.textProperty().bindBidirectional(getViewModelFactory().getSignupViewModel().getConfirmProperty());
+    fullName.textProperty().bindBidirectional(
+        getViewModelFactory().getSignupViewModel().getNameProperty());
+    address.textProperty().bindBidirectional(
+        getViewModelFactory().getSignupViewModel().getAddressProperty());
+    email.textProperty().bindBidirectional(
+        getViewModelFactory().getSignupViewModel().getEmailProperty());
+    username.textProperty().bindBidirectional(
+        getViewModelFactory().getSignupViewModel().getUsernameProperty());
+    password.textProperty().bindBidirectional(
+        getViewModelFactory().getSignupViewModel().getPasswordProperty());
+    confirmPassword.textProperty().bindBidirectional(
+        getViewModelFactory().getSignupViewModel().getConfirmProperty());
   }
 
   public void signup(ActionEvent actionEvent)
   {
+    getViewModelFactory().getSignupViewModel().signup();
+    getViewHandler().openView("LoginView.fxml");
   }
 }

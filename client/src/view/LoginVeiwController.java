@@ -12,19 +12,25 @@ public class LoginVeiwController extends ViewController
 
   @Override protected void init()
   {
-    username.textProperty().bindBidirectional(getViewModelFactory().getLoginViewModel().getUsernameProperty());
-    password.textProperty().bindBidirectional(getViewModelFactory().getLoginViewModel().getPasswordProperty());
-    errorLabel.textProperty().bind(getViewModelFactory().getLoginViewModel().getErrorLabel());
+    username.textProperty().bindBidirectional(
+        getViewModelFactory().getLoginViewModel().getUsernameProperty());
+    password.textProperty().bindBidirectional(
+        getViewModelFactory().getLoginViewModel().getPasswordProperty());
+    errorLabel.textProperty()
+        .bind(getViewModelFactory().getLoginViewModel().getErrorLabel());
   }
 
   public void login(ActionEvent actionEvent)
   {
-    if (getViewModelFactory().getLoginViewModel().login()){
-      getViewHandler().openView("BrowseView.fxml");
+    if (getViewModelFactory().getLoginViewModel().login())
+    {
+      getViewHandler().openView("UserProfileView.fxml");
     }
   }
 
   public void signup(ActionEvent actionEvent)
   {
+    getViewHandler().openView("SignupView.fxml");
   }
+
 }
