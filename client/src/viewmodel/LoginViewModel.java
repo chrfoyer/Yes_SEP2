@@ -60,18 +60,19 @@ public class LoginViewModel
     return errorLabel;
   }
 
-  public void login()
+  public boolean login()
   {
     try
     {
       // TODO: 2022. 05. 11. Model logic validate login
       User user = new User(getUsernameProperty().getValue(),getPasswordProperty().getValue());
-      model.login(user);
+      return model.login(user);
     }
     catch (Exception e)
     {
       errorLabel.set(e.getMessage());
     }
+    return false;
   }
 
   /**
