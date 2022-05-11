@@ -19,14 +19,14 @@ public class SignupViewModel
   private RemoteModel model;
   private StringProperty usernameProperty;
   private StringProperty passwordProperty;
-  private Label errorLabel;
+  private StringProperty errorLabel;
 
   public SignupViewModel(RemoteModel model)
   {
     this.model = model;
     usernameProperty = new SimpleStringProperty();
     passwordProperty = new SimpleStringProperty();
-    errorLabel = new Label();
+    errorLabel = new SimpleStringProperty();
   }
 
   public StringProperty getUsernameProperty()
@@ -47,7 +47,7 @@ public class SignupViewModel
     }
     catch (Exception e)
     {
-      errorLabel.setText(e.getMessage());
+      errorLabel.set(e.getMessage());
     }
   }
 
@@ -55,6 +55,6 @@ public class SignupViewModel
   {
     usernameProperty.set("");
     passwordProperty.set("");
-    errorLabel.setText("");
+    errorLabel.set("");
   }
 }
