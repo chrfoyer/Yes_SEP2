@@ -19,6 +19,9 @@ public class LoginVeiwController extends ViewController
 
   public void login(ActionEvent actionEvent)
   {
+    if (getViewModelFactory().getLoginViewModel().login()){
+      getViewHandler().openView("BrowseView.fxml");
+    }
   }
 
   public void signup(ActionEvent actionEvent)
