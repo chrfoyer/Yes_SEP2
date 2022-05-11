@@ -2,6 +2,7 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class SignupViewController extends ViewController
@@ -13,6 +14,7 @@ public class SignupViewController extends ViewController
   public TextField username;
   public TextField confirmPassword;
   public TextField password;
+  public Label error;
 
   @Override protected void init()
   {
@@ -28,6 +30,8 @@ public class SignupViewController extends ViewController
         getViewModelFactory().getSignupViewModel().getPasswordProperty());
     confirmPassword.textProperty().bindBidirectional(
         getViewModelFactory().getSignupViewModel().getConfirmProperty());
+    error.textProperty().bind(getViewModelFactory().getSignupViewModel().getErrorLabel());
+    getViewModelFactory().getSignupViewModel().reset();
   }
 
   public void signup(ActionEvent actionEvent)

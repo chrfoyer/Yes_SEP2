@@ -1,10 +1,7 @@
 package view;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class BrowseViewController extends ViewController
 {
@@ -16,6 +13,7 @@ public class BrowseViewController extends ViewController
   public TableColumn consoleColumn;
   public TableColumn producerColumn;
   public TableColumn esrbColumn;
+  public Label error;
 
   @Override protected void init()
   {

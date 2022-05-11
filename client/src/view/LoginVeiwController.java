@@ -28,6 +28,7 @@ public class LoginVeiwController extends ViewController
         getViewModelFactory().getLoginViewModel().getPasswordProperty());
     errorLabel.textProperty()
         .bind(getViewModelFactory().getLoginViewModel().getErrorLabel());
+    getViewModelFactory().getLoginViewModel().reset();
   }
 
   public void login(ActionEvent actionEvent)
