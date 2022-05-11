@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class AdminViewController {
+public class AdminViewController extends ViewController{
 
 
   @FXML
@@ -18,6 +18,11 @@ public class AdminViewController {
   public TextField recentGame;
   @FXML
   public Label errorLabel;
+
+  @Override
+  protected void init() {
+
+  }
 
   @FXML
   public void manageUsers(ActionEvent actionEvent) {

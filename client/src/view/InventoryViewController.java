@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class InventoryViewController {
+public class InventoryViewController extends ViewController{
   @FXML
   public TableView table;
   @FXML
@@ -14,6 +14,11 @@ public class InventoryViewController {
   public TableColumn timeColumn;
   @FXML
   public TableColumn dateAddedColumn;
+
+  @Override
+  protected void init() {
+
+  }
 
   @FXML
   public void add(ActionEvent actionEvent) {
