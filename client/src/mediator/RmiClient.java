@@ -1,12 +1,7 @@
 package mediator;
 
-import Model.Transaction;
-import Model.TransactionList;
-import Model.WriteTransaction;
-
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 /**
