@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -9,7 +10,7 @@ import java.time.LocalDate;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.1 11/5/22
  */
-public class User
+public class User implements Serializable
 {
   private String username;
   private String password;

@@ -77,4 +77,21 @@ public class UserList
     }
     return false;
   }
+
+  public boolean login(User given)
+  {
+    User foundFromList = null;
+    for (User user : users)
+    {
+      if (user.getUsername().equals(given.getUsername()))
+        foundFromList = user;
+    }
+    if (foundFromList == null)
+      throw new IllegalArgumentException("User does not exist on server");
+    else
+    {
+      //Authenticate password
+      return given.getPassword().equals(foundFromList.getPassword());
+    }
+  }
 }

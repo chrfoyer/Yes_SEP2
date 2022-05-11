@@ -21,4 +21,5 @@ public interface RemoteModel extends Remote
   GameList viewGames() throws RemoteException;
   boolean containsGame(String name) throws RemoteException;
   void signup(User user) throws RemoteException;
+  boolean login(User user) throws RemoteException;
 }

@@ -119,11 +119,21 @@ public class RmiClient
     try
     {
       server.signup(user);
+      System.out.println("TEST LOGIN");
+      if (server.login(user))
+      {
+        System.out.println("USER LOGGED IN");
+      }
+      else
+      {
+        System.out.println("something wrong");
+      }
     }
     catch (Exception e)
     {
       e.printStackTrace();
     }
+
     this.start();
   }
 

@@ -184,4 +184,12 @@ public class ModelManager implements Model
     else
       users.addUser(user);
   }
+
+  @Override public boolean login(User user)
+  {
+    if (users.login(user))
+      return true;
+    else
+      return false;
+  }
 }

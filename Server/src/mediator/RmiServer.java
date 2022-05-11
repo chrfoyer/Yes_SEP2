@@ -110,6 +110,11 @@ public class RmiServer implements RemoteModel
     model.signup(user);
   }
 
+  @Override public boolean login(User user) throws RemoteException
+  {
+    return model.login(user);
+  }
+
   /**
    * Adds a game to the GameList
    *

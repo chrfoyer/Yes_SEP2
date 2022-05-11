@@ -1,6 +1,9 @@
 package viewmodel;
 
+import Model.User;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -10,6 +13,7 @@ import mediator.RemoteModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.time.LocalDate;
 
 /**
  * @version 0.3
@@ -20,7 +24,7 @@ public class SignupViewModel
   private StringProperty usernameProperty;
   private StringProperty passwordProperty;
   private StringProperty nameProperty;
-  private StringProperty dobProperty;
+  private ObjectProperty<LocalDate> dobProperty;
   private StringProperty addressProperty;
   private StringProperty emailProperty;
   private StringProperty confirmProperty;
@@ -37,7 +41,7 @@ public class SignupViewModel
     usernameProperty = new SimpleStringProperty();
     passwordProperty = new SimpleStringProperty();
     nameProperty = new SimpleStringProperty();
-    dobProperty = new SimpleStringProperty();
+    dobProperty = new SimpleObjectProperty<>();
     addressProperty = new SimpleStringProperty();
     emailProperty = new SimpleStringProperty();
     confirmProperty = new SimpleStringProperty();
@@ -59,7 +63,7 @@ public class SignupViewModel
    *
    * @return getDobProperty
    */
-  public StringProperty getDobProperty()
+  public ObjectProperty<LocalDate> getDobProperty()
   {
     return dobProperty;
   }
@@ -131,7 +135,15 @@ public class SignupViewModel
   {
     try
     {
-      // TODO: 2022. 05. 11. Model logic validate signup
+      if (!passwordProperty.get().equals(confirmProperty.get()))
+        throw new IllegalArgumentException(
+            "Passwords and confirmation have to match!");
+
+      LocalDate dob = dobProperty.get();
+      User user = new User(usernameProperty.get(), passwordProperty.get(),
+          emailProperty.get(), addressProperty.get(), nameProperty.getName(),
+          dob);
+      model.signup(user);
     }
     catch (Exception e)
     {
@@ -147,7 +159,7 @@ public class SignupViewModel
     usernameProperty.set("");
     passwordProperty.set("");
     nameProperty.set("");
-    dobProperty.set("");
+    dobProperty.set(LocalDate.now());
     addressProperty.set("");
     emailProperty.set("");
     confirmProperty.set("");
