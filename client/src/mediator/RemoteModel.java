@@ -2,15 +2,16 @@ package mediator;
 
 import Model.Game;
 import Model.GameList;
+import Model.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- *Interface used to establish Client - Server connection using RMI
+ * Interface used to establish Client - Server connection using RMI
  *
- * @author Chris,Levente,Kruno,Martin
- * @version 0.2 5/5/22
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.3 5/5/22
  */
 public interface RemoteModel extends Remote
 {
@@ -19,4 +20,5 @@ public interface RemoteModel extends Remote
   Game getGame(String name) throws RemoteException;
   GameList viewGames() throws RemoteException;
   boolean containsGame(String name) throws RemoteException;
+  void signup(User user) throws RemoteException;
 }

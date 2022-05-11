@@ -1,5 +1,7 @@
 package mediator;
 
+import Model.User;
+
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.Scanner;
@@ -10,7 +12,8 @@ import java.util.Scanner;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
-public class RmiClient {
+public class RmiClient
+{
 
   private RemoteModel server;
   private String username;
@@ -21,11 +24,15 @@ public class RmiClient {
    *
    * @throws RemoteException if it encounters any problems connecting or talking to the server
    */
-  public RmiClient() throws RemoteException {
-    try {
+  public RmiClient() throws RemoteException
+  {
+    try
+    {
       server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
       System.out.println("Stub pulled");
-    } catch (Exception ex) {
+    }
+    catch (Exception ex)
+    {
       ex.printStackTrace();
     }
   }
@@ -34,24 +41,30 @@ public class RmiClient {
    * Starting the Client class functionality. Presents a list of options for the user using console commans. Once logged
    * in, the user can choose to rent a game, view the games, or log out.
    */
-  public void start() {
+  public void start()
+  {
     boolean isLoggedIn = true;
-    while (isLoggedIn) {
+    while (isLoggedIn)
+    {
       System.out.println("Choose action by inputting the appropriate number!");
       System.out.println("1) RENT GAME");
       System.out.println("2) VIEW GAMES");
       System.out.println("0) LOG OUT");
       int select = input.nextInt();
       input.nextLine();
-      switch (select) {
+      switch (select)
+      {
         case 1:
           rentGame();
           break;
         case 2:
           System.out.println("Game List:");
-          try {
+          try
+          {
             System.out.println(server.viewGames());
-          } catch (RemoteException e) {
+          }
+          catch (RemoteException e)
+          {
             e.printStackTrace();
           }
           break;
@@ -72,15 +85,20 @@ public class RmiClient {
    * @throws RemoteException          if server connection doesn't exist
    * @throws IllegalArgumentException if the game doesn't exist on the server
    */
-  public void rentGame() {
+  public void rentGame()
+  {
     System.out.println("Enter the name of the game");
     String gameName = input.nextLine();
-    try {
+    try
+    {
       if (!server.containsGame(gameName))
-        throw new IllegalArgumentException("The given game does not exist on the server");
+        throw new IllegalArgumentException(
+            "The given game does not exist on the server");
       server.rentGame(gameName);
       System.out.println("Rented " + gameName);
-    } catch (Exception ex) {
+    }
+    catch (Exception ex)
+    {
       ex.printStackTrace();
     }
   }
@@ -89,9 +107,23 @@ public class RmiClient {
    * Allows the user to log in using the scanner object to gather input from the keyboard. Currently, only a username is
    * needed.
    */
-  public void login() {
+  public void login()
+  {
     System.out.println("What is your username?");
-    this.username = input.nextLine();
+    String username = input.nextLine();
+
+    System.out.println("What is your password? (security100)");
+    String password = input.nextLine();
+
+    User user = new User(username, password);
+    try
+    {
+      server.signup(user);
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
     this.start();
   }
 

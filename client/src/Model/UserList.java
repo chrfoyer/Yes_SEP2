@@ -16,40 +16,65 @@ public class UserList
   /**
    * Constructor initializing an arrayList of User type.
    */
-  public UserList(){
+  public UserList()
+  {
     users = new ArrayList<>();
   }
 
   /**
    * method for adding a user
+   *
    * @param user user to be added to the userList
    */
-  public void addUser(User user){
+  public void addUser(User user)
+  {
     users.add(user);
   }
 
   /**
    * method for removing a user
+   *
    * @param user user to be removed from the userList
    */
-  public void removeUser(User user){
+  public void removeUser(User user)
+  {
     users.remove(user);
   }
 
   /**
    * method for getting the size of the userList
+   *
    * @return size of userList as an int
    */
-  public int size(){
+  public int size()
+  {
     return users.size();
   }
 
   /**
    * method for getting a user at a certain index
+   *
    * @param index index to fetch the user from
    * @return user at the given index
    */
-  public User get(int index){
+  public User get(int index)
+  {
     return users.get(index);
+  }
+
+  /**
+   * Checks if a user is already registered
+   *
+   * @param given user to check against existing list
+   * @return true if it contains
+   */
+  public boolean contains(User given)
+  {
+    for (User user : users)
+    {
+      if (user.getUsername().equals(given.getUsername()))
+        return true;
+    }
+    return false;
   }
 }
