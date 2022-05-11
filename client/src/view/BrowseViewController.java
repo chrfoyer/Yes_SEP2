@@ -23,4 +23,17 @@ public class BrowseViewController extends ViewController
   public void searchButton(ActionEvent actionEvent)
   {
   }
+
+  public void info(ActionEvent actionEvent) {
+    // Use selected game
+    getViewHandler().openView("GameInfoView.fxml");
+  }
+
+  public void rent(ActionEvent actionEvent) {
+    // TODO: 11/05/2022 Confirmation window with name of game
+  }
+
+  public void back(ActionEvent actionEvent) {
+    getViewHandler().openView("UserProfileView.fxml");
+  }
 }

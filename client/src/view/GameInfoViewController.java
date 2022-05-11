@@ -15,10 +15,12 @@ public class GameInfoViewController extends ViewController
 
   @Override protected void init()
   {
-
+    // TODO: 11/05/2022 Get the info from the selected game
   }
 
   public void backButton(ActionEvent actionEvent)
   {
+    getViewHandler().openView("BrowseView.fxml");
+    // Note: This might not always be the case, depending upon where we come from to get to this window.
   }
 }

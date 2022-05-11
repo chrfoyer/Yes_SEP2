@@ -28,9 +28,12 @@ public class UserEditViewController extends ViewController{
 
   @FXML
   public void cancel(ActionEvent actionEvent) {
+    getViewHandler().openView("UserListViewController.fxml");
   }
 
   @FXML
   public void apply(ActionEvent actionEvent) {
+    // TODO: 11/05/2022 Actually edit the user info
+    getViewHandler().openView("UserListViewController.fxml");
   }
 }
