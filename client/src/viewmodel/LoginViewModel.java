@@ -1,5 +1,6 @@
 package viewmodel;
 
+import Model.User;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -64,6 +65,8 @@ public class LoginViewModel
     try
     {
       // TODO: 2022. 05. 11. Model logic validate login
+      User user = new User(getUsernameProperty().getValue(),getPasswordProperty().getValue());
+      model.login(user);
     }
     catch (Exception e)
     {
