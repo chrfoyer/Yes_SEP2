@@ -15,6 +15,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * @version 0.3
@@ -47,8 +48,6 @@ public class SignupViewModel
     emailProperty = new SimpleStringProperty();
     confirmProperty = new SimpleStringProperty();
     errorLabel = new SimpleStringProperty();
-    User admin = new User("admin","admin");
-    model.signup(admin);
 
   }
 
@@ -143,7 +142,17 @@ public class SignupViewModel
         throw new IllegalArgumentException(
             "Passwords and confirmation have to match!");
 
+      //todo no work
       LocalDate dob = dobProperty.get();
+      Period age = Period.between(dob, LocalDate.now());
+      /*
+      if (age.getYears() < 13)
+      {
+        dobProperty.set(null);
+        throw new IllegalArgumentException(
+            "User has to be at least 13 years old!");
+      }
+       */
       User user = new User(usernameProperty.get(), passwordProperty.get(),
           emailProperty.get(), addressProperty.get(), nameProperty.getName(),
           dob);
