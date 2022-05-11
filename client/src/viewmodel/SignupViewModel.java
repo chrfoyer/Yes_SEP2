@@ -12,7 +12,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- * @version 0.1
+ * @version 0.2
  */
 public class SignupViewModel
 {
@@ -21,6 +21,11 @@ public class SignupViewModel
   private StringProperty passwordProperty;
   private Label errorLabel;
 
+  /**
+   * ViewModel that connects Signup to the model
+   *
+   * @param model RemoteModel because of RMI
+   */
   public SignupViewModel(RemoteModel model)
   {
     this.model = model;
@@ -29,16 +34,29 @@ public class SignupViewModel
     errorLabel = new Label();
   }
 
+  /**
+   * Getter for property
+   *
+   * @return usernameProperty
+   */
   public StringProperty getUsernameProperty()
   {
     return usernameProperty;
   }
 
+  /**
+   * Getter for property
+   *
+   * @return passwordProperty
+   */
   public StringProperty getPasswordProperty()
   {
     return passwordProperty;
   }
 
+  /**
+   * The method that calls when you press the login button
+   */
   public void login()
   {
     try
@@ -51,6 +69,9 @@ public class SignupViewModel
     }
   }
 
+  /**
+   * Call this to reset the text inside the fields
+   */
   public void reset()
   {
     usernameProperty.set("");
