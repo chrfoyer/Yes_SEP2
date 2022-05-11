@@ -13,6 +13,7 @@ import mediator.RemoteModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 
 /**
@@ -35,7 +36,7 @@ public class SignupViewModel
    *
    * @param model RemoteModel because of RMI
    */
-  public SignupViewModel(RemoteModel model)
+  public SignupViewModel(RemoteModel model) throws RemoteException
   {
     this.model = model;
     usernameProperty = new SimpleStringProperty();
@@ -46,6 +47,9 @@ public class SignupViewModel
     emailProperty = new SimpleStringProperty();
     confirmProperty = new SimpleStringProperty();
     errorLabel = new SimpleStringProperty();
+    User admin = new User("admin","admin");
+    model.signup(admin);
+
   }
 
   /**

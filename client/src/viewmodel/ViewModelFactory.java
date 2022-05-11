@@ -2,6 +2,8 @@ package viewmodel;
 
 import mediator.RemoteModel;
 
+import java.rmi.RemoteException;
+
 public class ViewModelFactory
 {
 
@@ -10,7 +12,7 @@ public class ViewModelFactory
 
   //  private ChatViewModel chatViewModel;
 
-  public ViewModelFactory(RemoteModel model)
+  public ViewModelFactory(RemoteModel model) throws RemoteException
   {
     //    chatViewModel = new ChatViewModel(model);
     loginViewModel = new LoginViewModel(model);
