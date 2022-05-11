@@ -19,6 +19,7 @@ public class User
   private String address;
   private String name;
   private LocalDate bday;
+  private boolean hasSubscription;
 
   /**
    * Constructor taking only string username and string password. checks to see if user is an admin.
@@ -33,9 +34,11 @@ public class User
     this.address = null;
     this.name = null;
     this.bday = null;
+    hasSubscription = false;
     if (username.equals("admin") && password.equals("admin"))
     {
       isAdmin = true;
+      hasSubscription = true;
     }
   }
 
@@ -58,6 +61,7 @@ public class User
     this.name = name;
     this.bday = bday;
     isAdmin = false;
+    hasSubscription = false;
   }
 
   /**
@@ -112,6 +116,14 @@ public class User
   public LocalDate getBday()
   {
     return bday;
+  }
+
+  /**
+   * gets user's subscription status
+   * @return status of subscription
+   */
+  public boolean getSubscription(){
+    return hasSubscription;
   }
 
   /**
@@ -177,4 +189,12 @@ public class User
     isAdmin = admin;
   }
 
+  /**
+   * sets the user's subscription status
+   * @param hasSubscription status of subscription
+   */
+  public void setHasSubscription(boolean hasSubscription)
+  {
+    this.hasSubscription = hasSubscription;
+  }
 }
