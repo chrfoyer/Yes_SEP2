@@ -19,7 +19,7 @@ public class LoginViewModel
   private RemoteModel model;
   private StringProperty usernameProperty;
   private StringProperty passwordProperty;
-  private Label errorLabel;
+  private StringProperty errorLabel;
 
   /**
    * ViewModel that connects Login to the model
@@ -31,7 +31,7 @@ public class LoginViewModel
     this.model = model;
     usernameProperty = new SimpleStringProperty();
     passwordProperty = new SimpleStringProperty();
-    errorLabel = new Label();
+    errorLabel = new SimpleStringProperty();
   }
 
   /**
@@ -54,10 +54,12 @@ public class LoginViewModel
     return passwordProperty;
   }
 
-  /**
-   * The method that calls when you press the sign-up button
-   */
-  public void signup()
+  public StringProperty getErrorLabel()
+  {
+    return errorLabel;
+  }
+
+  public void login()
   {
     try
     {
@@ -65,7 +67,7 @@ public class LoginViewModel
     }
     catch (Exception e)
     {
-      errorLabel.setText(e.getMessage());
+      errorLabel.set(e.getMessage());
     }
   }
 
@@ -76,6 +78,6 @@ public class LoginViewModel
   {
     usernameProperty.set("");
     passwordProperty.set("");
-    errorLabel.setText("");
+    errorLabel.set("");
   }
 }
