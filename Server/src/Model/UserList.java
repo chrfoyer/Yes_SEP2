@@ -91,7 +91,11 @@ public class UserList
     else
     {
       //Authenticate password
-      return given.getPassword().equals(foundFromList.getPassword());
+      if (!given.getPassword().equals(foundFromList.getPassword()))
+        throw new IllegalArgumentException(
+            "Password does not match stored credentials");
+      else
+        return true;
     }
   }
 }

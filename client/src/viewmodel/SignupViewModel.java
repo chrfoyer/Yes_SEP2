@@ -131,7 +131,7 @@ public class SignupViewModel
   /**
    * The method that calls when you press the sign-up button
    */
-  public void signup()
+  public boolean signup()
   {
     try
     {
@@ -144,11 +144,13 @@ public class SignupViewModel
           emailProperty.get(), addressProperty.get(), nameProperty.getName(),
           dob);
       model.signup(user);
+      return true;
     }
     catch (Exception e)
     {
       errorLabel.set(e.getMessage());
     }
+    return false;
   }
 
   /**
