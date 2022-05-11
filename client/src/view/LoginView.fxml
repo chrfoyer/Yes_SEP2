@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginVeiwController">
    <children>
       <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
          <children>
@@ -29,7 +29,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="username"/>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="63.0" prefWidth="256.0">
@@ -39,17 +39,17 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="password"/>
                      </children>
                   </HBox>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="256.0" spacing="30.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Login">
+                        <Button mnemonicParsing="false" text="Login" onAction="#login">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Sign up">
+                        <Button mnemonicParsing="false" text="Sign up" onAction="#signup">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -62,7 +62,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
          <children>
-            <Label style="-fx-font-weight: bold;" text="ERROR" textFill="RED" />
+            <Label style="-fx-font-weight: bold;" text="ERROR" textFill="RED" fx:id="errorLabel"/>
          </children>
       </HBox>
    </children>
