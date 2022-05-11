@@ -19,6 +19,8 @@ public class UserList
   public UserList()
   {
     users = new ArrayList<>();
+    User admin = new User("admin","admin");
+    addUser(admin);
   }
 
   /**
