@@ -12,13 +12,18 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- * @version 0.2
+ * @version 0.3
  */
 public class SignupViewModel
 {
   private RemoteModel model;
   private StringProperty usernameProperty;
   private StringProperty passwordProperty;
+  private StringProperty nameProperty;
+  private StringProperty dobProperty;
+  private StringProperty addressProperty;
+  private StringProperty emailProperty;
+  private StringProperty confirmProperty;
   private StringProperty errorLabel;
 
   /**
@@ -31,7 +36,62 @@ public class SignupViewModel
     this.model = model;
     usernameProperty = new SimpleStringProperty();
     passwordProperty = new SimpleStringProperty();
+    nameProperty = new SimpleStringProperty();
+    dobProperty = new SimpleStringProperty();
+    addressProperty = new SimpleStringProperty();
+    emailProperty = new SimpleStringProperty();
+    confirmProperty = new SimpleStringProperty();
     errorLabel = new SimpleStringProperty();
+  }
+
+  /**
+   * Getter for property
+   *
+   * @return usernameProperty
+   */
+  public StringProperty getNameProperty()
+  {
+    return nameProperty;
+  }
+
+  /**
+   * Getter for property
+   *
+   * @return getDobProperty
+   */
+  public StringProperty getDobProperty()
+  {
+    return dobProperty;
+  }
+
+  /**
+   * Getter for property
+   *
+   * @return getAddressProperty
+   */
+  public StringProperty getAddressProperty()
+  {
+    return addressProperty;
+  }
+
+  /**
+   * Getter for property
+   *
+   * @return emailProperty
+   */
+  public StringProperty getEmailProperty()
+  {
+    return emailProperty;
+  }
+
+  /**
+   * Getter for property
+   *
+   * @return confirmProperty
+   */
+  public StringProperty getConfirmProperty()
+  {
+    return confirmProperty;
   }
 
   /**
@@ -47,6 +107,16 @@ public class SignupViewModel
   /**
    * Getter for property
    *
+   * @return errorLabel
+   */
+  public StringProperty getErrorLabel()
+  {
+    return errorLabel;
+  }
+
+  /**
+   * Getter for property
+   *
    * @return passwordProperty
    */
   public StringProperty getPasswordProperty()
@@ -55,9 +125,9 @@ public class SignupViewModel
   }
 
   /**
-   * The method that calls when you press the login button
+   * The method that calls when you press the sign-up button
    */
-  public void login()
+  public void signup()
   {
     try
     {
@@ -76,6 +146,11 @@ public class SignupViewModel
   {
     usernameProperty.set("");
     passwordProperty.set("");
+    nameProperty.set("");
+    dobProperty.set("");
+    addressProperty.set("");
+    emailProperty.set("");
+    confirmProperty.set("");
     errorLabel.set("");
   }
 }
