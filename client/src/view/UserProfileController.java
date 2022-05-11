@@ -34,5 +34,6 @@ public class UserProfileController extends ViewController
 
   public void browse(ActionEvent actionEvent)
   {
+    getViewHandler().openView("BrowseView.fxml");
   }
 }
