@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import mediator.RemoteModel;
 import view.ViewHandler;
@@ -21,15 +23,18 @@ public class MyApplication extends Application
       catch (Exception ex)
       {
         ex.printStackTrace();
+        Alert alert = new Alert(Alert.AlertType.ERROR,
+            "Server connection not detected, please restart server");
+        Platform.runLater(alert::showAndWait);
       }
       // The model is now responsible for creating the client object
 
       ViewModelFactory viewModelFactory = new ViewModelFactory(server);
       ViewHandler view = new ViewHandler(viewModelFactory);
 
-//      RmiClient rmiClient = new RmiClient();
-//      rmiClient.setUsername("BobTest");
-//      rmiClient.send("I'm locked in");
+      //      RmiClient rmiClient = new RmiClient();
+      //      rmiClient.setUsername("BobTest");
+      //      rmiClient.send("I'm locked in");
 
       view.start(primaryStage);
     }

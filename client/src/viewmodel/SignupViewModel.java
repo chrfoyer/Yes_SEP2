@@ -141,18 +141,22 @@ public class SignupViewModel
       if (!passwordProperty.get().equals(confirmProperty.get()))
         throw new IllegalArgumentException(
             "Passwords and confirmation have to match!");
-
-      //todo no work
       LocalDate dob = dobProperty.get();
       Period age = Period.between(dob, LocalDate.now());
-      /*
       if (age.getYears() < 13)
       {
         dobProperty.set(null);
         throw new IllegalArgumentException(
             "User has to be at least 13 years old!");
       }
-       */
+      if (usernameProperty.get().length() < 5)
+        throw new IllegalArgumentException(
+            "Username has to be at least 5 characters!");
+      if (passwordProperty.get().length() < 7)
+        throw new IllegalArgumentException(
+            "password has to be at least 7 characters!");
+      if (!emailProperty.get().contains("@"))
+        throw new IllegalArgumentException("Email not in correct format!");
       User user = new User(usernameProperty.get(), passwordProperty.get(),
           emailProperty.get(), addressProperty.get(), nameProperty.getName(),
           dob);
