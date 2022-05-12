@@ -14,6 +14,7 @@ public class ViewModelFactory
   private BrowseViewModel browseViewModel;
   private InventoryViewModel inventoryViewModel;
   private GameInfoViewModel gameInfoViewModel;
+  private AddEditGameViewModel addEditGameViewModel;
 
   //  private ChatViewModel chatViewModel;
 
@@ -25,8 +26,9 @@ public class ViewModelFactory
     userProfileViewModel = new UserProfileViewModel(model);
     adminViewModel = new AdminViewModel(model);
     browseViewModel = new BrowseViewModel(model);
-    inventoryViewModel=new InventoryViewModel(model);
+    inventoryViewModel = new InventoryViewModel(model);
     gameInfoViewModel = new GameInfoViewModel(model);
+    addEditGameViewModel = new AddEditGameViewModel(model);
   }
 
   //  public ChatViewModel getChatViewModel()
@@ -54,7 +56,8 @@ public class ViewModelFactory
     return adminViewModel;
   }
 
-  public BrowseViewModel getBrowseViewModel() {
+  public BrowseViewModel getBrowseViewModel()
+  {
     return browseViewModel;
   }
 
@@ -63,7 +66,13 @@ public class ViewModelFactory
     return inventoryViewModel;
   }
 
-  public GameInfoViewModel getGameInfoViewModel() {
+  public GameInfoViewModel getGameInfoViewModel()
+  {
     return gameInfoViewModel;
+  }
+
+  public AddEditGameViewModel getAddEditGameViewModel()
+  {
+    return addEditGameViewModel;
   }
 }
