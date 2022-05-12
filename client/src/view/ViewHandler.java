@@ -21,6 +21,8 @@ public class ViewHandler extends ViewCreator
   {
     this.primaryStage = primaryStage;
     this.currentScene = new Scene(new Region());
+    this.primaryStage.setResizable(false);
+
     primaryStage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue)
       {

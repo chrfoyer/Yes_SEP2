@@ -39,7 +39,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="password"/>
+                        <TextField fx:id="password" onAction="#onEnter"/>
                      </children>
                   </HBox>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="256.0" spacing="30.0">
