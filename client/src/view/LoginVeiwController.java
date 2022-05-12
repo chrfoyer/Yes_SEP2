@@ -36,12 +36,14 @@ public class LoginVeiwController extends ViewController
     if (getViewModelFactory().getLoginViewModel().login())
     {
       getViewHandler().openView("UserProfileView.fxml");
+      getViewModelFactory().getLoginViewModel().reset();
     }
   }
 
   public void signup(ActionEvent actionEvent)
   {
     getViewHandler().openView("SignupView.fxml");
+    getViewModelFactory().getLoginViewModel().reset();
   }
 
 }

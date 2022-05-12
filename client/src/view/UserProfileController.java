@@ -39,4 +39,9 @@ public class UserProfileController extends ViewController
   {
     getViewHandler().openView("BrowseView.fxml");
   }
+
+  public void logout(ActionEvent actionEvent)
+  {
+    getViewHandler().openView("LoginView.fxml");
+  }
 }

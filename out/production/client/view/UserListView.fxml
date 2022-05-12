@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserListViewController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
+         <children>
+            <Label style="-fx-font-weight: bold;" text="Users" textFill="#c1c1c1">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="286.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="282.0" prefWidth="628.0">
+               <children>
+                  <HBox prefHeight="287.0" prefWidth="586.0">
+                     <children>
+                        <VBox prefHeight="281.0" prefWidth="455.0">
+                           <children>
+                              <ScrollPane prefHeight="287.0" prefWidth="453.0">
+                                 <content>
+                                    <TableView fx:id="table" prefHeight="278.0" prefWidth="453.0">
+                                       <columns>
+                                          <TableColumn fx:id="usernameColumn" prefWidth="211.2000122666359" text="Username" />
+                                          <TableColumn fx:id="balanceColumn" prefWidth="93.33328247070312" text="Balance" />
+                                          <TableColumn fx:id="dateJoined" prefWidth="134.66668701171875" text="Date Joined" />
+                                       </columns>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="281.0" prefWidth="131.0" spacing="40.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#remove" prefWidth="90.0" text="Remove">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#edit" prefWidth="90.0" text="Edit">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
+         <children>
+            <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR" textFill="RED" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
