@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import viewmodel.LoginViewModel;
 import viewmodel.SimpleGameViewModel;
 
 public class UserProfileController extends ViewController
@@ -20,7 +21,6 @@ public class UserProfileController extends ViewController
     username.textProperty().bind(
         getViewModelFactory().getUserProfileViewModel().getUsernameProperty());
 
-    getViewModelFactory().getUserProfileViewModel().reset();
   }
 
   public void payment(ActionEvent actionEvent)
@@ -43,5 +43,6 @@ public class UserProfileController extends ViewController
   public void logout(ActionEvent actionEvent)
   {
     getViewHandler().openView("LoginView.fxml");
+    LoginViewModel.logout();
   }
 }
