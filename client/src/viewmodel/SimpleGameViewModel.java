@@ -1,29 +1,47 @@
 package viewmodel;
 
 import Model.Game;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class SimpleGameViewModel
 {
   private StringProperty name;
-  private IntegerProperty timeLeft; //todo HOW TO BIND INTEGERPROPRETY
+  private ObjectProperty<Integer> timeLeft;
+  private StringProperty producer;
+  private StringProperty esrb;
+  private ObjectProperty<Boolean> rented;
 
   public SimpleGameViewModel(Game game)
   {
     this.name = new SimpleStringProperty(game.getName());
-    this.timeLeft = new SimpleIntegerProperty(game.getDaysLeft());
+    this.timeLeft = new SimpleObjectProperty<>(game.getDaysLeft());
+    this.producer = new SimpleStringProperty(game.getProducer());
+    this.esrb = new SimpleStringProperty(game.getEsrb());
+    this.rented = new SimpleObjectProperty<>(game.isRented());
   }
 
-  public StringProperty getName()
+  public StringProperty getNameProperty()
   {
     return name;
   }
 
-  public IntegerProperty getTimeLeft()
+  public ObjectProperty<Integer> getTimeProperty()
   {
     return timeLeft;
+  }
+
+  public ObjectProperty<Boolean> getRentedProperty()
+  {
+    return rented;
+  }
+
+  public StringProperty getEsrbProperty()
+  {
+    return esrb;
+  }
+
+  public StringProperty getProducer()
+  {
+    return producer;
   }
 }
