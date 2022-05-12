@@ -42,6 +42,8 @@ public class SignupViewController extends ViewController
     if (getViewModelFactory().getSignupViewModel().signup())
     {
       getViewHandler().openView("LoginView.fxml");
+      getViewModelFactory().getSignupViewModel().reset();
     }
+
   }
 }
