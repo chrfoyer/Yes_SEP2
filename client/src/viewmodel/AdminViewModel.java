@@ -1,6 +1,7 @@
 package viewmodel;
 
 import Model.Game;
+import Model.GameList;
 import Model.User;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,6 +13,7 @@ import mediator.RemoteModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 /**
  * @version 0.1
@@ -89,7 +91,8 @@ public class AdminViewModel
       int totalRent = 0;
       Game recent = model.viewGames().getGamesArrayCopy().get(0);
       registeredUser = model.getUserList().size();
-      for (Game game : model.viewGames().getGamesArrayCopy())
+      ArrayList<Game> allGames = model.viewGames().getGamesArrayCopy();
+      for (Game game : allGames)
       {
         totalGame++;
         if (game.isRented())
@@ -97,7 +100,7 @@ public class AdminViewModel
       }
       registeredUsers.set(registeredUser + "");
       totalGames.set(totalGame + "");
-      rentedGames.set(registeredUser + "");
+      rentedGames.set(totalRent + "");
       recentGame.set(recent.getName());
     }
     catch (Exception e)

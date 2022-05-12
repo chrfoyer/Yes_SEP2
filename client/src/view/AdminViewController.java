@@ -22,7 +22,7 @@ public class AdminViewController extends ViewController
     registeredUsers.textProperty()
         .bind(getViewModelFactory().getAdminViewModel().getRegisteredUsers());
     totalGames.textProperty()
-        .bind(getViewModelFactory().getAdminViewModel().getRentedGames());
+        .bind(getViewModelFactory().getAdminViewModel().getTotalGames());
     rentedGames.textProperty()
         .bind(getViewModelFactory().getAdminViewModel().getRentedGames());
     recentGame.textProperty()
@@ -35,6 +35,7 @@ public class AdminViewController extends ViewController
 
   /**
    * method for opening UserlistView
+   *
    * @param actionEvent manageUsers button pressed
    */
   @FXML public void manageUsers(ActionEvent actionEvent)
@@ -44,6 +45,7 @@ public class AdminViewController extends ViewController
 
   /**
    * method for opening transaction view
+   *
    * @param actionEvent transactions button pressed
    */
   @FXML public void transactions(ActionEvent actionEvent)
@@ -53,10 +55,12 @@ public class AdminViewController extends ViewController
 
   /**
    * method for opening inventory
+   *
    * @param actionEvent manageGames button pressed
    */
   @FXML public void manageGames(ActionEvent actionEvent)
   {
-    getViewHandler().openView("Inventory.fxml");
+    getViewModelFactory().getInventoryViewModel().reset();
+    getViewHandler().openView("InventoryView.fxml");
   }
 }

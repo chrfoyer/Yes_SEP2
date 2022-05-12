@@ -12,6 +12,7 @@ public class ViewModelFactory
   private UserProfileViewModel userProfileViewModel;
   private AdminViewModel adminViewModel;
   private BrowseViewModel browseViewModel;
+  private InventoryViewModel inventoryViewModel;
 
   //  private ChatViewModel chatViewModel;
 
@@ -23,6 +24,7 @@ public class ViewModelFactory
     userProfileViewModel = new UserProfileViewModel(model);
     adminViewModel = new AdminViewModel(model);
     browseViewModel = new BrowseViewModel(model);
+    inventoryViewModel=new InventoryViewModel(model);
   }
 
   //  public ChatViewModel getChatViewModel()
@@ -50,7 +52,13 @@ public class ViewModelFactory
     return adminViewModel;
   }
 
-  public BrowseViewModel getBrowseViewModel() {
+  public BrowseViewModel getBrowseViewModel()
+  {
     return browseViewModel;
+  }
+
+  public InventoryViewModel getInventoryViewModel()
+  {
+    return inventoryViewModel;
   }
 }
