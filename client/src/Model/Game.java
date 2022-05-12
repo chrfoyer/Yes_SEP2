@@ -1,5 +1,7 @@
 package Model;
 
+import viewmodel.LoginViewModel;
+
 import java.io.Serializable;
 
 /**
@@ -19,9 +21,10 @@ public class Game implements Serializable
   private String esrb;
 
   /**
-   * Constructor for game using 14 days as a standard rental period for now.
-   *
-   * @param name argument for the name of the game
+   * constructor for game
+   * @param name name of game
+   * @param producer producer of the game
+   * @param esrb rating of the game
    */
   public Game(String name, String producer, String esrb)
   {
@@ -40,7 +43,7 @@ public class Game implements Serializable
   /**
    * Checks if obj is equals to a game
    *
-   * @param obj fed into method to compaare to a game
+   * @param obj fed into method to compare to a game
    * @return boolean if the games are equal or not
    */
   public boolean equals(Object obj)
@@ -140,7 +143,7 @@ public class Game implements Serializable
     } else {
       this.rented = true;
       this.daysLeft = 14;
-      new Transaction(this,"Rent","user");
+      new Transaction(this,"Rent", "User");
     }
   }
 
