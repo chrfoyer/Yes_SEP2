@@ -3,9 +3,9 @@ package view;
 import Model.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import viewmodel.BrowseViewModel;
+import viewmodel.GameInfoViewModel;
 import viewmodel.SimpleGameViewModel;
 
 public class BrowseViewController extends ViewController {
@@ -18,7 +18,8 @@ public class BrowseViewController extends ViewController {
   public TableColumn<SimpleGameViewModel, String> producerColumn;
   public TableColumn<SimpleGameViewModel, String> esrbColumn;
   public Label error;
-  private BrowseViewModel viewModel;
+  private BrowseViewModel browseViewModel;
+  private GameInfoViewModel gameInfoViewModel;
   // Test values
   final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList(
           new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC", "E")),
@@ -28,23 +29,22 @@ public class BrowseViewController extends ViewController {
   protected void init() {
     consoleSearch.getItems().addAll("PC", "Xbox", "PlayStation");
     esrbSearch.getItems().addAll("E", "E10+", "T", "M", "AO");
+    consoleSearch.setValue("PC");
+    esrbSearch.setValue("E");
     nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
     consoleColumn.setCellValueFactory(cellData -> cellData.getValue().getConsole());
     producerColumn.setCellValueFactory(cellData -> cellData.getValue().getProducer());
     esrbColumn.setCellValueFactory(cellData -> cellData.getValue().getEsrbProperty());
     table.setItems(data);
-    viewModel = getViewModelFactory().getBrowseViewModel();
+    browseViewModel = getViewModelFactory().getBrowseViewModel();
+    gameInfoViewModel = getViewModelFactory().getGameInfoViewModel();
+    // Sets the selected game in the game info view model
     table.getSelectionModel().selectedItemProperty()
-            .addListener((obs, oldV, newV) -> this.viewModel.setSelectedGameProperty(newV));;
-    reset();
-  }
-
-  public void reset() {
-    error.setText("");
-    table.getSelectionModel().clearSelection();
+            .addListener((obs, oldV, newV) -> gameInfoViewModel.setSelectedGameProperty(newV));;
   }
 
   public void searchButton() {
+    // TODO: 12/05/2022 search functionality
     // Use these values to search the games and reset the table
     String name = nameSearch.getText();
     String console = consoleSearch.getValue();
@@ -52,15 +52,18 @@ public class BrowseViewController extends ViewController {
   }
 
   public void info() {
-    // Use selected game
+    gameInfoViewModel.reset();
     getViewHandler().openView("GameInfoView.fxml");
   }
 
   public void rent() {
     // TODO: 11/05/2022 Confirmation window with name of game
+    gameInfoViewModel.reset();
+    gameInfoViewModel.setRented(true);
   }
 
   public void back() {
+    getViewModelFactory().getUserProfileViewModel().reset();
     getViewHandler().openView("UserProfileView.fxml");
   }
 }

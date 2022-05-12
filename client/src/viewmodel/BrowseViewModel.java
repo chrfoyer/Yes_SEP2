@@ -20,11 +20,8 @@ public class BrowseViewModel {
     selectedGameProperty = new SimpleObjectProperty<>();
   }
 
-  public ObjectProperty<SimpleGameViewModel> getSelectedGameProperty() {
-    return selectedGameProperty;
-  }
-
-  public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty) {
-    this.selectedGameProperty.set(selectedGameProperty);
+  public void reset() {
+    errorLabel.set("");
+    //
   }
 }
