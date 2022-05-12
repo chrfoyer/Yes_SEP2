@@ -2,6 +2,7 @@ package Model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * This is the User class which has the constructors for creating a user.
@@ -21,6 +22,7 @@ public class User implements Serializable
   private String name;
   private LocalDate bday;
   private boolean hasSubscription;
+  private int age;
 
   /**
    * Constructor taking only string username and string password. checks to see if user is an admin.
@@ -36,6 +38,7 @@ public class User implements Serializable
     this.address = null;
     this.name = null;
     this.bday = null;
+    this.age = 21;
     hasSubscription = false;
     if (username.equals("admin") && password.equals("admin"))
     {
@@ -65,6 +68,7 @@ public class User implements Serializable
     this.bday = bday;
     isAdmin = false;
     hasSubscription = false;
+    age = Period.between(LocalDate.now(),bday).getYears();
   }
 
   /**
