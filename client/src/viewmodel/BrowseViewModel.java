@@ -1,5 +1,7 @@
 package viewmodel;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import mediator.RemoteModel;
@@ -8,11 +10,21 @@ import mediator.RemoteModel;
 public class BrowseViewModel {
   private RemoteModel model;
   private StringProperty errorLabel;
+  private ObjectProperty<SimpleGameViewModel> selectedGameProperty;
   // Need the list of games in an observable list
   // Need a property for the selected simple game view model
 
   public BrowseViewModel(RemoteModel model) {
     this.model = model;
     errorLabel = new SimpleStringProperty();
+    selectedGameProperty = new SimpleObjectProperty<>();
+  }
+
+  public ObjectProperty<SimpleGameViewModel> getSelectedGameProperty() {
+    return selectedGameProperty;
+  }
+
+  public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty) {
+    this.selectedGameProperty.set(selectedGameProperty);
   }
 }

@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import viewmodel.BrowseViewModel;
 import viewmodel.SimpleGameViewModel;
 
 public class BrowseViewController extends ViewController {
@@ -17,6 +18,7 @@ public class BrowseViewController extends ViewController {
   public TableColumn<SimpleGameViewModel, String> producerColumn;
   public TableColumn<SimpleGameViewModel, String> esrbColumn;
   public Label error;
+  private BrowseViewModel viewModel;
   // Test values
   final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList(
           new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC", "E")),
@@ -31,14 +33,15 @@ public class BrowseViewController extends ViewController {
     producerColumn.setCellValueFactory(cellData -> cellData.getValue().getProducer());
     esrbColumn.setCellValueFactory(cellData -> cellData.getValue().getEsrbProperty());
     table.setItems(data);
-    // Awaiting viewmodel
-    // table.getSelectionModel().selectedItemProperty()
-    //        .addListener((obs, oldV, newV) -> this.viewModel.setSelected(newV));;
+    viewModel = getViewModelFactory().getBrowseViewModel();
+    table.getSelectionModel().selectedItemProperty()
+            .addListener((obs, oldV, newV) -> this.viewModel.setSelectedGameProperty(newV));;
     reset();
   }
 
   public void reset() {
     error.setText("");
+    table.getSelectionModel().clearSelection();
   }
 
   public void searchButton() {
