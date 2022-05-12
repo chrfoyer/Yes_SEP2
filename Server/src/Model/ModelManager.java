@@ -21,7 +21,7 @@ public class ModelManager implements Model
     //todo remove test
     users.addUser(new User("admin", "admin"));
     users.addUser(new User("bob", "test"));
-    games.addGame(new Game("Minecraft", "Mojang", "E"));
+    games.addGame(new Game("Minecraft", "Mojang", "PC","E"));
   }
 
   public void setGames(GameList games)

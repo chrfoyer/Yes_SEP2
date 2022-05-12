@@ -1,7 +1,4 @@
 package Model;
-
-import viewmodel.LoginViewModel;
-
 import java.io.Serializable;
 
 /**
@@ -116,7 +113,7 @@ public class Game implements Serializable
     else
     {
       throw new IllegalStateException(
-              "Game is not currently rented, so the days can't be decreased.");
+          "Game is not currently rented, so the days can't be decreased.");
     }
   }
 
