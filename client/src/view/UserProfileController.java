@@ -5,11 +5,11 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import viewmodel.LoginViewModel;
 import viewmodel.SimpleGameViewModel;
+
+import java.util.Optional;
 
 public class UserProfileController extends ViewController
 {
@@ -53,9 +53,21 @@ public class UserProfileController extends ViewController
     getViewHandler().openView("BrowseView.fxml");
   }
 
+  /**
+   * Brings user back to log-in screen
+   * Has a confirmation popup
+   * @param actionEvent
+   */
   public void logout(ActionEvent actionEvent)
   {
-    getViewHandler().openView("LoginView.fxml");
-    LoginViewModel.logout();
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "Are you sure you want to log out?");
+    Optional<ButtonType> option = alert.showAndWait();
+    if (option.get() == ButtonType.OK)
+    {
+      getViewHandler().openView("LoginView.fxml");
+      LoginViewModel.logout();
+    }
+    //or nothign happens
   }
 }

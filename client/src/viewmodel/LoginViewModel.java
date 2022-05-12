@@ -70,6 +70,10 @@ public class LoginViewModel
     try
     {
       // TODO: 2022. 05. 11. Model logic validate login
+      if (getUsernameProperty().get().equals(""))
+        throw new IllegalArgumentException("Username cant be empty");
+      if (getPasswordProperty().get().equals(""))
+        throw new IllegalArgumentException("Password cant be empty");
       User user = new User(getUsernameProperty().getValue(),
           getPasswordProperty().getValue());
       if (model.login(user))

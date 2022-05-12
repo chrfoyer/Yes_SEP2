@@ -1,9 +1,13 @@
 package view;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import viewmodel.LoginViewModel;
+
+import java.util.Optional;
 
 // When this is spelled correctly, things break. This is the way.\
 
@@ -45,10 +49,14 @@ public class LoginVeiwController extends ViewController
     {
       if (LoginViewModel.currentlyLoggedInUser.isAdmin())
       {
-        getViewModelFactory().getAdminViewModel().reset();
-        getViewHandler().openView("AdminView.fxml");
-
-        getViewModelFactory().getLoginViewModel().reset();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+            "Are you sure you want to log in as an administrator?");
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get() == ButtonType.OK)
+        {
+          getViewHandler().openView("AdminView.fxml");
+          getViewModelFactory().getAdminViewModel().reset();
+        }
       }
       else
       {
