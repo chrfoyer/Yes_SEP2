@@ -33,7 +33,7 @@ public class LoginVeiwController extends ViewController
     LoginViewModel.logout();
   }
 
-  public void login(ActionEvent actionEvent)
+  public void login()
   {
     if (getViewModelFactory().getLoginViewModel().login())
     {
@@ -43,10 +43,14 @@ public class LoginVeiwController extends ViewController
     }
   }
 
-  public void signup(ActionEvent actionEvent)
+  public void signup()
   {
     getViewHandler().openView("SignupView.fxml");
     getViewModelFactory().getLoginViewModel().reset();
   }
 
+  public void onEnter()
+  {
+    this.login();
+  }
 }

@@ -46,4 +46,10 @@ public class SignupViewController extends ViewController
     }
 
   }
+
+  public void cancel(ActionEvent actionEvent)
+  {
+    getViewHandler().openView("LoginView.fxml");
+    getViewModelFactory().getSignupViewModel().reset();
+  }
 }
