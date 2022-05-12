@@ -18,6 +18,8 @@ public class ModelManager implements Model
     this.games = new GameList();
     this.users = new UserList();
 
+    users.addUser(new User("admin","admin"));
+    users.addUser(new User("bob","test"));
   }
 
   public void setGames(GameList games)

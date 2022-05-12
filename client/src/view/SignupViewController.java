@@ -30,8 +30,11 @@ public class SignupViewController extends ViewController
         getViewModelFactory().getSignupViewModel().getPasswordProperty());
     confirmPassword.textProperty().bindBidirectional(
         getViewModelFactory().getSignupViewModel().getConfirmProperty());
-    error.textProperty().bind(getViewModelFactory().getSignupViewModel().getErrorLabel());
+    error.textProperty()
+        .bind(getViewModelFactory().getSignupViewModel().getErrorLabel());
     getViewModelFactory().getSignupViewModel().reset();
+    dob.valueProperty()
+        .bindBidirectional(getViewModelFactory().getSignupViewModel().getDobProperty());
   }
 
   public void signup(ActionEvent actionEvent)
