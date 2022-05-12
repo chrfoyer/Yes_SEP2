@@ -9,6 +9,7 @@ public class ViewModelFactory
 
   private LoginViewModel loginViewModel;
   private SignupViewModel signupViewModel;
+  private UserProfileViewModel userProfileViewModel;
 
   //  private ChatViewModel chatViewModel;
 
@@ -17,6 +18,7 @@ public class ViewModelFactory
     //    chatViewModel = new ChatViewModel(model);
     loginViewModel = new LoginViewModel(model);
     signupViewModel = new SignupViewModel(model);
+    userProfileViewModel=new UserProfileViewModel(model);
   }
 
   //  public ChatViewModel getChatViewModel()
@@ -34,4 +36,8 @@ public class ViewModelFactory
     return signupViewModel;
   }
 
+  public UserProfileViewModel getUserProfileViewModel()
+  {
+    return userProfileViewModel;
+  }
 }

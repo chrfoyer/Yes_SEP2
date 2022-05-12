@@ -11,13 +11,16 @@ public class UserProfileController extends ViewController
 {
   public Label username;
   public TableView<SimpleGameViewModel> table;
-  public TableColumn<SimpleGameViewModel,String> nameColumn;
+  public TableColumn<SimpleGameViewModel, String> nameColumn;
   public TableColumn<SimpleGameViewModel, Integer> timeColumn;
   public Label error;
 
   @Override protected void init()
   {
+    username.textProperty().bind(
+        getViewModelFactory().getUserProfileViewModel().getUsernameProperty());
 
+    getViewModelFactory().getUserProfileViewModel().reset();
   }
 
   public void payment(ActionEvent actionEvent)

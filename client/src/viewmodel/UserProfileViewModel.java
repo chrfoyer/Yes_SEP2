@@ -13,18 +13,14 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- * @version 0.3
+ * @version 0.1
  */
-public class LoginViewModel
+public class UserProfileViewModel
 {
-  /**
-   * Gets the currently logged-in user
-   */
-  public static User currentlyLoggedInUser;
 
   private RemoteModel model;
   private StringProperty usernameProperty;
-  private StringProperty passwordProperty;
+  //table
   private StringProperty errorLabel;
 
   /**
@@ -32,11 +28,10 @@ public class LoginViewModel
    *
    * @param model RemoteModel because of RMI
    */
-  public LoginViewModel(RemoteModel model)
+  public UserProfileViewModel(RemoteModel model)
   {
     this.model = model;
     usernameProperty = new SimpleStringProperty();
-    passwordProperty = new SimpleStringProperty();
     errorLabel = new SimpleStringProperty();
   }
 
@@ -55,35 +50,10 @@ public class LoginViewModel
    *
    * @return passwordProperty
    */
-  public StringProperty getPasswordProperty()
-  {
-    return passwordProperty;
-  }
 
   public StringProperty getErrorLabel()
   {
     return errorLabel;
-  }
-
-  public boolean login()
-  {
-    try
-    {
-      // TODO: 2022. 05. 11. Model logic validate login
-      User user = new User(getUsernameProperty().getValue(),
-          getPasswordProperty().getValue());
-      if (model.login(user))
-      {
-        currentlyLoggedInUser = user;
-        return true;
-      }
-      return false;
-    }
-    catch (Exception e)
-    {
-      errorLabel.set(e.getMessage());
-    }
-    return false;
   }
 
   /**
@@ -91,16 +61,8 @@ public class LoginViewModel
    */
   public void reset()
   {
-    usernameProperty.set("");
-    passwordProperty.set("");
+    usernameProperty.set("Currently logged in: "+LoginViewModel.currentlyLoggedInUser.getUsername());
     errorLabel.set("");
   }
 
-  /**
-   * Call this to set loggedInUser to null
-   */
-  public static void logout()
-  {
-    currentlyLoggedInUser = null;
-  }
 }
