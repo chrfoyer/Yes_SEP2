@@ -16,9 +16,9 @@ public abstract class ViewCreator
   }
 
   /**
-   * method for
-   * @param id
-   * @return
+   * method for getting view controller with given id
+   * @param id id of viewController
+   * @return returns the viewcontroller with given id
    */
   public ViewController getViewController(String id)
   {
@@ -38,7 +38,7 @@ public abstract class ViewCreator
   /**
    * method for loading fxml files
    * @param fxmlFile fxmlFile to load
-   * @return returns vviewController
+   * @return returns viewController
    */
   public ViewController loadFromFXML(String fxmlFile)
   {
