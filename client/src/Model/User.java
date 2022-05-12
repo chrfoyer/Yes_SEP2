@@ -220,4 +220,14 @@ public class User implements Serializable
   {
     this.hasSubscription = hasSubscription;
   }
+
+  public boolean isAdmin()
+  {
+    return isAdmin;
+  }
+
+  public boolean hasSubscription()
+  {
+    return hasSubscription;
+  }
 }

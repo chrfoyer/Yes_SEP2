@@ -115,6 +115,11 @@ public class RmiServer implements RemoteModel
     return model.login(user);
   }
 
+  @Override public UserList getUserList() throws RemoteException
+  {
+    return model.getUserList();
+  }
+
   /**
    * Adds a game to the GameList
    *

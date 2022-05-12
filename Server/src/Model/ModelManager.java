@@ -18,8 +18,10 @@ public class ModelManager implements Model
     this.games = new GameList();
     this.users = new UserList();
 
-    users.addUser(new User("admin","admin"));
-    users.addUser(new User("bob","test"));
+    //todo remove test
+    users.addUser(new User("admin", "admin"));
+    users.addUser(new User("bob", "test"));
+    games.addGame(new Game("Minecraft", "Mojang", "E"));
   }
 
   public void setGames(GameList games)
@@ -193,5 +195,10 @@ public class ModelManager implements Model
       return true;
     else
       return false;
+  }
+
+  @Override public UserList getUserList()
+  {
+    return users;
   }
 }

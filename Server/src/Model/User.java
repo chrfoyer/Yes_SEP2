@@ -68,7 +68,7 @@ public class User implements Serializable
     this.bday = bday;
     isAdmin = false;
     hasSubscription = false;
-    age = Period.between(LocalDate.now(), bday).getYears();
+    age = Period.between(LocalDate.now(),bday).getYears();
   }
 
   /**
@@ -219,5 +219,15 @@ public class User implements Serializable
   public void setHasSubscription(boolean hasSubscription)
   {
     this.hasSubscription = hasSubscription;
+  }
+
+  public boolean isAdmin()
+  {
+    return isAdmin;
+  }
+
+  public boolean hasSubscription()
+  {
+    return hasSubscription;
   }
 }

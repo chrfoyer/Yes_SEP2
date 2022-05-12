@@ -37,9 +37,20 @@ public class LoginVeiwController extends ViewController
   {
     if (getViewModelFactory().getLoginViewModel().login())
     {
-      getViewHandler().openView("UserProfileView.fxml");
-      getViewModelFactory().getLoginViewModel().reset();
-      getViewModelFactory().getUserProfileViewModel().reset();
+      if (LoginViewModel.currentlyLoggedInUser.isAdmin())
+      {
+        getViewModelFactory().getAdminViewModel().reset();
+        getViewHandler().openView("AdminView.fxml");
+
+        getViewModelFactory().getLoginViewModel().reset();
+      }
+      else
+      {
+        getViewHandler().openView("UserProfileView.fxml");
+
+        getViewModelFactory().getLoginViewModel().reset();
+        getViewModelFactory().getUserProfileViewModel().reset();
+      }
     }
   }
 

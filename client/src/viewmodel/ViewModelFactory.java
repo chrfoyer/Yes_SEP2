@@ -10,6 +10,7 @@ public class ViewModelFactory
   private LoginViewModel loginViewModel;
   private SignupViewModel signupViewModel;
   private UserProfileViewModel userProfileViewModel;
+  private AdminViewModel adminViewModel;
 
   //  private ChatViewModel chatViewModel;
 
@@ -18,7 +19,8 @@ public class ViewModelFactory
     //    chatViewModel = new ChatViewModel(model);
     loginViewModel = new LoginViewModel(model);
     signupViewModel = new SignupViewModel(model);
-    userProfileViewModel=new UserProfileViewModel(model);
+    userProfileViewModel = new UserProfileViewModel(model);
+    adminViewModel = new AdminViewModel(model);
   }
 
   //  public ChatViewModel getChatViewModel()
@@ -39,5 +41,10 @@ public class ViewModelFactory
   public UserProfileViewModel getUserProfileViewModel()
   {
     return userProfileViewModel;
+  }
+
+  public AdminViewModel getAdminViewModel()
+  {
+    return adminViewModel;
   }
 }

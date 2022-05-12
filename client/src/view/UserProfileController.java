@@ -20,6 +20,8 @@ public class UserProfileController extends ViewController
   {
     username.textProperty().bind(
         getViewModelFactory().getUserProfileViewModel().getUsernameProperty());
+    error.textProperty()
+        .bind(getViewModelFactory().getUserProfileViewModel().getErrorLabel());
 
   }
 

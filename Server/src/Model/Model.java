@@ -25,4 +25,5 @@ public interface Model
   public boolean containsGame(String name);
   void signup(User user);
   boolean login(User user);
+  public UserList getUserList();
 }

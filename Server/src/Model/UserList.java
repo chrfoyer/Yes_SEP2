@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.1 11/5/22
  */
-public class UserList
+public class UserList implements Serializable
 {
   private ArrayList<User> users;
 
@@ -97,5 +98,10 @@ public class UserList
       else
         return true;
     }
+  }
+
+  public ArrayList<User> getUsers()
+  {
+    return users;
   }
 }

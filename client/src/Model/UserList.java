@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.1 11/5/22
  */
-public class UserList
+public class UserList implements Serializable
 {
   private ArrayList<User> users;
 
@@ -19,8 +20,6 @@ public class UserList
   public UserList()
   {
     users = new ArrayList<>();
-    User admin = new User("admin","admin");
-    addUser(admin);
   }
 
   /**
@@ -93,7 +92,16 @@ public class UserList
     else
     {
       //Authenticate password
-      return given.getPassword().equals(foundFromList.getPassword());
+      if (!given.getPassword().equals(foundFromList.getPassword()))
+        throw new IllegalArgumentException(
+            "Password does not match stored credentials");
+      else
+        return true;
     }
+  }
+
+  public ArrayList<User> getUsers()
+  {
+    return users;
   }
 }

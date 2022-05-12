@@ -3,6 +3,7 @@ package mediator;
 import Model.Game;
 import Model.GameList;
 import Model.User;
+import Model.UserList;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -22,4 +23,5 @@ public interface RemoteModel extends Remote
   boolean containsGame(String name) throws RemoteException;
   void signup(User user) throws RemoteException;
   boolean login(User user) throws RemoteException;
+  UserList getUserList() throws RemoteException;
 }
