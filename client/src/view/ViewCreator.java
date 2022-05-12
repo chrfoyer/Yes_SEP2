@@ -15,6 +15,11 @@ public abstract class ViewCreator
     this.map = new HashMap<>();
   }
 
+  /**
+   * method for getting view controller with given id
+   * @param id id of viewController
+   * @return returns the viewcontroller with given id
+   */
   public ViewController getViewController(String id)
   {
     ViewController controller = map.get(id);
@@ -30,6 +35,11 @@ public abstract class ViewCreator
   protected abstract void initViewController(ViewController controller,
       Region root);
 
+  /**
+   * method for loading fxml files
+   * @param fxmlFile fxmlFile to load
+   * @return returns viewController
+   */
   public ViewController loadFromFXML(String fxmlFile)
   {
     ViewController controller = null;

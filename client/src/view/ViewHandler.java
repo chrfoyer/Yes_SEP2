@@ -12,11 +12,19 @@ public class ViewHandler extends ViewCreator
   private Stage primaryStage;
   private ViewModelFactory viewModelFactory;
 
+  /**
+   * method for setting the viewmodelfactory variable to the parameter viewmodelfactory
+   * @param viewModelFactory viewModelFactory to set the variable to
+   */
   public ViewHandler(ViewModelFactory viewModelFactory)
   {
     this.viewModelFactory = viewModelFactory;
   }
 
+  /**
+   * methodd to start the view
+   * @param primaryStage what you set the primary stage variable to
+   */
   public void start(Stage primaryStage)
   {
     this.primaryStage = primaryStage;
@@ -44,6 +52,10 @@ public class ViewHandler extends ViewCreator
     openView("LoginView.fxml");
   }
 
+  /**
+   * method for opening views
+   * @param id id of the view that will be opened
+   */
   public void openView(String id)
   {
     Region root = getViewController(id).getRoot();
@@ -61,7 +73,11 @@ public class ViewHandler extends ViewCreator
 
     }
 
-
+  /**
+   * method for initializing variables to the parameter variables
+   * @param controller what the viewController will be set to
+   * @param root what the root will be set to
+   */
   @Override protected void initViewController(ViewController controller, Region root) {
     controller.init(this,viewModelFactory,root);
   }

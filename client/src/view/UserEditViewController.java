@@ -26,11 +26,19 @@ public class UserEditViewController extends ViewController{
 
   }
 
+  /**
+   * method for canceling and opening the UserlistView
+   * @param actionEvent cancel button pressed
+   */
   @FXML
   public void cancel(ActionEvent actionEvent) {
-    getViewHandler().openView("UserListViewController.fxml");
+    getViewHandler().openView("UserListView.fxml");
   }
 
+  /**
+   * method for applying the user edit changes
+   * @param actionEvent apply button pressed
+   */
   @FXML
   public void apply(ActionEvent actionEvent) {
     // TODO: 11/05/2022 Actually edit the user info

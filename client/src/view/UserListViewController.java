@@ -22,6 +22,10 @@ public class UserListViewController extends ViewController{
     // Remove the user
   }
 
+  /**
+   * method for opening UserEditView
+   * @param actionEvent edit button pressed
+   */
   @FXML public void edit(ActionEvent actionEvent) {
     // Must use the selected user
     getViewHandler().openView("UserEditView.fxml");
