@@ -30,6 +30,10 @@ public class Game implements Serializable
     {
       throw new IllegalArgumentException("Unknown rating");
     }
+    if (!(console.equals("PC") || console.equals("PlayStation") || console.equals("Xbox") || console.equals("Nintendo")))
+    {
+      throw new IllegalArgumentException("Unknown console");
+    }
     this.esrb = esrb;
     this.review = 3;
     this.producer = producer;

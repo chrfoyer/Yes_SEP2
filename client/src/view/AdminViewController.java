@@ -42,6 +42,6 @@ public class AdminViewController extends ViewController
 
   @FXML public void manageGames(ActionEvent actionEvent)
   {
-    getViewHandler().openView("UserEditView.fxml");
+    getViewHandler().openView("Inventory.fxml");
   }
 }
