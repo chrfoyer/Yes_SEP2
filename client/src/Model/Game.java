@@ -15,6 +15,7 @@ public class Game implements Serializable
 {
   private String name;
   private String producer;
+  private String console;
   private boolean rented;
   private int daysLeft;
   private float review;
@@ -26,7 +27,7 @@ public class Game implements Serializable
    * @param producer producer of the game
    * @param esrb rating of the game
    */
-  public Game(String name, String producer, String esrb)
+  public Game(String name, String producer, String console, String esrb)
   {
     if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T") || esrb.equals("M") || esrb.equals("AO")))
     {
@@ -38,6 +39,7 @@ public class Game implements Serializable
     this.name = name;
     rented = false;
     daysLeft = 0;
+    this.console = console;
   }
 
   /**
@@ -229,5 +231,15 @@ public class Game implements Serializable
   public void setReview(float review)
   {
     this.review = review;
+  }
+
+  public String getConsole()
+  {
+    return console;
+  }
+
+  public void setConsole(String console)
+  {
+    this.console = console;
   }
 }

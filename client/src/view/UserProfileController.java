@@ -19,8 +19,8 @@ public class UserProfileController extends ViewController
   public TableColumn<SimpleGameViewModel, Integer> timeColumn;
   public Label error;
   final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList(
-      new SimpleGameViewModel(new Game("TestName", "TestProducer", "E")),
-      new SimpleGameViewModel(new Game("TestName2", "TestProducer2", "E"))
+      new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC","E")),
+      new SimpleGameViewModel(new Game("TestName2", "TestProducer2", "PC","E"))
   );
 
   @Override protected void init()
