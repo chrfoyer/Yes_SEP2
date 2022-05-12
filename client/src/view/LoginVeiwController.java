@@ -3,6 +3,7 @@ package view;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import viewmodel.LoginViewModel;
 
 // When this is spelled correctly, things break. This is the way.\
 
@@ -29,6 +30,7 @@ public class LoginVeiwController extends ViewController
     errorLabel.textProperty()
         .bind(getViewModelFactory().getLoginViewModel().getErrorLabel());
     getViewModelFactory().getLoginViewModel().reset();
+    LoginViewModel.logout();
   }
 
   public void login()
@@ -37,6 +39,7 @@ public class LoginVeiwController extends ViewController
     {
       getViewHandler().openView("UserProfileView.fxml");
       getViewModelFactory().getLoginViewModel().reset();
+      getViewModelFactory().getUserProfileViewModel().reset();
     }
   }
 
