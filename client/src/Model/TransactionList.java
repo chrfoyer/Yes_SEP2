@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+//a class that creates a list of transactions
 public class TransactionList
 {
 
@@ -12,26 +12,45 @@ public class TransactionList
   private static TransactionList instance;
   private static Object lock = new Object();
 
+  /**
+   * constructor creating a arrayList of transaction type
+   */
   private TransactionList()
   {
     transactions = new ArrayList<>();
   }
 
+  /**
+   * method getting transactions
+   * @return returns arrayList of transaction type
+   */
   public ArrayList<Transaction> getTransactions()
   {
     return transactions;
   }
 
+  /**
+   * method for adding transaction to list
+   * @param transaction transaction to be added
+   */
   public synchronized void addTransaction(Transaction transaction)
   {
     transactions.add(transaction);
   }
 
+  /**
+   * method for removing transaction
+   * @param transaction transaction to be removed
+   */
   public synchronized void removeTransaction(Transaction transaction)
   {
     transactions.remove(transaction);
   }
 
+  /**
+   * method for getting instance of transactionlist
+   * @return returns instance of transactionlist
+   */
   public static TransactionList getInstance()
   {
     if (instance == null)

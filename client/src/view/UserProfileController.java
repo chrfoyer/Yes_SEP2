@@ -1,6 +1,9 @@
 package view;
 
+import Model.Game;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -15,14 +18,21 @@ public class UserProfileController extends ViewController
   public TableColumn<SimpleGameViewModel, String> nameColumn;
   public TableColumn<SimpleGameViewModel, Integer> timeColumn;
   public Label error;
+  final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList(
+      new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC","E")),
+      new SimpleGameViewModel(new Game("TestName2", "TestProducer2", "PC","E"))
+  );
 
   @Override protected void init()
   {
     username.textProperty().bind(
         getViewModelFactory().getUserProfileViewModel().getUsernameProperty());
-    error.textProperty()
-        .bind(getViewModelFactory().getUserProfileViewModel().getErrorLabel());
 
+    nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+    timeColumn.setCellValueFactory(cellData -> cellData.getValue().getTimeProperty());
+
+    table.setItems(data);
+    getViewModelFactory().getUserProfileViewModel().reset();
   }
 
   public void payment(ActionEvent actionEvent)

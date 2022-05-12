@@ -1,5 +1,7 @@
 package Model;
 
+import viewmodel.LoginViewModel;
+
 import java.io.Serializable;
 
 /**
@@ -13,17 +15,19 @@ public class Game implements Serializable
 {
   private String name;
   private String producer;
+  private String console;
   private boolean rented;
   private int daysLeft;
   private float review;
   private String esrb;
 
   /**
-   * Constructor for game using 14 days as a standard rental period for now.
-   *
-   * @param name argument for the name of the game
+   * constructor for game
+   * @param name name of game
+   * @param producer producer of the game
+   * @param esrb rating of the game
    */
-  public Game(String name, String producer, String esrb)
+  public Game(String name, String producer, String console, String esrb)
   {
     if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T") || esrb.equals("M") || esrb.equals("AO")))
     {
@@ -35,12 +39,13 @@ public class Game implements Serializable
     this.name = name;
     rented = false;
     daysLeft = 0;
+    this.console = console;
   }
 
   /**
    * Checks if obj is equals to a game
    *
-   * @param obj fed into method to compaare to a game
+   * @param obj fed into method to compare to a game
    * @return boolean if the games are equal or not
    */
   public boolean equals(Object obj)
@@ -140,7 +145,7 @@ public class Game implements Serializable
     } else {
       this.rented = true;
       this.daysLeft = 14;
-      new Transaction(this,"Rent","user");
+      new Transaction(this,"Rent", "User");
     }
   }
 
@@ -226,5 +231,15 @@ public class Game implements Serializable
   public void setReview(float review)
   {
     this.review = review;
+  }
+
+  public String getConsole()
+  {
+    return console;
+  }
+
+  public void setConsole(String console)
+  {
+    this.console = console;
   }
 }

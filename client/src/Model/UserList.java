@@ -79,6 +79,11 @@ public class UserList implements Serializable
     return false;
   }
 
+  /**
+   * boolean method for checking if the user can log in
+   * @param given user being checked if they may log in
+   * @return returns either true or false
+   */
   public boolean login(User given)
   {
     User foundFromList = null;
