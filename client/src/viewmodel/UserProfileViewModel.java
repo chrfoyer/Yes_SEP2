@@ -45,12 +45,6 @@ public class UserProfileViewModel
     return usernameProperty;
   }
 
-  /**
-   * Getter for property
-   *
-   * @return passwordProperty
-   */
-
   public StringProperty getErrorLabel()
   {
     return errorLabel;
