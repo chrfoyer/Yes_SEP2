@@ -5,6 +5,10 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.*;
 import viewmodel.LoginViewModel;
 import viewmodel.SimpleGameViewModel;
@@ -37,6 +41,8 @@ public class UserProfileController extends ViewController
 
   public void payment(ActionEvent actionEvent)
   {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Transactions are handled by an external thing");
+    alert.showAndWait();
   }
 
   // TODO: 12/05/2022 Distinguish for game 
