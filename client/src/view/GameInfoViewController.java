@@ -33,6 +33,7 @@ public class GameInfoViewController extends ViewController
   public void backButton()
   {
     // TODO: 12/05/2022 reset
+
     getViewHandler().openView("BrowseView.fxml");
     // Note: This might not always be the case, depending upon where we come from to get to this window.
   }

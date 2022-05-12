@@ -43,6 +43,10 @@ public class BrowseViewController extends ViewController {
             .addListener((obs, oldV, newV) -> gameInfoViewModel.setSelectedGameProperty(newV));;
   }
 
+  public void reset() {
+    table.getSelectionModel().clearSelection();
+  }
+
   public void searchButton() {
     // TODO: 12/05/2022 search functionality
     // Use these values to search the games and reset the table

@@ -59,6 +59,7 @@ public class ViewHandler extends ViewCreator
   public void openView(String id)
   {
     Region root = getViewController(id).getRoot();
+    getViewController(id).reset();
     currentScene.setRoot(root);
     String title = "";
     if (root.getUserData() != null)
