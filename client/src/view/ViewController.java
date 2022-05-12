@@ -11,6 +11,12 @@ public abstract class ViewController
 
   protected abstract void init(); //binding is here
 
+  /**
+   * method for initializing all variables
+   * @param viewHandler viewhander to set the viewhandler variable to
+   * @param viewModelFactory viewmodelfactory to set teh viewmodelfactory variable to
+   * @param root root to set the root to
+   */
   public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory, Region root) {
     this.root = root;
     this.viewHandler = viewHandler;
@@ -22,14 +28,26 @@ public abstract class ViewController
     // ?
   }
 
+  /**
+   * method for getting the root
+   * @return returns root
+   */
   public Region getRoot() {
     return root;
   }
 
+  /**
+   * method for getting viewmodelfactory
+   * @return returns viewModelFactory
+   */
   public ViewModelFactory getViewModelFactory() {
     return viewModelFactory;
   }
 
+  /**
+   * method for getting viewHandler
+   * @return returns ViewHandler
+   */
   public ViewHandler getViewHandler() {
     return viewHandler;
   }

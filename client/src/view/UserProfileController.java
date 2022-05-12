@@ -23,6 +23,9 @@ public class UserProfileController extends ViewController
       new SimpleGameViewModel(new Game("TestName2", "TestProducer2", "PC","E"))
   );
 
+  /**
+   * method initializinig all the variables and cells
+   */
   @Override protected void init()
   {
     username.textProperty().bind(
@@ -39,7 +42,7 @@ public class UserProfileController extends ViewController
   {
   }
 
-  // TODO: 12/05/2022 Distinguish for game 
+  // TODO: 12/05/2022 Distinguish for game
   public void returnGame(ActionEvent actionEvent)
   {
   }
@@ -48,6 +51,10 @@ public class UserProfileController extends ViewController
   {
   }
 
+  /**
+   * method for opening browse view
+   * @param actionEvent browse button clicked
+   */
   public void browse(ActionEvent actionEvent)
   {
     getViewHandler().openView("BrowseView.fxml");

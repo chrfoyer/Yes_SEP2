@@ -14,6 +14,9 @@ public class AdminViewController extends ViewController
   @FXML public TextField recentGame;
   @FXML public Label errorLabel;
 
+  /**
+   * method for initializing all the variables and binding them
+   */
   @Override protected void init()
   {
     registeredUsers.textProperty()
@@ -30,16 +33,28 @@ public class AdminViewController extends ViewController
     getViewModelFactory().getAdminViewModel().reset();
   }
 
+  /**
+   * method for opening UserlistView
+   * @param actionEvent manageUsers button pressed
+   */
   @FXML public void manageUsers(ActionEvent actionEvent)
   {
     getViewHandler().openView("UserListView.fxml");
   }
 
+  /**
+   * method for opening transaction view
+   * @param actionEvent transactions button pressed
+   */
   @FXML public void transactions(ActionEvent actionEvent)
   {
     // Open view for transactions goes here
   }
 
+  /**
+   * method for opening inventory
+   * @param actionEvent manageGames button pressed
+   */
   @FXML public void manageGames(ActionEvent actionEvent)
   {
     getViewHandler().openView("Inventory.fxml");
