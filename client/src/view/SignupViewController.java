@@ -16,6 +16,9 @@ public class SignupViewController extends ViewController
   public TextField password;
   public Label error;
 
+  /**
+   * initializes all the variables and binds them
+   */
   @Override protected void init()
   {
     fullName.textProperty().bindBidirectional(
@@ -37,6 +40,10 @@ public class SignupViewController extends ViewController
         .bindBidirectional(getViewModelFactory().getSignupViewModel().getDobProperty());
   }
 
+  /**
+   * methodd for signing up
+   * @param actionEvent when clicking the signup button
+   */
   public void signup(ActionEvent actionEvent)
   {
     if (getViewModelFactory().getSignupViewModel().signup())
@@ -47,6 +54,10 @@ public class SignupViewController extends ViewController
 
   }
 
+  /**
+   * method for canceling the signupview
+   * @param actionEvent button for canceling signupview
+   */
   public void cancel(ActionEvent actionEvent)
   {
     getViewHandler().openView("LoginView.fxml");

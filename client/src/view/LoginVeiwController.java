@@ -21,6 +21,9 @@ public class LoginVeiwController extends ViewController
   public TextField password;
   public Label errorLabel;
 
+  /**
+   * initializes the variables and binds them
+   */
   @Override protected void init()
   {
     username.textProperty().bindBidirectional(
@@ -33,6 +36,9 @@ public class LoginVeiwController extends ViewController
     LoginViewModel.logout();
   }
 
+  /**
+   * method for figuring out if user is admin and whether to open the admin view or the user profile view. It also resets the viewmodel.
+   */
   public void login()
   {
     if (getViewModelFactory().getLoginViewModel().login())
@@ -54,12 +60,18 @@ public class LoginVeiwController extends ViewController
     }
   }
 
+  /**
+   * opens the signup view and resets the view model
+   */
   public void signup()
   {
     getViewHandler().openView("SignupView.fxml");
     getViewModelFactory().getLoginViewModel().reset();
   }
 
+  /**
+   * logs the user in
+   */
   public void onEnter()
   {
     this.login();
