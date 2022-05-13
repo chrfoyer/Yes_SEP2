@@ -1,5 +1,8 @@
 package view;
 
+import Model.Game;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import viewmodel.AddEditGameViewModel;
@@ -26,9 +29,16 @@ public class AddEditGameController extends ViewController
     // Bind rating
     // console.textProperty().bindBidirectional(viewModel.consoleProperty());
     error.textProperty().bind(viewModel.errorProperty());
+
+    console.getItems().addAll("PC", "Xbox", "PlayStation");
+    esrb.getItems().addAll("E", "E10+", "T", "M", "AO");
+
+    console.setValue(viewModel.consoleProperty().get());
+    esrb.setValue(viewModel.esrbProperty().get());
   }
 
-  public void reset() {
+  public void reset()
+  {
     viewModel.reset();
   }
 
