@@ -39,6 +39,14 @@ public class SimpleGameViewModel
     return rented;
   }
 
+  public StringProperty getRentedStringProperty() {
+    if (rented.get()) {
+      return new SimpleStringProperty("Yes");
+    } else {
+      return new SimpleStringProperty("No");
+    }
+  }
+
   public StringProperty getEsrbProperty()
   {
     return esrb;
