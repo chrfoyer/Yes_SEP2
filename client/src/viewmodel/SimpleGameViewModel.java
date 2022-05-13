@@ -6,8 +6,7 @@ import javafx.beans.property.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class SimpleGameViewModel
-{
+public class SimpleGameViewModel {
   private StringProperty name;
   private ObjectProperty<Integer> timeLeft;
   private StringProperty console;
@@ -17,8 +16,7 @@ public class SimpleGameViewModel
   private ObjectProperty<LocalDate> dateAdded;
   private Game game;
 
-  public SimpleGameViewModel(Game game)
-  {
+  public SimpleGameViewModel(Game game) {
     this.name = new SimpleStringProperty(game.getName());
     this.timeLeft = new SimpleObjectProperty<>(game.getDaysLeft());
     this.producer = new SimpleStringProperty(game.getProducer());
@@ -29,55 +27,43 @@ public class SimpleGameViewModel
     this.game = game;
   }
 
-  public StringProperty getNameProperty()
-  {
+  public StringProperty getNameProperty() {
     return name;
   }
 
-  public ObjectProperty<Integer> getTimeProperty()
-  {
+  public ObjectProperty<Integer> getTimeProperty() {
     return timeLeft;
   }
 
-  public ObjectProperty<Boolean> getRentedProperty()
-  {
+  public ObjectProperty<Boolean> getRentedProperty() {
     return rented;
   }
 
-  public StringProperty getRentedStringProperty()
-  {
-    if (rented.get())
-    {
+  public StringProperty getRentedStringProperty() {
+    if (rented.get()) {
       return new SimpleStringProperty("Yes");
-    }
-    else
-    {
+    } else {
       return new SimpleStringProperty("No");
     }
   }
 
-  public StringProperty getEsrbProperty()
-  {
+  public StringProperty getEsrbProperty() {
     return esrb;
   }
 
-  public StringProperty getProducer()
-  {
+  public StringProperty getProducer() {
     return producer;
   }
 
-  public StringProperty getConsole()
-  {
+  public StringProperty getConsole() {
     return console;
   }
 
-  public Game getGame()
-  {
+  public Game getGame() {
     return game;
   }
 
-  public ObjectProperty<LocalDate> getDateAdded()
-  {
+  public ObjectProperty<LocalDate> getDateAdded() {
     return dateAdded;
   }
 }

@@ -8,8 +8,7 @@ import javafx.scene.control.TextField;
 import viewmodel.GameInfoViewModel;
 import viewmodel.SimpleGameViewModel;
 
-public class GameInfoViewController extends ViewController
-{
+public class GameInfoViewController extends ViewController {
 
   public TextField name;
   public TextField producer;
@@ -22,8 +21,8 @@ public class GameInfoViewController extends ViewController
   /**
    * method initializing all the variables and cells
    */
-  @Override protected void init()
-  {
+  @Override
+  protected void init() {
     viewModel = getViewModelFactory().getGameInfoViewModel();
     name.textProperty().bindBidirectional(viewModel.nameProperty());
     producer.textProperty().bindBidirectional(viewModel.producerProperty());
@@ -43,8 +42,7 @@ public class GameInfoViewController extends ViewController
   /**
    * Logic for the button that opens the BrowseView
    */
-  public void backButton()
-  {
+  public void backButton() {
     // TODO: 12/05/2022 reset
 
     getViewHandler().openView("BrowseView.fxml");

@@ -19,8 +19,7 @@ import java.util.Optional;
 /**
  * Class which delegates to UserProfileViewModel
  */
-public class UserProfileController extends ViewController
-{
+public class UserProfileController extends ViewController {
   public Label username;
   public TableView<SimpleGameViewModel> table;
   public TableColumn<SimpleGameViewModel, String> nameColumn;
@@ -55,13 +54,11 @@ public class UserProfileController extends ViewController
   }
 
   /**
-   * Logic of the button that handles payments
-   * Has a confirmation popup
+   * Logic of the button that handles payments Has a confirmation popup
    *
    * @param actionEvent
    */
-  public void payment(ActionEvent actionEvent)
-  {
+  public void payment(ActionEvent actionEvent) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Transactions are handled by an external provider");
     alert.showAndWait();
   }
@@ -69,65 +66,54 @@ public class UserProfileController extends ViewController
   // TODO: 12/05/2022 Distinguish for game
 
   /**
-   * Logic of the button to return a game
-   * Has a confirmation popup
+   * Logic of the button to return a game Has a confirmation popup
    *
    * @param actionEvent
    */
-  public void returnGame(ActionEvent actionEvent)
-  {
+  public void returnGame(ActionEvent actionEvent) {
     SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "Are you sure you want to return " + selected.getNameProperty().get() + "?");
+            "Are you sure you want to return " + selected.getNameProperty().get() + "?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK)
-    {
+    if (option.get() == ButtonType.OK) {
       viewModel.returnGame(selected);
     }
   }
 
   /**
-   * Logic off the button that extends the rented time of the game
-   * Has a confirmation popup
+   * Logic off the button that extends the rented time of the game Has a confirmation popup
    *
    * @param actionEvent
    */
-  public void extend(ActionEvent actionEvent)
-  {
+  public void extend(ActionEvent actionEvent) {
     SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "Are you sure you want to extend " + selected.getNameProperty().get() + "?");
+            "Are you sure you want to extend " + selected.getNameProperty().get() + "?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK)
-    {
+    if (option.get() == ButtonType.OK) {
       viewModel.extendGame(table.getSelectionModel().getSelectedItem());
     }
   }
 
   /**
-   * Method for opening browse view
-   * Has a confirmation popup
+   * Method for opening browse view Has a confirmation popup
    *
    * @param actionEvent browse button clicked
    */
-  public void browse(ActionEvent actionEvent)
-  {
+  public void browse(ActionEvent actionEvent) {
     getViewHandler().openView("BrowseView.fxml");
   }
 
   /**
-   * Brings user back to log-in screen
-   * Has a confirmation popup
+   * Brings user back to log-in screen Has a confirmation popup
    *
    * @param actionEvent
    */
-  public void logout(ActionEvent actionEvent)
-  {
+  public void logout(ActionEvent actionEvent) {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "Are you sure you want to log out?");
+            "Are you sure you want to log out?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK)
-    {
+    if (option.get() == ButtonType.OK) {
       getViewHandler().openView("LoginView.fxml");
       LoginViewModel.logout();
     }
