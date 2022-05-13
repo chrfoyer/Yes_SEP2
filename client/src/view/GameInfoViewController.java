@@ -30,6 +30,10 @@ public class GameInfoViewController extends ViewController
     error.textProperty().bind(viewModel.errorProperty());
   }
 
+  public void reset() {
+    viewModel.reset();
+  }
+
   public void backButton()
   {
     // TODO: 12/05/2022 reset

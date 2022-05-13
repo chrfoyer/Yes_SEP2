@@ -39,6 +39,11 @@ public class InventoryViewController extends ViewController
     reset();
   }
 
+  public void reset() {
+    viewModel.reset();
+    gameViewModel.reset();
+  }
+
   @FXML public void add(ActionEvent actionEvent)
   {
   }

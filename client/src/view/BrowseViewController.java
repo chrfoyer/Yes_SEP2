@@ -45,6 +45,8 @@ public class BrowseViewController extends ViewController {
 
   public void reset() {
     table.getSelectionModel().clearSelection();
+    browseViewModel.reset();
+    gameInfoViewModel.reset();
   }
 
   public void searchButton() {

@@ -1,7 +1,9 @@
 package viewmodel;
 
+import Model.Game;
 import Model.User;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -20,7 +22,10 @@ public class UserProfileViewModel
 
   private RemoteModel model;
   private StringProperty usernameProperty;
-  //table
+  final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList(
+      new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC","E")),
+      new SimpleGameViewModel(new Game("TestName2", "TestProducer2", "PC","E"))
+  );
   private StringProperty errorLabel;
 
   /**
@@ -45,6 +50,11 @@ public class UserProfileViewModel
     return usernameProperty;
   }
 
+  /**
+   * Getter for property
+   *
+   * @return errorProperty
+   */
   public StringProperty getErrorLabel()
   {
     return errorLabel;
@@ -59,4 +69,46 @@ public class UserProfileViewModel
     errorLabel.set("");
   }
 
+  /**
+   * Logic for returning the selected game
+   *
+   * @param game game to be returned
+   */
+  public void returnGame(SimpleGameViewModel game)
+  {
+    if (game != null)
+    {
+      data.remove(game);
+    }else
+    {
+      errorLabel.set("Game must be selected first");
+    }
+  }
+
+  /**
+   * Logic for extending the selected game for 5 days
+   *
+   * @param game game to be extended
+   */
+  public void extendGame(SimpleGameViewModel game)
+  {
+    if (game != null)
+    {
+      game.getTimeProperty().set(game.getTimeProperty().get()+5);
+    }else
+    {
+      errorLabel.set("Game must be selected first");
+    }
+
+  }
+
+  /**
+   * getter for an ObservableList displayed in the table
+   *
+   * @return ObservableList<SimpleGameViewModel>
+   */
+  public ObservableList<SimpleGameViewModel> getData()
+  {
+    return data;
+  }
 }

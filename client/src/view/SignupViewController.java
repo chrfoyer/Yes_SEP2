@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import viewmodel.SignupViewModel;
 
 public class SignupViewController extends ViewController
 {
@@ -15,29 +16,35 @@ public class SignupViewController extends ViewController
   public TextField confirmPassword;
   public TextField password;
   public Label error;
+  private SignupViewModel viewModel;
 
   /**
    * initializes all the variables and binds them
    */
   @Override protected void init()
   {
+    viewModel = getViewModelFactory().getSignupViewModel();
     fullName.textProperty().bindBidirectional(
-        getViewModelFactory().getSignupViewModel().getNameProperty());
+            viewModel.getNameProperty());
     address.textProperty().bindBidirectional(
-        getViewModelFactory().getSignupViewModel().getAddressProperty());
+            viewModel.getAddressProperty());
     email.textProperty().bindBidirectional(
-        getViewModelFactory().getSignupViewModel().getEmailProperty());
+            viewModel.getEmailProperty());
     username.textProperty().bindBidirectional(
-        getViewModelFactory().getSignupViewModel().getUsernameProperty());
+            viewModel.getUsernameProperty());
     password.textProperty().bindBidirectional(
-        getViewModelFactory().getSignupViewModel().getPasswordProperty());
+            viewModel.getPasswordProperty());
     confirmPassword.textProperty().bindBidirectional(
-        getViewModelFactory().getSignupViewModel().getConfirmProperty());
+            viewModel.getConfirmProperty());
     error.textProperty()
-        .bind(getViewModelFactory().getSignupViewModel().getErrorLabel());
-    getViewModelFactory().getSignupViewModel().reset();
+        .bind(viewModel.getErrorLabel());
+    reset();
     dob.valueProperty()
-        .bindBidirectional(getViewModelFactory().getSignupViewModel().getDobProperty());
+        .bindBidirectional(viewModel.getDobProperty());
+  }
+
+  public void reset() {
+    viewModel.reset();
   }
 
   /**

@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.*;
 import viewmodel.LoginViewModel;
 import viewmodel.SimpleGameViewModel;
+import viewmodel.UserProfileViewModel;
 
 import java.util.Optional;
 
@@ -22,43 +23,88 @@ public class UserProfileController extends ViewController
   public TableColumn<SimpleGameViewModel, String> nameColumn;
   public TableColumn<SimpleGameViewModel, Integer> timeColumn;
   public Label error;
-  final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList(
-      new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC","E")),
-      new SimpleGameViewModel(new Game("TestName2", "TestProducer2", "PC","E"))
-  );
+  UserProfileViewModel viewModel;
 
   /**
-   * method initializinig all the variables and cells
+   * method initializing all the variables and cells
    */
-  @Override protected void init()
-  {
+  @Override
+  protected void init() {
+    viewModel = getViewModelFactory().getUserProfileViewModel();
     username.textProperty().bind(
-        getViewModelFactory().getUserProfileViewModel().getUsernameProperty());
+            viewModel.getUsernameProperty());
 
     nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
     timeColumn.setCellValueFactory(cellData -> cellData.getValue().getTimeProperty());
+    error.textProperty().bind(viewModel.getErrorLabel());
 
-    table.setItems(data);
+    table.setItems(viewModel.getData());
     getViewModelFactory().getUserProfileViewModel().reset();
+
+    reset();
   }
 
+  /**
+   * method that resets the fields in the view
+   */
+  public void reset() {
+    viewModel.reset();
+  }
+
+  /**
+   * Logic of the button that handles payments
+   * Has a confirmation popup
+   *
+   * @param actionEvent
+   */
   public void payment(ActionEvent actionEvent)
   {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Transactions are handled by an external thing");
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Transactions are handled by an external provider");
     alert.showAndWait();
   }
 
   // TODO: 12/05/2022 Distinguish for game
+
+  /**
+   * Logic of the button to return a game
+   * Has a confirmation popup
+   *
+   * @param actionEvent
+   */
   public void returnGame(ActionEvent actionEvent)
   {
-  }
-
-  public void extend(ActionEvent actionEvent)
-  {
+    SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "Are you sure you want to return " + selected.getNameProperty().get() + "?");
+    Optional<ButtonType> option = alert.showAndWait();
+    if (option.get() == ButtonType.OK)
+    {
+      viewModel.returnGame(selected);
+    }
   }
 
   /**
-   * method for opening browse view
+   * Logic off the button that extends the rented time of the game
+   * Has a confirmation popup
+   *
+   * @param actionEvent
+   */
+  public void extend(ActionEvent actionEvent)
+  {
+    SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "Are you sure you want to extend " + selected.getNameProperty().get() + "?");
+    Optional<ButtonType> option = alert.showAndWait();
+    if (option.get() == ButtonType.OK)
+    {
+      viewModel.extendGame(table.getSelectionModel().getSelectedItem());
+    }
+  }
+
+  /**
+   * Method for opening browse view
+   * Has a confirmation popup
+   *
    * @param actionEvent browse button clicked
    */
   public void browse(ActionEvent actionEvent)
@@ -69,6 +115,7 @@ public class UserProfileController extends ViewController
   /**
    * Brings user back to log-in screen
    * Has a confirmation popup
+   *
    * @param actionEvent
    */
   public void logout(ActionEvent actionEvent)
