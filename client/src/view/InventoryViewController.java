@@ -49,6 +49,12 @@ public class InventoryViewController extends ViewController
     getViewHandler().openView("AddEditGame.fxml");
   }
 
+  @FXML public void cancel(ActionEvent actionEvent)
+  {
+    getViewModelFactory().getAdminViewModel().reset();
+    getViewHandler().openView("AdminView.fxml");
+  }
+
   @FXML public void remove(ActionEvent actionEvent)
   {
     // TODO: 11/05/2022 Add confirmation window with the name of the game.

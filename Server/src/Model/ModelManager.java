@@ -21,7 +21,7 @@ public class ModelManager implements Model
     //todo remove test
     users.addUser(new User("admin", "admin"));
     users.addUser(new User("bob", "test"));
-    games.addGame(new Game("Minecraft", "Mojang", "PC","E"));
+    games.addGame(new Game("Minecraft", "Mojang", "PC", "E"));
   }
 
   public void setGames(GameList games)
@@ -200,5 +200,10 @@ public class ModelManager implements Model
   @Override public UserList getUserList()
   {
     return users;
+  }
+
+  @Override public void updateGameInfo(Game gameOld, Game gameNew)
+  {
+    games.updateGameInfo(gameOld, gameNew);
   }
 }

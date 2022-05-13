@@ -9,15 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.InventoryViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.InventoryViewController">
     <children>
         <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
                 <Label style="-fx-font-weight: bold;" text="Inventory" textFill="#c1c1c1">
                     <font>
-                        <Font size="36.0"/>
+                        <Font size="36.0" />
                     </font>
                 </Label>
             </children>
@@ -34,12 +32,9 @@
                                             <content>
                                                 <TableView fx:id="table" prefHeight="278.0" prefWidth="453.0">
                                                     <columns>
-                                                        <TableColumn fx:id="nameColumn" prefWidth="211.2000122666359"
-                                                                     text="Name"/>
-                                                        <TableColumn fx:id="timeColumn" prefWidth="93.33328247070312"
-                                                                     text="Rented"/>
-                                                        <TableColumn fx:id="dateAddedColumn"
-                                                                     prefWidth="134.66668701171875" text="Date Added"/>
+                                                        <TableColumn fx:id="nameColumn" prefWidth="211.2000122666359" text="Name" />
+                                                        <TableColumn fx:id="timeColumn" prefWidth="93.33328247070312" text="Rented" />
+                                                        <TableColumn fx:id="dateAddedColumn" prefWidth="134.66668701171875" text="Date Added" />
                                                     </columns>
                                                 </TableView>
                                             </content>
@@ -48,22 +43,26 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="281.0" prefWidth="131.0" spacing="40.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#add" prefWidth="90.0" text="Add">
+                                        <Button  mnemonicParsing="false" onAction="#cancel" prefWidth="90.0" text="Cancel">
                                             <font>
-                                                <Font size="18.0"/>
+                                                <Font size="18.0" />
                                             </font>
                                         </Button>
-                                        <Button mnemonicParsing="false" onAction="#remove" prefWidth="90.0"
-                                                text="Remove">
+                                        <Button mnemonicParsing="false" onAction="#remove" prefWidth="90.0" text="Remove">
                                             <font>
-                                                <Font size="18.0"/>
+                                                <Font size="18.0" />
                                             </font>
                                         </Button>
                                         <Button mnemonicParsing="false" onAction="#edit" prefWidth="90.0" text="Edit">
                                             <font>
-                                                <Font size="18.0"/>
+                                                <Font size="18.0" />
                                             </font>
                                         </Button>
+                              <Button mnemonicParsing="false" onAction="#add" prefWidth="90.0" text="Add">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
                                     </children>
                                 </VBox>
                             </children>
@@ -74,7 +73,7 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR" textFill="RED"/>
+                <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR" textFill="RED" />
             </children>
         </HBox>
     </children>

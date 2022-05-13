@@ -120,6 +120,11 @@ public class RmiServer implements RemoteModel
     return model.getUserList();
   }
 
+  @Override public void updateGameInfo(Game gameOld, Game gameNew)
+  {
+    model.updateGameInfo(gameOld, gameNew);
+  }
+
   /**
    * Adds a game to the GameList
    *

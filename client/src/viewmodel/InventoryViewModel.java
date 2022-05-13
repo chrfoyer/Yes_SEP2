@@ -35,10 +35,14 @@ public class InventoryViewModel
   {
     try
     {
+      list.clear();
       ArrayList<Game> games = model.viewGames().getGamesArrayCopy();
       for (Game game : games)
       {
-        list.add(new SimpleGameViewModel(game));
+        SimpleGameViewModel temp = new SimpleGameViewModel(game);
+        if (!list.contains(temp))
+          list.add(temp);
+        System.out.println(temp);
       }
     }
     catch (Exception e)

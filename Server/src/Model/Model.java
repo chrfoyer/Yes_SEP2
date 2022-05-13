@@ -26,4 +26,5 @@ public interface Model
   void signup(User user);
   boolean login(User user);
   public UserList getUserList();
+  public void updateGameInfo(Game gameOld, Game gameNew);
 }

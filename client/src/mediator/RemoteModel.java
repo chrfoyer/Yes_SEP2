@@ -24,4 +24,5 @@ public interface RemoteModel extends Remote
   void signup(User user) throws RemoteException;
   boolean login(User user) throws RemoteException;
   UserList getUserList() throws RemoteException;
+  void updateGameInfo(Game gameOld, Game gameNew) throws RemoteException;
 }

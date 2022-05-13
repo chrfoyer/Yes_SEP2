@@ -11,6 +11,7 @@ public class SimpleGameViewModel
   private StringProperty producer;
   private StringProperty esrb;
   private ObjectProperty<Boolean> rented;
+  private Game game;
 
   public SimpleGameViewModel(Game game)
   {
@@ -20,6 +21,7 @@ public class SimpleGameViewModel
     this.esrb = new SimpleStringProperty(game.getEsrb());
     this.rented = new SimpleObjectProperty<>(game.isRented());
     this.console = new SimpleStringProperty(game.getConsole());
+    this.game = game;
   }
 
   public StringProperty getNameProperty()
@@ -50,5 +52,10 @@ public class SimpleGameViewModel
   public StringProperty getConsole()
   {
     return console;
+  }
+
+  public Game getGame()
+  {
+    return game;
   }
 }

@@ -1,5 +1,6 @@
 package viewmodel;
 
+import Model.Game;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -141,33 +142,30 @@ public class AddEditGameViewModel
     this.name.set(name);
   }
 
-  public void setTimeLeft(Integer timeLeft)
+  public void confirm()
   {
-    this.timeLeft.set(timeLeft);
-  }
+    //todo nullcheck
+    try
+    {
+      Game gameOld = new Game(selectedGameProperty.get().getGame().getName(),
+          selectedGameProperty.get().getGame().getProducer(),
+          selectedGameProperty.get().getGame().getConsole(),
+          selectedGameProperty.get().getGame().getEsrb());
 
-  public void setConsole(String console)
-  {
-    this.console.set(console);
-  }
+      Game gameNew = selectedGameProperty.get().getGame();
+      gameNew = selectedGameProperty.get().getGame();
+      gameNew.setConsole(console.getValue());
+      gameNew.setProducer(producer.get());
+      gameNew.setEsrb(esrb.get());
+      gameNew.setName(name.get());
 
-  public void setProducer(String producer)
-  {
-    this.producer.set(producer);
-  }
+      model.updateGameInfo(gameOld, gameNew);
 
-  public void setEsrb(String esrb)
-  {
-    this.esrb.set(esrb);
-  }
-
-  public void setRented(Boolean rented)
-  {
-    this.rented.set(rented);
-  }
-
-  public void setError(String error)
-  {
-    this.error.set(error);
+      //change finished without error
+    }
+    catch (Exception e)
+    {
+      error.set(e.getMessage());
+    }
   }
 }
