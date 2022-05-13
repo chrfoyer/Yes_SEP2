@@ -46,8 +46,7 @@ public class GameInfoViewModel {
       esrb = selectedGameViewModel.getEsrbProperty();
       rented = selectedGameViewModel.getRentedProperty();
       console = selectedGameViewModel.getConsole();
-    } else
-    {
+    } else {
       name.set("");
       timeLeft.set(null);
       producer.set("");

@@ -43,7 +43,8 @@ public class BrowseViewController extends ViewController {
     gameInfoViewModel = getViewModelFactory().getGameInfoViewModel();
     // Sets the selected game in the game info view model
     table.getSelectionModel().selectedItemProperty()
-            .addListener((obs, oldV, newV) -> gameInfoViewModel.setSelectedGameProperty(newV));;
+            .addListener((obs, oldV, newV) -> gameInfoViewModel.setSelectedGameProperty(newV));
+    ;
   }
 
   /**

@@ -7,8 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import mediator.RemoteModel;
 
-public class AddEditGameViewModel
-{
+public class AddEditGameViewModel {
   private RemoteModel model;
   private ObjectProperty<SimpleGameViewModel> selectedGameProperty;
   private StringProperty name;
@@ -19,8 +18,7 @@ public class AddEditGameViewModel
   private ObjectProperty<Boolean> rented;
   private StringProperty error;
 
-  public AddEditGameViewModel(RemoteModel model)
-  {
+  public AddEditGameViewModel(RemoteModel model) {
     this.model = model;
     this.name = new SimpleStringProperty();
     this.timeLeft = new SimpleObjectProperty<>();
@@ -32,15 +30,12 @@ public class AddEditGameViewModel
     selectedGameProperty = new SimpleObjectProperty<>();
   }
 
-  public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel)
-  {
+  public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel) {
     this.selectedGameProperty.set(selectedGameViewModel);
   }
 
-  public void reset()
-  {
-    try
-    {
+  public void reset() {
+    try {
       SimpleGameViewModel selectedGameViewModel = selectedGameProperty.get();
       name = selectedGameViewModel.getNameProperty();
       timeLeft = selectedGameViewModel.getTimeProperty();
@@ -50,82 +45,66 @@ public class AddEditGameViewModel
       console = selectedGameViewModel.getConsole();
 
       error.set("");
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       error.set(e.getMessage());
     }
   }
 
-  public SimpleGameViewModel getSelectedGameProperty()
-  {
+  public SimpleGameViewModel getSelectedGameProperty() {
     return selectedGameProperty.get();
   }
 
-  public ObjectProperty<SimpleGameViewModel> selectedGamePropertyProperty()
-  {
+  public ObjectProperty<SimpleGameViewModel> selectedGamePropertyProperty() {
     return selectedGameProperty;
   }
 
-  public String getName()
-  {
+  public String getName() {
     return name.get();
   }
 
-  public StringProperty nameProperty()
-  {
+  public StringProperty nameProperty() {
     return name;
   }
 
-  public StringProperty consoleProperty()
-  {
+  public StringProperty consoleProperty() {
     return console;
   }
 
-  public StringProperty producerProperty()
-  {
+  public StringProperty producerProperty() {
     return producer;
   }
 
-  public StringProperty esrbProperty()
-  {
+  public StringProperty esrbProperty() {
     return esrb;
   }
 
-  public ObjectProperty<Boolean> rentedProperty()
-  {
+  public ObjectProperty<Boolean> rentedProperty() {
     return rented;
   }
 
-  public StringProperty errorProperty()
-  {
+  public StringProperty errorProperty() {
     return error;
   }
 
-  public void setEsrb(String esrb)
-  {
+  public void setEsrb(String esrb) {
     this.esrb.set(esrb);
   }
 
-  public void setName(String name)
-  {
+  public void setName(String name) {
     this.name.set(name);
   }
 
-  public void setConsole(String console)
-  {
+  public void setConsole(String console) {
     this.console.set(console);
   }
 
-  public void confirm()
-  {
+  public void confirm() {
     //todo nullcheck
-    try
-    {
+    try {
       Game gameOld = new Game(selectedGameProperty.get().getGame().getName(),
-          selectedGameProperty.get().getGame().getProducer(),
-          selectedGameProperty.get().getGame().getConsole(),
-          selectedGameProperty.get().getGame().getEsrb());
+              selectedGameProperty.get().getGame().getProducer(),
+              selectedGameProperty.get().getGame().getConsole(),
+              selectedGameProperty.get().getGame().getEsrb());
 
       Game gameNew = selectedGameProperty.get().getGame();
       gameNew = selectedGameProperty.get().getGame();
@@ -137,9 +116,7 @@ public class AddEditGameViewModel
       model.updateGameInfo(gameOld, gameNew);
 
       //change finished without error
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       error.set(e.getMessage());
     }
   }

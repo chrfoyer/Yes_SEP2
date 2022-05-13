@@ -10,8 +10,7 @@ import viewmodel.LoginViewModel;
 
 import java.util.Optional;
 
-public class AddEditGameController extends ViewController
-{
+public class AddEditGameController extends ViewController {
   public TextField gameName;
   public TextField producer;
   public ChoiceBox console;
@@ -22,8 +21,8 @@ public class AddEditGameController extends ViewController
   /**
    * method initializing all the variables and cells
    */
-  @Override protected void init()
-  {
+  @Override
+  protected void init() {
     viewModel = getViewModelFactory().getAddEditGameViewModel();
     gameName.textProperty().bindBidirectional(viewModel.nameProperty());
     producer.textProperty().bindBidirectional(viewModel.producerProperty());
@@ -43,16 +42,14 @@ public class AddEditGameController extends ViewController
   /**
    * method that resets the fields in the view
    */
-  public void reset()
-  {
+  public void reset() {
     viewModel.reset();
   }
 
   /**
    * logic for the button that cancels the editing and opens the InventoryView
    */
-  public void cancel(ActionEvent actionEvent)
-  {
+  public void cancel(ActionEvent actionEvent) {
     getViewModelFactory().getInventoryViewModel().reset();
     getViewHandler().openView("InventoryView.fxml");
   }
@@ -60,21 +57,18 @@ public class AddEditGameController extends ViewController
   /**
    * logic for the button that applies changes and  opens the InventoryView
    */
-  public void confirm(ActionEvent actionEvent)
-  {
+  public void confirm(ActionEvent actionEvent) {
     viewModel.setConsole(console.getValue().toString());
     viewModel.setEsrb(esrb.getValue().toString());
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "Are you sure you want to change the game info?");
+            "Are you sure you want to change the game info?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK)
-    {
+    if (option.get() == ButtonType.OK) {
       viewModel.confirm();
       //this is retarded
       //please don't use production
-      if (error.textProperty().get().equals(""))
-      {
+      if (error.textProperty().get().equals("")) {
         getViewModelFactory().getInventoryViewModel().reset();
         getViewHandler().openView("InventoryView.fxml");
       }

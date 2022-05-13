@@ -4,21 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * This is the UserList class which is an arraylist of users. it contains
- * methods for adding and removing users as well as the size method and get method.
+ * This is the UserList class which is an arraylist of users. it contains methods for adding and removing users as well
+ * as the size method and get method.
  *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.1 11/5/22
  */
-public class UserList implements Serializable
-{
+public class UserList implements Serializable {
   private ArrayList<User> users;
 
   /**
    * Constructor initializing an arrayList of User type.
    */
-  public UserList()
-  {
+  public UserList() {
     users = new ArrayList<>();
   }
 
@@ -27,8 +25,7 @@ public class UserList implements Serializable
    *
    * @param user user to be added to the userList
    */
-  public void addUser(User user)
-  {
+  public void addUser(User user) {
     users.add(user);
   }
 
@@ -37,8 +34,7 @@ public class UserList implements Serializable
    *
    * @param user user to be removed from the userList
    */
-  public void removeUser(User user)
-  {
+  public void removeUser(User user) {
     users.remove(user);
   }
 
@@ -47,8 +43,7 @@ public class UserList implements Serializable
    *
    * @return size of userList as an int
    */
-  public int size()
-  {
+  public int size() {
     return users.size();
   }
 
@@ -58,8 +53,7 @@ public class UserList implements Serializable
    * @param index index to fetch the user from
    * @return user at the given index
    */
-  public User get(int index)
-  {
+  public User get(int index) {
     return users.get(index);
   }
 
@@ -69,39 +63,33 @@ public class UserList implements Serializable
    * @param given user to check against existing list
    * @return true if it contains
    */
-  public boolean contains(User given)
-  {
-    for (User user : users)
-    {
+  public boolean contains(User given) {
+    for (User user : users) {
       if (user.getUsername().equals(given.getUsername()))
         return true;
     }
     return false;
   }
 
-  public boolean login(User given)
-  {
+  public boolean login(User given) {
     User foundFromList = null;
-    for (User user : users)
-    {
+    for (User user : users) {
       if (user.getUsername().equals(given.getUsername()))
         foundFromList = user;
     }
     if (foundFromList == null)
       throw new IllegalArgumentException("User does not exist on server");
-    else
-    {
+    else {
       //Authenticate password
       if (!given.getPassword().equals(foundFromList.getPassword()))
         throw new IllegalArgumentException(
-            "Password does not match stored credentials");
+                "Password does not match stored credentials");
       else
         return true;
     }
   }
 
-  public ArrayList<User> getUsers()
-  {
+  public ArrayList<User> getUsers() {
     return users;
   }
 }

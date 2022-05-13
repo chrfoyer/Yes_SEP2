@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class UserEditViewController extends ViewController{
+public class UserEditViewController extends ViewController {
   @FXML
   public TextField fullName;
   @FXML
@@ -31,6 +31,7 @@ public class UserEditViewController extends ViewController{
 
   /**
    * method for canceling and opening the UserlistView
+   *
    * @param actionEvent cancel button pressed
    */
   @FXML
@@ -40,6 +41,7 @@ public class UserEditViewController extends ViewController{
 
   /**
    * method for applying the user edit changes
+   *
    * @param actionEvent apply button pressed
    */
   @FXML

@@ -4,8 +4,7 @@ import mediator.RemoteModel;
 
 import java.rmi.RemoteException;
 
-public class ViewModelFactory
-{
+public class ViewModelFactory {
 
   private LoginViewModel loginViewModel;
   private SignupViewModel signupViewModel;
@@ -19,8 +18,7 @@ public class ViewModelFactory
 
   //  private ChatViewModel chatViewModel;
 
-  public ViewModelFactory(RemoteModel model) throws RemoteException
-  {
+  public ViewModelFactory(RemoteModel model) throws RemoteException {
     //    chatViewModel = new ChatViewModel(model);
     loginViewModel = new LoginViewModel(model);
     signupViewModel = new SignupViewModel(model);
@@ -38,43 +36,35 @@ public class ViewModelFactory
   //    return chatViewModel;
   //  }
   //
-  public LoginViewModel getLoginViewModel()
-  {
+  public LoginViewModel getLoginViewModel() {
     return loginViewModel;
   }
 
-  public SignupViewModel getSignupViewModel()
-  {
+  public SignupViewModel getSignupViewModel() {
     return signupViewModel;
   }
 
-  public UserProfileViewModel getUserProfileViewModel()
-  {
+  public UserProfileViewModel getUserProfileViewModel() {
     return userProfileViewModel;
   }
 
-  public AdminViewModel getAdminViewModel()
-  {
+  public AdminViewModel getAdminViewModel() {
     return adminViewModel;
   }
 
-  public BrowseViewModel getBrowseViewModel()
-  {
+  public BrowseViewModel getBrowseViewModel() {
     return browseViewModel;
   }
 
-  public InventoryViewModel getInventoryViewModel()
-  {
+  public InventoryViewModel getInventoryViewModel() {
     return inventoryViewModel;
   }
 
-  public GameInfoViewModel getGameInfoViewModel()
-  {
+  public GameInfoViewModel getGameInfoViewModel() {
     return gameInfoViewModel;
   }
 
-  public AddEditGameViewModel getAddEditGameViewModel()
-  {
+  public AddEditGameViewModel getAddEditGameViewModel() {
     return addEditGameViewModel;
   }
 
