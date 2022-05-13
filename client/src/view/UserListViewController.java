@@ -55,4 +55,8 @@ public class UserListViewController extends ViewController {
     // Must use the selected user
     getViewHandler().openView("UserEditView.fxml");
   }
+
+  public void back(ActionEvent actionEvent) {
+    getViewHandler().openView("AdminView.fxml");
+  }
 }
