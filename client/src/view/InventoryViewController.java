@@ -27,6 +27,9 @@ public class InventoryViewController extends ViewController {
   private InventoryViewModel viewModel;
   private AddEditGameViewModel gameViewModel;
 
+  /**
+   * method that resets the fields in the view
+   */
   @Override
   protected void init() {
     nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
@@ -45,6 +48,9 @@ public class InventoryViewController extends ViewController {
     reset();
   }
 
+  /**
+   * method that resets the fields in the view
+   */
   public void reset() {
     viewModel.reset();
     gameViewModel.reset();

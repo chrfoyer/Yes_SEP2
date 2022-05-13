@@ -25,6 +25,9 @@ public class BrowseViewController extends ViewController {
           new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC", "E")),
           new SimpleGameViewModel(new Game("TestName2", "TestProducer2", "PC", "E")));
 
+  /**
+   * method initializing all the variables and cells
+   */
   @Override
   protected void init() {
     consoleSearch.getItems().addAll("PC", "Xbox", "PlayStation");
@@ -43,12 +46,18 @@ public class BrowseViewController extends ViewController {
             .addListener((obs, oldV, newV) -> gameInfoViewModel.setSelectedGameProperty(newV));;
   }
 
+  /**
+   * method that resets the fields in the view
+   */
   public void reset() {
     table.getSelectionModel().clearSelection();
     browseViewModel.reset();
     gameInfoViewModel.reset();
   }
 
+  /**
+   * Logic for the button that opens the GameInfoView
+   */
   public void searchButton() {
     // TODO: 12/05/2022 search functionality
     // Use these values to search the games and reset the table
@@ -57,17 +66,26 @@ public class BrowseViewController extends ViewController {
     String esrb = esrbSearch.getValue();
   }
 
+  /**
+   * Logic for the button that opens the GameInfoView
+   */
   public void info() {
     gameInfoViewModel.reset();
     getViewHandler().openView("GameInfoView.fxml");
   }
 
+  /**
+   * Logic for the button that handles renting of the game
+   */
   public void rent() {
     // TODO: 11/05/2022 Confirmation window with name of game
     gameInfoViewModel.reset();
     gameInfoViewModel.setRented(true);
   }
 
+  /**
+   * Logic for the button that opens the UserProfileView
+   */
   public void back() {
     getViewModelFactory().getUserProfileViewModel().reset();
     getViewHandler().openView("UserProfileView.fxml");

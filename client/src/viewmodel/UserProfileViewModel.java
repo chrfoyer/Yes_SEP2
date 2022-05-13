@@ -15,6 +15,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
+ * Class with the functionality for the UserProfileController
+ *
  * @version 0.1
  */
 public class UserProfileViewModel
