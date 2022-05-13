@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.*;
 import viewmodel.LoginViewModel;
 import viewmodel.SimpleGameViewModel;
+import viewmodel.UserProfileViewModel;
 
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class UserProfileController extends ViewController
   public TableColumn<SimpleGameViewModel, String> nameColumn;
   public TableColumn<SimpleGameViewModel, Integer> timeColumn;
   public Label error;
+  private UserProfileViewModel viewModel;
   final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList(
       new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC","E")),
       new SimpleGameViewModel(new Game("TestName2", "TestProducer2", "PC","E"))
@@ -32,14 +34,19 @@ public class UserProfileController extends ViewController
    */
   @Override protected void init()
   {
+    viewModel = getViewModelFactory().getUserProfileViewModel();
     username.textProperty().bind(
-        getViewModelFactory().getUserProfileViewModel().getUsernameProperty());
+            viewModel.getUsernameProperty());
 
     nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
     timeColumn.setCellValueFactory(cellData -> cellData.getValue().getTimeProperty());
 
     table.setItems(data);
-    getViewModelFactory().getUserProfileViewModel().reset();
+    reset();
+  }
+
+  public void reset() {
+    viewModel.reset();
   }
 
   public void payment(ActionEvent actionEvent)

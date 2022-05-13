@@ -24,20 +24,26 @@ public class LoginVeiwController extends ViewController
   public TextField username;
   public TextField password;
   public Label errorLabel;
+  private LoginViewModel viewModel;
 
   /**
    * initializes the variables and binds them
    */
   @Override protected void init()
   {
+    viewModel = getViewModelFactory().getLoginViewModel();
     username.textProperty().bindBidirectional(
-        getViewModelFactory().getLoginViewModel().getUsernameProperty());
+            viewModel.getUsernameProperty());
     password.textProperty().bindBidirectional(
-        getViewModelFactory().getLoginViewModel().getPasswordProperty());
+            viewModel.getPasswordProperty());
     errorLabel.textProperty()
-        .bind(getViewModelFactory().getLoginViewModel().getErrorLabel());
-    getViewModelFactory().getLoginViewModel().reset();
+        .bind(viewModel.getErrorLabel());
     LoginViewModel.logout();
+    reset();
+  }
+
+  public void reset() {
+    viewModel.reset();
   }
 
   /**

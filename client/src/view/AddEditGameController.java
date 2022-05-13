@@ -27,6 +27,10 @@ public class AddEditGameController extends ViewController
     error.textProperty().bind(viewModel.errorProperty());
   }
 
+  public void reset() {
+    viewModel.reset();
+  }
+
   public void cancel(ActionEvent actionEvent)
   {
     getViewModelFactory().getInventoryViewModel().reset();

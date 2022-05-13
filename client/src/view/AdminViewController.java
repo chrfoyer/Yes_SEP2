@@ -4,33 +4,44 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import viewmodel.AdminViewModel;
 
-public class AdminViewController extends ViewController
-{
+public class AdminViewController extends ViewController {
 
-  @FXML public TextField registeredUsers;
-  @FXML public TextField totalGames;
-  @FXML public TextField rentedGames;
-  @FXML public TextField recentGame;
-  @FXML public Label errorLabel;
+  @FXML
+  public TextField registeredUsers;
+  @FXML
+  public TextField totalGames;
+  @FXML
+  public TextField rentedGames;
+  @FXML
+  public TextField recentGame;
+  @FXML
+  public Label errorLabel;
+  private AdminViewModel viewModel;
 
   /**
    * method for initializing all the variables and binding them
    */
-  @Override protected void init()
-  {
+  @Override
+  protected void init() {
+    viewModel = getViewModelFactory().getAdminViewModel();
     registeredUsers.textProperty()
-        .bind(getViewModelFactory().getAdminViewModel().getRegisteredUsers());
+            .bind(viewModel.getRegisteredUsers());
     totalGames.textProperty()
-        .bind(getViewModelFactory().getAdminViewModel().getTotalGames());
+            .bind(viewModel.getTotalGames());
     rentedGames.textProperty()
-        .bind(getViewModelFactory().getAdminViewModel().getRentedGames());
+            .bind(viewModel.getRentedGames());
     recentGame.textProperty()
-        .bind(getViewModelFactory().getAdminViewModel().getRecentGame());
+            .bind(viewModel.getRecentGame());
 
     errorLabel.textProperty()
-        .bind(getViewModelFactory().getAdminViewModel().getErrorLabel());
-    getViewModelFactory().getAdminViewModel().reset();
+            .bind(viewModel.getErrorLabel());
+    reset();
+  }
+
+  public void reset() {
+    viewModel.reset();
   }
 
   /**
@@ -38,8 +49,8 @@ public class AdminViewController extends ViewController
    *
    * @param actionEvent manageUsers button pressed
    */
-  @FXML public void manageUsers(ActionEvent actionEvent)
-  {
+  @FXML
+  public void manageUsers(ActionEvent actionEvent) {
     getViewHandler().openView("UserListView.fxml");
   }
 
@@ -48,8 +59,8 @@ public class AdminViewController extends ViewController
    *
    * @param actionEvent transactions button pressed
    */
-  @FXML public void transactions(ActionEvent actionEvent)
-  {
+  @FXML
+  public void transactions(ActionEvent actionEvent) {
     // Open view for transactions goes here
   }
 
@@ -58,8 +69,8 @@ public class AdminViewController extends ViewController
    *
    * @param actionEvent manageGames button pressed
    */
-  @FXML public void manageGames(ActionEvent actionEvent)
-  {
+  @FXML
+  public void manageGames(ActionEvent actionEvent) {
     getViewModelFactory().getInventoryViewModel().reset();
     getViewHandler().openView("InventoryView.fxml");
   }
