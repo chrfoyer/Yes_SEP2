@@ -77,29 +77,9 @@ public class AddEditGameViewModel
     return name;
   }
 
-  public Integer getTimeLeft()
-  {
-    return timeLeft.get();
-  }
-
-  public ObjectProperty<Integer> timeLeftProperty()
-  {
-    return timeLeft;
-  }
-
-  public String getConsole()
-  {
-    return console.get();
-  }
-
   public StringProperty consoleProperty()
   {
     return console;
-  }
-
-  public String getProducer()
-  {
-    return producer.get();
   }
 
   public StringProperty producerProperty()
@@ -107,29 +87,14 @@ public class AddEditGameViewModel
     return producer;
   }
 
-  public String getEsrb()
-  {
-    return esrb.get();
-  }
-
   public StringProperty esrbProperty()
   {
     return esrb;
   }
 
-  public Boolean getRented()
-  {
-    return rented.get();
-  }
-
   public ObjectProperty<Boolean> rentedProperty()
   {
     return rented;
-  }
-
-  public String getError()
-  {
-    return error.get();
   }
 
   public StringProperty errorProperty()
