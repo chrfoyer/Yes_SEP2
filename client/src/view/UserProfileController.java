@@ -28,8 +28,8 @@ public class UserProfileController extends ViewController
   /**
    * method initializing all the variables and cells
    */
-  @Override protected void init()
-  {
+  @Override
+  protected void init() {
     viewModel = getViewModelFactory().getUserProfileViewModel();
     username.textProperty().bind(
             viewModel.getUsernameProperty());
