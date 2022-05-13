@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="686.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.InventoryViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="852.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.InventoryViewController">
     <children>
         <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
@@ -20,30 +20,31 @@
                 </Label>
             </children>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="286.0" prefWidth="600.0">
+        <HBox alignment="CENTER" prefHeight="286.0" prefWidth="861.0">
             <children>
-                <VBox prefHeight="286.0" prefWidth="675.0">
+                <VBox prefHeight="286.0" prefWidth="841.0">
                     <children>
                         <HBox prefHeight="287.0" prefWidth="586.0">
                             <children>
-                                <VBox prefHeight="287.0" prefWidth="563.0">
+                                <VBox prefHeight="287.0" prefWidth="704.0">
                                     <children>
-                                        <ScrollPane prefHeight="287.0" prefWidth="453.0">
+                                        <ScrollPane prefHeight="287.0" prefWidth="1051.0">
                                             <content>
-                                                <TableView fx:id="table" prefHeight="278.0" prefWidth="561.0">
+                                                <TableView fx:id="table" prefHeight="283.0" prefWidth="705.0">
                                                     <columns>
-                                                        <TableColumn fx:id="nameColumn" prefWidth="192.66663134098053" text="Name" />
-                                          <TableColumn fx:id="rentedColumn" prefWidth="69.33326721191406" text="Rented" />
+                                                        <TableColumn fx:id="nameColumn" prefWidth="185.0" text="Name" />
+                                          <TableColumn fx:id="rentedColumn" prefWidth="78.0" text="Rented" />
                                                         <TableColumn fx:id="consoleColumn" prefWidth="101.99993896484375" text="Console" />
                                           <TableColumn fx:id="esrbColumn" prefWidth="50.0" text="ESRB" />
                                           <TableColumn fx:id="producerColumn" prefWidth="130.00003051757812" text="Producer" />
+                                          <TableColumn fx:id="dateAddedColumn" prefWidth="142.0" text="DateAdded" />
                                                     </columns>
                                                 </TableView>
                                             </content>
                                         </ScrollPane>
                                     </children>
                                 </VBox>
-                                <VBox alignment="CENTER" prefHeight="287.0" prefWidth="115.0" spacing="40.0">
+                                <VBox alignment="CENTER" prefHeight="287.0" prefWidth="134.0" spacing="40.0">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#cancel" prefWidth="90.0" text="Cancel">
                                             <font>

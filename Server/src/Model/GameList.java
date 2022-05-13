@@ -187,6 +187,9 @@ public class GameList implements Serializable
     {
       if (gameOld.equals(game))
       {
+        if (game.isRented())
+          throw new IllegalStateException(
+              "Game is rented, changing of information is not allowed!");
         game.setName(gameNew.getName());
         game.setEsrb(gameNew.getEsrb());
         game.setConsole(gameNew.getConsole());

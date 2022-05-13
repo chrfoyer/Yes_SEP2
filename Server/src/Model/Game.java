@@ -1,11 +1,14 @@
 package Model;
+
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * The game is the object that is rented in the system. The attributes are
  * currently just the name, but more attributes will be included according the domain model
  *
- * @author Chris,Martin,Levente,Kruno
+ * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
 public class Game implements Serializable
@@ -17,20 +20,24 @@ public class Game implements Serializable
   private int daysLeft;
   private float review;
   private String esrb;
+  private LocalDate dateAdded;
 
   /**
    * constructor for game
-   * @param name name of game
+   *
+   * @param name     name of game
    * @param producer producer of the game
-   * @param esrb rating of the game
+   * @param esrb     rating of the game
    */
   public Game(String name, String producer, String console, String esrb)
   {
-    if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T") || esrb.equals("M") || esrb.equals("AO")))
+    if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T")
+        || esrb.equals("M") || esrb.equals("AO")))
     {
       throw new IllegalArgumentException("Unknown rating");
     }
-    if (!(console.equals("PC") || console.equals("PlayStation") || console.equals("Xbox") || console.equals("Nintendo")))
+    if (!(console.equals("PC") || console.equals("PlayStation")
+        || console.equals("Xbox") || console.equals("Nintendo")))
     {
       throw new IllegalArgumentException("Unknown console");
     }
@@ -41,6 +48,7 @@ public class Game implements Serializable
     rented = false;
     daysLeft = 0;
     this.console = console;
+    this.dateAdded = LocalDate.now();
   }
 
   /**
@@ -102,6 +110,7 @@ public class Game implements Serializable
   /**
    * Decreases the days left in the rental period. If the game is not rented, an exception is thrown.
    * If the game ran out of days also sets rented to false
+   *
    * @author Raedrim
    */
   public void decrementDaysLeft()
@@ -109,9 +118,9 @@ public class Game implements Serializable
     if (rented)
     {
       daysLeft--;
-      if (daysLeft<=0)
+      if (daysLeft <= 0)
       {
-        System.out.println(name+" Ran out of time, game not rented anymore");
+        System.out.println(name + " Ran out of time, game not rented anymore");
       }
     }
     else
@@ -141,12 +150,15 @@ public class Game implements Serializable
    */
   public void rentGame()
   {
-    if(rented) {
+    if (rented)
+    {
       throw new IllegalStateException("Game is already rented!");
-    } else {
+    }
+    else
+    {
       this.rented = true;
       this.daysLeft = 14;
-      new Transaction(this,"Rent", "User");
+      new Transaction(this, "Rent", "User");
     }
   }
 
@@ -155,12 +167,16 @@ public class Game implements Serializable
    */
   public void returnGame()
   {
-    if (!rented) {
-      throw new IllegalStateException("Game is not rented so it cannot be returned!");
-    } else {
+    if (!rented)
+    {
+      throw new IllegalStateException(
+          "Game is not rented so it cannot be returned!");
+    }
+    else
+    {
       this.rented = false;
       this.daysLeft = 0;
-      new Transaction(this,"Return","User");
+      new Transaction(this, "Return", "User");
     }
   }
 
@@ -242,5 +258,15 @@ public class Game implements Serializable
   public void setConsole(String console)
   {
     this.console = console;
+  }
+
+  /**
+   * Returns the date which the Game object was created
+   *
+   * @return LocalDateTime
+   */
+  public LocalDate getDateAdded()
+  {
+    return dateAdded;
   }
 }

@@ -102,9 +102,19 @@ public class AddEditGameViewModel
     return error;
   }
 
+  public void setEsrb(String esrb)
+  {
+    this.esrb.set(esrb);
+  }
+
   public void setName(String name)
   {
     this.name.set(name);
+  }
+
+  public void setConsole(String console)
+  {
+    this.console.set(console);
   }
 
   public void confirm()
@@ -119,7 +129,7 @@ public class AddEditGameViewModel
 
       Game gameNew = selectedGameProperty.get().getGame();
       gameNew = selectedGameProperty.get().getGame();
-      gameNew.setConsole(console.getValue());
+      gameNew.setConsole(console.get());
       gameNew.setProducer(producer.get());
       gameNew.setEsrb(esrb.get());
       gameNew.setName(name.get());

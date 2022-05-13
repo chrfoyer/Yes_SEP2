@@ -32,9 +32,9 @@ public class AddEditGameController extends ViewController
 
     console.getItems().addAll("PC", "Xbox", "PlayStation");
     esrb.getItems().addAll("E", "E10+", "T", "M", "AO");
-
     console.setValue(viewModel.consoleProperty().get());
     esrb.setValue(viewModel.esrbProperty().get());
+
   }
 
   public void reset()
@@ -50,22 +50,23 @@ public class AddEditGameController extends ViewController
 
   public void confirm(ActionEvent actionEvent)
   {
-    if (LoginViewModel.currentlyLoggedInUser.isAdmin())
+    viewModel.setConsole(console.getValue().toString());
+    viewModel.setEsrb(esrb.getValue().toString());
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "Are you sure you want to change the game info?");
+    Optional<ButtonType> option = alert.showAndWait();
+    if (option.get() == ButtonType.OK)
     {
-      Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-          "Are you sure you want to change the game info?");
-      Optional<ButtonType> option = alert.showAndWait();
-      if (option.get() == ButtonType.OK)
+      viewModel.confirm();
+      //this is retarded
+      //please don't use production
+      if (error.textProperty().get().equals(""))
       {
-        viewModel.confirm();
-        //this is retarded
-        //please don't use production
-        if (error.textProperty().get().equals(""))
-        {
-          getViewModelFactory().getInventoryViewModel().reset();
-          getViewHandler().openView("InventoryView.fxml");
-        }
+        getViewModelFactory().getInventoryViewModel().reset();
+        getViewHandler().openView("InventoryView.fxml");
       }
     }
+
   }
 }

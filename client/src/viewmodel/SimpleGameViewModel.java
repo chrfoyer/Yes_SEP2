@@ -3,6 +3,9 @@ package viewmodel;
 import Model.Game;
 import javafx.beans.property.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class SimpleGameViewModel
 {
   private StringProperty name;
@@ -11,6 +14,7 @@ public class SimpleGameViewModel
   private StringProperty producer;
   private StringProperty esrb;
   private ObjectProperty<Boolean> rented;
+  private ObjectProperty<LocalDate> dateAdded;
   private Game game;
 
   public SimpleGameViewModel(Game game)
@@ -21,6 +25,7 @@ public class SimpleGameViewModel
     this.esrb = new SimpleStringProperty(game.getEsrb());
     this.rented = new SimpleObjectProperty<>(game.isRented());
     this.console = new SimpleStringProperty(game.getConsole());
+    this.dateAdded = new SimpleObjectProperty<>(game.getDateAdded());
     this.game = game;
   }
 
@@ -39,10 +44,14 @@ public class SimpleGameViewModel
     return rented;
   }
 
-  public StringProperty getRentedStringProperty() {
-    if (rented.get()) {
+  public StringProperty getRentedStringProperty()
+  {
+    if (rented.get())
+    {
       return new SimpleStringProperty("Yes");
-    } else {
+    }
+    else
+    {
       return new SimpleStringProperty("No");
     }
   }
@@ -65,5 +74,10 @@ public class SimpleGameViewModel
   public Game getGame()
   {
     return game;
+  }
+
+  public ObjectProperty<LocalDate> getDateAdded()
+  {
+    return dateAdded;
   }
 }
