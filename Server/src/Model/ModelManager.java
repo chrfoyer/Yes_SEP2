@@ -22,6 +22,7 @@ public class ModelManager implements Model
     users.addUser(new User("admin", "admin"));
     users.addUser(new User("bob", "test"));
     games.addGame(new Game("Minecraft", "Mojang", "PC", "E"));
+    games.addGame(new Game("CockAndBalls", "ShitFart", "Xbox", "E"));
   }
 
   public void setGames(GameList games)
