@@ -21,6 +21,9 @@ public class UserEditViewController extends ViewController{
   @FXML
   public TextField confirmPassword;
 
+  /**
+   * method for initializing all the variables and binding them
+   */
   @Override
   protected void init() {
 

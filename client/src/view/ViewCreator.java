@@ -37,6 +37,7 @@ public abstract class ViewCreator
 
   /**
    * method for loading fxml files
+   *
    * @param fxmlFile fxmlFile to load
    * @return returns viewController
    */

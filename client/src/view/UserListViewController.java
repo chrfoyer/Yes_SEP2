@@ -25,6 +25,9 @@ public class UserListViewController extends ViewController {
   public Label error;
   private UserListViewModel viewModel;
 
+  /**
+   * method for initializing all the variables and binding them
+   */
   @Override
   protected void init() {
     viewModel = getViewModelFactory().getUserListViewModel();

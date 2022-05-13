@@ -6,6 +6,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import mediator.RemoteModel;
 
+/**
+ * Class with the functionality for the GameInfoViewController
+ */
 public class GameInfoViewModel {
   private RemoteModel model;
   private ObjectProperty<SimpleGameViewModel> selectedGameProperty;
@@ -16,6 +19,7 @@ public class GameInfoViewModel {
   private StringProperty esrb;
   private ObjectProperty<Boolean> rented;
   private StringProperty error;
+
 
   public GameInfoViewModel(RemoteModel model) {
     this.model = model;

@@ -19,6 +19,9 @@ public class AddEditGameController extends ViewController
   public Label error;
   public AddEditGameViewModel viewModel;
 
+  /**
+   * method initializing all the variables and cells
+   */
   @Override protected void init()
   {
     viewModel = getViewModelFactory().getAddEditGameViewModel();
@@ -37,17 +40,26 @@ public class AddEditGameController extends ViewController
 
   }
 
+  /**
+   * method that resets the fields in the view
+   */
   public void reset()
   {
     viewModel.reset();
   }
 
+  /**
+   * logic for the button that cancels the editing and opens the InventoryView
+   */
   public void cancel(ActionEvent actionEvent)
   {
     getViewModelFactory().getInventoryViewModel().reset();
     getViewHandler().openView("InventoryView.fxml");
   }
 
+  /**
+   * logic for the button that applies changes and  opens the InventoryView
+   */
   public void confirm(ActionEvent actionEvent)
   {
     viewModel.setConsole(console.getValue().toString());

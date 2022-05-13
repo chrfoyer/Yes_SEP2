@@ -16,6 +16,9 @@ import viewmodel.UserProfileViewModel;
 
 import java.util.Optional;
 
+/**
+ * Class which delegates to UserProfileViewModel
+ */
 public class UserProfileController extends ViewController
 {
   public Label username;

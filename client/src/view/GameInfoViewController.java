@@ -19,6 +19,9 @@ public class GameInfoViewController extends ViewController
   public Label error;
   public GameInfoViewModel viewModel;
 
+  /**
+   * method initializing all the variables and cells
+   */
   @Override protected void init()
   {
     viewModel = getViewModelFactory().getGameInfoViewModel();
@@ -30,10 +33,16 @@ public class GameInfoViewController extends ViewController
     error.textProperty().bind(viewModel.errorProperty());
   }
 
+  /**
+   * method that resets the fields in the view
+   */
   public void reset() {
     viewModel.reset();
   }
 
+  /**
+   * Logic for the button that opens the BrowseView
+   */
   public void backButton()
   {
     // TODO: 12/05/2022 reset
