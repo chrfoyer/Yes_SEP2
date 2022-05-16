@@ -14,12 +14,15 @@ import viewmodel.LoginViewModel;
 import viewmodel.SimpleGameViewModel;
 import viewmodel.UserProfileViewModel;
 
+import java.awt.*;
+import java.net.URL;
 import java.util.Optional;
 
 /**
  * Class which delegates to UserProfileViewModel
  */
-public class UserProfileController extends ViewController {
+public class UserProfileController extends ViewController
+{
   public Label username;
   public TableView<SimpleGameViewModel> table;
   public TableColumn<SimpleGameViewModel, String> nameColumn;
@@ -30,14 +33,15 @@ public class UserProfileController extends ViewController {
   /**
    * method initializing all the variables and cells
    */
-  @Override
-  protected void init() {
+  @Override protected void init()
+  {
     viewModel = getViewModelFactory().getUserProfileViewModel();
-    username.textProperty().bind(
-            viewModel.getUsernameProperty());
+    username.textProperty().bind(viewModel.getUsernameProperty());
 
-    nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-    timeColumn.setCellValueFactory(cellData -> cellData.getValue().getTimeProperty());
+    nameColumn.setCellValueFactory(
+        cellData -> cellData.getValue().getNameProperty());
+    timeColumn.setCellValueFactory(
+        cellData -> cellData.getValue().getTimeProperty());
     error.textProperty().bind(viewModel.getErrorLabel());
 
     table.setItems(viewModel.getData());
@@ -49,7 +53,8 @@ public class UserProfileController extends ViewController {
   /**
    * method that resets the fields in the view
    */
-  public void reset() {
+  public void reset()
+  {
     viewModel.reset();
   }
 
@@ -58,9 +63,24 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent
    */
-  public void payment(ActionEvent actionEvent) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Transactions are handled by an external provider");
-    alert.showAndWait();
+  public void payment(ActionEvent actionEvent)
+  {
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "Transactions are handled by an external provider. Are you alright with that?");
+    Optional<ButtonType> option = alert.showAndWait();
+    if (option.get() == ButtonType.OK)
+    {
+      try
+      {
+        Desktop.getDesktop().browse(
+            new URL("https://www.youtube.com/watch?v=UX0sbhIy9MA").toURI());
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
   }
 
   // TODO: 12/05/2022 Distinguish for game
@@ -70,12 +90,15 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent
    */
-  public void returnGame(ActionEvent actionEvent) {
+  public void returnGame(ActionEvent actionEvent)
+  {
     SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-            "Are you sure you want to return " + selected.getNameProperty().get() + "?");
+        "Are you sure you want to return " + selected.getNameProperty().get()
+            + "?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       viewModel.returnGame(selected);
     }
   }
@@ -85,12 +108,15 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent
    */
-  public void extend(ActionEvent actionEvent) {
+  public void extend(ActionEvent actionEvent)
+  {
     SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-            "Are you sure you want to extend " + selected.getNameProperty().get() + "?");
+        "Are you sure you want to extend " + selected.getNameProperty().get()
+            + "?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       viewModel.extendGame(table.getSelectionModel().getSelectedItem());
     }
   }
@@ -100,7 +126,8 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent browse button clicked
    */
-  public void browse(ActionEvent actionEvent) {
+  public void browse(ActionEvent actionEvent)
+  {
     getViewHandler().openView("BrowseView.fxml");
   }
 
@@ -109,11 +136,13 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent
    */
-  public void logout(ActionEvent actionEvent) {
+  public void logout(ActionEvent actionEvent)
+  {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-            "Are you sure you want to log out?");
+        "Are you sure you want to log out?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       getViewHandler().openView("LoginView.fxml");
       LoginViewModel.logout();
     }
