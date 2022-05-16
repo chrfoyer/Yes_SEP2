@@ -66,4 +66,9 @@ public class SimpleGameViewModel {
   public ObjectProperty<LocalDate> getDateAdded() {
     return dateAdded;
   }
+
+  public void rent()
+  {
+    game.rentGame();
+  }
 }

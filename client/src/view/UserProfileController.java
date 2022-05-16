@@ -1,6 +1,7 @@
 package view;
 
 import Model.Game;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -128,6 +129,7 @@ public class UserProfileController extends ViewController
    */
   public void browse(ActionEvent actionEvent)
   {
+    getViewModelFactory().getBrowseViewModel().reset();
     getViewHandler().openView("BrowseView.fxml");
   }
 

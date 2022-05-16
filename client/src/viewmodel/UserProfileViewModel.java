@@ -27,10 +27,7 @@ public class UserProfileViewModel
 
   private RemoteModel model;
   private StringProperty usernameProperty;
-  final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList(
-      new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC", "E")),
-      new SimpleGameViewModel(
-          new Game("TestName2", "TestProducer2", "PC", "E")));
+  final ObservableList<SimpleGameViewModel> rentedGames = FXCollections.observableArrayList();
   private StringProperty errorLabel;
 
   /**
@@ -93,7 +90,7 @@ public class UserProfileViewModel
       {
         e.printStackTrace();
       }
-      data.remove(game);
+      rentedGames.remove(game);
     }
     else
     {
@@ -126,6 +123,11 @@ public class UserProfileViewModel
    */
   public ObservableList<SimpleGameViewModel> getData()
   {
-    return data;
+    return rentedGames;
+  }
+
+  public void rentGame(SimpleGameViewModel game)
+  {
+    rentedGames.add(game);
   }
 }
