@@ -1,5 +1,6 @@
 package viewmodel;
 
+import Model.Game;
 import Model.User;
 import Model.UserList;
 import javafx.beans.property.ObjectProperty;
@@ -13,53 +14,67 @@ import mediator.RemoteModel;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class UserListViewModel {
-  private ObservableList<SimpleUserViewModel> users;
+public class UserListViewModel
+{
+  private ObservableList<SimpleUserViewModel> list;
   private ObjectProperty<SimpleUserViewModel> selectedUser;
   private StringProperty error;
   private RemoteModel model;
 
-  public UserListViewModel(RemoteModel model) throws RemoteException {
-    users = FXCollections.observableArrayList();
+  public UserListViewModel(RemoteModel model) throws RemoteException
+  {
+    list = FXCollections.observableArrayList();
     selectedUser = new SimpleObjectProperty<>();
     error = new SimpleStringProperty();
     this.model = model;
     reset();
   }
 
-  public void reset() {
+  public void reset()
+  {
     fillTable();
   }
 
-  public void fillTable() {
-    ArrayList<User> userArrayList = null;
-    try {
-      userArrayList = model.getUserList().getUsers();
-      for (User user : userArrayList) {
-        users.add(new SimpleUserViewModel(user));
+  public void fillTable()
+  {
+    try
+    {
+      list.clear();
+      ArrayList<User> users = model.getUserList().getUsers();
+      for (User user : users)
+      {
+        SimpleUserViewModel temp = new SimpleUserViewModel(user);
+        list.add(temp);
       }
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       error.set(e.getMessage());
     }
   }
 
-  public ObservableList<SimpleUserViewModel> getUsers() {
-    return users;
+  public ObservableList<SimpleUserViewModel> getUsers()
+  {
+    return list;
   }
 
-  public SimpleUserViewModel getSelectedUser() {
+  public SimpleUserViewModel getSelectedUser()
+  {
     return selectedUser.get();
   }
 
-  public void setSelectedUser(SimpleUserViewModel selectedUser) {
+  public void setSelectedUser(SimpleUserViewModel selectedUser)
+  {
     this.selectedUser.set(selectedUser);
   }
 
-  public StringProperty errorProperty() {
+  public StringProperty errorProperty()
+  {
     return error;
   }
 
-  public String getError() {
+  public String getError()
+  {
     return error.get();
   }
 }
