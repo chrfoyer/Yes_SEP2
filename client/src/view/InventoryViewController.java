@@ -2,12 +2,12 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import viewmodel.AddEditGameViewModel;
 import viewmodel.InventoryViewModel;
 import viewmodel.SimpleGameViewModel;
+
+import java.util.Optional;
 
 public class InventoryViewController extends ViewController {
   @FXML
@@ -81,5 +81,13 @@ public class InventoryViewController extends ViewController {
   @FXML
   public void remove(ActionEvent actionEvent) {
     // TODO: 11/05/2022 Add confirmation window with the name of the game.
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "Are you sure you want to delete the game?");
+    Optional<ButtonType> option = alert.showAndWait();
+    if (option.get() == ButtonType.OK) {
+      viewModel.setSelectedGameProperty(gameViewModel.getSelectedGameProperty());
+      viewModel.removeGame();
+    }
   }
 }

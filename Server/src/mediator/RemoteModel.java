@@ -34,4 +34,6 @@ public interface RemoteModel extends Remote {
   void updateGameInfo(Game gameOld, Game gameNew) throws RemoteException;
 
   void addGame(Game game)throws RemoteException;
+
+  void removeGame(Game game)throws RemoteException;
 }
