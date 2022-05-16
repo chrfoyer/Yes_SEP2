@@ -42,6 +42,7 @@ public class UserEditViewModel
     confirmProperty = new SimpleStringProperty();
     errorLabel = new SimpleStringProperty();
 
+    selectedUserProperty = new SimpleObjectProperty<>();
   }
 
   /**
@@ -184,6 +185,10 @@ public class UserEditViewModel
     emailProperty.set("");
     confirmProperty.set("");
     errorLabel.set("");
+  }
+
+  public void setSelectedUserProperty(SimpleUserViewModel simp){
+    this.selectedUserProperty.set(simp);
   }
 
 }

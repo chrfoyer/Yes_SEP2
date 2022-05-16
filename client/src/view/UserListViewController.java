@@ -13,48 +13,52 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class UserListViewController extends ViewController {
-  @FXML
-  public TableColumn<SimpleUserViewModel, String> usernameColumn;
-  @FXML
-  public TableColumn<SimpleUserViewModel, LocalDate> birthdayColumn;
-  @FXML
-  public TableColumn<SimpleUserViewModel, String> emailColumn;
-  @FXML
-  public TableView<SimpleUserViewModel> table;
-  @FXML
-  public Label error;
+public class UserListViewController extends ViewController
+{
+  @FXML public TableColumn<SimpleUserViewModel, String> usernameColumn;
+  @FXML public TableColumn<SimpleUserViewModel, LocalDate> birthdayColumn;
+  @FXML public TableColumn<SimpleUserViewModel, String> emailColumn;
+  @FXML public TableView<SimpleUserViewModel> table;
+  @FXML public Label error;
   private UserListViewModel viewModel;
   private UserEditViewModel editViewModel;
 
   /**
    * method for initializing all the variables and binding them
    */
-  @Override
-  protected void init() {
+  @Override protected void init()
+  {
     viewModel = getViewModelFactory().getUserListViewModel();
-    usernameColumn.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
-    birthdayColumn.setCellValueFactory(cellData -> cellData.getValue().bdayProperty());
-    emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+    usernameColumn.setCellValueFactory(
+        cellData -> cellData.getValue().usernameProperty());
+    birthdayColumn.setCellValueFactory(
+        cellData -> cellData.getValue().bdayProperty());
+    emailColumn.setCellValueFactory(
+        cellData -> cellData.getValue().emailProperty());
     table.setItems(viewModel.getUsers());
     error.textProperty().bind(viewModel.errorProperty());
-    table.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> viewModel.setSelectedUser(newV));
+
+    editViewModel=getViewModelFactory().getUserEditViewModel();
+
+    table.getSelectionModel().selectedItemProperty().addListener(
+        (obs, oldV, newV) -> editViewModel.setSelectedUserProperty(newV));
+    reset();
   }
 
-  public void reset() {
+  public void reset()
+  {
     viewModel.reset();
   }
 
-
-  @FXML
-  public void remove(ActionEvent actionEvent) throws RemoteException
+  @FXML public void remove(ActionEvent actionEvent) throws RemoteException
   {
     // TODO: 11/05/2022 Add confirmation window with the name of the User.
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
         "Are you sure you want to delete this user?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       viewModel.setSelectedUser(editViewModel.getUser());
       viewModel.removeUser();
       viewModel.reset();
@@ -66,13 +70,14 @@ public class UserListViewController extends ViewController {
    *
    * @param actionEvent edit button pressed
    */
-  @FXML
-  public void edit(ActionEvent actionEvent) {
+  @FXML public void edit(ActionEvent actionEvent)
+  {
     // Must use the selected user
     getViewHandler().openView("UserEditView.fxml");
   }
 
-  public void back(ActionEvent actionEvent) {
+  public void back(ActionEvent actionEvent)
+  {
     getViewHandler().openView("AdminView.fxml");
   }
 }
