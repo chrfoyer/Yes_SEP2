@@ -55,6 +55,8 @@ public class InventoryViewController extends ViewController {
   }
 
   public void reset() {
+    table.getSelectionModel().clearSelection();
+    // gameViewModel.setSelectedGameProperty(null);
     viewModel.reset();
     gameViewModel.reset();
   }
@@ -64,8 +66,9 @@ public class InventoryViewController extends ViewController {
   }
 
   @FXML
-  public void edit(ActionEvent actionEvent) {
+  public void addEdit(ActionEvent actionEvent) {
     gameViewModel.reset();
+
     getViewHandler().openView("AddEditGame.fxml");
   }
 

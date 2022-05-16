@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0"
-      prefWidth="852.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/11.0.1"
+      prefWidth="852.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.InventoryViewController">
     <children>
         <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
@@ -64,12 +64,8 @@
                                                 <Font size="18.0"/>
                                             </font>
                                         </Button>
-                                        <Button mnemonicParsing="false" onAction="#edit" prefWidth="90.0" text="Edit">
-                                            <font>
-                                                <Font size="18.0"/>
-                                            </font>
-                                        </Button>
-                                        <Button mnemonicParsing="false" onAction="#add" prefWidth="90.0" text="Add">
+                                        <Button mnemonicParsing="false" onAction="#addEdit" prefHeight="39.0"
+                                                prefWidth="100.0" text="Add/Edit">
                                             <font>
                                                 <Font size="18.0"/>
                                             </font>

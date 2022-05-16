@@ -9,10 +9,11 @@ import java.util.Optional;
 public class AddEditGameController extends ViewController {
   public TextField gameName;
   public TextField producer;
-  public ChoiceBox console;
-  public ChoiceBox esrb;
+  public ChoiceBox<String> console;
+  public ChoiceBox<String> esrb;
   public Label error;
   public AddEditGameViewModel viewModel;
+  public Label title;
 
   /**
    * method initializing all the variables and cells
@@ -32,7 +33,7 @@ public class AddEditGameController extends ViewController {
     esrb.getItems().addAll("E", "E10+", "T", "M", "AO");
     console.setValue(viewModel.consoleProperty().get());
     esrb.setValue(viewModel.esrbProperty().get());
-
+    reset();
   }
 
   /**
@@ -40,6 +41,20 @@ public class AddEditGameController extends ViewController {
    */
   public void reset() {
     viewModel.reset();
+    if (viewModel.getSelectedGameProperty() != null) {
+      title.setText("Edit Game");
+//      gameName.setText(viewModel.getName());
+//      producer.setText(viewModel.producerProperty().get());
+//      console.setValue(viewModel.consoleProperty().get());
+//      esrb.setValue(viewModel.errorProperty().get());
+
+    } else {
+      title.setText("Add Game");
+//      gameName.setText("");
+//      producer.setText("");
+//      console.setValue("");
+//      esrb.setValue("");
+    }
   }
 
   /**
@@ -48,6 +63,7 @@ public class AddEditGameController extends ViewController {
   public void cancel(ActionEvent actionEvent) {
     getViewModelFactory().getInventoryViewModel().reset();
     getViewHandler().openView("InventoryView.fxml");
+    viewModel.setSelectedGameProperty(null);
   }
 
   /**
@@ -61,14 +77,16 @@ public class AddEditGameController extends ViewController {
             "Are you sure you want to change the game info?");
     Optional<ButtonType> option = alert.showAndWait();
     if (option.get() == ButtonType.OK) {
-      viewModel.editGame();
+      if (viewModel.getSelectedGameProperty() == null) {
+        viewModel.addGame();
+      } else {
+        viewModel.editGame();
+      }
+      getViewHandler().openView("InventoryView.fxml");
       //this is retarded
       //please don't use production
-      if (error.textProperty().get().equals("")) {
-        getViewModelFactory().getInventoryViewModel().reset();
-        getViewHandler().openView("InventoryView.fxml");
-      }
+      // TODO: 16/05/2022 Make sure no errors before moving on
     }
-
+    viewModel.setSelectedGameProperty(null);
   }
 }
