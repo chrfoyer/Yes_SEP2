@@ -62,4 +62,9 @@ public class UserListViewModel {
   public String getError() {
     return error.get();
   }
+
+  public void removeUser() throws RemoteException
+  {
+    model.removeUser(selectedUser.get().getUser());
+  }
 }

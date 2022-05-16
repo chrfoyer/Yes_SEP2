@@ -16,6 +16,7 @@ public class SimpleUserViewModel {
   private ObjectProperty<LocalDate> bday;
   private BooleanProperty hasSubscription;
   private IntegerProperty age;
+  private User user;
 
   public SimpleUserViewModel(User user) {
     username = new SimpleStringProperty(user.getUsername());
@@ -26,6 +27,7 @@ public class SimpleUserViewModel {
     name = new SimpleStringProperty(user.getName());
     bday = new SimpleObjectProperty<>(user.getBday());
     hasSubscription = new SimpleBooleanProperty(user.hasSubscription());
+    this.user = user;
     // TODO: 13/05/2022
     // age = new SimpleIntegerProperty(user....)
   }
@@ -104,5 +106,9 @@ public class SimpleUserViewModel {
 
   public IntegerProperty ageProperty() {
     return age;
+  }
+
+  public User getUser(){
+    return user;
   }
 }

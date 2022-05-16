@@ -195,4 +195,15 @@ public class ModelManager implements Model {
   public void updateGameInfo(Game gameOld, Game gameNew) {
     games.updateGameInfo(gameOld, gameNew);
   }
+
+  @Override public void removeUser(User user)
+  {
+    users.removeUser(user);
+  }
+
+  @Override public void updateUserInfo(User oldUser, User newUser)
+  {
+    users.updateUserInfo(oldUser, newUser);
+  }
+
 }

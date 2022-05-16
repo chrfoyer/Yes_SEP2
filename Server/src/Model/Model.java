@@ -40,4 +40,8 @@ public interface Model {
   public UserList getUserList();
 
   public void updateGameInfo(Game gameOld, Game gameNew);
+
+  public void removeUser(User user);
+
+  public void updateUserInfo(User oldUser, User newUser);
 }

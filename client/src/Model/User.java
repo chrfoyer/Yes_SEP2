@@ -209,4 +209,5 @@ public class User implements Serializable {
   public boolean hasSubscription() {
     return hasSubscription;
   }
+
 }

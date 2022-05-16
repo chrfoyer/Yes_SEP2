@@ -151,4 +151,16 @@ public class RmiServer implements RemoteModel {
   public void removeGame(Game game) {
     model.removeGame(game);
   }
+
+  @Override public void removeUser(User user) throws RemoteException
+  {
+    model.removeUser(user);
+  }
+
+  @Override public void updateUserInfo(User oldUser, User newUser)
+      throws RemoteException
+  {
+    model.updateUserInfo(oldUser,newUser);
+  }
+
 }

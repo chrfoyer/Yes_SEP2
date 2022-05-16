@@ -4,13 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import viewmodel.SimpleUserViewModel;
+import viewmodel.UserEditViewModel;
 import viewmodel.UserListViewModel;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class UserListViewController extends ViewController {
   @FXML
@@ -24,6 +25,7 @@ public class UserListViewController extends ViewController {
   @FXML
   public Label error;
   private UserListViewModel viewModel;
+  private UserEditViewModel editViewModel;
 
   /**
    * method for initializing all the variables and binding them
@@ -43,9 +45,20 @@ public class UserListViewController extends ViewController {
     viewModel.reset();
   }
 
+
   @FXML
-  public void remove(ActionEvent actionEvent) {
-    // Remove the user
+  public void remove(ActionEvent actionEvent) throws RemoteException
+  {
+    // TODO: 11/05/2022 Add confirmation window with the name of the User.
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "Are you sure you want to delete this user?");
+    Optional<ButtonType> option = alert.showAndWait();
+    if (option.get() == ButtonType.OK) {
+      viewModel.setSelectedUser(editViewModel.getUser());
+      viewModel.removeUser();
+      viewModel.reset();
+    }
   }
 
   /**

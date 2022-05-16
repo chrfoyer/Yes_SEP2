@@ -92,4 +92,24 @@ public class UserList implements Serializable {
   public ArrayList<User> getUsers() {
     return users;
   }
+
+  public void updateUserInfo(User oldUser, User newUser) {
+    boolean foundOld = false;
+    for (User user : users) {
+      if (oldUser.equals(user)) {
+        user.setName(newUser.getName());
+        user.setUsername(newUser.getUsername());
+        user.setPassword(newUser.getPassword());
+        user.setEmail(newUser.getEmail());
+        user.setBday(newUser.getBday());
+        user.setAdmin(newUser.isAdmin());
+        user.setAddress(newUser.getAddress());
+        user.setHasSubscription(newUser.hasSubscription());
+        foundOld = true;
+      }
+    }
+    if (!foundOld)
+      throw new IllegalArgumentException(
+          "No User found on server that could be updated");
+  }
 }
