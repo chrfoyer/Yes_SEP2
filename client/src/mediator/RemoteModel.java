@@ -32,4 +32,6 @@ public interface RemoteModel extends Remote {
   UserList getUserList() throws RemoteException;
 
   void updateGameInfo(Game gameOld, Game gameNew) throws RemoteException;
+
+  void addGame(Game game)throws RemoteException;
 }

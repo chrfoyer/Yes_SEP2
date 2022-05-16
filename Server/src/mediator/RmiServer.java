@@ -144,15 +144,6 @@ public class RmiServer implements RemoteModel {
   }
 
   /**
-   * Removes a game from the GameList using its name
-   *
-   * @param name name of the game to be removed
-   */
-  public void removeGame(String name) {
-    model.removeGame(name);
-  }
-
-  /**
    * Removes a game
    *
    * @param game game to be removed

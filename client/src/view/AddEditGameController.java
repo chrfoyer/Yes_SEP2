@@ -1,12 +1,8 @@
 package view;
 
-import Model.Game;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import viewmodel.AddEditGameViewModel;
-import viewmodel.LoginViewModel;
 
 import java.util.Optional;
 
@@ -65,7 +61,7 @@ public class AddEditGameController extends ViewController {
             "Are you sure you want to change the game info?");
     Optional<ButtonType> option = alert.showAndWait();
     if (option.get() == ButtonType.OK) {
-      viewModel.confirm();
+      viewModel.editGame();
       //this is retarded
       //please don't use production
       if (error.textProperty().get().equals("")) {
