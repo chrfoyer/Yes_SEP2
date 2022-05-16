@@ -31,8 +31,7 @@ public class AddEditGameViewModel {
     this.selectedGameProperty.set(selectedGameViewModel);
   }
 
-  public void reset()
-  {
+  public void reset() {
     try {
       if (selectedGameProperty.get() == null) {
         name.set("");
@@ -50,9 +49,7 @@ public class AddEditGameViewModel {
 
         error.set("");
       }
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       error.set(e.getMessage());
       e.printStackTrace();
     }
