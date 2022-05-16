@@ -4,8 +4,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 //a class that creates a list of transactions
-public class TransactionList
-{
+public class TransactionList {
 
   private ArrayList<Transaction> transactions;
   private static TransactionList instance;

@@ -14,7 +14,7 @@
     <children>
         <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label style="-fx-font-weight: bold;" text="Add game" textFill="#c1c1c1">
+                <Label fx:id="title" style="-fx-font-weight: bold;" text="Add game" textFill="#c1c1c1">
                     <font>
                         <Font size="36.0"/>
                     </font>

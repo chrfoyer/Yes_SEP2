@@ -26,5 +26,6 @@
     </orderEntry>
     <orderEntry type="library" name="JavaFx11" level="application" />
     <orderEntry type="library" name="javafx-swt" level="application" />
+    <orderEntry type="library" name="postgresql-42.3.5" level="application" />
   </component>
 </module>

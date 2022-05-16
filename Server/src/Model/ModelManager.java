@@ -8,13 +8,17 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
-public class ModelManager implements Model {
+public class ModelManager implements Model
+{
   private GameList games;
   private UserList users;
+  private TransactionList transactions;
 
-  public ModelManager() {
+  public ModelManager()
+  {
     this.games = new GameList();
     this.users = new UserList();
+    this.transactions = TransactionList.getInstance();
 
     //todo remove test
     users.addUser(new User("admin", "admin"));
@@ -23,11 +27,13 @@ public class ModelManager implements Model {
     games.addGame(new Game("CockAndBalls", "ShitFart", "Xbox", "E"));
   }
 
-  public void setGames(GameList games) {
+  public void setGames(GameList games)
+  {
     this.games = games;
   }
 
-  public void setUsers(UserList users) {
+  public void setUsers(UserList users)
+  {
     this.users = users;
   }
 
@@ -36,8 +42,8 @@ public class ModelManager implements Model {
    *
    * @param game is the Game to be added to the list
    */
-  @Override
-  public void addGame(Game game) {
+  @Override public void addGame(Game game)
+  {
     games.addGame(game);
   }
 
@@ -46,8 +52,8 @@ public class ModelManager implements Model {
    *
    * @return arrayList<Game> of all the games
    */
-  @Override
-  public ArrayList<Game> getAllGames() {
+  @Override public ArrayList<Game> getAllGames()
+  {
     return games.getGamesArrayCopy();
   }
 
@@ -56,8 +62,8 @@ public class ModelManager implements Model {
    *
    * @param game is the game to be removed
    */
-  @Override
-  public void removeGame(Game game) {
+  @Override public void removeGame(Game game)
+  {
     games.removeGame(game);
   }
 
@@ -66,16 +72,16 @@ public class ModelManager implements Model {
    *
    * @param name name of the game to be removed
    */
-  @Override
-  public void removeGame(String name) {
+  @Override public void removeGame(String name)
+  {
     games.removeGame(name);
   }
 
   /**
    * Decrements the days left in the rental period for all games in the list
    */
-  @Override
-  public void decrementDay() {
+  @Override public void decrementDay()
+  {
     games.decrementDayForRented();
   }
 
@@ -84,11 +90,14 @@ public class ModelManager implements Model {
    *
    * @param game to be rented
    */
-  @Override
-  public void rentGame(Game game) {
-    if (game == null) {
+  @Override public void rentGame(Game game)
+  {
+    if (game == null)
+    {
       throw new IllegalArgumentException("Game to rent cant be null");
-    } else {
+    }
+    else
+    {
       game.rentGame();
     }
   }
@@ -98,11 +107,14 @@ public class ModelManager implements Model {
    *
    * @param name name of the game to be rented
    */
-  @Override
-  public void rentGame(String name) {
-    if (name == null) {
+  @Override public void rentGame(String name)
+  {
+    if (name == null)
+    {
       throw new IllegalArgumentException("Name cant be null");
-    } else {
+    }
+    else
+    {
       games.rentGame(name);
     }
 
@@ -114,8 +126,8 @@ public class ModelManager implements Model {
    * @param name of the game to be searched for
    * @return the selected game from the GameList
    */
-  @Override
-  public Game getGame(String name) {
+  @Override public Game getGame(String name)
+  {
     return games.getGame(name);
   }
 
@@ -125,8 +137,8 @@ public class ModelManager implements Model {
    * @param game to be searched for
    * @return the selected game from the GameList
    */
-  @Override
-  public Game getGame(Game game) {
+  @Override public Game getGame(Game game)
+  {
     return games.getGame(game);
   }
 
@@ -136,8 +148,8 @@ public class ModelManager implements Model {
    * @return an ArrayList containing all non-rented Games
    */
 
-  @Override
-  public ArrayList<Game> getALlAvailableGames() {
+  @Override public ArrayList<Game> getALlAvailableGames()
+  {
     return games.getAvailableGames();
   }
 
@@ -146,8 +158,8 @@ public class ModelManager implements Model {
    *
    * @return GameList containing everything
    */
-  @Override
-  public GameList getGameList() {
+  @Override public GameList getGameList()
+  {
     return games;
   }
 
@@ -158,41 +170,43 @@ public class ModelManager implements Model {
    * @return true if the gameList contains the game false if it does not
    * @author Raedrim
    */
-  @Override
-  public boolean containsGame(String name) {
+  @Override public boolean containsGame(String name)
+  {
     boolean ret = false;
-    for (Game game : games.getGamesArrayCopy()) {
-      if (game.getName().equals(name)) {
+    for (Game game : games.getGamesArrayCopy())
+    {
+      if (game.getName().equals(name))
+      {
         ret = true;
       }
     }
     return ret;
   }
 
-  @Override
-  public void signup(User user) {
+  @Override public void signup(User user)
+  {
     if (users.contains(user))
       throw new IllegalArgumentException(
-              "Given user is already registered in the system!");
+          "Given user is already registered in the system!");
     else
       users.addUser(user);
   }
 
-  @Override
-  public boolean login(User user) {
+  @Override public boolean login(User user)
+  {
     if (users.login(user))
       return true;
     else
       return false;
   }
 
-  @Override
-  public UserList getUserList() {
+  @Override public UserList getUserList()
+  {
     return users;
   }
 
-  @Override
-  public void updateGameInfo(Game gameOld, Game gameNew) {
+  @Override public void updateGameInfo(Game gameOld, Game gameNew)
+  {
     games.updateGameInfo(gameOld, gameNew);
   }
 
@@ -206,4 +220,9 @@ public class ModelManager implements Model {
     users.updateUserInfo(oldUser, newUser);
   }
 
+
+  @Override public void addTransaction(Transaction transaction)
+  {
+    transactions.addTransaction(transaction);
+  }
 }

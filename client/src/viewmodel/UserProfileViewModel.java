@@ -1,6 +1,7 @@
 package viewmodel;
 
 import Model.Game;
+import Model.Transaction;
 import Model.User;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -13,20 +14,23 @@ import mediator.RemoteModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.rmi.RemoteException;
+import java.time.LocalDate;
 
 /**
  * Class with the functionality for the UserProfileController
  *
  * @version 0.1
  */
-public class UserProfileViewModel {
+public class UserProfileViewModel
+{
 
   private RemoteModel model;
   private StringProperty usernameProperty;
   final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList(
-          new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC", "E")),
-          new SimpleGameViewModel(new Game("TestName2", "TestProducer2", "PC", "E"))
-  );
+      new SimpleGameViewModel(new Game("TestName", "TestProducer", "PC", "E")),
+      new SimpleGameViewModel(
+          new Game("TestName2", "TestProducer2", "PC", "E")));
   private StringProperty errorLabel;
 
   /**
@@ -34,7 +38,8 @@ public class UserProfileViewModel {
    *
    * @param model RemoteModel because of RMI
    */
-  public UserProfileViewModel(RemoteModel model) {
+  public UserProfileViewModel(RemoteModel model)
+  {
     this.model = model;
     usernameProperty = new SimpleStringProperty();
     errorLabel = new SimpleStringProperty();
@@ -45,7 +50,8 @@ public class UserProfileViewModel {
    *
    * @return usernameProperty
    */
-  public StringProperty getUsernameProperty() {
+  public StringProperty getUsernameProperty()
+  {
     return usernameProperty;
   }
 
@@ -54,15 +60,18 @@ public class UserProfileViewModel {
    *
    * @return errorProperty
    */
-  public StringProperty getErrorLabel() {
+  public StringProperty getErrorLabel()
+  {
     return errorLabel;
   }
 
   /**
    * Call this to reset the text inside the fields
    */
-  public void reset() {
-    usernameProperty.set("Currently logged in: " + LoginViewModel.currentlyLoggedInUser.getUsername());
+  public void reset()
+  {
+    usernameProperty.set("Currently logged in: "
+        + LoginViewModel.currentlyLoggedInUser.getUsername());
     errorLabel.set("");
   }
 
@@ -71,10 +80,23 @@ public class UserProfileViewModel {
    *
    * @param game game to be returned
    */
-  public void returnGame(SimpleGameViewModel game) {
-    if (game != null) {
+  public void returnGame(SimpleGameViewModel game)
+  {
+    if (game != null)
+    {
+      try
+      {
+        model.addTransaction(
+            new Transaction(usernameProperty.get(), "Return", 0));
+      }
+      catch (RemoteException e)
+      {
+        e.printStackTrace();
+      }
       data.remove(game);
-    } else {
+    }
+    else
+    {
       errorLabel.set("Game must be selected first");
     }
   }
@@ -84,10 +106,14 @@ public class UserProfileViewModel {
    *
    * @param game game to be extended
    */
-  public void extendGame(SimpleGameViewModel game) {
-    if (game != null) {
+  public void extendGame(SimpleGameViewModel game)
+  {
+    if (game != null)
+    {
       game.getTimeProperty().set(game.getTimeProperty().get() + 5);
-    } else {
+    }
+    else
+    {
       errorLabel.set("Game must be selected first");
     }
 
@@ -98,7 +124,8 @@ public class UserProfileViewModel {
    *
    * @return ObservableList<SimpleGameViewModel>
    */
-  public ObservableList<SimpleGameViewModel> getData() {
+  public ObservableList<SimpleGameViewModel> getData()
+  {
     return data;
   }
 }

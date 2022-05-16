@@ -1,5 +1,6 @@
 package viewmodel;
 
+import Model.Game;
 import Model.User;
 import Model.UserList;
 import javafx.beans.property.ObjectProperty;
@@ -14,13 +15,13 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class UserListViewModel {
-  private ObservableList<SimpleUserViewModel> users;
+  private ObservableList<SimpleUserViewModel> list;
   private ObjectProperty<SimpleUserViewModel> selectedUser;
   private StringProperty error;
   private RemoteModel model;
 
   public UserListViewModel(RemoteModel model) throws RemoteException {
-    users = FXCollections.observableArrayList();
+    list = FXCollections.observableArrayList();
     selectedUser = new SimpleObjectProperty<>();
     error = new SimpleStringProperty();
     this.model = model;
@@ -32,11 +33,12 @@ public class UserListViewModel {
   }
 
   public void fillTable() {
-    ArrayList<User> userArrayList = null;
     try {
-      userArrayList = model.getUserList().getUsers();
-      for (User user : userArrayList) {
-        users.add(new SimpleUserViewModel(user));
+      list.clear();
+      ArrayList<User> users = model.getUserList().getUsers();
+      for (User user : users) {
+        SimpleUserViewModel temp = new SimpleUserViewModel(user);
+        list.add(temp);
       }
     } catch (Exception e) {
       error.set(e.getMessage());
@@ -44,7 +46,7 @@ public class UserListViewModel {
   }
 
   public ObservableList<SimpleUserViewModel> getUsers() {
-    return users;
+    return list;
   }
 
   public SimpleUserViewModel getSelectedUser() {

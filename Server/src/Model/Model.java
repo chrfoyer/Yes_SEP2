@@ -8,7 +8,8 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
-public interface Model {
+public interface Model
+{
   void addGame(Game game);
 
   ArrayList<Game> getAllGames();
@@ -40,6 +41,8 @@ public interface Model {
   public UserList getUserList();
 
   public void updateGameInfo(Game gameOld, Game gameNew);
+
+  void addTransaction(Transaction transaction);
 
   public void removeUser(User user);
 

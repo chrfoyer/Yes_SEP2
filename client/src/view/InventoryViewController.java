@@ -55,6 +55,7 @@ public class InventoryViewController extends ViewController {
   }
 
   public void reset() {
+    table.getSelectionModel().clearSelection();
     viewModel.reset();
     gameViewModel.reset();
   }
@@ -64,8 +65,10 @@ public class InventoryViewController extends ViewController {
   }
 
   @FXML
-  public void edit(ActionEvent actionEvent) {
+  public void addEdit(ActionEvent actionEvent) {
+
     gameViewModel.reset();
+
     getViewHandler().openView("AddEditGame.fxml");
   }
 
@@ -80,10 +83,12 @@ public class InventoryViewController extends ViewController {
     // TODO: 11/05/2022 Add confirmation window with the name of the game.
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "Are you sure you want to delete the game?");
+            "Are you sure you want to delete the game? -> "
+                    + gameViewModel.getSelectedGameProperty().getGame().getName());
     Optional<ButtonType> option = alert.showAndWait();
     if (option.get() == ButtonType.OK) {
-      viewModel.setSelectedGameProperty(gameViewModel.getSelectedGameProperty());
+      viewModel.setSelectedGameProperty(
+              gameViewModel.getSelectedGameProperty());
       viewModel.removeGame();
     }
   }

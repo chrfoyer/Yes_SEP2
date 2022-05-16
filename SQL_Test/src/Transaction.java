@@ -5,8 +5,7 @@ import java.time.LocalDate;
  * actions are taken upon the game, such as renting and returning. In addition, a refund or subscription payment can be
  * made without a game object.
  */
-public class Transaction
-{
+public class Transaction {
   private double amount;
   private String user;
   private String type;

@@ -1,9 +1,6 @@
 package mediator;
 
-import Model.Game;
-import Model.GameList;
-import Model.User;
-import Model.UserList;
+import Model.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -40,4 +37,6 @@ public interface RemoteModel extends Remote {
   void removeUser(User user) throws RemoteException;
 
   void updateUserInfo(User oldUser,User newUser) throws RemoteException;
+
+  void addTransaction(Transaction transaction)throws RemoteException;
 }
