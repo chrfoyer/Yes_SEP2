@@ -38,7 +38,7 @@ public class GameInfoViewModel {
   }
 
   public void reset() {
-    if (selectedGameProperty != null) {
+    if (selectedGameProperty.get() != null) {
       SimpleGameViewModel selectedGameViewModel = selectedGameProperty.get();
       name = selectedGameViewModel.getNameProperty();
       timeLeft = selectedGameViewModel.getTimeProperty();
@@ -46,6 +46,7 @@ public class GameInfoViewModel {
       esrb = selectedGameViewModel.getEsrbProperty();
       rented = selectedGameViewModel.getRentedProperty();
       console = selectedGameViewModel.getConsole();
+      error.set("");
     } else {
       name.set("");
       timeLeft.set(null);
@@ -53,6 +54,7 @@ public class GameInfoViewModel {
       esrb.set("");
       rented.set(null);
       console.set("");
+      error.set("");
     }
   }
 
