@@ -1,5 +1,6 @@
 package Model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,8 @@ public class ModelManager implements Model
     //todo remove test
     users.addUser(new User("admin", "admin"));
     users.addUser(new User("bob", "test"));
+    LocalDate date =  LocalDate.of(1997,3,3);
+    users.addUser(new User("martin","maxmax1","asdf@","afdadf","martin r",date));
     games.addGame(new Game("Minecraft", "Mojang", "PC", "E"));
     games.addGame(new Game("CockAndBalls", "ShitFart", "Xbox", "E"));
     Transaction transaction = new Transaction("rent", "admin", 3.5);

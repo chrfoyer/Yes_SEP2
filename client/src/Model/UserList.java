@@ -177,6 +177,7 @@ public class UserList implements Serializable
     if (temp.getBalance() < 30)
       throw new IllegalArgumentException(
           "Less than 30 money, add money to pay for subscription!");
+    temp.modifyBalance(-30);
     temp.setHasSubscription(true);
   }
 }
