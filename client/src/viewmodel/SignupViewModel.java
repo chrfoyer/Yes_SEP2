@@ -145,7 +145,7 @@ public class SignupViewModel {
       if (!emailProperty.get().contains("@"))
         throw new IllegalArgumentException("Email not in correct format!");
       User user = new User(usernameProperty.get(), passwordProperty.get(),
-              emailProperty.get(), addressProperty.get(), nameProperty.getName(),
+              emailProperty.get(), addressProperty.get(), nameProperty.get(),
               dob);
       model.signup(user);
       return true;

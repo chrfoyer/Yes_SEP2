@@ -64,7 +64,7 @@ public class AdminViewController extends ViewController {
    */
   @FXML
   public void transactions(ActionEvent actionEvent) {
-    // Open view for transactions goes here
+    getViewHandler().openView("TransactionsView.fxml");
   }
 
   /**

@@ -73,6 +73,7 @@ public class UserListViewController extends ViewController
   @FXML public void edit(ActionEvent actionEvent)
   {
     // Must use the selected user
+    getViewModelFactory().getUserEditViewModel().reset();
     getViewHandler().openView("UserEditView.fxml");
   }
 
