@@ -8,6 +8,7 @@ import viewmodel.BrowseViewModel;
 import viewmodel.GameInfoViewModel;
 import viewmodel.SimpleGameViewModel;
 
+import java.rmi.RemoteException;
 import java.util.Optional;
 
 public class BrowseViewController extends ViewController
@@ -47,9 +48,9 @@ public class BrowseViewController extends ViewController
     table.setItems(browseViewModel.getData());
     error.textProperty().bind(browseViewModel.getErrorLabel());
     // Sets the selected game in the game info view model
-    table.getSelectionModel().selectedItemProperty().addListener(
-        (obs, oldV, newV) -> gameInfoViewModel.setSelectedGameProperty(newV));
-    ;
+    /*table.getSelectionModel().selectedItemProperty().addListener(
+        (obs, oldV, newV) -> browseViewModel.setSelectedGameProperty(newV));
+    ;*/
   }
 
   /**
@@ -86,21 +87,22 @@ public class BrowseViewController extends ViewController
   /**
    * Logic for the button that handles renting of the game
    */
-  public void rent()
+  public void rent() throws RemoteException
   {
     // TODO: 11/05/2022 Confirmation window with name of game
-    if (table.getSelectionModel().selectedItemProperty() != null)
-    {
-      SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
-      Game game = temp.getGame();
-      game.rentGame();
-      SimpleGameViewModel rentedGame = new SimpleGameViewModel(game);
-      browseViewModel.getData().remove(temp);
-      table.setItems(browseViewModel.getData());
-      getViewModelFactory().getUserProfileViewModel()
-          .rentGame(rentedGame);
-    }
+    SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
+    browseViewModel.rentGame(temp);
 
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "" + temp.getNameProperty().get()
+            + " - " + temp.getTimeProperty().get());
+    alert.showAndWait();
+
+    Game debug=table.getSelectionModel().getSelectedItem().getGame();
+
+    getViewModelFactory().getUserProfileViewModel()
+        .rentGame(table.getSelectionModel().getSelectedItem());
+    browseViewModel.reset();
   }
 
   /**
