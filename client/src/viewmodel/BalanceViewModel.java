@@ -76,6 +76,9 @@ public class BalanceViewModel
     errorLabel.set("");
   }
 
+  /**
+   * Adds 30 funds to the currently logged-in user
+   */
   public void addFunds()
   {
     try
@@ -90,6 +93,10 @@ public class BalanceViewModel
     }
   }
 
+  /**
+   * Tries to pay for subscription
+   * @exception IllegalStateException if balance below 30
+   */
   public void paySubscription()
   {
     try
