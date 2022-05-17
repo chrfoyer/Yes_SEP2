@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.*;
+import mediator.CurrentlyLoggedUser;
 import viewmodel.LoginViewModel;
 import viewmodel.SimpleGameViewModel;
 import viewmodel.UserProfileViewModel;
@@ -66,22 +67,8 @@ public class UserProfileController extends ViewController
    */
   public void payment(ActionEvent actionEvent)
   {
-
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "Transactions are handled by an external provider. Are you alright with that?");
-    Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK)
-    {
-      try
-      {
-        Desktop.getDesktop().browse(
-            new URL("https://www.youtube.com/watch?v=UX0sbhIy9MA").toURI());
-      }
-      catch (Exception e)
-      {
-        e.printStackTrace();
-      }
-    }
+    getViewModelFactory().getBalanceViewModel().reset();
+    getViewHandler().openView("BalanceView.fxml");
   }
 
   // TODO: 12/05/2022 Distinguish for game
@@ -146,7 +133,7 @@ public class UserProfileController extends ViewController
     if (option.get() == ButtonType.OK)
     {
       getViewHandler().openView("LoginView.fxml");
-      LoginViewModel.logout();
+      CurrentlyLoggedUser.logout();
     }
     //or nothign happens
   }

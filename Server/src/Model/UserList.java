@@ -39,7 +39,8 @@ public class UserList implements Serializable
    */
   public void removeUser(User user)
   {
-    if (user.getUsername().equals("admin")){
+    if (user.getUsername().equals("admin"))
+    {
       throw new IllegalArgumentException("wtf bro");
     }
     boolean found = false;
@@ -56,6 +57,8 @@ public class UserList implements Serializable
       throw new IllegalArgumentException("User not found on server");
     }
   }
+
+  //todo repleace forEach loops with a single function
 
   /**
    * method for getting the size of the userList
@@ -115,6 +118,16 @@ public class UserList implements Serializable
     }
   }
 
+  public User findUserInList(User user)
+  {
+    for (User temp : users)
+    {
+      if (temp.getUsername().equals(user.getUsername()))
+        return temp;
+    }
+    throw new IllegalArgumentException("User does not exist on the server!");
+  }
+
   public ArrayList<User> getUsers()
   {
     return users;
@@ -141,5 +154,30 @@ public class UserList implements Serializable
     if (!foundOld)
       throw new IllegalArgumentException(
           "No User found on server that could be updated");
+  }
+
+  public void modifyBalance(int ammount, User user)
+  {
+    User temp = findUserInList(user);
+    temp.modifyBalance(ammount);
+  }
+
+  public int getBalance(User user)
+  {
+    return findUserInList(user).getBalance();
+  }
+
+  public void payForSubscription(User user)
+  {
+    User temp = findUserInList(user);
+
+    if (temp.getBalance() < 0)
+      throw new IllegalStateException(
+          "Users with negative balance cant pay for a subscription");
+    if (temp.getBalance() < 30)
+      throw new IllegalArgumentException(
+          "Less than 30 money, add money to pay for subscription!");
+    temp.modifyBalance(-30);
+    temp.setHasSubscription(true);
   }
 }

@@ -220,6 +220,20 @@ public class ModelManager implements Model
     users.updateUserInfo(oldUser, newUser);
   }
 
+  @Override public void modifyBalance(int amount, User user)
+  {
+    users.modifyBalance(amount, user);
+  }
+
+  @Override public void payForSubscription(User user)
+  {
+    users.payForSubscription(user);
+  }
+
+  @Override public int getBalance(User user)
+  {
+    return users.getBalance(user);
+  }
 
   @Override public void addTransaction(Transaction transaction)
   {

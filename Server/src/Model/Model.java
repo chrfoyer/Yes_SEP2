@@ -1,5 +1,6 @@
 package Model;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -47,4 +48,10 @@ public interface Model
   public void removeUser(User user);
 
   public void updateUserInfo(User oldUser, User newUser);
+
+  int getBalance(User user);
+
+  void modifyBalance(int amount,User user);
+
+  void payForSubscription(User user);
 }

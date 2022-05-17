@@ -171,13 +171,28 @@ public class RmiServer implements RemoteModel
   @Override public void updateUserInfo(User oldUser, User newUser)
       throws RemoteException
   {
-    model.updateUserInfo(oldUser,newUser);
+    model.updateUserInfo(oldUser, newUser);
   }
-
 
   @Override public void addTransaction(Transaction transaction)
       throws RemoteException
   {
     model.addTransaction(transaction);
+  }
+
+  @Override public void modifyBalance(int amount, User user)
+      throws RemoteException
+  {
+    model.modifyBalance(amount, user);
+  }
+
+  @Override public void payForSubscription(User user) throws RemoteException
+  {
+    model.payForSubscription(user);
+  }
+
+  @Override public int getBalance(User user) throws RemoteException
+  {
+    return model.getBalance(user);
   }
 }

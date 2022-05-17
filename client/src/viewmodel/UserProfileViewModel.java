@@ -10,6 +10,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
+import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
 import java.beans.PropertyChangeEvent;
@@ -67,8 +68,9 @@ public class UserProfileViewModel
    */
   public void reset()
   {
-    usernameProperty.set("Currently logged in: "
-        + LoginViewModel.currentlyLoggedInUser.getUsername());
+    usernameProperty.set(
+        "Currently logged in: " + CurrentlyLoggedUser.getLoggedInUser()
+            .getUsername());
     errorLabel.set("");
   }
 
