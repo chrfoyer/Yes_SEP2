@@ -16,6 +16,7 @@ public class ViewModelFactory {
   private AddEditGameViewModel addEditGameViewModel;
   private UserListViewModel userListViewModel;
   private UserEditViewModel userEditViewModel;
+  private BalanceViewModel balanceViewModel;
 
   //  private ChatViewModel chatViewModel;
 
@@ -31,6 +32,7 @@ public class ViewModelFactory {
     addEditGameViewModel = new AddEditGameViewModel(model);
     userListViewModel = new UserListViewModel(model);
     userEditViewModel = new UserEditViewModel(model);
+    balanceViewModel=new BalanceViewModel(model);
   }
 
   //  public ChatViewModel getChatViewModel()
@@ -76,5 +78,10 @@ public class ViewModelFactory {
 
   public UserEditViewModel getUserEditViewModel(){
     return userEditViewModel;
+  }
+
+  public BalanceViewModel getBalanceViewModel()
+  {
+    return balanceViewModel;
   }
 }
