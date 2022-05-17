@@ -2,9 +2,14 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import mediator.CurrentlyLoggedUser;
 import viewmodel.AdminViewModel;
+
+import java.util.Optional;
 
 public class AdminViewController extends ViewController {
 
@@ -76,5 +81,17 @@ public class AdminViewController extends ViewController {
   public void manageGames(ActionEvent actionEvent) {
     getViewModelFactory().getInventoryViewModel().reset();
     getViewHandler().openView("InventoryView.fxml");
+  }
+
+  public void logout(ActionEvent actionEvent)
+  {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "Are you sure you want to log out?");
+    Optional<ButtonType> option = alert.showAndWait();
+    if (option.get() == ButtonType.OK)
+    {
+      getViewHandler().openView("LoginView.fxml");
+      CurrentlyLoggedUser.logout();
+    }
   }
 }
