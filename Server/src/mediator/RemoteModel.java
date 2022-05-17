@@ -47,4 +47,6 @@ public interface RemoteModel extends Remote
 
   void payForSubscription(User user) throws RemoteException;
 
+  TransactionList getTransactionList() throws RemoteException;
+
 }

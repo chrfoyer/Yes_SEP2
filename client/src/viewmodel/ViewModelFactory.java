@@ -17,6 +17,7 @@ public class ViewModelFactory {
   private UserListViewModel userListViewModel;
   private UserEditViewModel userEditViewModel;
   private BalanceViewModel balanceViewModel;
+  private TransactionViewModel transactionViewModel;
 
   //  private ChatViewModel chatViewModel;
 
@@ -33,6 +34,7 @@ public class ViewModelFactory {
     userListViewModel = new UserListViewModel(model);
     userEditViewModel = new UserEditViewModel(model);
     balanceViewModel=new BalanceViewModel(model);
+    transactionViewModel=new TransactionViewModel(model);
   }
 
   //  public ChatViewModel getChatViewModel()
@@ -83,5 +85,10 @@ public class ViewModelFactory {
   public BalanceViewModel getBalanceViewModel()
   {
     return balanceViewModel;
+  }
+
+  public TransactionViewModel getTransactionViewModel()
+  {
+    return transactionViewModel;
   }
 }

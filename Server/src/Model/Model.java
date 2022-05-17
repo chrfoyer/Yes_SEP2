@@ -54,4 +54,6 @@ public interface Model
   void modifyBalance(int amount,User user);
 
   void payForSubscription(User user);
+
+  TransactionList getTransactionList();
 }

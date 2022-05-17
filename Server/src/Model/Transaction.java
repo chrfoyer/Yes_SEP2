@@ -1,8 +1,15 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Transaction {
+/**
+ * A class to hold information about a single transaction. These transactions are created within the game object when
+ * actions are taken upon the game, such as renting and returning. In addition, a refund or subscription payment can be
+ * made without a game object.
+ */
+public class Transaction implements Serializable
+{
   private double amount;
   private String user;
   private String type;
@@ -22,6 +29,7 @@ public class Transaction {
     this.type = type;
     this.user = user;
     this.amount = amount;
+    date=LocalDate.now();
     TransactionList.getInstance().addTransaction(this);
   }
 

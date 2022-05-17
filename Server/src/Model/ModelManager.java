@@ -25,6 +25,7 @@ public class ModelManager implements Model
     users.addUser(new User("bob", "test"));
     games.addGame(new Game("Minecraft", "Mojang", "PC", "E"));
     games.addGame(new Game("CockAndBalls", "ShitFart", "Xbox", "E"));
+    Transaction transaction = new Transaction("rent", "admin", 3.5);
   }
 
   public void setGames(GameList games)
@@ -228,6 +229,11 @@ public class ModelManager implements Model
   @Override public void payForSubscription(User user)
   {
     users.payForSubscription(user);
+  }
+
+  @Override public TransactionList getTransactionList()
+  {
+    return transactions;
   }
 
   @Override public int getBalance(User user)

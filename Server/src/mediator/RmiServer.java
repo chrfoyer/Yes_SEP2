@@ -191,6 +191,11 @@ public class RmiServer implements RemoteModel
     model.payForSubscription(user);
   }
 
+  @Override public TransactionList getTransactionList() throws RemoteException
+  {
+    return model.getTransactionList();
+  }
+
   @Override public int getBalance(User user) throws RemoteException
   {
     return model.getBalance(user);
