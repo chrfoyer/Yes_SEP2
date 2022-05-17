@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import viewmodel.UserEditViewModel;
 
 public class UserEditViewController extends ViewController {
   @FXML
@@ -21,12 +22,22 @@ public class UserEditViewController extends ViewController {
   @FXML
   public TextField confirmPassword;
 
+  public UserEditViewModel viewModel;
+
   /**
    * method for initializing all the variables and binding them
    */
   @Override
   protected void init() {
-
+    viewModel = getViewModelFactory().getUserEditViewModel();
+    fullName.textProperty().bindBidirectional(viewModel.getNameProperty());
+    dob.valueProperty().bindBidirectional(viewModel.getDobProperty());
+    address.textProperty().bindBidirectional(viewModel.getAddressProperty());
+    email.textProperty().bindBidirectional(viewModel.getEmailProperty());
+    username.textProperty().bindBidirectional(viewModel.getUsernameProperty());
+    password.textProperty().bindBidirectional(viewModel.getPasswordProperty());
+    confirmPassword.textProperty().bindBidirectional(
+        viewModel.getConfirmProperty());
   }
 
   /**
@@ -37,6 +48,7 @@ public class UserEditViewController extends ViewController {
   @FXML
   public void cancel(ActionEvent actionEvent) {
     getViewHandler().openView("UserListView.fxml");
+
   }
 
   /**

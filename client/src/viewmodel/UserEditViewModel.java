@@ -41,6 +41,7 @@ public class UserEditViewModel
     emailProperty = new SimpleStringProperty();
     confirmProperty = new SimpleStringProperty();
     errorLabel = new SimpleStringProperty();
+    reset();
 
     selectedUserProperty = new SimpleObjectProperty<>();
   }
@@ -177,14 +178,31 @@ public class UserEditViewModel
    */
   public void reset()
   {
-    usernameProperty.set("");
-    passwordProperty.set("");
-    nameProperty.set("");
-    dobProperty.set(LocalDate.now());
-    addressProperty.set("");
-    emailProperty.set("");
-    confirmProperty.set("");
-    errorLabel.set("");
+    try {
+      if (selectedUserProperty == null) {
+        usernameProperty.set("");
+        passwordProperty.set("");
+        nameProperty.set("");
+        dobProperty.set(LocalDate.now());
+        addressProperty.set("");
+        emailProperty.set("");
+        confirmProperty.set("");
+        errorLabel.set("");
+      } else {
+        SimpleUserViewModel selectedUserViewModel = selectedUserProperty.get();
+        usernameProperty.set(selectedUserViewModel.getUsername());
+        passwordProperty.set(selectedUserViewModel.getPassword());
+        nameProperty.set(selectedUserViewModel.getName());
+        dobProperty.set(selectedUserViewModel.getBday());
+        addressProperty.set(selectedUserViewModel.getAddress());
+        emailProperty.set(selectedUserViewModel.getEmail());
+        confirmProperty.set("");
+        errorLabel.set("");
+      }
+    } catch (Exception e) {
+      errorLabel.set(e.getMessage());
+      e.printStackTrace();
+    }
   }
 
   public void setSelectedUserProperty(SimpleUserViewModel simp){
