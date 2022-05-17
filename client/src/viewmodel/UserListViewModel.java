@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
 import java.rmi.RemoteException;
@@ -67,6 +68,17 @@ public class UserListViewModel {
 
   public void removeUser() throws RemoteException
   {
-    model.removeUser(selectedUser.get().getUser());
+    try
+    {
+      if (selectedUser.get().getUser().getUsername().equals(CurrentlyLoggedUser.getLoggedInUser().getUsername()))
+      {
+        throw new IllegalArgumentException("Congratulations you played yourself");
+      }
+      model.removeUser(selectedUser.get().getUser());
+    }catch (Exception ex)
+    {
+      error.set(ex.getMessage());
+    }
+
   }
 }

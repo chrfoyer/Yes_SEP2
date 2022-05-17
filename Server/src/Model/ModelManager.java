@@ -224,6 +224,8 @@ public class ModelManager implements Model
   @Override public void modifyBalance(int amount, User user)
   {
     users.modifyBalance(amount, user);
+    Transaction transaction = new Transaction("Add money", user.getUsername(),
+        amount);
   }
 
   @Override public void payForSubscription(User user)

@@ -17,9 +17,9 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="286.0" prefWidth="600.0">
+      <HBox alignment="CENTER" prefHeight="282.0" prefWidth="549.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="282.0" prefWidth="506.0">
+            <VBox alignment="CENTER" prefHeight="279.0" prefWidth="466.0">
                <children>
                   <HBox alignment="TOP_CENTER" prefHeight="68.0" prefWidth="256.0">
                      <children>
@@ -44,7 +44,7 @@
                                     <Font size="23.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" fx:id="subscriptionDisplay" contentDisplay="CENTER" prefHeight="35.0" prefWidth="293.0" text="setVal" textAlignment="CENTER">
+                              <Label fx:id="subscriptionDisplay" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="293.0" text="setVal" textAlignment="CENTER">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -53,14 +53,14 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="450.0" spacing="30.0">
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="549.0" spacing="30.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#addFunds" text="Add Funds">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#paySubscription" prefHeight="51.0" prefWidth="222.0" text="Pay Subscription">
+                        <Button mnemonicParsing="false" onAction="#paySubscription" prefHeight="51.0" prefWidth="228.0" text="Pay Subscription">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -69,6 +69,11 @@
                   </HBox>
                </children>
             </VBox>
+            <Button mnemonicParsing="false" onAction="#back" prefHeight="71.0" prefWidth="92.0" text="Go back">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">

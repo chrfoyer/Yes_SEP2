@@ -51,4 +51,10 @@ public class BalanceViewController extends ViewController
   {
     viewModel.paySubscription();
   }
+
+  public void back(ActionEvent actionEvent)
+  {
+    getViewModelFactory().getUserProfileViewModel().reset();
+    getViewHandler().openView("UserProfileView.fxml");
+  }
 }
