@@ -7,8 +7,6 @@ CREATE TABLE IF NOT EXISTS gameTest.author(
     name varchar(40)
 );
 
-DROP TABLE gameTest.games;
-
 CREATE TABLE IF NOT EXISTS gameTest.games(
     id SERIAL PRIMARY KEY,
     name varchar(60),

@@ -28,9 +28,8 @@ public class GameDAO_Impl implements GameDAO
   private Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection(
-        "jdbc:postgresql://localhost:5432/postgres?currentSchema=gametest"
-        //            , "postgres", "VIASEP2Y"
-    );
+        "jdbc:postgresql://localhost:5432/postgres?currentSchema=gametest",
+        DBKey.username, DBKey.password);
   }
 
   @Override public Game create(String name, String producer, String console,
@@ -47,8 +46,27 @@ public class GameDAO_Impl implements GameDAO
       statement.setString(3, console);
       statement.setString(4, esrb);
       statement.executeUpdate();
+      statement.close();
       return new Game(name, producer, console, esrb);
     }
+  }
+
+  @Override public Game create(Game game) throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "INSERT INTO games"
+              + "(name, producer, console, rented, daysLeft, review, esrb, dateAdded) "
+              + "VALUES (?, ?, ?, false, 14, 3.0, ?, CURRENT_DATE);");
+      statement.setString(1, game.getName());
+      statement.setString(2, game.getProducer());
+      statement.setString(3, game.getConsole());
+      statement.setString(4, game.getEsrb());
+      statement.executeUpdate();
+      statement.close();
+    }
+    return game;
   }
 
   @Override public Game readById(int id) throws SQLException
@@ -77,11 +95,23 @@ public class GameDAO_Impl implements GameDAO
 
   @Override public void update(Game game) throws SQLException
   {
-
+    // This is not ideal because a game should have an id unseen by the user
+    // For now, this checks the name and console, which effectively means those cannot be accurately changed
+    delete(game);
+    create(game);
   }
 
   @Override public void delete(Game game) throws SQLException
   {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE FROM games " + "WHERE name = ? " + "AND console = ?;");
+      statement.setString(1, game.getName());
+      statement.setString(2, game.getConsole());
+      statement.executeUpdate();
+      statement.close();
+    }
 
   }
 
@@ -90,10 +120,10 @@ public class GameDAO_Impl implements GameDAO
     try
     {
       GameDAO_Impl testThing = GameDAO_Impl.getInstance();
-      //      testThing.create("Cod", "Activision", "Xbox", "E");
-      //      testThing.create("Battlefield", "Dice", "PlayStation", "M");
-      //      testThing.create("Rust", "FacePunch", "PC", "M");
-      testThing.readById(1);
+      testThing.create("Cod", "Activision", "Xbox", "E");
+      testThing.create("Battlefield", "Dice", "PlayStation", "M");
+      testThing.create("Rust", "FacePunch", "PC", "M");
+      System.out.println(testThing.readById(1));
     }
     catch (SQLException e)
     {
