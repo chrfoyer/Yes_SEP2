@@ -23,7 +23,7 @@ public class SimpleUserViewModel {
     password = new SimpleStringProperty(user.getPassword());
     isAdmin = new SimpleBooleanProperty(user.isAdmin());
     email = new SimpleStringProperty(user.getEmail());
-    address = new SimpleStringProperty(user.getEmail());
+    address = new SimpleStringProperty(user.getAddress());
     name = new SimpleStringProperty(user.getName());
     bday = new SimpleObjectProperty<>(user.getBday());
     hasSubscription = new SimpleBooleanProperty(user.hasSubscription());
