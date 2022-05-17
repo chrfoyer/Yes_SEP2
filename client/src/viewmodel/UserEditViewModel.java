@@ -138,13 +138,13 @@ public class UserEditViewModel
           selectedUserProperty.get().getBday());
      User newUser = selectedUserProperty.get().getUser();
       newUser = selectedUserProperty.get().getUser();
-      newUser.setUsername(selectedUserProperty.get().getUsername());
-      newUser.setAddress(selectedUserProperty.get().getAddress());
-      newUser.setName(selectedUserProperty.get().getName());
-      newUser.setBday(selectedUserProperty.get().getBday());
-      newUser.setPassword(selectedUserProperty.get().getPassword());
+      newUser.setUsername(usernameProperty.get());
+      newUser.setAddress(addressProperty.get());
+      newUser.setName(nameProperty.get());
+      newUser.setBday(dobProperty.get());
+      newUser.setPassword(passwordProperty.get());
       newUser.setAdmin(selectedUserProperty.get().isIsAdmin());
-      newUser.setEmail(selectedUserProperty.get().getEmail());
+      newUser.setEmail(emailProperty.get());
       newUser.setHasSubscription(selectedUserProperty.get().isHasSubscription());
 
       model.updateUserInfo(oldUser, newUser);

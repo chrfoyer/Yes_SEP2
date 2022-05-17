@@ -3,6 +3,7 @@ package view;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import viewmodel.UserEditViewModel;
 
@@ -23,6 +24,7 @@ public class UserEditViewController extends ViewController {
   public TextField confirmPassword;
 
   public UserEditViewModel viewModel;
+  public Label error;
 
   /**
    * method for initializing all the variables and binding them
@@ -38,6 +40,7 @@ public class UserEditViewController extends ViewController {
     password.textProperty().bindBidirectional(viewModel.getPasswordProperty());
     confirmPassword.textProperty().bindBidirectional(
         viewModel.getConfirmProperty());
+    error.textProperty().bind(viewModel.getErrorLabel());
   }
 
   /**
@@ -59,6 +62,7 @@ public class UserEditViewController extends ViewController {
   @FXML
   public void apply(ActionEvent actionEvent) {
     // TODO: 11/05/2022 Actually edit the user info
-    getViewHandler().openView("UserListViewController.fxml");
+    viewModel.editUser();
+    getViewHandler().openView("UserListView.fxml");
   }
 }

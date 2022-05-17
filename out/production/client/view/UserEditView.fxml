@@ -115,7 +115,7 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label style="-fx-font-weight: bold;" text="ERROR" textFill="RED"/>
+                <Label style="-fx-font-weight: bold;" text="ERROR" textFill="RED" fx:id="error"/>
             </children>
         </HBox>
     </children>
