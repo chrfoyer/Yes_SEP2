@@ -34,9 +34,12 @@ public class BrowseViewModel {
     {
       e.printStackTrace();
     }
-    for (Game game: temp.getAvailableGames())
+    for (Game game: temp.getGamesArrayCopy())
     {
-      data.add(new SimpleGameViewModel(game));
+      if (!game.isRented())
+      {
+        data.add(new SimpleGameViewModel(game));
+      }
     }
   }
 
@@ -51,9 +54,12 @@ public class BrowseViewModel {
     {
       e.printStackTrace();
     }
-    for (Game game: temp.getAvailableGames())
+    for (Game game: temp.getGamesArrayCopy())
     {
-      data.add(new SimpleGameViewModel(game));
+      if (!game.isRented())
+      {
+        data.add(new SimpleGameViewModel(game));
+      }
     }
     errorLabel.set("");
   }
@@ -68,4 +74,20 @@ public class BrowseViewModel {
     return errorLabel;
   }
 
+  public void rentGame(SimpleGameViewModel game) throws RemoteException
+  {
+    if (game != null)
+    {
+      model.rentGame(game.getGame());
+
+    }else
+    {
+      errorLabel.set("Game must be selected first!");
+    }
+  }
+
+  public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty)
+  {
+    this.selectedGameProperty.set(selectedGameProperty);
+  }
 }
