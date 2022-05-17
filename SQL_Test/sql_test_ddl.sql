@@ -1,13 +1,15 @@
-CREATE SCHEMA gameTest;
+CREATE SCHEMA IF NOT EXISTS gameTest;
 
 SET SCHEMA 'gameTest';
 
-CREATE TABLE gameTest.author(
+CREATE TABLE IF NOT EXISTS gameTest.author(
     id SERIAL PRIMARY KEY,
     name varchar(40)
 );
 
-CREATE TABLE gameTest.games(
+DROP TABLE gameTest.games;
+
+CREATE TABLE IF NOT EXISTS gameTest.games(
     id SERIAL PRIMARY KEY,
     name varchar(60),
     producer varchar(40),
