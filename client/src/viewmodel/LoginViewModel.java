@@ -1,17 +1,10 @@
 package viewmodel;
 
 import Model.User;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
 import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 /**
  * @version 0.3

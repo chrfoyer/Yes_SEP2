@@ -15,7 +15,8 @@ public class Transaction implements Serializable {
   private LocalDate date;
 
   //constructor for renting game/ returning game
-  public Transaction(Game game, String type, String user) {
+  public Transaction(Game game, String type, String user)
+  {
     amount = 0;
     this.user = user;
     this.type = type;
@@ -24,7 +25,8 @@ public class Transaction implements Serializable {
   }
 
   //constructor for refunds
-  public Transaction(String type, String user, double amount) {
+  public Transaction(String type, String user, double amount)
+  {
     this.type = type;
     this.user = user;
     this.amount = amount;
@@ -32,21 +34,24 @@ public class Transaction implements Serializable {
     TransactionList.getInstance().addTransaction(this);
   }
 
-  public double getAmount() {
+  public double getAmount()
+  {
     return amount;
   }
 
-  public LocalDate getDate() {
+  public LocalDate getDate()
+  {
     return date;
   }
 
-  public String getType() {
+  public String getType()
+  {
     return type;
   }
 
-  public String getUser() {
+  public String getUser()
+  {
     return user;
   }
-
 
 }

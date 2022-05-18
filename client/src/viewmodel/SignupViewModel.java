@@ -1,18 +1,12 @@
 package viewmodel;
 
 import Model.User;
-import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
 import mediator.RemoteModel;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -20,7 +14,8 @@ import java.time.Period;
 /**
  * @version 0.3
  */
-public class SignupViewModel {
+public class SignupViewModel
+{
   private RemoteModel model;
   private StringProperty usernameProperty;
   private StringProperty passwordProperty;
@@ -36,7 +31,8 @@ public class SignupViewModel {
    *
    * @param model RemoteModel because of RMI
    */
-  public SignupViewModel(RemoteModel model) throws RemoteException {
+  public SignupViewModel(RemoteModel model) throws RemoteException
+  {
     this.model = model;
     usernameProperty = new SimpleStringProperty();
     passwordProperty = new SimpleStringProperty();
@@ -54,7 +50,8 @@ public class SignupViewModel {
    *
    * @return usernameProperty
    */
-  public StringProperty getNameProperty() {
+  public StringProperty getNameProperty()
+  {
     return nameProperty;
   }
 
@@ -63,7 +60,8 @@ public class SignupViewModel {
    *
    * @return getDobProperty
    */
-  public ObjectProperty<LocalDate> getDobProperty() {
+  public ObjectProperty<LocalDate> getDobProperty()
+  {
     return dobProperty;
   }
 
@@ -72,7 +70,8 @@ public class SignupViewModel {
    *
    * @return getAddressProperty
    */
-  public StringProperty getAddressProperty() {
+  public StringProperty getAddressProperty()
+  {
     return addressProperty;
   }
 
@@ -81,7 +80,8 @@ public class SignupViewModel {
    *
    * @return emailProperty
    */
-  public StringProperty getEmailProperty() {
+  public StringProperty getEmailProperty()
+  {
     return emailProperty;
   }
 
@@ -90,7 +90,8 @@ public class SignupViewModel {
    *
    * @return confirmProperty
    */
-  public StringProperty getConfirmProperty() {
+  public StringProperty getConfirmProperty()
+  {
     return confirmProperty;
   }
 
@@ -99,7 +100,8 @@ public class SignupViewModel {
    *
    * @return usernameProperty
    */
-  public StringProperty getUsernameProperty() {
+  public StringProperty getUsernameProperty()
+  {
     return usernameProperty;
   }
 
@@ -108,7 +110,8 @@ public class SignupViewModel {
    *
    * @return errorLabel
    */
-  public StringProperty getErrorLabel() {
+  public StringProperty getErrorLabel()
+  {
     return errorLabel;
   }
 
@@ -117,39 +120,44 @@ public class SignupViewModel {
    *
    * @return passwordProperty
    */
-  public StringProperty getPasswordProperty() {
+  public StringProperty getPasswordProperty()
+  {
     return passwordProperty;
   }
 
   /**
    * The method that calls when you press the sign-up button
    */
-  public boolean signup() {
-    try {
+  public boolean signup()
+  {
+    try
+    {
       if (!passwordProperty.get().equals(confirmProperty.get()))
         throw new IllegalArgumentException(
-                "Passwords and confirmation have to match!");
+            "Passwords and confirmation have to match!");
       LocalDate dob = dobProperty.get();
       Period age = Period.between(dob, LocalDate.now());
-      if (age.getYears() < 13) {
+      if (age.getYears() < 13)
+      {
         dobProperty.set(null);
         throw new IllegalArgumentException(
-                "User has to be at least 13 years old!");
+            "User has to be at least 13 years old!");
       }
       if (usernameProperty.get().length() < 5)
         throw new IllegalArgumentException(
-                "Username has to be at least 5 characters!");
+            "Username has to be at least 5 characters!");
       if (passwordProperty.get().length() < 7)
         throw new IllegalArgumentException(
-                "password has to be at least 7 characters!");
+            "password has to be at least 7 characters!");
       if (!emailProperty.get().contains("@"))
         throw new IllegalArgumentException("Email not in correct format!");
       User user = new User(usernameProperty.get(), passwordProperty.get(),
-              emailProperty.get(), addressProperty.get(), nameProperty.get(),
-              dob);
+          emailProperty.get(), addressProperty.get(), nameProperty.get(), dob);
       model.signup(user);
       return true;
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       errorLabel.set(e.getMessage());
     }
     return false;
@@ -158,7 +166,8 @@ public class SignupViewModel {
   /**
    * Call this to reset the text inside the fields
    */
-  public void reset() {
+  public void reset()
+  {
     usernameProperty.set("");
     passwordProperty.set("");
     nameProperty.set("");

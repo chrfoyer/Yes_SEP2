@@ -3,7 +3,8 @@ package view;
 import javafx.scene.layout.Region;
 import viewmodel.ViewModelFactory;
 
-public abstract class ViewController {
+public abstract class ViewController
+{
   private Region root;
   private ViewHandler viewHandler;
   private ViewModelFactory viewModelFactory;
@@ -17,14 +18,17 @@ public abstract class ViewController {
    * @param viewModelFactory viewmodelfactory to set teh viewmodelfactory variable to
    * @param root             root to set the root to
    */
-  public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory, Region root) {
+  public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory,
+      Region root)
+  {
     this.root = root;
     this.viewHandler = viewHandler;
     this.viewModelFactory = viewModelFactory;
     init();
   }
 
-  public void reset() {
+  public void reset()
+  {
     // ?
   }
 
@@ -33,7 +37,8 @@ public abstract class ViewController {
    *
    * @return returns root
    */
-  public Region getRoot() {
+  public Region getRoot()
+  {
     return root;
   }
 
@@ -42,7 +47,8 @@ public abstract class ViewController {
    *
    * @return returns viewModelFactory
    */
-  public ViewModelFactory getViewModelFactory() {
+  public ViewModelFactory getViewModelFactory()
+  {
     return viewModelFactory;
   }
 
@@ -51,7 +57,8 @@ public abstract class ViewController {
    *
    * @return returns ViewHandler
    */
-  public ViewHandler getViewHandler() {
+  public ViewHandler getViewHandler()
+  {
     return viewHandler;
   }
 }

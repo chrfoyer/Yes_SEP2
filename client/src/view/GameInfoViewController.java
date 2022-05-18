@@ -1,14 +1,11 @@
 package view;
 
-import Model.Game;
-import javafx.beans.property.ObjectProperty;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import viewmodel.GameInfoViewModel;
-import viewmodel.SimpleGameViewModel;
 
-public class GameInfoViewController extends ViewController {
+public class GameInfoViewController extends ViewController
+{
 
   public TextField name;
   public TextField producer;
@@ -21,8 +18,8 @@ public class GameInfoViewController extends ViewController {
   /**
    * method initializing all the variables and cells
    */
-  @Override
-  protected void init() {
+  @Override protected void init()
+  {
     viewModel = getViewModelFactory().getGameInfoViewModel();
     name.textProperty().bindBidirectional(viewModel.nameProperty());
     producer.textProperty().bindBidirectional(viewModel.producerProperty());
@@ -36,19 +33,20 @@ public class GameInfoViewController extends ViewController {
   /**
    * method that resets the fields in the view
    */
-  public void reset() {
+  public void reset()
+  {
     viewModel.reset();
   }
 
   /**
    * Logic for the button that opens the BrowseView
    */
-  public void backButton() {
+  public void backButton()
+  {
     // TODO: 12/05/2022 reset
 
     getViewHandler().openView("BrowseView.fxml");
     // Note: This might not always be the case, depending upon where we come from to get to this window.
   }
-
 
 }

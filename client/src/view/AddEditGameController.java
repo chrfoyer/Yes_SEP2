@@ -6,7 +6,8 @@ import viewmodel.AddEditGameViewModel;
 
 import java.util.Optional;
 
-public class AddEditGameController extends ViewController {
+public class AddEditGameController extends ViewController
+{
   public TextField gameName;
   public TextField producer;
   public ChoiceBox<String> console;
@@ -18,15 +19,11 @@ public class AddEditGameController extends ViewController {
   /**
    * method initializing all the variables and cells
    */
-  @Override
-  protected void init() {
+  @Override protected void init()
+  {
     viewModel = getViewModelFactory().getAddEditGameViewModel();
     gameName.textProperty().bindBidirectional(viewModel.nameProperty());
     producer.textProperty().bindBidirectional(viewModel.producerProperty());
-    //todo
-    //esrb.textProperty().bindBidirectional(viewModel.esrbProperty());
-    // Bind rating
-    // console.textProperty().bindBidirectional(viewModel.consoleProperty());
     error.textProperty().bind(viewModel.errorProperty());
 
     console.getItems().addAll("PC", "Xbox", "PlayStation");
@@ -39,28 +36,18 @@ public class AddEditGameController extends ViewController {
   /**
    * method that resets the fields in the view
    */
-  public void reset() {
+  public void reset()
+  {
     viewModel.reset();
-    if (viewModel.getSelectedGameProperty() != null) {
-      title.setText("Edit Game");
-//      gameName.setText(viewModel.getName());
-//      producer.setText(viewModel.producerProperty().get());
-//      console.setValue(viewModel.consoleProperty().get());
-//      esrb.setValue(viewModel.errorProperty().get());
-
-    } else {
-      title.setText("Add Game");
-//      gameName.setText("");
-//      producer.setText("");
-//      console.setValue("");
-//      esrb.setValue("");
-    }
+    title.setText(
+        viewModel.getSelectedGameProperty() != null ? "Edit Game" : "Add Game");
   }
 
   /**
    * logic for the button that cancels the editing and opens the InventoryView
    */
-  public void cancel(ActionEvent actionEvent) {
+  public void cancel(ActionEvent actionEvent)
+  {
     getViewModelFactory().getInventoryViewModel().reset();
     getViewHandler().openView("InventoryView.fxml");
     viewModel.setSelectedGameProperty(null);
@@ -69,23 +56,24 @@ public class AddEditGameController extends ViewController {
   /**
    * logic for the button that applies changes and  opens the InventoryView
    */
-  public void confirm(ActionEvent actionEvent) {
+  public void confirm(ActionEvent actionEvent)
+  {
     viewModel.setConsole(console.getValue().toString());
     viewModel.setEsrb(esrb.getValue().toString());
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-            "Are you sure you want to change the game info?");
+        "Are you sure you want to change the game info?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
-      if (viewModel.getSelectedGameProperty() == null) {
+    if (option.get() == ButtonType.OK)
+    {
+      if (viewModel.getSelectedGameProperty() == null)
         viewModel.addGame();
-      } else {
+      else
         viewModel.editGame();
-      }
+
       getViewHandler().openView("InventoryView.fxml");
       //this is retarded
       //please don't use production
-      // TODO: 16/05/2022 Make sure no errors before moving on
     }
     viewModel.setSelectedGameProperty(null);
   }

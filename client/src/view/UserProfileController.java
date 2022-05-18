@@ -1,23 +1,11 @@
 package view;
 
-import Model.Game;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.*;
 import mediator.CurrentlyLoggedUser;
-import viewmodel.LoginViewModel;
 import viewmodel.SimpleGameViewModel;
 import viewmodel.UserProfileViewModel;
 
-import java.awt.*;
-import java.net.URL;
 import java.util.Optional;
 
 /**
