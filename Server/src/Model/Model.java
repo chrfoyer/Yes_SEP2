@@ -33,21 +33,21 @@ public interface Model {
 
   GameList getGameList();
 
-  public boolean containsGame(String name);
+  boolean containsGame(String name);
 
   void signup(User user);
 
   boolean login(User user);
 
-  public UserList getUserList();
+  UserList getUserList();
 
-  public void updateGameInfo(Game gameOld, Game gameNew);
+  void updateGameInfo(Game gameOld, Game gameNew);
 
   void addTransaction(Transaction transaction);
 
-  public void removeUser(User user);
+  void removeUser(User user);
 
-  public void updateUserInfo(User oldUser, User newUser);
+  void updateUserInfo(User oldUser, User newUser);
 
   int getBalance(User user);
 

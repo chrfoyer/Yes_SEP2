@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class ViewCreator {
-  private Map<String, ViewController> map;
+  private final Map<String, ViewController> map;
 
   public ViewCreator() {
     this.map = new HashMap<>();

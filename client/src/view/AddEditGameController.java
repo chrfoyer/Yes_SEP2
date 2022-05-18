@@ -70,8 +70,8 @@ public class AddEditGameController extends ViewController {
    * logic for the button that applies changes and  opens the InventoryView
    */
   public void confirm(ActionEvent actionEvent) {
-    viewModel.setConsole(console.getValue().toString());
-    viewModel.setEsrb(esrb.getValue().toString());
+    viewModel.setConsole(console.getValue());
+    viewModel.setEsrb(esrb.getValue());
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Are you sure you want to change the game info?");

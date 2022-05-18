@@ -25,10 +25,10 @@ import java.time.LocalDate;
  */
 public class UserProfileViewModel {
 
-  private RemoteModel model;
-  private StringProperty usernameProperty;
   final ObservableList<SimpleGameViewModel> rentedGames = FXCollections.observableArrayList();
-  private StringProperty errorLabel;
+  private final RemoteModel model;
+  private final StringProperty usernameProperty;
+  private final StringProperty errorLabel;
 
   /**
    * ViewModel that connects Login to the model

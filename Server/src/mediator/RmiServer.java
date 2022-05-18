@@ -18,8 +18,8 @@ import Model.*;
  */
 public class RmiServer implements RemoteModel {
 
-  private Model model;
-  private GameList gameList;
+  private final Model model;
+  private final GameList gameList;
 
   /**
    * Creates new GameList and RmiServer object, Model interface and starts the Server
@@ -114,7 +114,8 @@ public class RmiServer implements RemoteModel {
    *
    * @param game game to be added
    */
-  public void addGame(Game game) {
+  @Override
+  public void addGame(Game game) throws SQLException, RemoteException {
     model.addGame(game);
   }
 

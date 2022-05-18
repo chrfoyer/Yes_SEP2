@@ -13,19 +13,19 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class UserEditViewModel {
-  private RemoteModel model;
-  private StringProperty usernameProperty;
-  private StringProperty passwordProperty;
-  private StringProperty nameProperty;
-  private ObjectProperty<LocalDate> dobProperty;
-  private StringProperty addressProperty;
-  private StringProperty emailProperty;
-  private StringProperty confirmProperty;
-  private StringProperty errorLabel;
-  private StringProperty balanceLabel;
-  private StringProperty fineRefundProperty;
-  private ObjectProperty<SimpleUserViewModel> selectedUserProperty;
-  private StringProperty hasSubscriptionProperty;
+  private final RemoteModel model;
+  private final StringProperty usernameProperty;
+  private final StringProperty passwordProperty;
+  private final StringProperty nameProperty;
+  private final ObjectProperty<LocalDate> dobProperty;
+  private final StringProperty addressProperty;
+  private final StringProperty emailProperty;
+  private final StringProperty confirmProperty;
+  private final StringProperty errorLabel;
+  private final StringProperty balanceLabel;
+  private final StringProperty fineRefundProperty;
+  private final ObjectProperty<SimpleUserViewModel> selectedUserProperty;
+  private final StringProperty hasSubscriptionProperty;
 
   /**
    * ViewModel that connects Signup to the model

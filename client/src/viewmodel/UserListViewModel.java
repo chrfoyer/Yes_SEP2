@@ -16,10 +16,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class UserListViewModel {
-  private ObservableList<SimpleUserViewModel> list;
-  private ObjectProperty<SimpleUserViewModel> selectedUser;
-  private StringProperty error;
-  private RemoteModel model;
+  private final ObservableList<SimpleUserViewModel> list;
+  private final ObjectProperty<SimpleUserViewModel> selectedUser;
+  private final StringProperty error;
+  private final RemoteModel model;
 
   public UserListViewModel(RemoteModel model) throws RemoteException {
     list = FXCollections.observableArrayList();

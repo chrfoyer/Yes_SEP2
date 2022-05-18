@@ -10,10 +10,10 @@ import mediator.RemoteModel;
 import java.util.ArrayList;
 
 public class BalanceViewModel {
-  private RemoteModel model;
-  private StringProperty balanceAmount;
-  private StringProperty errorLabel;
-  private StringProperty subssriptionDisplay;
+  private final RemoteModel model;
+  private final StringProperty balanceAmount;
+  private final StringProperty errorLabel;
+  private final StringProperty subssriptionDisplay;
 
   /**
    * ViewModel that connects Login to the model

@@ -20,12 +20,12 @@ import java.util.ArrayList;
  */
 public class AdminViewModel {
 
-  private RemoteModel model;
-  private StringProperty registeredUsers;
-  private StringProperty totalGames;
-  private StringProperty rentedGames;
-  private StringProperty recentGame;
-  private StringProperty errorLabel;
+  private final RemoteModel model;
+  private final StringProperty registeredUsers;
+  private final StringProperty totalGames;
+  private final StringProperty rentedGames;
+  private final StringProperty recentGame;
+  private final StringProperty errorLabel;
 
   /**
    * ViewModel that connects Login to the model

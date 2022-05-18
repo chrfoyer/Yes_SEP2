@@ -6,18 +6,18 @@ import java.rmi.RemoteException;
 
 public class ViewModelFactory {
 
-  private LoginViewModel loginViewModel;
-  private SignupViewModel signupViewModel;
-  private UserProfileViewModel userProfileViewModel;
-  private AdminViewModel adminViewModel;
-  private BrowseViewModel browseViewModel;
-  private InventoryViewModel inventoryViewModel;
-  private GameInfoViewModel gameInfoViewModel;
-  private AddEditGameViewModel addEditGameViewModel;
-  private UserListViewModel userListViewModel;
-  private UserEditViewModel userEditViewModel;
-  private BalanceViewModel balanceViewModel;
-  private TransactionViewModel transactionViewModel;
+  private final LoginViewModel loginViewModel;
+  private final SignupViewModel signupViewModel;
+  private final UserProfileViewModel userProfileViewModel;
+  private final AdminViewModel adminViewModel;
+  private final BrowseViewModel browseViewModel;
+  private final InventoryViewModel inventoryViewModel;
+  private final GameInfoViewModel gameInfoViewModel;
+  private final AddEditGameViewModel addEditGameViewModel;
+  private final UserListViewModel userListViewModel;
+  private final UserEditViewModel userEditViewModel;
+  private final BalanceViewModel balanceViewModel;
+  private final TransactionViewModel transactionViewModel;
 
   //  private ChatViewModel chatViewModel;
 

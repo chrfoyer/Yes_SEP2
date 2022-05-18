@@ -7,16 +7,16 @@ import java.time.LocalDate;
 
 public class SimpleUserViewModel {
 
-  private StringProperty username;
-  private StringProperty password;
-  private BooleanProperty isAdmin;
-  private StringProperty email;
-  private StringProperty address;
-  private StringProperty name;
-  private ObjectProperty<LocalDate> bday;
-  private BooleanProperty hasSubscription;
+  private final StringProperty username;
+  private final StringProperty password;
+  private final BooleanProperty isAdmin;
+  private final StringProperty email;
+  private final StringProperty address;
+  private final StringProperty name;
+  private final ObjectProperty<LocalDate> bday;
+  private final BooleanProperty hasSubscription;
   private IntegerProperty age;
-  private User user;
+  private final User user;
 
   public SimpleUserViewModel(User user) {
     username = new SimpleStringProperty(user.getUsername());

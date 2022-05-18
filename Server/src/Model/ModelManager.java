@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class ModelManager implements Model {
   private GameList games;
   private UserList users;
-  private TransactionList transactions;
-  private GameDAO gameDAO;
+  private final TransactionList transactions;
+  private final GameDAO gameDAO;
 
   public ModelManager() throws SQLException {
     this.games = new GameList();
@@ -52,7 +52,7 @@ public class ModelManager implements Model {
    */
   @Override
   public void addGame(Game game) throws SQLException {
-    games.addGame(game); // todo migrate to db
+    games.addGame(gameDAO.create(game)); // todo migrate to db
   }
 
   /**
@@ -181,10 +181,7 @@ public class ModelManager implements Model {
 
   @Override
   public boolean login(User user) {
-    if (users.login(user))
-      return true;
-    else
-      return false;
+    return users.login(user);
   }
 
   @Override

@@ -18,10 +18,10 @@ import java.beans.PropertyChangeListener;
  */
 public class LoginViewModel {
 
-  private RemoteModel model;
-  private StringProperty usernameProperty;
-  private StringProperty passwordProperty;
-  private StringProperty errorLabel;
+  private final RemoteModel model;
+  private final StringProperty usernameProperty;
+  private final StringProperty passwordProperty;
+  private final StringProperty errorLabel;
 
   /**
    * ViewModel that connects Login to the model

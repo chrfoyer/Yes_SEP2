@@ -12,6 +12,8 @@ public interface GameDAO {
 
   Game readById(int id) throws SQLException;
 
+  Game readMaxId() throws SQLException;
+
   void update(Game game) throws SQLException;
 
   void delete(Game game) throws SQLException;

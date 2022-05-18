@@ -17,8 +17,7 @@ public class MyApplication extends Application {
       try {
         server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
         System.out.println("Stub pulled");
-      }
-      catch (Exception ex) {
+      } catch (Exception ex) {
         ex.printStackTrace();
         Alert alert = new Alert(Alert.AlertType.ERROR,
                 "Server connection not detected, please restart server");

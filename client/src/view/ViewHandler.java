@@ -9,7 +9,7 @@ import viewmodel.ViewModelFactory;
 public class ViewHandler extends ViewCreator {
   private Scene currentScene;
   private Stage primaryStage;
-  private ViewModelFactory viewModelFactory;
+  private final ViewModelFactory viewModelFactory;
 
   /**
    * method for setting the viewmodelfactory variable to the parameter viewmodelfactory

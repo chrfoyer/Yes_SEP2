@@ -15,9 +15,9 @@ import java.util.Scanner;
  */
 public class RmiClient {
 
+  private static final Scanner input = new Scanner(System.in);
   private RemoteModel server;
   private String username;
-  private static Scanner input = new Scanner(System.in);
 
   /**
    * Constructor to create a new RmiClient and connect to the server

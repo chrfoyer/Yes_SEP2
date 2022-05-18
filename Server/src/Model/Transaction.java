@@ -9,10 +9,10 @@ import java.time.LocalDate;
  * made without a game object.
  */
 public class Transaction implements Serializable {
-  private double amount;
-  private String user;
-  private String type;
-  private LocalDate date;
+  private final double amount;
+  private final String user;
+  private final String type;
+  private final LocalDate date;
 
   //constructor for renting game/ returning game
   public Transaction(Game game, String type, String user) {

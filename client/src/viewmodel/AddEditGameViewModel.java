@@ -5,15 +5,15 @@ import javafx.beans.property.*;
 import mediator.RemoteModel;
 
 public class AddEditGameViewModel {
-  private RemoteModel model;
-  private ObjectProperty<SimpleGameViewModel> selectedGameProperty;
-  private StringProperty name;
-  private ObjectProperty<Integer> timeLeft;
-  private StringProperty console;
-  private StringProperty producer;
-  private StringProperty esrb;
-  private ObjectProperty<Boolean> rented;
-  private StringProperty error;
+  private final RemoteModel model;
+  private final ObjectProperty<SimpleGameViewModel> selectedGameProperty;
+  private final StringProperty name;
+  private final ObjectProperty<Integer> timeLeft;
+  private final StringProperty console;
+  private final StringProperty producer;
+  private final StringProperty esrb;
+  private final ObjectProperty<Boolean> rented;
+  private final StringProperty error;
 
   public AddEditGameViewModel(RemoteModel model) {
     this.model = model;
@@ -25,10 +25,6 @@ public class AddEditGameViewModel {
     this.console = new SimpleStringProperty();
     this.error = new SimpleStringProperty();
     selectedGameProperty = new SimpleObjectProperty<>();
-  }
-
-  public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel) {
-    this.selectedGameProperty.set(selectedGameViewModel);
   }
 
   public void reset() {
@@ -59,12 +55,20 @@ public class AddEditGameViewModel {
     return selectedGameProperty.get();
   }
 
+  public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel) {
+    this.selectedGameProperty.set(selectedGameViewModel);
+  }
+
   public ObjectProperty<SimpleGameViewModel> selectedGamePropertyProperty() {
     return selectedGameProperty;
   }
 
   public String getName() {
     return name.get();
+  }
+
+  public void setName(String name) {
+    this.name.set(name);
   }
 
   public StringProperty nameProperty() {
@@ -93,10 +97,6 @@ public class AddEditGameViewModel {
 
   public void setEsrb(String esrb) {
     this.esrb.set(esrb);
-  }
-
-  public void setName(String name) {
-    this.name.set(name);
   }
 
   public void setConsole(String console) {

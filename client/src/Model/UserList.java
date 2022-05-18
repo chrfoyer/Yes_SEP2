@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @version 0.1 11/5/22
  */
 public class UserList implements Serializable {
-  private ArrayList<User> users;
+  private final ArrayList<User> users;
 
   /**
    * Constructor initializing an arrayList of User type.

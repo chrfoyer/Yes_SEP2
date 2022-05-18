@@ -7,15 +7,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SimpleGameViewModel {
-  private StringProperty name;
-  private ObjectProperty<Integer> timeLeft;
-  private StringProperty console;
-  private StringProperty producer;
-  private StringProperty esrb;
-  private ObjectProperty<Boolean> rented;
-  private ObjectProperty<LocalDate> dateAdded;
-  private Game game;
-  private ObjectProperty<Float> review;
+  private final StringProperty name;
+  private final ObjectProperty<Integer> timeLeft;
+  private final StringProperty console;
+  private final StringProperty producer;
+  private final StringProperty esrb;
+  private final ObjectProperty<Boolean> rented;
+  private final ObjectProperty<LocalDate> dateAdded;
+  private final Game game;
+  private final ObjectProperty<Float> review;
 
   public SimpleGameViewModel(Game game) {
     this.name = new SimpleStringProperty(game.getName());

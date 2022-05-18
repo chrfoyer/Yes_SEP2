@@ -15,9 +15,9 @@ import mediator.RemoteModel;
 import java.rmi.RemoteException;
 
 public class TransactionViewModel {
-  private RemoteModel model;
-  private StringProperty errorLabel;
   final ObservableList<SimpleTransactionViewModel> data = FXCollections.observableArrayList();
+  private final RemoteModel model;
+  private final StringProperty errorLabel;
 
   public TransactionViewModel(RemoteModel model) {
     this.model = model;

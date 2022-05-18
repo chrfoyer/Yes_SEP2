@@ -22,7 +22,7 @@ public class User implements Serializable {
   private LocalDate bday;
   private boolean hasSubscription;
   private int balance;
-  private int age;
+  private final int age;
 
   /**
    * Constructor taking only string username and string password. checks to see if user is an admin.
@@ -80,66 +80,21 @@ public class User implements Serializable {
   }
 
   /**
-   * gets user's password
-   *
-   * @return user's password
-   */
-  public String getPassword() {
-    return password;
-  }
-
-  /**
-   * gets user's email
-   *
-   * @return user's email
-   */
-  public String getEmail() {
-    return email;
-  }
-
-  /**
-   * gets user's address
-   *
-   * @return user's address
-   */
-  public String getAddress() {
-    return address;
-  }
-
-  /**
-   * gets user's name
-   *
-   * @return user's name
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * gets user's birthday
-   *
-   * @return user's birthday
-   */
-  public LocalDate getBday() {
-    return bday;
-  }
-
-  /**
-   * gets user's subscription status
-   *
-   * @return status of subscription
-   */
-  public boolean getSubscription() {
-    return hasSubscription;
-  }
-
-  /**
    * sets user's username
    *
    * @param username what user's username will be set to
    */
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  /**
+   * gets user's password
+   *
+   * @return user's password
+   */
+  public String getPassword() {
+    return password;
   }
 
   /**
@@ -152,12 +107,30 @@ public class User implements Serializable {
   }
 
   /**
+   * gets user's email
+   *
+   * @return user's email
+   */
+  public String getEmail() {
+    return email;
+  }
+
+  /**
    * sets user's email
    *
    * @param email what user's email will be set to
    */
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  /**
+   * gets user's address
+   *
+   * @return user's address
+   */
+  public String getAddress() {
+    return address;
   }
 
   /**
@@ -170,12 +143,30 @@ public class User implements Serializable {
   }
 
   /**
+   * gets user's name
+   *
+   * @return user's name
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
    * sets user's name
    *
    * @param name what the user's name will be set to
    */
   public void setName(String name) {
     this.name = name;
+  }
+
+  /**
+   * gets user's birthday
+   *
+   * @return user's birthday
+   */
+  public LocalDate getBday() {
+    return bday;
   }
 
   /**
@@ -188,12 +179,12 @@ public class User implements Serializable {
   }
 
   /**
-   * sets user's admin status
+   * gets user's subscription status
    *
-   * @param admin boolean deciding whether user is a admin or not
+   * @return status of subscription
    */
-  public void setAdmin(boolean admin) {
-    isAdmin = admin;
+  public boolean getSubscription() {
+    return hasSubscription;
   }
 
   /**
@@ -207,6 +198,15 @@ public class User implements Serializable {
 
   public boolean isAdmin() {
     return isAdmin;
+  }
+
+  /**
+   * sets user's admin status
+   *
+   * @param admin boolean deciding whether user is a admin or not
+   */
+  public void setAdmin(boolean admin) {
+    isAdmin = admin;
   }
 
   /**

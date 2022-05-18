@@ -3,14 +3,19 @@ package Model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameListTest {
   private GameList gameList = new GameList();
   private GameList emptyList = new GameList();
 
+  GameListTest() throws SQLException {
+  }
+
   @BeforeEach
-  void setUp() {
+  void setUp() throws SQLException {
     gameList.addGame(new Game("Cod2", "Infinity Ward", "PC", "M"));
     gameList.addGame(new Game("Cod3", "Infinity Ward", "PC", "M"));
     gameList.addGame(new Game("Cod4", "Infinity Ward", "PC", "M"));
@@ -60,7 +65,7 @@ class GameListTest {
   }
 
   @Test
-  void addGame_M() {
+  void addGame_M() throws SQLException {
     gameList.addGame(new Game("Cod the coddening1", "Infinity Ward", "PC", "M"));
     gameList.addGame(new Game("Cod the coddening2", "Infinity Ward", "PC", "M"));
     gameList.addGame(new Game("Cod the coddening3", "Infinity Ward", "PC", "M"));

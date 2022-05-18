@@ -1,8 +1,5 @@
 package Model;
 
-import databaseAdapters.GameDAO;
-import databaseAdapters.GameImpl;
-
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,15 +11,13 @@ import java.util.ArrayList;
  * @version 0.2 5/5/22
  */
 public class GameList implements Serializable {
-  private ArrayList<Game> games;
-  private GameDAO gameDAO;
+  private final ArrayList<Game> games;
 
   /**
    * constructor that initializes arraylist
    */
   public GameList() throws SQLException {
     games = new ArrayList<>();
-    gameDAO = GameImpl.getInstance();
   }
 
   /**
@@ -79,7 +74,7 @@ public class GameList implements Serializable {
     if (game == null)
       throw new IllegalArgumentException("Game cant be null");
     //games.addAll(new ArrayList<Game>()); // fill with read for array list of games
-    games.add(gameDAO.create(game));
+    games.add(game);
   }
 
   /**
@@ -133,7 +128,6 @@ public class GameList implements Serializable {
       }
     }
   }
-
 
 
   /**

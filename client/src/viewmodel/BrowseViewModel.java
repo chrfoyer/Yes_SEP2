@@ -15,10 +15,10 @@ import java.rmi.RemoteException;
 
 // TODO: 12/05/2022 Delegation from the controller 
 public class BrowseViewModel {
-  private RemoteModel model;
-  private StringProperty errorLabel;
-  private ObjectProperty<SimpleGameViewModel> selectedGameProperty;
   final ObservableList<SimpleGameViewModel> data = FXCollections.observableArrayList();
+  private final RemoteModel model;
+  private final StringProperty errorLabel;
+  private final ObjectProperty<SimpleGameViewModel> selectedGameProperty;
   // Need the list of games in an observable list
   // Need a property for the selected simple game view model
 
@@ -45,7 +45,7 @@ public class BrowseViewModel {
       GameList temp = model.viewGames();
       for (Game game : temp.getAvailableGames()) {
         data.add(new SimpleGameViewModel(game));
-        System.out.println(game.toString());
+        System.out.println(game);
       }
     } catch (Exception e) {
       errorLabel.set(e.getMessage());

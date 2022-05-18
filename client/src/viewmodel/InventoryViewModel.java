@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 // TODO: 12/05/2022 Delegation from the controller
 public class InventoryViewModel {
-  private RemoteModel model;
-  private StringProperty errorLabel;
-  private ObjectProperty<SimpleGameViewModel> selectedGameProperty;
-  private ObservableList<SimpleGameViewModel> list;
+  private final RemoteModel model;
+  private final StringProperty errorLabel;
+  private final ObjectProperty<SimpleGameViewModel> selectedGameProperty;
+  private final ObservableList<SimpleGameViewModel> list;
   // Need the list of games in an observable list
   // Need a property for the selected simple game view model
 
@@ -51,6 +51,10 @@ public class InventoryViewModel {
     return selectedGameProperty;
   }
 
+  public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty) {
+    this.selectedGameProperty.set(selectedGameProperty);
+  }
+
   public void removeGame() {
     try {
       model.removeGame(selectedGameProperty.get().getGame());
@@ -62,9 +66,5 @@ public class InventoryViewModel {
 
   public StringProperty getError() {
     return errorLabel;
-  }
-
-  public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty) {
-    this.selectedGameProperty.set(selectedGameProperty);
   }
 }

@@ -2,8 +2,6 @@ package Model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /**
  * The game is the object that is rented in the system. The attributes are currently just the name, but more attributes
@@ -13,14 +11,31 @@ import java.util.ArrayList;
  * @version 0.2 5/5/22
  */
 public class Game implements Serializable {
+  private final int id;
   private String name;
   private String producer;
   private String console;
   private boolean rented;
   private int daysLeft;
+  private int reviewCount;
+  private int reviewSum;
+  private float reviewAverage;
   private String esrb;
-  private LocalDate dateAdded;
-  private ArrayList<Integer> reviews;
+  private final LocalDate dateAdded;
+
+  public Game(int id, String name, String producer, String console, boolean rented, int daysLeft, int reviewCount, int reviewSum, float reviewAverage, String esrb, LocalDate dateAdded) {
+    this.id = id;
+    this.name = name;
+    this.producer = producer;
+    this.console = console;
+    this.rented = rented;
+    this.daysLeft = daysLeft;
+    this.reviewCount = reviewCount;
+    this.reviewSum = reviewSum;
+    this.reviewAverage = reviewAverage;
+    this.esrb = esrb;
+    this.dateAdded = dateAdded;
+  }
 
   /**
    * constructor for game
@@ -38,6 +53,7 @@ public class Game implements Serializable {
             || console.equals("Xbox") || console.equals("Nintendo"))) {
       throw new IllegalArgumentException("Unknown console");
     }
+    id = 0;
     this.esrb = esrb;
     this.producer = producer;
     this.name = name;
@@ -45,7 +61,9 @@ public class Game implements Serializable {
     daysLeft = 0;
     this.console = console;
     this.dateAdded = LocalDate.now();
-    this.reviews = new ArrayList<>();
+    reviewCount = 0;
+    reviewSum = 0;
+    reviewAverage = 0;
   }
 
   /**
@@ -69,6 +87,15 @@ public class Game implements Serializable {
    */
   public String getName() {
     return name;
+  }
+
+  /**
+   * Changes the name of the game to a new given name
+   *
+   * @param name new name of the game
+   */
+  public void setName(String name) {
+    this.name = name;
   }
 
   /**
@@ -165,17 +192,21 @@ public class Game implements Serializable {
   }
 
   /**
+   * Changes the production house of the game to a new given production house
+   *
+   * @param producer new production house of the game
+   */
+  public void setProducer(String producer) {
+    this.producer = producer;
+  }
+
+  /**
    * Gets the review of the game (1-5)
    *
    * @return a decimal number review of the game
    */
   public float getReview() {
-    int temp = 0;
-    for (int review : reviews
-    ) {
-      temp += review;
-    }
-    return (float) temp / reviews.size();
+    return reviewAverage;
   }
 
   /**
@@ -185,24 +216,6 @@ public class Game implements Serializable {
    */
   public String getEsrb() {
     return esrb;
-  }
-
-  /**
-   * Changes the name of the game to a new given name
-   *
-   * @param name new name of the game
-   */
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  /**
-   * Changes the production house of the game to a new given production house
-   *
-   * @param producer new production house of the game
-   */
-  public void setProducer(String producer) {
-    this.producer = producer;
   }
 
   /**
@@ -232,6 +245,24 @@ public class Game implements Serializable {
   }
 
   public void leaveReview(int review) {
-    reviews.add(review);
+    reviewCount++;
+    reviewSum += review;
+    reviewAverage = (float) reviewSum / reviewCount;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public int getReviewCount() {
+    return reviewCount;
+  }
+
+  public int getReviewSum() {
+    return reviewSum;
+  }
+
+  public float getReviewAverage() {
+    return reviewAverage;
   }
 }

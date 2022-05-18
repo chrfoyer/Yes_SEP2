@@ -1,6 +1,10 @@
 package Model;
 
+import databaseAdapters.GameDAO;
+import databaseAdapters.GameImpl;
+
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -10,12 +14,12 @@ import java.util.ArrayList;
  * @version 0.2 5/5/22
  */
 public class GameList implements Serializable {
-  private ArrayList<Game> games;
+  private final ArrayList<Game> games;
 
   /**
    * constructor that initializes arraylist
    */
-  public GameList() {
+  public GameList() throws SQLException {
     games = new ArrayList<>();
   }
 
@@ -69,9 +73,10 @@ public class GameList implements Serializable {
    *
    * @param game to be added to arraylist
    */
-  public void addGame(Game game) {
+  public void addGame(Game game) throws SQLException {
     if (game == null)
       throw new IllegalArgumentException("Game cant be null");
+    //games.addAll(new ArrayList<Game>()); // fill with read for array list of games
     games.add(game);
   }
 
@@ -85,6 +90,8 @@ public class GameList implements Serializable {
       throw new IllegalArgumentException("Game to be removed cant be null");
     games.remove(game);
   }
+
+  // TODO: 18/05/2022 Refresh list
 
   /**
    * Removes a game from arraylist
@@ -125,17 +132,20 @@ public class GameList implements Serializable {
     }
   }
 
+
   /**
    * Rents a game using its name
    *
    * @param name game to be rented
-   */
+   */ /* DEPRECATED
   public void rentGame(String name) {
     Game rentTemp = getGame(name);
     removeGame(name);
     rentTemp.rentGame();
     addGame(rentTemp);
   }
+
+  */
 
   /**
    * Returns a string containing the attributes of the game. If the game is not rented, the days left will not appear.
