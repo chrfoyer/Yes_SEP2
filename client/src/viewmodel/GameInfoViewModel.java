@@ -48,7 +48,7 @@ public class GameInfoViewModel {
       esrb.set(selected.getEsrbProperty().get());
       rented.set(selected.getRentedProperty().get());
       console.set(selected.getConsole().get());
-      review.set(selected.getReview().get()+"");
+      review.set(selected.getReview().get() + "");
       error.set("");
     } else {
       name.set("");
@@ -109,6 +109,7 @@ public class GameInfoViewModel {
   public StringProperty esrbProperty() {
     return esrb;
   }
+
   public StringProperty reviewProperty() {
     return review;
   }

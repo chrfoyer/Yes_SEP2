@@ -12,8 +12,7 @@ import viewmodel.SimpleGameViewModel;
 import java.rmi.RemoteException;
 import java.util.Optional;
 
-public class BrowseViewController extends ViewController
-{
+public class BrowseViewController extends ViewController {
   public TextField nameSearch;
   public ChoiceBox<String> consoleSearch;
   public ChoiceBox<String> esrbSearch;
@@ -30,34 +29,33 @@ public class BrowseViewController extends ViewController
   /**
    * method initializing all the variables and cells
    */
-  @Override protected void init()
-  {
+  @Override
+  protected void init() {
     consoleSearch.getItems().addAll("PC", "Xbox", "PlayStation");
     esrbSearch.getItems().addAll("E", "E10+", "T", "M", "AO");
     consoleSearch.setValue("PC");
     esrbSearch.setValue("E");
     nameColumn.setCellValueFactory(
-        cellData -> cellData.getValue().getNameProperty());
+            cellData -> cellData.getValue().getNameProperty());
     consoleColumn.setCellValueFactory(
-        cellData -> cellData.getValue().getConsole());
+            cellData -> cellData.getValue().getConsole());
     producerColumn.setCellValueFactory(
-        cellData -> cellData.getValue().getProducer());
+            cellData -> cellData.getValue().getProducer());
     esrbColumn.setCellValueFactory(
-        cellData -> cellData.getValue().getEsrbProperty());
+            cellData -> cellData.getValue().getEsrbProperty());
     browseViewModel = getViewModelFactory().getBrowseViewModel();
     gameInfoViewModel = getViewModelFactory().getGameInfoViewModel();
     table.setItems(browseViewModel.getData());
     error.textProperty().bind(browseViewModel.getErrorLabel());
     // Sets the selected game in the game info view model
     table.getSelectionModel().selectedItemProperty().addListener(
-        (obs, oldV, newV) -> gameInfoViewModel.setSelectedGameProperty(newV));
+            (obs, oldV, newV) -> gameInfoViewModel.setSelectedGameProperty(newV));
   }
 
   /**
    * method that resets the fields in the view
    */
-  public void reset()
-  {
+  public void reset() {
     table.getSelectionModel().clearSelection();
     browseViewModel.reset();
     gameInfoViewModel.reset();
@@ -66,8 +64,7 @@ public class BrowseViewController extends ViewController
   /**
    * Logic for the button that opens the GameInfoView
    */
-  public void searchButton()
-  {
+  public void searchButton() {
     // TODO: 12/05/2022 search functionality
     // Use these values to search the games and reset the table
     String name = nameSearch.getText();
@@ -78,8 +75,7 @@ public class BrowseViewController extends ViewController
   /**
    * Logic for the button that opens the GameInfoView
    */
-  public void info()
-  {
+  public void info() {
     gameInfoViewModel.reset();
     getViewHandler().openView("GameInfoView.fxml");
   }
@@ -87,21 +83,17 @@ public class BrowseViewController extends ViewController
   /**
    * Logic for the button that handles renting of the game
    */
-  public void rent() throws RemoteException
-  {
-    if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription())
-    {
+  public void rent() throws RemoteException {
+    if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription()) {
       // TODO: 11/05/2022 Confirmation window with name of game
       SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
       Game debug = temp.getGame();
 
       browseViewModel.rentGame(debug);
       browseViewModel.reset();
-    }
-    else
-    {
+    } else {
       Alert alert = new Alert(Alert.AlertType.ERROR,
-          "You cannot rent games without an active subscription!");
+              "You cannot rent games without an active subscription!");
       alert.showAndWait();
     }
 
@@ -110,8 +102,7 @@ public class BrowseViewController extends ViewController
   /**
    * Logic for the button that opens the UserProfileView
    */
-  public void back()
-  {
+  public void back() {
     getViewModelFactory().getUserProfileViewModel().reset();
     getViewHandler().openView("UserProfileView.fxml");
   }

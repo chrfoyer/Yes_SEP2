@@ -108,7 +108,7 @@ public class SimpleUserViewModel {
     return age;
   }
 
-  public User getUser(){
+  public User getUser() {
     return user;
   }
 }

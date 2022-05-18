@@ -14,46 +14,37 @@ import mediator.RemoteModel;
 
 import java.rmi.RemoteException;
 
-public class TransactionViewModel
-{
+public class TransactionViewModel {
   private RemoteModel model;
   private StringProperty errorLabel;
   final ObservableList<SimpleTransactionViewModel> data = FXCollections.observableArrayList();
 
-  public TransactionViewModel(RemoteModel model)
-  {
+  public TransactionViewModel(RemoteModel model) {
     this.model = model;
     errorLabel = new SimpleStringProperty();
     reset();
   }
 
-  public void reset()
-  {
+  public void reset() {
     data.clear();
     TransactionList temp = null;
-    try
-    {
+    try {
       TransactionList transactionList = model.getTransactionList();
-      for (Transaction transaction : transactionList.getList())
-      {
+      for (Transaction transaction : transactionList.getList()) {
         data.add(new SimpleTransactionViewModel(transaction));
       }
       errorLabel.set("");
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       errorLabel.set(e.getMessage());
     }
 
   }
 
-  public ObservableList<SimpleTransactionViewModel> getData()
-  {
+  public ObservableList<SimpleTransactionViewModel> getData() {
     return data;
   }
 
-  public StringProperty getErrorLabel()
-  {
+  public StringProperty getErrorLabel() {
     return errorLabel;
   }
 

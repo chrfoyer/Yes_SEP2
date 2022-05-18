@@ -8,13 +8,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="648.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserEditViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0"
+      prefWidth="648.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserEditViewController">
     <children>
         <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
                 <Label style="-fx-font-weight: bold;" text="Edit User" textFill="#c1c1c1">
                     <font>
-                        <Font size="36.0" />
+                        <Font size="36.0"/>
                     </font>
                 </Label>
             </children>
@@ -27,160 +29,161 @@
                             <children>
                                 <Label prefHeight="27.0" prefWidth="105.0" text="Full name">
                                     <font>
-                                        <Font size="18.0" />
+                                        <Font size="18.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="fullName" />
+                                <TextField fx:id="fullName"/>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
                             <children>
                                 <Label prefHeight="27.0" prefWidth="106.0" text="Dob">
                                     <font>
-                                        <Font size="18.0" />
+                                        <Font size="18.0"/>
                                     </font>
                                 </Label>
-                                <DatePicker fx:id="dob" prefHeight="26.0" prefWidth="152.0" />
+                                <DatePicker fx:id="dob" prefHeight="26.0" prefWidth="152.0"/>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
                             <children>
                                 <Label prefHeight="27.0" prefWidth="106.0" text="Address">
                                     <font>
-                                        <Font size="18.0" />
+                                        <Font size="18.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="address" />
+                                <TextField fx:id="address"/>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
                             <children>
                                 <Label prefHeight="27.0" prefWidth="106.0" text="Email">
                                     <font>
-                                        <Font size="18.0" />
+                                        <Font size="18.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="email" />
+                                <TextField fx:id="email"/>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
                             <children>
                                 <Label prefHeight="27.0" prefWidth="106.0" text="Username">
                                     <font>
-                                        <Font size="18.0" />
+                                        <Font size="18.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="username" editable="false" />
+                                <TextField fx:id="username" editable="false"/>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
                             <children>
                                 <Label prefHeight="27.0" prefWidth="106.0" text="Password">
                                     <font>
-                                        <Font size="18.0" />
+                                        <Font size="18.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="password" />
+                                <TextField fx:id="password"/>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
                             <children>
                                 <Label prefHeight="27.0" prefWidth="106.0" text="Confirm pass.">
                                     <font>
-                                        <Font size="17.5" />
+                                        <Font size="17.5"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="confirmPassword" />
+                                <TextField fx:id="confirmPassword"/>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="64.0" prefWidth="256.0" spacing="30.0">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#cancel" text="Cancel">
                                     <font>
-                                        <Font size="18.0" />
+                                        <Font size="18.0"/>
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false" onAction="#apply" text="Apply">
                                     <font>
-                                        <Font size="18.0" />
+                                        <Font size="18.0"/>
                                     </font>
                                 </Button>
                             </children>
                         </HBox>
                     </children>
                 </VBox>
-            <VBox prefHeight="282.0" prefWidth="279.0">
-               <children>
-                  <HBox prefHeight="97.0" prefWidth="279.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="148.0" prefWidth="187.0">
-                           <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" text="Balance:">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="148.0" prefWidth="183.0">
-                           <children>
-                              <Label fx:id="balance" contentDisplay="CENTER" text="Label">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="103.0" prefWidth="279.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="135.0" prefWidth="187.0">
-                           <children>
-                              <TextField fx:id="fineRefundAmount" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="135.0" prefWidth="177.0">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#fine_refund" text="Fine/Refund">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="94.0" prefWidth="249.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="94.0" prefWidth="256.0">
-                           <children>
-                              <Label text="Has active subsription?">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="hasSubscription" text="setVal" textFill="RED">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <Button mnemonicParsing="false" onAction="#banHammer" prefHeight="39.0" prefWidth="227.0" text="Banhammer">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+                <VBox prefHeight="282.0" prefWidth="279.0">
+                    <children>
+                        <HBox prefHeight="97.0" prefWidth="279.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="148.0" prefWidth="187.0">
+                                    <children>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" text="Balance:">
+                                            <font>
+                                                <Font size="24.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="148.0" prefWidth="183.0">
+                                    <children>
+                                        <Label fx:id="balance" contentDisplay="CENTER" text="Label">
+                                            <font>
+                                                <Font size="24.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="103.0" prefWidth="279.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="135.0" prefWidth="187.0">
+                                    <children>
+                                        <TextField fx:id="fineRefundAmount"/>
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="135.0" prefWidth="177.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#fine_refund" text="Fine/Refund">
+                                            <font>
+                                                <Font size="15.0"/>
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="94.0" prefWidth="249.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="94.0" prefWidth="256.0">
+                                    <children>
+                                        <Label text="Has active subsription?">
+                                            <font>
+                                                <Font size="15.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="hasSubscription" text="setVal" textFill="RED">
+                                            <font>
+                                                <Font size="24.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                                <Button mnemonicParsing="false" onAction="#banHammer" prefHeight="39.0"
+                                        prefWidth="227.0" text="Banhammer">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
             </children>
         </HBox>
         <HBox alignment="CENTER" prefHeight="60.0" prefWidth="634.0" style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR" textFill="RED" />
+                <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR" textFill="RED"/>
             </children>
         </HBox>
     </children>

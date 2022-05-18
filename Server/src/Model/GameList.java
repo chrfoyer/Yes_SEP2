@@ -176,10 +176,8 @@ public class GameList implements Serializable {
               "No game found on server that could be updated");
   }
 
-  public Game findGameInList(Game game)
-  {
-    for (Game temp : games)
-    {
+  public Game findGameInList(Game game) {
+    for (Game temp : games) {
       if (game.equals(temp))
         return temp;
     }

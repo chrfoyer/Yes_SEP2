@@ -11,9 +11,8 @@ import java.rmi.RemoteException;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.3 5/5/22
  */
-public interface RemoteModel extends Remote
-{
-  void rentGame(Game game,User user) throws RemoteException;
+public interface RemoteModel extends Remote {
+  void rentGame(Game game, User user) throws RemoteException;
 
   Game getGame(String name) throws RemoteException;
 
@@ -45,7 +44,7 @@ public interface RemoteModel extends Remote
 
   void payForSubscription(User user) throws RemoteException;
 
-  void setSubscription(User user,boolean status) throws RemoteException;
+  void setSubscription(User user, boolean status) throws RemoteException;
 
   TransactionList getTransactionList() throws RemoteException;
 
@@ -53,6 +52,6 @@ public interface RemoteModel extends Remote
 
   float getReview(Game game) throws RemoteException;
 
-  void returnGame(Game game,User user) throws RemoteException;
+  void returnGame(Game game, User user) throws RemoteException;
 
 }

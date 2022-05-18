@@ -9,8 +9,7 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
-public interface Model
-{
+public interface Model {
   void addGame(Game game);
 
   ArrayList<Game> getAllGames();
@@ -51,13 +50,13 @@ public interface Model
 
   int getBalance(User user);
 
-  void modifyBalance(int amount,User user);
+  void modifyBalance(int amount, User user);
 
   void payForSubscription(User user);
 
   TransactionList getTransactionList();
 
-  void setSubscriptionStatus(User user,boolean status);
+  void setSubscriptionStatus(User user, boolean status);
 
   void leaveReview(int review, Game game);
 

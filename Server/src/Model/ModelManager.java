@@ -9,37 +9,33 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
-public class ModelManager implements Model
-{
+public class ModelManager implements Model {
   private GameList games;
   private UserList users;
   private TransactionList transactions;
 
-  public ModelManager()
-  {
+  public ModelManager() {
     this.games = new GameList();
     this.users = new UserList();
     this.transactions = TransactionList.getInstance();
 
     //todo remove test
     users.addUser(new User("admin", "admin"));
-    User bob=new User("bob","test");
+    User bob = new User("bob", "test");
     bob.setHasSubscription(true);
     users.addUser(bob);
-    LocalDate date =  LocalDate.of(1997,3,3);
-    users.addUser(new User("martin","maxmax1","asdf@","afdadf","martin r",date));
+    LocalDate date = LocalDate.of(1997, 3, 3);
+    users.addUser(new User("martin", "maxmax1", "asdf@", "afdadf", "martin r", date));
     games.addGame(new Game("Minecraft", "Mojang", "PC", "E"));
     games.addGame(new Game("CockAndBalls", "ShitFart", "Xbox", "E"));
     Transaction transaction = new Transaction("rent", "admin", 3.5);
   }
 
-  public void setGames(GameList games)
-  {
+  public void setGames(GameList games) {
     this.games = games;
   }
 
-  public void setUsers(UserList users)
-  {
+  public void setUsers(UserList users) {
     this.users = users;
   }
 
@@ -48,8 +44,8 @@ public class ModelManager implements Model
    *
    * @param game is the Game to be added to the list
    */
-  @Override public void addGame(Game game)
-  {
+  @Override
+  public void addGame(Game game) {
     games.addGame(game);
   }
 
@@ -58,8 +54,8 @@ public class ModelManager implements Model
    *
    * @return arrayList<Game> of all the games
    */
-  @Override public ArrayList<Game> getAllGames()
-  {
+  @Override
+  public ArrayList<Game> getAllGames() {
     return games.getGamesArrayCopy();
   }
 
@@ -68,8 +64,8 @@ public class ModelManager implements Model
    *
    * @param game is the game to be removed
    */
-  @Override public void removeGame(Game game)
-  {
+  @Override
+  public void removeGame(Game game) {
     games.removeGame(game);
   }
 
@@ -78,16 +74,16 @@ public class ModelManager implements Model
    *
    * @param name name of the game to be removed
    */
-  @Override public void removeGame(String name)
-  {
+  @Override
+  public void removeGame(String name) {
     games.removeGame(name);
   }
 
   /**
    * Decrements the days left in the rental period for all games in the list
    */
-  @Override public void decrementDay()
-  {
+  @Override
+  public void decrementDay() {
     games.decrementDayForRented();
   }
 
@@ -96,16 +92,13 @@ public class ModelManager implements Model
    *
    * @param game to be rented
    */
-  @Override public void rentGame(Game game,User user)
-  {
-    if (game == null)
-    {
+  @Override
+  public void rentGame(Game game, User user) {
+    if (game == null) {
       throw new IllegalArgumentException("Game to rent cant be null");
-    }
-    else
-    {
+    } else {
       games.findGameInList(game).rentGame();
-      new Transaction(game,"Rent",user.getUsername());
+      new Transaction(game, "Rent", user.getUsername());
 
     }
   }
@@ -116,8 +109,8 @@ public class ModelManager implements Model
    * @param name of the game to be searched for
    * @return the selected game from the GameList
    */
-  @Override public Game getGame(String name)
-  {
+  @Override
+  public Game getGame(String name) {
     return games.getGame(name);
   }
 
@@ -127,8 +120,8 @@ public class ModelManager implements Model
    * @param game to be searched for
    * @return the selected game from the GameList
    */
-  @Override public Game getGame(Game game)
-  {
+  @Override
+  public Game getGame(Game game) {
     return games.getGame(game);
   }
 
@@ -138,8 +131,8 @@ public class ModelManager implements Model
    * @return an ArrayList containing all non-rented Games
    */
 
-  @Override public ArrayList<Game> getALlAvailableGames()
-  {
+  @Override
+  public ArrayList<Game> getALlAvailableGames() {
     return games.getAvailableGames();
   }
 
@@ -148,8 +141,8 @@ public class ModelManager implements Model
    *
    * @return GameList containing everything
    */
-  @Override public GameList getGameList()
-  {
+  @Override
+  public GameList getGameList() {
     return games;
   }
 
@@ -160,107 +153,106 @@ public class ModelManager implements Model
    * @return true if the gameList contains the game false if it does not
    * @author Raedrim
    */
-  @Override public boolean containsGame(String name)
-  {
+  @Override
+  public boolean containsGame(String name) {
     boolean ret = false;
-    for (Game game : games.getGamesArrayCopy())
-    {
-      if (game.getName().equals(name))
-      {
+    for (Game game : games.getGamesArrayCopy()) {
+      if (game.getName().equals(name)) {
         ret = true;
       }
     }
     return ret;
   }
 
-  @Override public void signup(User user)
-  {
+  @Override
+  public void signup(User user) {
     if (users.contains(user))
       throw new IllegalArgumentException(
-          "Given user is already registered in the system!");
+              "Given user is already registered in the system!");
     else
       users.addUser(user);
   }
 
-  @Override public boolean login(User user)
-  {
+  @Override
+  public boolean login(User user) {
     if (users.login(user))
       return true;
     else
       return false;
   }
 
-  @Override public UserList getUserList()
-  {
+  @Override
+  public UserList getUserList() {
     return users;
   }
 
-  @Override public void updateGameInfo(Game gameOld, Game gameNew)
-  {
+  @Override
+  public void updateGameInfo(Game gameOld, Game gameNew) {
     games.updateGameInfo(gameOld, gameNew);
   }
 
-  @Override public void removeUser(User user)
-  {
+  @Override
+  public void removeUser(User user) {
     users.removeUser(user);
   }
 
-  @Override public void updateUserInfo(User oldUser, User newUser)
-  {
+  @Override
+  public void updateUserInfo(User oldUser, User newUser) {
     users.updateUserInfo(oldUser, newUser);
   }
 
-  @Override public void modifyBalance(int amount, User user)
-  {
+  @Override
+  public void modifyBalance(int amount, User user) {
     users.modifyBalance(amount, user);
     Transaction transaction = new Transaction("Add money", user.getUsername(),
-        amount);
+            amount);
   }
 
-  @Override public void payForSubscription(User user)
-  {
+  @Override
+  public void payForSubscription(User user) {
     users.payForSubscription(user);
   }
 
-  @Override public TransactionList getTransactionList()
-  {
+  @Override
+  public TransactionList getTransactionList() {
     return transactions;
   }
 
-  @Override public void setSubscriptionStatus(User user, boolean status)
-  {
+  @Override
+  public void setSubscriptionStatus(User user, boolean status) {
     users.findUserInList(user).setHasSubscription(status);
   }
 
-  @Override public void leaveReview(int review, Game game)
-  {
+  @Override
+  public void leaveReview(int review, Game game) {
     games.findGameInList(game).leaveReview(review);
   }
 
-  @Override public float getReview(Game game)
-  {
+  @Override
+  public float getReview(Game game) {
     return games.findGameInList(game).getReview();
   }
 
-  @Override public ArrayList<Game> getGamesRentedByUser(User user)
-  {
+  @Override
+  public ArrayList<Game> getGamesRentedByUser(User user) {
     // TODO: 2022. 05. 18. waiting for database
     return null;
   }
 
-  @Override public int getBalance(User user)
-  {
+  @Override
+  public int getBalance(User user) {
     return users.getBalance(user);
   }
 
-  @Override public void addTransaction(Transaction transaction)
-  {
+  @Override
+  public void addTransaction(Transaction transaction) {
     transactions.addTransaction(transaction);
   }
 
-  @Override public void returnGame(Game game, User user){
+  @Override
+  public void returnGame(Game game, User user) {
     games.findGameInList(game).returnGame();
-    new Transaction(game,"Return",user.getUsername());
+    new Transaction(game, "Return", user.getUsername());
   }
 
 }

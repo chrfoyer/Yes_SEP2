@@ -25,8 +25,7 @@ import java.util.Scanner;
 ██║░╚███║╚█████╔╝░░░░░░░░░░░██║░░░╚█████╔╝╚██████╔╝╚█████╔╝██║░░██║
 ╚═╝░░╚══╝░╚════╝░░░░░░░░░░░░╚═╝░░░░╚════╝░░╚═════╝░░╚════╝░╚═╝░░╚═╝
  */
-public class LoginVeiwController extends ViewController
-{
+public class LoginVeiwController extends ViewController {
   public TextField username;
   public TextField password;
   public Label errorLabel;
@@ -35,8 +34,8 @@ public class LoginVeiwController extends ViewController
   /**
    * initializes the variables and binds them
    */
-  @Override protected void init()
-  {
+  @Override
+  protected void init() {
     viewModel = getViewModelFactory().getLoginViewModel();
     username.textProperty().bindBidirectional(viewModel.getUsernameProperty());
     password.textProperty().bindBidirectional(viewModel.getPasswordProperty());
@@ -45,8 +44,7 @@ public class LoginVeiwController extends ViewController
     reset();
   }
 
-  public void reset()
-  {
+  public void reset() {
     viewModel.reset();
   }
 
@@ -54,8 +52,7 @@ public class LoginVeiwController extends ViewController
    * method for figuring out if user is admin and whether to open the admin view or the user profile view. It also
    * resets the viewmodel.
    */
-  public void login()
-  {
+  public void login() {
     // TODO: 2022. 05. 18. lev testing do not remove pls
     /*
     try
@@ -79,28 +76,21 @@ public class LoginVeiwController extends ViewController
       errorLabel.setText(e.getMessage());
     }
      */
-    
 
-    if (getViewModelFactory().getLoginViewModel().login())
-    {
-      if (CurrentlyLoggedUser.isAdmin())
-      {
+
+    if (getViewModelFactory().getLoginViewModel().login()) {
+      if (CurrentlyLoggedUser.isAdmin()) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-            "Are you sure you want to log in as an administrator?");
+                "Are you sure you want to log in as an administrator?");
 
-        //alert.showAndWait().filter(response->response.
-        /*
         Optional<ButtonType> option = alert.showAndWait();
-        if (option.get() == ButtonType.OK)
-        {
+        if (option.get() == ButtonType.OK) {
           getViewHandler().openView("AdminView.fxml");
           getViewModelFactory().getAdminViewModel().reset();
         }
-         */
 
-      }
-      else
-      {
+
+      } else {
         getViewHandler().openView("UserProfileView.fxml");
 
         getViewModelFactory().getLoginViewModel().reset();
@@ -112,8 +102,7 @@ public class LoginVeiwController extends ViewController
   /**
    * opens the signup view and resets the view model
    */
-  public void signup()
-  {
+  public void signup() {
     getViewHandler().openView("SignupView.fxml");
     getViewModelFactory().getLoginViewModel().reset();
   }
@@ -121,8 +110,7 @@ public class LoginVeiwController extends ViewController
   /**
    * logs the user in
    */
-  public void onEnter()
-  {
+  public void onEnter() {
     this.login();
   }
 }
