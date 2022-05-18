@@ -100,6 +100,18 @@ public class UserProfileViewModel
     }
   }
 
+  public void leaveReview(int review,SimpleGameViewModel game)
+  {
+    try
+    {
+      model.leaveReview(review,game.getGame());
+    }
+    catch (Exception e)
+    {
+      errorLabel.set(e.getMessage());
+    }
+  }
+
   /**
    * Logic for extending the selected game for 5 days
    *

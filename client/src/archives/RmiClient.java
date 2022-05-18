@@ -1,6 +1,7 @@
-package mediator;
+package archives;
 
 import Model.User;
+import mediator.RemoteModel;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -81,7 +82,7 @@ public class RmiClient {
       if (!server.containsGame(gameName))
         throw new IllegalArgumentException(
                 "The given game does not exist on the server");
-      server.rentGame(gameName);
+      //server.rentGame(gameName);
       System.out.println("Rented " + gameName);
     } catch (Exception ex) {
       ex.printStackTrace();

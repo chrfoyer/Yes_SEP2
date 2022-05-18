@@ -8,12 +8,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
 import java.rmi.RemoteException;
 
 // TODO: 12/05/2022 Delegation from the controller 
-public class BrowseViewModel {
+public class BrowseViewModel
+{
   private RemoteModel model;
   private StringProperty errorLabel;
   private ObjectProperty<SimpleGameViewModel> selectedGameProperty;
@@ -21,7 +23,8 @@ public class BrowseViewModel {
   // Need the list of games in an observable list
   // Need a property for the selected simple game view model
 
-  public BrowseViewModel(RemoteModel model) {
+  public BrowseViewModel(RemoteModel model)
+  {
     this.model = model;
     errorLabel = new SimpleStringProperty();
     selectedGameProperty = new SimpleObjectProperty<>();
@@ -34,7 +37,7 @@ public class BrowseViewModel {
     {
       e.printStackTrace();
     }
-    for (Game game: temp.getGamesArrayCopy())
+    for (Game game : temp.getGamesArrayCopy())
     {
       if (!game.isRented())
       {
@@ -43,23 +46,21 @@ public class BrowseViewModel {
     }
   }
 
-  public void reset() {
+  public void reset()
+  {
     data.clear();
-    GameList temp = null;
     try
     {
-      temp = model.viewGames();
-    }
-    catch (RemoteException e)
-    {
-      e.printStackTrace();
-    }
-    for (Game game: temp.getGamesArrayCopy())
-    {
-      if (!game.isRented())
+      GameList temp = model.viewGames();
+      for (Game game : temp.getAvailableGames())
       {
         data.add(new SimpleGameViewModel(game));
+        System.out.println(game.toString());
       }
+    }
+    catch (Exception e)
+    {
+      errorLabel.set(e.getMessage());
     }
     errorLabel.set("");
   }
@@ -74,15 +75,17 @@ public class BrowseViewModel {
     return errorLabel;
   }
 
-  public void rentGame(SimpleGameViewModel game) throws RemoteException
+  public void rentGame(Game game)
   {
-    if (game != null)
+    try
     {
-      model.rentGame(game.getGame());
-
-    }else
+      if (game == null)
+        throw new IllegalArgumentException("You must make a selection first!");
+      model.rentGame(game, CurrentlyLoggedUser.getLoggedInUser());
+    }
+    catch (Exception e)
     {
-      errorLabel.set("Game must be selected first!");
+      errorLabel.set(e.getMessage());
     }
   }
 

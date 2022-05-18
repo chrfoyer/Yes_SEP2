@@ -4,6 +4,7 @@ import Model.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import mediator.CurrentlyLoggedUser;
 import viewmodel.BrowseViewModel;
 import viewmodel.GameInfoViewModel;
 import viewmodel.SimpleGameViewModel;
@@ -48,9 +49,8 @@ public class BrowseViewController extends ViewController
     table.setItems(browseViewModel.getData());
     error.textProperty().bind(browseViewModel.getErrorLabel());
     // Sets the selected game in the game info view model
-    /*table.getSelectionModel().selectedItemProperty().addListener(
-        (obs, oldV, newV) -> browseViewModel.setSelectedGameProperty(newV));
-    ;*/
+    table.getSelectionModel().selectedItemProperty().addListener(
+        (obs, oldV, newV) -> gameInfoViewModel.setSelectedGameProperty(newV));
   }
 
   /**
@@ -89,20 +89,22 @@ public class BrowseViewController extends ViewController
    */
   public void rent() throws RemoteException
   {
-    // TODO: 11/05/2022 Confirmation window with name of game
-    SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
-    browseViewModel.rentGame(temp);
+    if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription())
+    {
+      // TODO: 11/05/2022 Confirmation window with name of game
+      SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
+      Game debug = temp.getGame();
 
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "" + temp.getNameProperty().get()
-            + " - " + temp.getTimeProperty().get());
-    alert.showAndWait();
+      browseViewModel.rentGame(debug);
+      browseViewModel.reset();
+    }
+    else
+    {
+      Alert alert = new Alert(Alert.AlertType.ERROR,
+          "You cannot rent games without an active subscription!");
+      alert.showAndWait();
+    }
 
-    Game debug=table.getSelectionModel().getSelectedItem().getGame();
-
-    getViewModelFactory().getUserProfileViewModel()
-        .rentGame(table.getSelectionModel().getSelectedItem());
-    browseViewModel.reset();
   }
 
   /**

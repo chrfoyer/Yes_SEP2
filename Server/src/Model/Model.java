@@ -21,9 +21,7 @@ public interface Model
 
   void decrementDay();
 
-  void rentGame(Game game);
-
-  void rentGame(String name);
+  void rentGame(Game game, User user);
 
   Game getGame(String name);
 
@@ -56,4 +54,10 @@ public interface Model
   void payForSubscription(User user);
 
   TransactionList getTransactionList();
+
+  void setSubscriptionStatus(User user,boolean status);
+
+  void leaveReview(int review, Game game);
+
+  float getReview(Game game);
 }

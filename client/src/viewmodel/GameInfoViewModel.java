@@ -19,6 +19,7 @@ public class GameInfoViewModel {
   private StringProperty esrb;
   private ObjectProperty<Boolean> rented;
   private StringProperty error;
+  private StringProperty review;
 
 
   public GameInfoViewModel(RemoteModel model) {
@@ -30,6 +31,7 @@ public class GameInfoViewModel {
     this.rented = new SimpleObjectProperty<>();
     this.console = new SimpleStringProperty();
     this.error = new SimpleStringProperty();
+    this.review = new SimpleStringProperty();
     selectedGameProperty = new SimpleObjectProperty<>();
   }
 
@@ -39,13 +41,14 @@ public class GameInfoViewModel {
 
   public void reset() {
     if (selectedGameProperty.get() != null) {
-      SimpleGameViewModel selectedGameViewModel = selectedGameProperty.get();
-      name = selectedGameViewModel.getNameProperty();
-      timeLeft = selectedGameViewModel.getTimeProperty();
-      producer = selectedGameViewModel.getProducer();
-      esrb = selectedGameViewModel.getEsrbProperty();
-      rented = selectedGameViewModel.getRentedProperty();
-      console = selectedGameViewModel.getConsole();
+      SimpleGameViewModel selected = selectedGameProperty.get();
+      name.set(selected.getNameProperty().get());
+      timeLeft.set(selected.getTimeProperty().get());
+      producer.set(selected.getProducer().get());
+      esrb.set(selected.getEsrbProperty().get());
+      rented.set(selected.getRentedProperty().get());
+      console.set(selected.getConsole().get());
+      review.set(selected.getReview().get()+"");
       error.set("");
     } else {
       name.set("");
@@ -54,6 +57,7 @@ public class GameInfoViewModel {
       esrb.set("");
       rented.set(null);
       console.set("");
+      review.set("");
       error.set("");
     }
   }
@@ -105,6 +109,10 @@ public class GameInfoViewModel {
   public StringProperty esrbProperty() {
     return esrb;
   }
+  public StringProperty reviewProperty() {
+    return review;
+  }
+
 
   public Boolean getRented() {
     return rented.get();

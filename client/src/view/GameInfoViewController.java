@@ -30,6 +30,7 @@ public class GameInfoViewController extends ViewController {
     // Bind rating
     console.textProperty().bindBidirectional(viewModel.consoleProperty());
     error.textProperty().bind(viewModel.errorProperty());
+    rating.textProperty().bind(viewModel.reviewProperty());
   }
 
   /**

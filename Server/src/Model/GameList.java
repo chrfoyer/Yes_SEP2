@@ -175,4 +175,14 @@ public class GameList implements Serializable {
       throw new IllegalArgumentException(
               "No game found on server that could be updated");
   }
+
+  public Game findGameInList(Game game)
+  {
+    for (Game temp : games)
+    {
+      if (game.equals(temp))
+        return temp;
+    }
+    throw new IllegalArgumentException("Game does not exist on the server!");
+  }
 }

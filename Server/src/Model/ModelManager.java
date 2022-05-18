@@ -94,7 +94,7 @@ public class ModelManager implements Model
    *
    * @param game to be rented
    */
-  @Override public void rentGame(Game game)
+  @Override public void rentGame(Game game,User user)
   {
     if (game == null)
     {
@@ -102,26 +102,10 @@ public class ModelManager implements Model
     }
     else
     {
-      game.rentGame();
-    }
-  }
+      games.findGameInList(game).rentGame();
+      new Transaction(game,"Rent",user.getUsername());
 
-  /**
-   * Renting game using its name
-   *
-   * @param name name of the game to be rented
-   */
-  @Override public void rentGame(String name)
-  {
-    if (name == null)
-    {
-      throw new IllegalArgumentException("Name cant be null");
     }
-    else
-    {
-      games.rentGame(name);
-    }
-
   }
 
   /**
@@ -239,6 +223,21 @@ public class ModelManager implements Model
   @Override public TransactionList getTransactionList()
   {
     return transactions;
+  }
+
+  @Override public void setSubscriptionStatus(User user, boolean status)
+  {
+    users.findUserInList(user).setHasSubscription(status);
+  }
+
+  @Override public void leaveReview(int review, Game game)
+  {
+    games.findGameInList(game).leaveReview(review);
+  }
+
+  @Override public float getReview(Game game)
+  {
+    return games.findGameInList(game).getReview();
   }
 
   @Override public int getBalance(User user)

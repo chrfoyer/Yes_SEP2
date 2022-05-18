@@ -3,6 +3,7 @@ package Model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  * The game is the object that is rented in the system. The attributes are currently just the name, but more attributes
@@ -17,9 +18,9 @@ public class Game implements Serializable {
   private String console;
   private boolean rented;
   private int daysLeft;
-  private float review;
   private String esrb;
   private LocalDate dateAdded;
+  private ArrayList<Integer>reviews;
 
   /**
    * constructor for game
@@ -30,21 +31,21 @@ public class Game implements Serializable {
    */
   public Game(String name, String producer, String console, String esrb) {
     if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T")
-            || esrb.equals("M") || esrb.equals("AO"))) {
+        || esrb.equals("M") || esrb.equals("AO"))) {
       throw new IllegalArgumentException("Unknown rating");
     }
     if (!(console.equals("PC") || console.equals("PlayStation")
-            || console.equals("Xbox") || console.equals("Nintendo"))) {
+        || console.equals("Xbox") || console.equals("Nintendo"))) {
       throw new IllegalArgumentException("Unknown console");
     }
     this.esrb = esrb;
-    this.review = 3;
     this.producer = producer;
     this.name = name;
     rented = false;
     daysLeft = 0;
     this.console = console;
     this.dateAdded = LocalDate.now();
+    this.reviews=new ArrayList<>();
   }
 
   /**
@@ -58,7 +59,7 @@ public class Game implements Serializable {
       return false;
     }
     Game game = (Game) obj;
-    return name.equals(game.getName()) && rented == game.isRented();
+    return name.equals(game.getName()) && rented == game.isRented() && producer.equals(game.getProducer()) && console.equals(game.getConsole());
   }
 
   /**
@@ -111,7 +112,7 @@ public class Game implements Serializable {
       }
     } else {
       throw new IllegalStateException(
-              "Game is not currently rented, so the days can't be decreased.");
+          "Game is not currently rented, so the days can't be decreased.");
     }
   }
 
@@ -137,7 +138,6 @@ public class Game implements Serializable {
     } else {
       this.rented = true;
       this.daysLeft = 14;
-      new Transaction(this, "Rent", "User");
     }
   }
 
@@ -147,7 +147,7 @@ public class Game implements Serializable {
   public void returnGame() {
     if (!rented) {
       throw new IllegalStateException(
-              "Game is not rented so it cannot be returned!");
+          "Game is not rented so it cannot be returned!");
     } else {
       this.rented = false;
       this.daysLeft = 0;
@@ -170,7 +170,13 @@ public class Game implements Serializable {
    * @return a decimal number review of the game
    */
   public float getReview() {
-    return review;
+    int temp=0;
+    for (int review:reviews
+    )
+    {
+      temp+=review;
+    }
+    return (float)temp/reviews.size();
   }
 
   /**
@@ -209,15 +215,6 @@ public class Game implements Serializable {
     this.esrb = esrb;
   }
 
-  /**
-   * Changes the review rating of the game to a new given production house
-   *
-   * @param review new review rating for the game
-   */
-  public void setReview(float review) {
-    this.review = review;
-  }
-
   public String getConsole() {
     return console;
   }
@@ -233,5 +230,10 @@ public class Game implements Serializable {
    */
   public LocalDate getDateAdded() {
     return dateAdded;
+  }
+
+  public void leaveReview(int review)
+  {
+    reviews.add(review);
   }
 }

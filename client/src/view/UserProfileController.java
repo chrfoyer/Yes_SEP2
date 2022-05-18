@@ -81,6 +81,46 @@ public class UserProfileController extends ViewController
   public void returnGame(ActionEvent actionEvent)
   {
     SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
+
+
+    Alert popup = new Alert(Alert.AlertType.INFORMATION,
+        "You will have an option to leave a review,please follow the next prompt!");
+    popup.showAndWait();
+
+    ButtonType oneStar = new ButtonType("1", ButtonBar.ButtonData.APPLY);
+    ButtonType twoStar = new ButtonType("2", ButtonBar.ButtonData.APPLY);
+    ButtonType threeStar = new ButtonType("3", ButtonBar.ButtonData.APPLY);
+    ButtonType fourStar = new ButtonType("4", ButtonBar.ButtonData.APPLY);
+    ButtonType fiveStar = new ButtonType("5", ButtonBar.ButtonData.APPLY);
+
+    int review = 0;
+    Alert reviewAlert = new Alert(Alert.AlertType.NONE,
+        "Leave your review by choosing the button!", oneStar, twoStar,
+        threeStar, fourStar, fiveStar);
+    Optional<ButtonType> reviewChoice = reviewAlert.showAndWait();
+    switch (reviewChoice.get().getText())
+    {
+      case "1":
+        review = 1;
+        break;
+      case "2":
+        review = 2;
+        break;
+
+      case "3":
+        review = 3;
+        break;
+
+      case "4":
+        review = 4;
+        break;
+
+      case "5":
+        review = 5;
+        break;
+    }
+    viewModel.leaveReview(review,selected);
+
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
         "Are you sure you want to return " + selected.getNameProperty().get()
             + "?");

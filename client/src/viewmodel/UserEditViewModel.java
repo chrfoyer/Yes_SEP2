@@ -2,10 +2,10 @@ package viewmodel;
 
 import Model.Game;
 import Model.User;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import Model.UserList;
+import javafx.beans.property.*;
+import jdk.jshell.spi.ExecutionControlProvider;
+import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
 import java.rmi.RemoteException;
@@ -23,7 +23,10 @@ public class UserEditViewModel
   private StringProperty emailProperty;
   private StringProperty confirmProperty;
   private StringProperty errorLabel;
+  private StringProperty balanceLabel;
+  private StringProperty fineRefundProperty;
   private ObjectProperty<SimpleUserViewModel> selectedUserProperty;
+  private StringProperty hasSubscriptionProperty;
 
   /**
    * ViewModel that connects Signup to the model
@@ -41,6 +44,9 @@ public class UserEditViewModel
     emailProperty = new SimpleStringProperty();
     confirmProperty = new SimpleStringProperty();
     errorLabel = new SimpleStringProperty();
+    balanceLabel = new SimpleStringProperty();
+    fineRefundProperty = new SimpleStringProperty();
+    hasSubscriptionProperty = new SimpleStringProperty();
     reset();
 
     selectedUserProperty = new SimpleObjectProperty<>();
@@ -116,6 +122,21 @@ public class UserEditViewModel
     return errorLabel;
   }
 
+  public StringProperty getBalanceLabel()
+  {
+    return balanceLabel;
+  }
+
+  public StringProperty getFineRefundProperty()
+  {
+    return fineRefundProperty;
+  }
+
+  public StringProperty getHasSubscriptionProperty()
+  {
+    return hasSubscriptionProperty;
+  }
+
   /**
    * Getter for property
    *
@@ -130,13 +151,33 @@ public class UserEditViewModel
   {
     try
     {
+      if (!passwordProperty.get().equals(confirmProperty.get()))
+        throw new IllegalArgumentException(
+            "Passwords and confirmation have to match!");
+      LocalDate dob = dobProperty.get();
+      Period age = Period.between(dob, LocalDate.now());
+      if (age.getYears() < 13)
+      {
+        dobProperty.set(null);
+        throw new IllegalArgumentException(
+            "User has to be at least 13 years old!");
+      }
+      if (usernameProperty.get().length() < 5)
+        throw new IllegalArgumentException(
+            "Username has to be at least 5 characters!");
+      if (passwordProperty.get().length() < 7)
+        throw new IllegalArgumentException(
+            "password has to be at least 7 characters!");
+      if (!emailProperty.get().contains("@"))
+        throw new IllegalArgumentException("Email not in correct format!");
+
       User oldUser = new User(selectedUserProperty.get().getUsername(),
           selectedUserProperty.get().getPassword(),
           selectedUserProperty.get().getEmail(),
           selectedUserProperty.get().getAddress(),
           selectedUserProperty.get().getName(),
           selectedUserProperty.get().getBday());
-     User newUser = selectedUserProperty.get().getUser();
+      User newUser = selectedUserProperty.get().getUser();
       newUser = selectedUserProperty.get().getUser();
       newUser.setUsername(usernameProperty.get());
       newUser.setAddress(addressProperty.get());
@@ -145,34 +186,8 @@ public class UserEditViewModel
       newUser.setPassword(passwordProperty.get());
       newUser.setAdmin(selectedUserProperty.get().isIsAdmin());
       newUser.setEmail(emailProperty.get());
-      newUser.setHasSubscription(selectedUserProperty.get().isHasSubscription());
-
-      try {
-        if (!passwordProperty.get().equals(confirmProperty.get()))
-          throw new IllegalArgumentException(
-              "Passwords and confirmation have to match!");
-        LocalDate dob = dobProperty.get();
-        Period age = Period.between(dob, LocalDate.now());
-        if (age.getYears() < 13) {
-          dobProperty.set(null);
-          throw new IllegalArgumentException(
-              "User has to be at least 13 years old!");
-        }
-        if (usernameProperty.get().length() < 5)
-          throw new IllegalArgumentException(
-              "Username has to be at least 5 characters!");
-        if (passwordProperty.get().length() < 7)
-          throw new IllegalArgumentException(
-              "password has to be at least 7 characters!");
-        if (!emailProperty.get().contains("@"))
-          throw new IllegalArgumentException("Email not in correct format!");
-        User user = new User(usernameProperty.get(), passwordProperty.get(),
-            emailProperty.get(), addressProperty.get(), nameProperty.get(),
-            dob);
-      } catch (Exception e) {
-        errorLabel.set(e.getMessage());
-      }
-
+      newUser.setHasSubscription(
+          selectedUserProperty.get().isHasSubscription());
 
       model.updateUserInfo(oldUser, newUser);
 
@@ -184,8 +199,9 @@ public class UserEditViewModel
     }
   }
 
-  public SimpleUserViewModel getUser(){
-          return selectedUserProperty.get();
+  public SimpleUserViewModel getUser()
+  {
+    return selectedUserProperty.get();
   }
 
   public void removeUser(User user) throws RemoteException
@@ -205,8 +221,10 @@ public class UserEditViewModel
    */
   public void reset()
   {
-    try {
-      if (selectedUserProperty == null) {
+    try
+    {
+      if (selectedUserProperty == null)
+      {
         usernameProperty.set("");
         passwordProperty.set("");
         nameProperty.set("");
@@ -215,7 +233,12 @@ public class UserEditViewModel
         emailProperty.set("");
         confirmProperty.set("");
         errorLabel.set("");
-      } else {
+        balanceLabel.set("");
+        fineRefundProperty.set("");
+        hasSubscriptionProperty.set("NO DATA");
+      }
+      else
+      {
         SimpleUserViewModel selectedUserViewModel = selectedUserProperty.get();
         usernameProperty.set(selectedUserViewModel.getUsername());
         passwordProperty.set(selectedUserViewModel.getPassword());
@@ -225,15 +248,64 @@ public class UserEditViewModel
         emailProperty.set(selectedUserViewModel.getEmail());
         confirmProperty.set("");
         errorLabel.set("");
+        balanceLabel.set(
+            selectedUserProperty.get().getUser().getBalance() + "");
+        fineRefundProperty.set("");
+        hasSubscriptionProperty.set(
+            selectedUserViewModel.isHasSubscription() ? "Yes" : "No");
       }
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       errorLabel.set(e.getMessage());
       e.printStackTrace();
     }
   }
 
-  public void setSelectedUserProperty(SimpleUserViewModel simp){
+  public void setSelectedUserProperty(SimpleUserViewModel simp)
+  {
     this.selectedUserProperty.set(simp);
+  }
+
+  /**
+   * Setting user balance, either increasing or decreasing
+   */
+  public void fineRefund()
+  {
+    try
+    {
+      model.modifyBalance(Integer.parseInt(fineRefundProperty.get()),
+          selectedUserProperty.get().getUser());
+    }
+    catch (Exception e)
+    {
+      errorLabel.set(e.getMessage());
+    }
+  }
+
+  /**
+   * Setting the user subscription to false;
+   */
+  public void revokeSubscription()
+  {
+    try
+    {
+      if (selectedUserProperty.get().getUser().hasSubscription())
+      {
+        model.setSubscription(selectedUserProperty.get().getUser(), false);
+      }
+      else
+      {
+        throw new IllegalStateException(
+            "User does not have a active subscription");
+      }
+    }
+    catch (Exception e)
+    {
+      errorLabel.set(e.getMessage());
+
+    }
+
   }
 
 }
