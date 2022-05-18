@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 
 import Model.*;
 
@@ -26,9 +27,10 @@ public class RmiServer implements RemoteModel {
    * @throws RemoteException       when there is an issue with the connection with the client
    * @throws MalformedURLException when stub is unsuccessfully created
    */
-  public RmiServer() throws RemoteException, MalformedURLException {
+  public RmiServer() throws RemoteException, MalformedURLException, SQLException {
     gameList = new GameList(); // to be deleted
     model = new ModelManager();
+    // TODO: 18/05/2022 Where do these exceptions go when I sleep at night?
     startServer();
   }
 

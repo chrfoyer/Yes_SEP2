@@ -1,4 +1,6 @@
-package Model;
+package databaseAdapters;
+
+import Model.Game;
 
 import java.sql.SQLException;
 

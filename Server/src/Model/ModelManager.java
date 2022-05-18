@@ -1,5 +1,9 @@
 package Model;
 
+import databaseAdapters.GameDAO;
+import databaseAdapters.GameImpl;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -13,11 +17,13 @@ public class ModelManager implements Model {
   private GameList games;
   private UserList users;
   private TransactionList transactions;
+  private GameDAO gameDAO;
 
-  public ModelManager() {
+  public ModelManager() throws SQLException {
     this.games = new GameList();
     this.users = new UserList();
     this.transactions = TransactionList.getInstance();
+    gameDAO = GameImpl.getInstance();
 
     //todo remove test
     users.addUser(new User("admin", "admin"));
@@ -45,8 +51,8 @@ public class ModelManager implements Model {
    * @param game is the Game to be added to the list
    */
   @Override
-  public void addGame(Game game) {
-    games.addGame(game);
+  public void addGame(Game game) throws SQLException {
+    games.addGame(game); // todo migrate to db
   }
 
   /**

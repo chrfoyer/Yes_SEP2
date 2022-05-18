@@ -8,6 +8,7 @@ import view.ViewHandler;
 import viewmodel.ViewModelFactory;
 
 import java.rmi.Naming;
+import java.sql.SQLException;
 
 public class MyApplication extends Application {
   public void start(Stage primaryStage) {
@@ -16,7 +17,8 @@ public class MyApplication extends Application {
       try {
         server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
         System.out.println("Stub pulled");
-      } catch (Exception ex) {
+      }
+      catch (Exception ex) {
         ex.printStackTrace();
         Alert alert = new Alert(Alert.AlertType.ERROR,
                 "Server connection not detected, please restart server");

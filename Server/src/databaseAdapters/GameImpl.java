@@ -1,4 +1,6 @@
-package Model;
+package databaseAdapters;
+
+import Model.Game;
 
 import java.sql.*;
 
@@ -58,6 +60,8 @@ public class GameImpl implements GameDAO {
       statement.setString(4, game.getEsrb());
       statement.executeUpdate();
       statement.close();
+
+      // todo update to read the highest id
     }
     return game;
   }

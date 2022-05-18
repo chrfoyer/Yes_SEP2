@@ -1,4 +1,4 @@
-package Model;
+package databaseAdapters;
 
 public class DBKey {
   public static String username = "postgres";
