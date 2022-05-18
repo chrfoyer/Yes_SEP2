@@ -59,7 +59,7 @@ public class Game implements Serializable {
       return false;
     }
     Game game = (Game) obj;
-    return name.equals(game.getName()) && rented == game.isRented();
+    return name.equals(game.getName()) && rented == game.isRented() && producer.equals(game.getProducer()) && console.equals(game.getConsole());
   }
 
   /**
@@ -138,7 +138,6 @@ public class Game implements Serializable {
     } else {
       this.rented = true;
       this.daysLeft = 14;
-      new Transaction(this, "Rent", "User");
     }
   }
 
@@ -215,12 +214,6 @@ public class Game implements Serializable {
   public void setEsrb(String esrb) {
     this.esrb = esrb;
   }
-
-  /**
-   * Changes the review rating of the game to a new given production house
-   *
-   * @param review new review rating for the game
-   */
 
   public String getConsole() {
     return console;

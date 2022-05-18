@@ -71,23 +71,13 @@ public class RmiServer implements RemoteModel
    *
    * @param game game to be rented
    */
-  @Override public void rentGame(Game game)
+  @Override public void rentGame(Game game, User user)
   {
     if (game == null)
       throw new IllegalArgumentException("Game to rent cant be null");
-    model.rentGame(game);
+    model.rentGame(game,user);
   }
 
-  /**
-   * Rents a game using its name
-   *
-   * @param name name of the game to be rented
-   * @throws RemoteException when there is an issue with the connection with the client
-   */
-  @Override public void rentGame(String name) throws RemoteException
-  {
-    model.rentGame(name);
-  }
 
   /**
    * Returns all the games in the system

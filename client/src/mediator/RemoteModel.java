@@ -13,9 +13,7 @@ import java.rmi.RemoteException;
  */
 public interface RemoteModel extends Remote
 {
-  void rentGame(Game game) throws RemoteException;
-
-  void rentGame(String name) throws RemoteException;
+  void rentGame(Game game,User user) throws RemoteException;
 
   Game getGame(String name) throws RemoteException;
 

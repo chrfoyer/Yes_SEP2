@@ -93,17 +93,9 @@ public class BrowseViewController extends ViewController
     {
       // TODO: 11/05/2022 Confirmation window with name of game
       SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
-      browseViewModel.rentGame(temp);
+      Game debug = temp.getGame();
 
-      Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-          "" + temp.getNameProperty().get() + " - " + temp.getTimeProperty()
-              .get());
-      alert.showAndWait();
-
-      Game debug = table.getSelectionModel().getSelectedItem().getGame();
-
-      getViewModelFactory().getUserProfileViewModel()
-          .rentGame(table.getSelectionModel().getSelectedItem());
+      browseViewModel.rentGame(debug);
       browseViewModel.reset();
     }
     else

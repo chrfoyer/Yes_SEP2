@@ -21,9 +21,7 @@ public interface Model
 
   void decrementDay();
 
-  void rentGame(Game game);
-
-  void rentGame(String name);
+  void rentGame(Game game, User user);
 
   Game getGame(String name);
 

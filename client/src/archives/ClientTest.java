@@ -1,9 +1,7 @@
-package mediator;
+package archives;
 
 import java.rmi.RemoteException;
 import java.util.Scanner;
-
-import Model.Game;
 
 /**
  * Kill me please
