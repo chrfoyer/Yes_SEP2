@@ -9,8 +9,7 @@ import viewmodel.TransactionViewModel;
 
 import java.time.LocalDate;
 
-public class TransactionController extends ViewController
-{
+public class TransactionController extends ViewController {
   public TableView<SimpleTransactionViewModel> table;
   public TableColumn<SimpleTransactionViewModel, Double> amountColumn;
   public TableColumn<SimpleTransactionViewModel, String> userColumn;
@@ -19,16 +18,16 @@ public class TransactionController extends ViewController
   public Label error;
   private TransactionViewModel viewModel;
 
-  @Override protected void init()
-  {
+  @Override
+  protected void init() {
     amountColumn.setCellValueFactory(
-        cellData -> cellData.getValue().amountProperty());
+            cellData -> cellData.getValue().amountProperty());
     userColumn.setCellValueFactory(
-        cellData -> cellData.getValue().userProperty());
+            cellData -> cellData.getValue().userProperty());
     typeColumn.setCellValueFactory(
-        cellData -> cellData.getValue().typeProperty());
+            cellData -> cellData.getValue().typeProperty());
     dateColumn.setCellValueFactory(
-        cellData -> cellData.getValue().dateProperty().asString());
+            cellData -> cellData.getValue().dateProperty().asString());
     viewModel = getViewModelFactory().getTransactionViewModel();
 
     table.setItems(viewModel.getData());
@@ -37,8 +36,7 @@ public class TransactionController extends ViewController
 
   }
 
-  public void back(ActionEvent actionEvent)
-  {
+  public void back(ActionEvent actionEvent) {
     getViewHandler().openView("AdminView.fxml");
   }
 }

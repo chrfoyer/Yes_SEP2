@@ -7,13 +7,11 @@ import viewmodel.LoginViewModel;
 import java.rmi.RemoteException;
 
 /**
- * Class to track the currently logged-in user with static variables
- * also has ""callback"" functionalities
+ * Class to track the currently logged-in user with static variables also has ""callback"" functionalities
  *
  * @author Raedrim
  */
-public class CurrentlyLoggedUser
-{
+public class CurrentlyLoggedUser {
   static User loggedInUser = null;
   static RemoteModel model = null;
 
@@ -21,10 +19,9 @@ public class CurrentlyLoggedUser
    * Sets the loggedInUser field to the given user
    *
    * @param user the user that you want to log-in
-   * @exception RemoteException if something goes wrong server
+   * @throws RemoteException if something goes wrong server
    */
-  public static void login(User user) throws RemoteException
-  {
+  public static void login(User user) throws RemoteException {
     UserList userList = model.getUserList();
     loggedInUser = userList.findUserInList(user);
   }
@@ -34,16 +31,14 @@ public class CurrentlyLoggedUser
    *
    * @param model is the server
    */
-  public static void setModel(RemoteModel model)
-  {
+  public static void setModel(RemoteModel model) {
     CurrentlyLoggedUser.model = model;
   }
 
   /**
    * Sets loggedInUser to null
    */
-  public static void logout()
-  {
+  public static void logout() {
     loggedInUser = null;
   }
 
@@ -52,8 +47,7 @@ public class CurrentlyLoggedUser
    *
    * @return User
    */
-  public static User getLoggedInUser()
-  {
+  public static User getLoggedInUser() {
     return loggedInUser;
   }
 
@@ -62,8 +56,7 @@ public class CurrentlyLoggedUser
    *
    * @return boolean
    */
-  public static boolean isAdmin()
-  {
+  public static boolean isAdmin() {
     updateInfoWithServer();
     return loggedInUser.isAdmin();
 
@@ -71,19 +64,15 @@ public class CurrentlyLoggedUser
 
   /**
    * Updates the user with the one on serverside
-   * @implNote  ALWAYS CALL AFTER FINISHING METHODS
-   * @hidden  basically a git push lmao
    *
-   * @exception  java.rmi.RemoteException if the stars hate you
+   * @throws java.rmi.RemoteException if the stars hate you
+   * @implNote ALWAYS CALL AFTER FINISHING METHODS
+   * @hidden basically a git push lmao
    */
-  public static void updateInfoWithServer()
-  {
-    try
-    {
+  public static void updateInfoWithServer() {
+    try {
       loggedInUser = model.getUserList().findUserInList(loggedInUser);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }

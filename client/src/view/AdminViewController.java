@@ -83,13 +83,11 @@ public class AdminViewController extends ViewController {
     getViewHandler().openView("InventoryView.fxml");
   }
 
-  public void logout(ActionEvent actionEvent)
-  {
+  public void logout(ActionEvent actionEvent) {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "Are you sure you want to log out?");
+            "Are you sure you want to log out?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK)
-    {
+    if (option.get() == ButtonType.OK) {
       getViewHandler().openView("LoginView.fxml");
       CurrentlyLoggedUser.logout();
     }

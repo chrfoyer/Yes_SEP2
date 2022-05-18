@@ -17,6 +17,5 @@ public class Simp_Test {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
   }
 }

@@ -1,18 +1,20 @@
+package Model;
+
 import java.sql.*;
 
-public class GameDAO_Impl implements GameDAO {
-  private static GameDAO_Impl instance;
+public class GameImpl implements GameDAO {
+  private static GameImpl instance;
   private static Object lock = new Object();
 
-  private GameDAO_Impl() throws SQLException {
+  private GameImpl() throws SQLException {
     DriverManager.registerDriver(new org.postgresql.Driver());
   }
 
-  public static GameDAO_Impl getInstance() throws SQLException {
+  public static GameImpl getInstance() throws SQLException {
     if (instance == null) {
       synchronized (lock) {
         if (instance == null) {
-          instance = new GameDAO_Impl();
+          instance = new GameImpl();
         }
       }
     }
@@ -103,9 +105,10 @@ public class GameDAO_Impl implements GameDAO {
 
   }
 
+  // TEST
   public static void main(String[] args) {
     try {
-      GameDAO_Impl testThing = GameDAO_Impl.getInstance();
+      GameImpl testThing = GameImpl.getInstance();
       testThing.create("Cod", "Activision", "Xbox", "E");
       testThing.create("Battlefield", "Dice", "PlayStation", "M");
       testThing.create("Rust", "FacePunch", "PC", "M");

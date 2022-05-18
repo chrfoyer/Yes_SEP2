@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @version 0.2 5/5/22
  */
 public class Game implements Serializable {
+  private int id;
   private String name;
   private String producer;
   private String console;
@@ -20,7 +21,7 @@ public class Game implements Serializable {
   private int daysLeft;
   private String esrb;
   private LocalDate dateAdded;
-  private ArrayList<Integer>reviews;
+  private ArrayList<Integer> reviews;
 
   /**
    * constructor for game
@@ -31,13 +32,14 @@ public class Game implements Serializable {
    */
   public Game(String name, String producer, String console, String esrb) {
     if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T")
-        || esrb.equals("M") || esrb.equals("AO"))) {
+            || esrb.equals("M") || esrb.equals("AO"))) {
       throw new IllegalArgumentException("Unknown rating");
     }
     if (!(console.equals("PC") || console.equals("PlayStation")
-        || console.equals("Xbox") || console.equals("Nintendo"))) {
+            || console.equals("Xbox") || console.equals("Nintendo"))) {
       throw new IllegalArgumentException("Unknown console");
     }
+    id = 0;
     this.esrb = esrb;
     this.producer = producer;
     this.name = name;
@@ -45,7 +47,7 @@ public class Game implements Serializable {
     daysLeft = 0;
     this.console = console;
     this.dateAdded = LocalDate.now();
-    this.reviews=new ArrayList<>();
+    this.reviews = new ArrayList<>();
   }
 
   /**
@@ -112,7 +114,7 @@ public class Game implements Serializable {
       }
     } else {
       throw new IllegalStateException(
-          "Game is not currently rented, so the days can't be decreased.");
+              "Game is not currently rented, so the days can't be decreased.");
     }
   }
 
@@ -147,7 +149,7 @@ public class Game implements Serializable {
   public void returnGame() {
     if (!rented) {
       throw new IllegalStateException(
-          "Game is not rented so it cannot be returned!");
+              "Game is not rented so it cannot be returned!");
     } else {
       this.rented = false;
       this.daysLeft = 0;
@@ -170,13 +172,12 @@ public class Game implements Serializable {
    * @return a decimal number review of the game
    */
   public float getReview() {
-    int temp=0;
-    for (int review:reviews
-    )
-    {
-      temp+=review;
+    int temp = 0;
+    for (int review : reviews
+    ) {
+      temp += review;
     }
-    return (float)temp/reviews.size();
+    return (float) temp / reviews.size();
   }
 
   /**
@@ -232,8 +233,7 @@ public class Game implements Serializable {
     return dateAdded;
   }
 
-  public void leaveReview(int review)
-  {
+  public void leaveReview(int review) {
     reviews.add(review);
   }
 }

@@ -7,8 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 //a class that creates a list of transactions
-public class TransactionList implements Serializable
-{
+public class TransactionList implements Serializable {
 
   private ArrayList<Transaction> transactions;
   private static TransactionList instance;
@@ -17,8 +16,7 @@ public class TransactionList implements Serializable
   /**
    * constructor creating a arrayList of transaction type
    */
-  private TransactionList()
-  {
+  private TransactionList() {
     transactions = new ArrayList<>();
   }
 
@@ -27,8 +25,7 @@ public class TransactionList implements Serializable
    *
    * @return returns arrayList of transaction type
    */
-  public ArrayList<Transaction> getTransactions()
-  {
+  public ArrayList<Transaction> getTransactions() {
     return transactions;
   }
 
@@ -37,8 +34,7 @@ public class TransactionList implements Serializable
    *
    * @param transaction transaction to be added
    */
-  public synchronized void addTransaction(Transaction transaction)
-  {
+  public synchronized void addTransaction(Transaction transaction) {
     transactions.add(transaction);
   }
 
@@ -47,8 +43,7 @@ public class TransactionList implements Serializable
    *
    * @param transaction transaction to be removed
    */
-  public synchronized void removeTransaction(Transaction transaction)
-  {
+  public synchronized void removeTransaction(Transaction transaction) {
     transactions.remove(transaction);
   }
 
@@ -57,14 +52,10 @@ public class TransactionList implements Serializable
    *
    * @return returns instance of transactionlist
    */
-  public static TransactionList getInstance()
-  {
-    if (instance == null)
-    {
-      synchronized (lock)
-      {
-        if (instance == null)
-        {
+  public static TransactionList getInstance() {
+    if (instance == null) {
+      synchronized (lock) {
+        if (instance == null) {
           instance = new TransactionList();
         }
       }
@@ -72,25 +63,21 @@ public class TransactionList implements Serializable
     return instance;
   }
 
-  public int getSize()
-  {
+  public int getSize() {
     return transactions.size();
   }
 
-  public static void writeTransactions(TransactionList list)
-  {
+  public static void writeTransactions(TransactionList list) {
 
     File file = new File("Transactions.xml");
-    try
-    {
+    try {
       PrintWriter out = new PrintWriter(file);
 
       String xml = "";
       xml +=
-          "<?xml version=\"1.0\" encoding=\"UTF-8\"" + "standalone=\"no\"?>\n";
+              "<?xml version=\"1.0\" encoding=\"UTF-8\"" + "standalone=\"no\"?>\n";
       ArrayList<Transaction> transactions = list.getList();
-      for (int i = 0; i < list.getSize(); i++)
-      {
+      for (int i = 0; i < list.getSize(); i++) {
         xml += "\n<Transaction>";
         xml += "\n    <Amount>" + transactions.get(i).getAmount() + "</Amount>";
         xml += "\n    <User>" + transactions.get(i).getUser() + "</User>";
@@ -102,15 +89,12 @@ public class TransactionList implements Serializable
       out.println(xml);
       out.close();
 
-    }
-    catch (FileNotFoundException e)
-    {
+    } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
   }
 
-  public ArrayList<Transaction> getList()
-  {
+  public ArrayList<Transaction> getList() {
     return transactions;
   }
 }

@@ -66,17 +66,13 @@ public class UserListViewModel {
     return error.get();
   }
 
-  public void removeUser() throws RemoteException
-  {
-    try
-    {
-      if (selectedUser.get().getUser().getUsername().equals(CurrentlyLoggedUser.getLoggedInUser().getUsername()))
-      {
+  public void removeUser() throws RemoteException {
+    try {
+      if (selectedUser.get().getUser().getUsername().equals(CurrentlyLoggedUser.getLoggedInUser().getUsername())) {
         throw new IllegalArgumentException("Congratulations you played yourself");
       }
       model.removeUser(selectedUser.get().getUser());
-    }catch (Exception ex)
-    {
+    } catch (Exception ex) {
       error.set(ex.getMessage());
     }
 

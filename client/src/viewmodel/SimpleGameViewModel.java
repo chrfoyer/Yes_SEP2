@@ -69,12 +69,11 @@ public class SimpleGameViewModel {
     return dateAdded;
   }
 
-  public void rent()
-  {
+  public void rent() {
     game.rentGame();
   }
 
-  public ObjectProperty<Float> getReview(){
+  public ObjectProperty<Float> getReview() {
     return review;
   }
 }
