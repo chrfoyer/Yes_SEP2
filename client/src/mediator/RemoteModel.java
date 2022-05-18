@@ -51,4 +51,8 @@ public interface RemoteModel extends Remote
 
   TransactionList getTransactionList() throws RemoteException;
 
+  void leaveReview(int review, Game game) throws RemoteException;
+
+  float getReview(Game game) throws RemoteException;
+
 }

@@ -201,6 +201,16 @@ public class RmiServer implements RemoteModel
     return model.getTransactionList();
   }
 
+  @Override public void leaveReview(int review, Game game) throws RemoteException
+  {
+    model.leaveReview(review,game);
+  }
+
+  @Override public float getReview(Game game) throws RemoteException
+  {
+    return model.getReview(game);
+  }
+
   @Override public int getBalance(User user) throws RemoteException
   {
     return model.getBalance(user);

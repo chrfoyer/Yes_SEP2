@@ -15,6 +15,7 @@ public class SimpleGameViewModel {
   private ObjectProperty<Boolean> rented;
   private ObjectProperty<LocalDate> dateAdded;
   private Game game;
+  private ObjectProperty<Float> review;
 
   public SimpleGameViewModel(Game game) {
     this.name = new SimpleStringProperty(game.getName());
@@ -24,6 +25,7 @@ public class SimpleGameViewModel {
     this.rented = new SimpleObjectProperty<>(game.isRented());
     this.console = new SimpleStringProperty(game.getConsole());
     this.dateAdded = new SimpleObjectProperty<>(game.getDateAdded());
+    this.review = new SimpleObjectProperty(game.getReview());
     this.game = game;
   }
 
@@ -70,5 +72,9 @@ public class SimpleGameViewModel {
   public void rent()
   {
     game.rentGame();
+  }
+
+  public ObjectProperty<Float> getReview(){
+    return review;
   }
 }

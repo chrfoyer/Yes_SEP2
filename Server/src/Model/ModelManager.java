@@ -246,6 +246,16 @@ public class ModelManager implements Model
     users.findUserInList(user).setHasSubscription(status);
   }
 
+  @Override public void leaveReview(int review, Game game)
+  {
+    games.findGameInList(game).leaveReview(review);
+  }
+
+  @Override public float getReview(Game game)
+  {
+    return games.findGameInList(game).getReview();
+  }
+
   @Override public int getBalance(User user)
   {
     return users.getBalance(user);

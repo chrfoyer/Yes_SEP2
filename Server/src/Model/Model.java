@@ -58,4 +58,8 @@ public interface Model
   TransactionList getTransactionList();
 
   void setSubscriptionStatus(User user,boolean status);
+
+  void leaveReview(int review, Game game);
+
+  float getReview(Game game);
 }
