@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="413.0" prefWidth="852.0" style="-fx-border-color: #999999; -fx-border-width: 7;"
-      xmlns="http://javafx.com/javafx/17" fx:controller="view.InventoryViewController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
+      minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="413.0" prefWidth="852.0"
+      style="-fx-border-color: #999999; -fx-border-width: 7;"
+      xmlns="http://javafx.com/javafx/17"
+      fx:controller="view.InventoryViewController">
     <children>
-        <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
+        <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0"
+              style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label style="-fx-font-weight: bold;" text="Inventory" textFill="#c1c1c1">
+                <Label style="-fx-font-weight: bold;" text="Inventory"
+                       textFill="#c1c1c1">
                     <font>
                         <Font size="36.0"/>
                     </font>
@@ -30,42 +29,67 @@
                             <children>
                                 <VBox prefHeight="287.0" prefWidth="704.0">
                                     <children>
-                                        <ScrollPane prefHeight="287.0" prefWidth="1051.0">
+                                        <ScrollPane prefHeight="287.0"
+                                                    prefWidth="1051.0">
                                             <content>
-                                                <TableView fx:id="table" prefHeight="283.0" prefWidth="705.0">
+                                                <TableView fx:id="table"
+                                                           prefHeight="283.0"
+                                                           prefWidth="705.0">
                                                     <columns>
-                                                        <TableColumn fx:id="nameColumn" prefWidth="185.0" text="Name"/>
-                                                        <TableColumn fx:id="rentedColumn" prefWidth="78.0"
-                                                                     text="Rented"/>
-                                                        <TableColumn fx:id="consoleColumn"
-                                                                     prefWidth="101.99993896484375" text="Console"/>
-                                                        <TableColumn fx:id="esrbColumn" prefWidth="50.0" text="ESRB"/>
-                                                        <TableColumn fx:id="producerColumn"
-                                                                     prefWidth="130.00003051757812" text="Producer"/>
-                                                        <TableColumn fx:id="dateAddedColumn" prefWidth="142.0"
-                                                                     text="DateAdded"/>
+                                                        <TableColumn
+                                                                fx:id="nameColumn"
+                                                                prefWidth="185.0"
+                                                                text="Name"/>
+                                                        <TableColumn
+                                                                fx:id="rentedColumn"
+                                                                prefWidth="78.0"
+                                                                text="Rented"/>
+                                                        <TableColumn
+                                                                fx:id="consoleColumn"
+                                                                prefWidth="101.99993896484375"
+                                                                text="Console"/>
+                                                        <TableColumn
+                                                                fx:id="esrbColumn"
+                                                                prefWidth="50.0"
+                                                                text="ESRB"/>
+                                                        <TableColumn
+                                                                fx:id="producerColumn"
+                                                                prefWidth="130.00003051757812"
+                                                                text="Producer"/>
+                                                        <TableColumn
+                                                                fx:id="dateAddedColumn"
+                                                                prefWidth="142.0"
+                                                                text="DateAdded"/>
                                                     </columns>
                                                 </TableView>
                                             </content>
                                         </ScrollPane>
                                     </children>
                                 </VBox>
-                                <VBox alignment="CENTER" prefHeight="287.0" prefWidth="134.0" spacing="40.0">
+                                <VBox alignment="CENTER" prefHeight="287.0"
+                                      prefWidth="134.0" spacing="40.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#cancel" prefWidth="90.0"
+                                        <Button mnemonicParsing="false"
+                                                onAction="#cancel"
+                                                prefWidth="90.0"
                                                 text="Cancel">
                                             <font>
                                                 <Font size="18.0"/>
                                             </font>
                                         </Button>
-                                        <Button mnemonicParsing="false" onAction="#remove" prefWidth="90.0"
+                                        <Button mnemonicParsing="false"
+                                                onAction="#remove"
+                                                prefWidth="90.0"
                                                 text="Remove">
                                             <font>
                                                 <Font size="18.0"/>
                                             </font>
                                         </Button>
-                                        <Button mnemonicParsing="false" onAction="#addEdit" prefHeight="39.0"
-                                                prefWidth="100.0" text="Add/Edit">
+                                        <Button mnemonicParsing="false"
+                                                onAction="#addEdit"
+                                                prefHeight="39.0"
+                                                prefWidth="100.0"
+                                                text="Add/Edit">
                                             <font>
                                                 <Font size="18.0"/>
                                             </font>
@@ -78,9 +102,11 @@
                 </VBox>
             </children>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
+        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0"
+              style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR" textFill="RED"/>
+                <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR"
+                       textFill="RED"/>
             </children>
         </HBox>
     </children>

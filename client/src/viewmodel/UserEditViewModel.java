@@ -1,11 +1,10 @@
 package viewmodel;
 
-import Model.Game;
 import Model.User;
-import Model.UserList;
-import javafx.beans.property.*;
-import jdk.jshell.spi.ExecutionControlProvider;
-import mediator.CurrentlyLoggedUser;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import mediator.RemoteModel;
 
 import java.rmi.RemoteException;

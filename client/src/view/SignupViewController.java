@@ -6,7 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import viewmodel.SignupViewModel;
 
-public class SignupViewController extends ViewController {
+public class SignupViewController extends ViewController
+{
   public TextField fullName;
   public DatePicker dob;    // TODO: 11.5.2022. HOW TO BIND THIS SHIT!!! 
   public TextField address;
@@ -20,29 +21,23 @@ public class SignupViewController extends ViewController {
   /**
    * initializes all the variables and binds them
    */
-  @Override
-  protected void init() {
+  @Override protected void init()
+  {
     viewModel = getViewModelFactory().getSignupViewModel();
-    fullName.textProperty().bindBidirectional(
-            viewModel.getNameProperty());
-    address.textProperty().bindBidirectional(
-            viewModel.getAddressProperty());
-    email.textProperty().bindBidirectional(
-            viewModel.getEmailProperty());
-    username.textProperty().bindBidirectional(
-            viewModel.getUsernameProperty());
-    password.textProperty().bindBidirectional(
-            viewModel.getPasswordProperty());
-    confirmPassword.textProperty().bindBidirectional(
-            viewModel.getConfirmProperty());
-    error.textProperty()
-            .bind(viewModel.getErrorLabel());
+    fullName.textProperty().bindBidirectional(viewModel.getNameProperty());
+    address.textProperty().bindBidirectional(viewModel.getAddressProperty());
+    email.textProperty().bindBidirectional(viewModel.getEmailProperty());
+    username.textProperty().bindBidirectional(viewModel.getUsernameProperty());
+    password.textProperty().bindBidirectional(viewModel.getPasswordProperty());
+    confirmPassword.textProperty()
+        .bindBidirectional(viewModel.getConfirmProperty());
+    error.textProperty().bind(viewModel.getErrorLabel());
     reset();
-    dob.valueProperty()
-            .bindBidirectional(viewModel.getDobProperty());
+    dob.valueProperty().bindBidirectional(viewModel.getDobProperty());
   }
 
-  public void reset() {
+  public void reset()
+  {
     viewModel.reset();
   }
 
@@ -51,8 +46,10 @@ public class SignupViewController extends ViewController {
    *
    * @param actionEvent when clicking the signup button
    */
-  public void signup(ActionEvent actionEvent) {
-    if (getViewModelFactory().getSignupViewModel().signup()) {
+  public void signup(ActionEvent actionEvent)
+  {
+    if (getViewModelFactory().getSignupViewModel().signup())
+    {
       getViewHandler().openView("LoginView.fxml");
       getViewModelFactory().getSignupViewModel().reset();
     }
@@ -64,7 +61,8 @@ public class SignupViewController extends ViewController {
    *
    * @param actionEvent button for canceling signupview
    */
-  public void cancel(ActionEvent actionEvent) {
+  public void cancel(ActionEvent actionEvent)
+  {
     getViewHandler().openView("LoginView.fxml");
     getViewModelFactory().getSignupViewModel().reset();
   }

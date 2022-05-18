@@ -1,7 +1,6 @@
 package Model;
 
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -10,13 +9,15 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
-public class GameList implements Serializable {
-  private final ArrayList<Game> games;
+public class GameList implements Serializable
+{
+  private ArrayList<Game> games;
 
   /**
    * constructor that initializes arraylist
    */
-  public GameList() throws SQLException {
+  public GameList()
+  {
     games = new ArrayList<>();
   }
 
@@ -24,15 +25,19 @@ public class GameList implements Serializable {
    * @param game Game object
    * @return returns the game that you search for
    */
-  public Game getGame(Game game) {
+  public Game getGame(Game game)
+  {
     if (game == null)
       throw new IllegalArgumentException("Cant find an empty game");
 
     if (!games.contains(game))
       System.out.println("game not found");
-    else {
-      for (int i = 0; i < games.size(); i++) {
-        if (games.get(i).equals(game)) {
+    else
+    {
+      for (int i = 0; i < games.size(); i++)
+      {
+        if (games.get(i).equals(game))
+        {
           return games.get(i);
         }
       }
@@ -46,9 +51,12 @@ public class GameList implements Serializable {
    * @param name The string name of the game
    * @return The game object with the same name as the parameter
    */
-  public Game getGame(String name) {
-    for (int i = 0; i < games.size(); i++) {
-      if (games.get(i).getName().equals(name)) {
+  public Game getGame(String name)
+  {
+    for (int i = 0; i < games.size(); i++)
+    {
+      if (games.get(i).getName().equals(name))
+      {
         System.out.println(games.get(i));
         return games.get(i);
       }
@@ -61,7 +69,8 @@ public class GameList implements Serializable {
    *
    * @return list of all the games in the game arraylist
    */
-  public ArrayList<Game> getGamesArrayCopy() {
+  public ArrayList<Game> getGamesArrayCopy()
+  {
     return games;
   }
 
@@ -70,10 +79,10 @@ public class GameList implements Serializable {
    *
    * @param game to be added to arraylist
    */
-  public void addGame(Game game) throws SQLException {
+  public void addGame(Game game)
+  {
     if (game == null)
       throw new IllegalArgumentException("Game cant be null");
-    //games.addAll(new ArrayList<Game>()); // fill with read for array list of games
     games.add(game);
   }
 
@@ -82,22 +91,24 @@ public class GameList implements Serializable {
    *
    * @param game to be removed from list
    */
-  public void removeGame(Game game) {
+  public void removeGame(Game game)
+  {
     if (game == null)
       throw new IllegalArgumentException("Game to be removed cant be null");
     games.remove(game);
   }
-
-  // TODO: 18/05/2022 Refresh list
 
   /**
    * Removes a game from arraylist
    *
    * @param name to be removed from list
    */
-  public void removeGame(String name) {
-    for (int i = 0; i < games.size(); i++) {
-      if (games.get(i).getName().equals(name)) {
+  public void removeGame(String name)
+  {
+    for (int i = 0; i < games.size(); i++)
+    {
+      if (games.get(i).getName().equals(name))
+      {
         games.remove(i);
         break;
       }
@@ -109,9 +120,11 @@ public class GameList implements Serializable {
    *
    * @return returns an arrayList of games
    */
-  public ArrayList<Game> getAvailableGames() {
+  public ArrayList<Game> getAvailableGames()
+  {
     ArrayList<Game> ret = new ArrayList<>();
-    for (Game game : games) {
+    for (Game game : games)
+    {
       if (!game.isRented())
         ret.add(game);
     }
@@ -121,56 +134,62 @@ public class GameList implements Serializable {
   /**
    * Decrements the days left in all games that are rented within the list.
    */
-  public void decrementDayForRented() {
-    for (int i = 0; i < games.size(); i++) {
-      if (games.get(i).isRented()) {
+  public void decrementDayForRented()
+  {
+    for (int i = 0; i < games.size(); i++)
+    {
+      if (games.get(i).isRented())
+      {
         games.get(i).decrementDaysLeft();
       }
     }
   }
 
-
   /**
    * Rents a game using its name
    *
    * @param name game to be rented
-   */ /* DEPRECATED
-  public void rentGame(String name) {
+   */
+  public void rentGame(String name)
+  {
     Game rentTemp = getGame(name);
     removeGame(name);
     rentTemp.rentGame();
     addGame(rentTemp);
   }
 
-  */
-
   /**
    * Returns a string containing the attributes of the game. If the game is not rented, the days left will not appear.
    *
    * @return The string with the information about the game object.
    */
-  @Override
-  public String toString() {
+  @Override public String toString()
+  {
 
     String ret = "";
 
-    for (Game game : games) {
+    for (Game game : games)
+    {
       ret += "Game -> " + game.getName() + " : " + game.getProducer() + " : "
-              + game.getEsrb() + " : Rented: " + game.isRented() + "\n";
-      if (game.isRented()) {
+          + game.getEsrb() + " : Rented: " + game.isRented() + "\n";
+      if (game.isRented())
+      {
         ret += game.getDaysLeft() + " days left\n";
       }
     }
     return ret;
   }
 
-  public void updateGameInfo(Game gameOld, Game gameNew) {
+  public void updateGameInfo(Game gameOld, Game gameNew)
+  {
     boolean foundOld = false;
-    for (Game game : games) {
-      if (gameOld.equals(game)) {
+    for (Game game : games)
+    {
+      if (gameOld.equals(game))
+      {
         if (game.isRented())
           throw new IllegalStateException(
-                  "Game is rented, changing of information is not allowed!");
+              "Game is rented, changing of information is not allowed!");
         game.setName(gameNew.getName());
         game.setEsrb(gameNew.getEsrb());
         game.setConsole(gameNew.getConsole());
@@ -180,7 +199,7 @@ public class GameList implements Serializable {
     }
     if (!foundOld)
       throw new IllegalArgumentException(
-              "No game found on server that could be updated");
+          "No game found on server that could be updated");
   }
 
   public Game findGameInList(Game game) {

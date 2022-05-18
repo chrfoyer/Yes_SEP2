@@ -1,12 +1,12 @@
 package view;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import viewmodel.ViewModelFactory;
 
-public class ViewHandler extends ViewCreator {
+public class ViewHandler extends ViewCreator
+{
   private Scene currentScene;
   private Stage primaryStage;
   private final ViewModelFactory viewModelFactory;
@@ -16,7 +16,8 @@ public class ViewHandler extends ViewCreator {
    *
    * @param viewModelFactory viewModelFactory to set the variable to
    */
-  public ViewHandler(ViewModelFactory viewModelFactory) {
+  public ViewHandler(ViewModelFactory viewModelFactory)
+  {
     this.viewModelFactory = viewModelFactory;
   }
 
@@ -25,7 +26,8 @@ public class ViewHandler extends ViewCreator {
    *
    * @param primaryStage what you set the primary stage variable to
    */
-  public void start(Stage primaryStage) {
+  public void start(Stage primaryStage)
+  {
     this.primaryStage = primaryStage;
     this.currentScene = new Scene(new Region());
     this.primaryStage.setResizable(false);
@@ -38,12 +40,14 @@ public class ViewHandler extends ViewCreator {
    *
    * @param id id of the view that will be opened
    */
-  public void openView(String id) {
+  public void openView(String id)
+  {
     Region root = getViewController(id).getRoot();
     // getViewController(id).reset();
     currentScene.setRoot(root);
     String title = "";
-    if (root.getUserData() != null) {
+    if (root.getUserData() != null)
+    {
       title += root.getUserData();
     }
     primaryStage.setTitle(title);
@@ -60,8 +64,9 @@ public class ViewHandler extends ViewCreator {
    * @param controller what the viewController will be set to
    * @param root       what the root will be set to
    */
-  @Override
-  protected void initViewController(ViewController controller, Region root) {
+  @Override protected void initViewController(ViewController controller,
+      Region root)
+  {
     controller.init(this, viewModelFactory, root);
   }
 }

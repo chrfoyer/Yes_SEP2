@@ -1,8 +1,6 @@
 package view;
 
 import Model.Game;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import mediator.CurrentlyLoggedUser;
 import viewmodel.BrowseViewModel;
@@ -87,9 +85,22 @@ public class BrowseViewController extends ViewController {
     if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription()) {
       // TODO: 11/05/2022 Confirmation window with name of game
       SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
-      Game debug = temp.getGame();
+      Game selectedGame = temp.getGame();
 
-      browseViewModel.rentGame(debug);
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+          "Are you sure you want to rent game? -> " + selectedGame.getName());
+      Optional<ButtonType> option = alert.showAndWait();
+      if (option.isPresent() && option.get() == ButtonType.OK)
+      {
+        browseViewModel.rentGame(selectedGame);
+        //displaying confirmation message
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Congratulations, Game rented");
+        alert.setContentText("Now you have the game (" + selectedGame.getName()
+            + ") for 14 days\n"
+            + "If you would like to extend it you may do that on your profile!");
+        alert.showAndWait();
+      }
       browseViewModel.reset();
     } else {
       Alert alert = new Alert(Alert.AlertType.ERROR,

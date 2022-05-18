@@ -50,8 +50,6 @@ public class UserList implements Serializable {
     }
   }
 
-  //todo repleace forEach loops with a single function
-
   /**
    * method for getting the size of the userList
    *
