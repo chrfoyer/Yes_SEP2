@@ -1,7 +1,10 @@
 package mediator;
 
 import Model.User;
+import Model.UserList;
 import viewmodel.LoginViewModel;
+
+import java.rmi.RemoteException;
 
 /**
  * Class to track the currently logged-in user with static variables
@@ -18,10 +21,12 @@ public class CurrentlyLoggedUser
    * Sets the loggedInUser field to the given user
    *
    * @param user the user that you want to log-in
+   * @exception RemoteException if something goes wrong server
    */
-  public static void login(User user)
+  public static void login(User user) throws RemoteException
   {
-    loggedInUser = user;
+    UserList userList = model.getUserList();
+    loggedInUser = userList.findUserInList(user);
   }
 
   /**
@@ -59,14 +64,17 @@ public class CurrentlyLoggedUser
    */
   public static boolean isAdmin()
   {
+    updateInfoWithServer();
     return loggedInUser.isAdmin();
+
   }
 
   /**
    * Updates the user with the one on serverside
-   * ALWAYS CALL AFTER FINISHING METHODS
-   * basically a git push lmao
-   * @exception java.rmi.RemoteException if the stars hate you
+   * @implNote  ALWAYS CALL AFTER FINISHING METHODS
+   * @hidden  basically a git push lmao
+   *
+   * @exception  java.rmi.RemoteException if the stars hate you
    */
   public static void updateInfoWithServer()
   {

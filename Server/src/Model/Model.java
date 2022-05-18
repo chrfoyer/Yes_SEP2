@@ -23,6 +23,8 @@ public interface Model
 
   void rentGame(Game game, User user);
 
+  void returnGame(Game game, User user);
+
   Game getGame(String name);
 
   Game getGame(Game game);
@@ -60,4 +62,6 @@ public interface Model
   void leaveReview(int review, Game game);
 
   float getReview(Game game);
+
+  ArrayList<Game> getGamesRentedByUser(User user);
 }
