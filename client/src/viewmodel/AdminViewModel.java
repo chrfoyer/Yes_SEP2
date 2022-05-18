@@ -94,8 +94,7 @@ public class AdminViewModel
       totalGames.set(totalGame + "");
       rentedGames.set(totalRent + "");
       recentGame.set(recent.getName());
-    }
-    catch (Exception e)
+    } catch (Exception e)
     {
       errorLabel.set(e.getMessage());
     }

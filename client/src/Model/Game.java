@@ -10,8 +10,10 @@ import java.time.LocalDate;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
-public class Game implements Serializable {
+public class Game implements Serializable
+{
   private final int id;
+  private final LocalDate dateAdded;
   private String name;
   private String producer;
   private String console;
@@ -21,9 +23,9 @@ public class Game implements Serializable {
   private int reviewSum;
   private float reviewAverage;
   private String esrb;
-  private final LocalDate dateAdded;
 
-  public Game(int id, String name, String producer, String console, boolean rented, int daysLeft, int reviewCount, int reviewSum, float reviewAverage, String esrb, LocalDate dateAdded) {
+  public Game(int id, String name, String producer, String console, boolean rented, int daysLeft, int reviewCount, int reviewSum, float reviewAverage, String esrb, LocalDate dateAdded)
+  {
     this.id = id;
     this.name = name;
     this.producer = producer;
@@ -44,13 +46,16 @@ public class Game implements Serializable {
    * @param producer producer of the game
    * @param esrb     rating of the game
    */
-  public Game(String name, String producer, String console, String esrb) {
+  public Game(String name, String producer, String console, String esrb)
+  {
     if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T")
-            || esrb.equals("M") || esrb.equals("AO"))) {
+            || esrb.equals("M") || esrb.equals("AO")))
+    {
       throw new IllegalArgumentException("Unknown rating");
     }
     if (!(console.equals("PC") || console.equals("PlayStation")
-            || console.equals("Xbox") || console.equals("Nintendo"))) {
+            || console.equals("Xbox") || console.equals("Nintendo")))
+    {
       throw new IllegalArgumentException("Unknown console");
     }
     id = 0;
@@ -72,8 +77,10 @@ public class Game implements Serializable {
    * @param obj fed into method to compare to a game
    * @return boolean if the games are equal or not
    */
-  public boolean equals(Object obj) {
-    if (!(obj instanceof Game)) {
+  public boolean equals(Object obj)
+  {
+    if (!(obj instanceof Game))
+    {
       return false;
     }
     Game game = (Game) obj;
@@ -85,7 +92,8 @@ public class Game implements Serializable {
    *
    * @return name of game
    */
-  public String getName() {
+  public String getName()
+  {
     return name;
   }
 
@@ -94,7 +102,8 @@ public class Game implements Serializable {
    *
    * @param name new name of the game
    */
-  public void setName(String name) {
+  public void setName(String name)
+  {
     this.name = name;
   }
 
@@ -103,7 +112,8 @@ public class Game implements Serializable {
    *
    * @return boolean of if game is rented or not
    */
-  public boolean isRented() {
+  public boolean isRented()
+  {
     return rented;
   }
 
@@ -112,7 +122,8 @@ public class Game implements Serializable {
    *
    * @return int of days left
    */
-  public int getDaysLeft() {
+  public int getDaysLeft()
+  {
     return daysLeft;
   }
 
@@ -121,7 +132,8 @@ public class Game implements Serializable {
    *
    * @param daysLeft in of days left in the rental per
    */
-  public void setDaysLeft(int daysLeft) {
+  public void setDaysLeft(int daysLeft)
+  {
     this.daysLeft = daysLeft;
   }
 
@@ -131,13 +143,17 @@ public class Game implements Serializable {
    *
    * @author Raedrim
    */
-  public void decrementDaysLeft() {
-    if (rented) {
+  public void decrementDaysLeft()
+  {
+    if (rented)
+    {
       daysLeft--;
-      if (daysLeft <= 0) {
+      if (daysLeft <= 0)
+      {
         System.out.println(name + " Ran out of time, game not rented anymore");
       }
-    } else {
+    } else
+    {
       throw new IllegalStateException(
               "Game is not currently rented, so the days can't be decreased.");
     }
@@ -148,9 +164,11 @@ public class Game implements Serializable {
    *
    * @return name of game and whether the game is rented or not
    */
-  public String toString() {
+  public String toString()
+  {
     String str = "Name: " + name + " Rented: " + rented;
-    if (rented) {
+    if (rented)
+    {
       str += "\nDays Left: " + daysLeft;
     }
     return str;
@@ -159,10 +177,13 @@ public class Game implements Serializable {
   /**
    * Sets rented to true
    */
-  public void rentGame() {
-    if (rented) {
+  public void rentGame()
+  {
+    if (rented)
+    {
       throw new IllegalStateException("Game is already rented!");
-    } else {
+    } else
+    {
       this.rented = true;
       this.daysLeft = 14;
     }
@@ -171,11 +192,14 @@ public class Game implements Serializable {
   /**
    * Sets rented to false
    */
-  public void returnGame() {
-    if (!rented) {
+  public void returnGame()
+  {
+    if (!rented)
+    {
       throw new IllegalStateException(
               "Game is not rented so it cannot be returned!");
-    } else {
+    } else
+    {
       this.rented = false;
       this.daysLeft = 0;
       new Transaction(this, "Return", "User");
@@ -187,7 +211,8 @@ public class Game implements Serializable {
    *
    * @return production company
    */
-  public String getProducer() {
+  public String getProducer()
+  {
     return producer;
   }
 
@@ -196,7 +221,8 @@ public class Game implements Serializable {
    *
    * @param producer new production house of the game
    */
-  public void setProducer(String producer) {
+  public void setProducer(String producer)
+  {
     this.producer = producer;
   }
 
@@ -205,7 +231,8 @@ public class Game implements Serializable {
    *
    * @return a decimal number review of the game
    */
-  public float getReview() {
+  public float getReview()
+  {
     return reviewAverage;
   }
 
@@ -214,7 +241,8 @@ public class Game implements Serializable {
    *
    * @return String of the ESRB rating
    */
-  public String getEsrb() {
+  public String getEsrb()
+  {
     return esrb;
   }
 
@@ -223,15 +251,18 @@ public class Game implements Serializable {
    *
    * @param esrb new rating for the game
    */
-  public void setEsrb(String esrb) {
+  public void setEsrb(String esrb)
+  {
     this.esrb = esrb;
   }
 
-  public String getConsole() {
+  public String getConsole()
+  {
     return console;
   }
 
-  public void setConsole(String console) {
+  public void setConsole(String console)
+  {
     this.console = console;
   }
 
@@ -240,29 +271,35 @@ public class Game implements Serializable {
    *
    * @return LocalDateTime
    */
-  public LocalDate getDateAdded() {
+  public LocalDate getDateAdded()
+  {
     return dateAdded;
   }
 
-  public void leaveReview(int review) {
+  public void leaveReview(int review)
+  {
     reviewCount++;
     reviewSum += review;
     reviewAverage = (float) reviewSum / reviewCount;
   }
 
-  public int getId() {
+  public int getId()
+  {
     return id;
   }
 
-  public int getReviewCount() {
+  public int getReviewCount()
+  {
     return reviewCount;
   }
 
-  public int getReviewSum() {
+  public int getReviewSum()
+  {
     return reviewSum;
   }
 
-  public float getReviewAverage() {
+  public float getReviewAverage()
+  {
     return reviewAverage;
   }
 }

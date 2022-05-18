@@ -1,4 +1,5 @@
 package databaseAdapters;
 
-public class UserImpl {
+public class UserImpl
+{
 }

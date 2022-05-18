@@ -9,7 +9,8 @@ import mediator.RemoteModel;
 /**
  * Class with the functionality for the GameInfoViewController
  */
-public class GameInfoViewModel {
+public class GameInfoViewModel
+{
   private final RemoteModel model;
   private final ObjectProperty<SimpleGameViewModel> selectedGameProperty;
   private final StringProperty name;
@@ -22,7 +23,8 @@ public class GameInfoViewModel {
   private final StringProperty review;
 
 
-  public GameInfoViewModel(RemoteModel model) {
+  public GameInfoViewModel(RemoteModel model)
+  {
     this.model = model;
     this.name = new SimpleStringProperty();
     this.timeLeft = new SimpleObjectProperty<>();
@@ -35,8 +37,10 @@ public class GameInfoViewModel {
     selectedGameProperty = new SimpleObjectProperty<>();
   }
 
-  public void reset() {
-    if (selectedGameProperty.get() != null) {
+  public void reset()
+  {
+    if (selectedGameProperty.get() != null)
+    {
       SimpleGameViewModel selected = selectedGameProperty.get();
       name.set(selected.getNameProperty().get());
       timeLeft.set(selected.getTimeProperty().get());
@@ -46,7 +50,8 @@ public class GameInfoViewModel {
       console.set(selected.getConsole().get());
       review.set(selected.getReview().get() + "");
       error.set("");
-    } else {
+    } else
+    {
       name.set("");
       timeLeft.set(null);
       producer.set("");
@@ -58,103 +63,128 @@ public class GameInfoViewModel {
     }
   }
 
-  public SimpleGameViewModel getSelectedGameProperty() {
+  public SimpleGameViewModel getSelectedGameProperty()
+  {
     return selectedGameProperty.get();
   }
 
-  public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel) {
+  public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel)
+  {
     this.selectedGameProperty.set(selectedGameViewModel);
   }
 
-  public ObjectProperty<SimpleGameViewModel> selectedGamePropertyProperty() {
+  public ObjectProperty<SimpleGameViewModel> selectedGamePropertyProperty()
+  {
     return selectedGameProperty;
   }
 
-  public String getName() {
+  public String getName()
+  {
     return name.get();
   }
 
-  public void setName(String name) {
+  public void setName(String name)
+  {
     this.name.set(name);
   }
 
-  public StringProperty nameProperty() {
+  public StringProperty nameProperty()
+  {
     return name;
   }
 
-  public Integer getTimeLeft() {
+  public Integer getTimeLeft()
+  {
     return timeLeft.get();
   }
 
-  public void setTimeLeft(Integer timeLeft) {
+  public void setTimeLeft(Integer timeLeft)
+  {
     this.timeLeft.set(timeLeft);
   }
 
-  public ObjectProperty<Integer> timeLeftProperty() {
+  public ObjectProperty<Integer> timeLeftProperty()
+  {
     return timeLeft;
   }
 
-  public String getConsole() {
+  public String getConsole()
+  {
     return console.get();
   }
 
-  public void setConsole(String console) {
+  public void setConsole(String console)
+  {
     this.console.set(console);
   }
 
-  public StringProperty consoleProperty() {
+  public StringProperty consoleProperty()
+  {
     return console;
   }
 
-  public String getProducer() {
+  public String getProducer()
+  {
     return producer.get();
   }
 
-  public void setProducer(String producer) {
+  public void setProducer(String producer)
+  {
     this.producer.set(producer);
   }
 
-  public StringProperty producerProperty() {
+  public StringProperty producerProperty()
+  {
     return producer;
   }
 
-  public String getEsrb() {
+  public String getEsrb()
+  {
     return esrb.get();
   }
 
-  public void setEsrb(String esrb) {
+  public void setEsrb(String esrb)
+  {
     this.esrb.set(esrb);
   }
 
-  public StringProperty esrbProperty() {
+  public StringProperty esrbProperty()
+  {
     return esrb;
   }
 
-  public StringProperty reviewProperty() {
+  public StringProperty reviewProperty()
+  {
     return review;
   }
 
-  public Boolean getRented() {
+  public Boolean getRented()
+  {
     return rented.get();
   }
 
-  public void setRented(Boolean rented) {
+  public void setRented(Boolean rented)
+  {
     this.rented.set(rented);
   }
 
-  public ObjectProperty<Boolean> rentedProperty() {
+  public ObjectProperty<Boolean> rentedProperty()
+  {
     return rented;
   }
 
-  public String getError() {
+  public String getError()
+  {
     return error.get();
   }
 
-  public void setError(String error) {
+  public void setError(String error)
+  {
     this.error.set(error);
   }
 
-  public StringProperty errorProperty() {
+  public StringProperty errorProperty()
+  {
     return error;
   }
 }

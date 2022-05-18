@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class RmiClient
 {
 
-  private static Scanner input = new Scanner(System.in);
+  private static final Scanner input = new Scanner(System.in);
   private RemoteModel server;
   private String username;
 
@@ -31,8 +31,7 @@ public class RmiClient
     {
       server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
       System.out.println("Stub pulled");
-    }
-    catch (Exception ex)
+    } catch (Exception ex)
     {
       ex.printStackTrace();
     }
@@ -63,8 +62,7 @@ public class RmiClient
           try
           {
             System.out.println(server.viewGames());
-          }
-          catch (RemoteException e)
+          } catch (RemoteException e)
           {
             e.printStackTrace();
           }
@@ -94,11 +92,10 @@ public class RmiClient
     {
       if (!server.containsGame(gameName))
         throw new IllegalArgumentException(
-            "The given game does not exist on the server");
+                "The given game does not exist on the server");
       //server.rentGame(gameName);
       System.out.println("Rented " + gameName);
-    }
-    catch (Exception ex)
+    } catch (Exception ex)
     {
       ex.printStackTrace();
     }
@@ -124,13 +121,11 @@ public class RmiClient
       if (server.login(user))
       {
         System.out.println("USER LOGGED IN");
-      }
-      else
+      } else
       {
         System.out.println("something wrong");
       }
-    }
-    catch (Exception e)
+    } catch (Exception e)
     {
       e.printStackTrace();
     }

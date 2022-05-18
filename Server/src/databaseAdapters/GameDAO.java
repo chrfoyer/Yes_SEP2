@@ -4,7 +4,8 @@ import Model.Game;
 
 import java.sql.SQLException;
 
-public interface GameDAO {
+public interface GameDAO
+{
 
   Game create(String name, String producer, String console, String esrb) throws SQLException;
 

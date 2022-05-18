@@ -1,12 +1,15 @@
 package viewmodel;
 
 import Model.Game;
-import javafx.beans.property.*;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-public class SimpleGameViewModel {
+public class SimpleGameViewModel
+{
   private final StringProperty name;
   private final ObjectProperty<Integer> timeLeft;
   private final StringProperty console;
@@ -17,7 +20,8 @@ public class SimpleGameViewModel {
   private final Game game;
   private final ObjectProperty<Float> review;
 
-  public SimpleGameViewModel(Game game) {
+  public SimpleGameViewModel(Game game)
+  {
     this.name = new SimpleStringProperty(game.getName());
     this.timeLeft = new SimpleObjectProperty<>(game.getDaysLeft());
     this.producer = new SimpleStringProperty(game.getProducer());
@@ -29,51 +33,64 @@ public class SimpleGameViewModel {
     this.game = game;
   }
 
-  public StringProperty getNameProperty() {
+  public StringProperty getNameProperty()
+  {
     return name;
   }
 
-  public ObjectProperty<Integer> getTimeProperty() {
+  public ObjectProperty<Integer> getTimeProperty()
+  {
     return timeLeft;
   }
 
-  public ObjectProperty<Boolean> getRentedProperty() {
+  public ObjectProperty<Boolean> getRentedProperty()
+  {
     return rented;
   }
 
-  public StringProperty getRentedStringProperty() {
-    if (rented.get()) {
+  public StringProperty getRentedStringProperty()
+  {
+    if (rented.get())
+    {
       return new SimpleStringProperty("Yes");
-    } else {
+    } else
+    {
       return new SimpleStringProperty("No");
     }
   }
 
-  public StringProperty getEsrbProperty() {
+  public StringProperty getEsrbProperty()
+  {
     return esrb;
   }
 
-  public StringProperty getProducer() {
+  public StringProperty getProducer()
+  {
     return producer;
   }
 
-  public StringProperty getConsole() {
+  public StringProperty getConsole()
+  {
     return console;
   }
 
-  public Game getGame() {
+  public Game getGame()
+  {
     return game;
   }
 
-  public ObjectProperty<LocalDate> getDateAdded() {
+  public ObjectProperty<LocalDate> getDateAdded()
+  {
     return dateAdded;
   }
 
-  public void rent() {
+  public void rent()
+  {
     game.rentGame();
   }
 
-  public ObjectProperty<Float> getReview() {
+  public ObjectProperty<Float> getReview()
+  {
     return review;
   }
 }

@@ -11,7 +11,8 @@ import java.rmi.RemoteException;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.3 5/5/22
  */
-public interface RemoteModel extends Remote {
+public interface RemoteModel extends Remote
+{
   void rentGame(Game game, User user) throws RemoteException;
 
   Game getGame(String name) throws RemoteException;

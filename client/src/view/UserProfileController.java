@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * Class which delegates to UserProfileViewModel
  */
-public class UserProfileController extends ViewController {
+public class UserProfileController extends ViewController
+{
   public Label username;
   public TableView<SimpleGameViewModel> table;
   public TableColumn<SimpleGameViewModel, String> nameColumn;
@@ -23,7 +24,8 @@ public class UserProfileController extends ViewController {
    * method initializing all the variables and cells
    */
   @Override
-  protected void init() {
+  protected void init()
+  {
     viewModel = getViewModelFactory().getUserProfileViewModel();
     username.textProperty().bind(viewModel.getUsernameProperty());
 
@@ -42,7 +44,8 @@ public class UserProfileController extends ViewController {
   /**
    * method that resets the fields in the view
    */
-  public void reset() {
+  public void reset()
+  {
     viewModel.reset();
   }
 
@@ -51,7 +54,8 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent
    */
-  public void payment(ActionEvent actionEvent) {
+  public void payment(ActionEvent actionEvent)
+  {
     getViewModelFactory().getBalanceViewModel().reset();
     getViewHandler().openView("BalanceView.fxml");
   }
@@ -63,21 +67,24 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent
    */
-  public void returnGame(ActionEvent actionEvent) {
+  public void returnGame(ActionEvent actionEvent)
+  {
     SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Are you sure you want to return " + selected.getNameProperty().get()
                     + "?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       viewModel.leaveReview(getReviewScore(), selected);
       viewModel.returnGame(selected.getGame());
       viewModel.reset();
     }
   }
 
-  public int getReviewScore() {
+  public int getReviewScore()
+  {
     Alert popup = new Alert(Alert.AlertType.INFORMATION,
             "You will have an option to leave a review,please follow the next prompt!");
     popup.showAndWait();
@@ -92,7 +99,8 @@ public class UserProfileController extends ViewController {
             "Leave your review by choosing the button!", oneStar, twoStar,
             threeStar, fourStar, fiveStar);
     Optional<ButtonType> reviewChoice = reviewAlert.showAndWait();
-    switch (reviewChoice.get().getText()) {
+    switch (reviewChoice.get().getText())
+    {
       case "1":
         return 1;
       case "2":
@@ -112,13 +120,15 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent
    */
-  public void extend(ActionEvent actionEvent) {
+  public void extend(ActionEvent actionEvent)
+  {
     SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Are you sure you want to extend " + selected.getNameProperty().get()
                     + "?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       viewModel.extendGame(table.getSelectionModel().getSelectedItem());
     }
   }
@@ -128,7 +138,8 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent browse button clicked
    */
-  public void browse(ActionEvent actionEvent) {
+  public void browse(ActionEvent actionEvent)
+  {
     getViewModelFactory().getBrowseViewModel().reset();
     getViewHandler().openView("BrowseView.fxml");
   }
@@ -138,11 +149,13 @@ public class UserProfileController extends ViewController {
    *
    * @param actionEvent
    */
-  public void logout(ActionEvent actionEvent) {
+  public void logout(ActionEvent actionEvent)
+  {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Are you sure you want to log out?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       getViewHandler().openView("LoginView.fxml");
       CurrentlyLoggedUser.logout();
     }

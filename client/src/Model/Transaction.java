@@ -8,7 +8,8 @@ import java.time.LocalDate;
  * actions are taken upon the game, such as renting and returning. In addition, a refund or subscription payment can be
  * made without a game object.
  */
-public class Transaction implements Serializable {
+public class Transaction implements Serializable
+{
   private final double amount;
   private final String user;
   private final String type;

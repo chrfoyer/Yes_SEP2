@@ -7,9 +7,9 @@ import viewmodel.ViewModelFactory;
 
 public class ViewHandler extends ViewCreator
 {
+  private final ViewModelFactory viewModelFactory;
   private Scene currentScene;
   private Stage primaryStage;
-  private final ViewModelFactory viewModelFactory;
 
   /**
    * method for setting the viewmodelfactory variable to the parameter viewmodelfactory
@@ -64,8 +64,9 @@ public class ViewHandler extends ViewCreator
    * @param controller what the viewController will be set to
    * @param root       what the root will be set to
    */
-  @Override protected void initViewController(ViewController controller,
-      Region root)
+  @Override
+  protected void initViewController(ViewController controller,
+                                    Region root)
   {
     controller.init(this, viewModelFactory, root);
   }

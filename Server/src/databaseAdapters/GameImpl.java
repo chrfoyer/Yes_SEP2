@@ -4,20 +4,25 @@ import Model.Game;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
 
-public class GameImpl implements GameDAO {
-  private static GameImpl instance;
+public class GameImpl implements GameDAO
+{
   private static final Object lock = new Object();
+  private static GameImpl instance;
 
-  private GameImpl() throws SQLException {
+  private GameImpl() throws SQLException
+  {
     DriverManager.registerDriver(new org.postgresql.Driver());
   }
 
-  public static GameImpl getInstance() throws SQLException {
-    if (instance == null) {
-      synchronized (lock) {
-        if (instance == null) {
+  public static GameImpl getInstance() throws SQLException
+  {
+    if (instance == null)
+    {
+      synchronized (lock)
+      {
+        if (instance == null)
+        {
           instance = new GameImpl();
         }
       }
@@ -26,18 +31,22 @@ public class GameImpl implements GameDAO {
   }
 
   // TEST
-  public static void main(String[] args) {
-    try {
+  public static void main(String[] args)
+  {
+    try
+    {
       GameImpl testThing = GameImpl.getInstance();
       Game game1 = new Game("Beast", "Bronzy", "PC", "T");
       System.out.println(testThing.create(game1));
-    } catch (SQLException e) {
+    } catch (SQLException e)
+    {
       e.printStackTrace();
     }
 
   }
 
-  private Connection getConnection() throws SQLException {
+  private Connection getConnection() throws SQLException
+  {
     return DriverManager.getConnection(
             "jdbc:postgresql://localhost:5432/postgres?currentSchema=game_test",
             DBKey.username, DBKey.password);
@@ -45,8 +54,10 @@ public class GameImpl implements GameDAO {
 
   @Override
   public Game create(String name, String producer, String console,
-                     String esrb) throws SQLException {
-    try (Connection connection = getConnection()) {
+                     String esrb) throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
       PreparedStatement statement = connection.prepareStatement(
               "INSERT INTO games"
                       + "(name, producer, console, rented, daysLeft, review, esrb, dateAdded) "
@@ -62,9 +73,11 @@ public class GameImpl implements GameDAO {
   }
 
   @Override
-  public Game create(Game game) throws SQLException {
+  public Game create(Game game) throws SQLException
+  {
     Game createdGame = null;
-    try (Connection connection = getConnection()) {
+    try (Connection connection = getConnection())
+    {
       PreparedStatement statement = connection.prepareStatement(
               "INSERT INTO games"
                       + "(name, producer, console, rented, days_left," +
@@ -90,13 +103,16 @@ public class GameImpl implements GameDAO {
   }
 
   @Override
-  public Game readById(int id) throws SQLException {
+  public Game readById(int id) throws SQLException
+  {
     Game readGame = null;
-    try (Connection connection = getConnection()) {
+    try (Connection connection = getConnection())
+    {
       Statement st = connection.createStatement();
       ResultSet rs = st.executeQuery(
               "SELECT * " + "FROM games " + "WHERE id = 1;");
-      while (rs.next()) {
+      while (rs.next())
+      {
         System.out.println("Id: " + rs.getString("id"));
         String name = rs.getString("name");
         String producer = rs.getString("producer");
@@ -112,14 +128,17 @@ public class GameImpl implements GameDAO {
   }
 
   @Override
-  public Game readMaxId() throws SQLException {
+  public Game readMaxId() throws SQLException
+  {
     Game readGame = null;
-    try (Connection connection = getConnection()) {
+    try (Connection connection = getConnection())
+    {
       Statement st = connection.createStatement();
       ResultSet rs = st.executeQuery(
               "SELECT * " + "FROM games " + "ORDER BY id DESC " +
                       "LIMIT 1");
-      while (rs.next()) {
+      while (rs.next())
+      {
         int id = rs.getInt("id");
         String name = rs.getString("name");
         String producer = rs.getString("producer");
@@ -132,7 +151,8 @@ public class GameImpl implements GameDAO {
         String esrb = rs.getString("esrb");
         Date dateSQL = rs.getDate("date_added");
         LocalDate dateAdded = null;
-        if (dateSQL != null) {
+        if (dateSQL != null)
+        {
           dateAdded = dateSQL.toLocalDate();
         }
         readGame = new Game(id, name, producer, console, rented, daysLeft, reviewCount, reviewSum, reviewAvg, esrb, dateAdded);
@@ -144,7 +164,8 @@ public class GameImpl implements GameDAO {
   }
 
   @Override
-  public void update(Game game) throws SQLException {
+  public void update(Game game) throws SQLException
+  {
     // This is not ideal because a game should have an id unseen by the user
     // For now, this checks the name and console, which effectively means those cannot be accurately changed
     delete(game);
@@ -152,8 +173,10 @@ public class GameImpl implements GameDAO {
   }
 
   @Override
-  public void delete(Game game) throws SQLException {
-    try (Connection connection = getConnection()) {
+  public void delete(Game game) throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
       PreparedStatement statement = connection.prepareStatement(
               "DELETE FROM games " + "WHERE name = ? " + "AND console = ?;");
       statement.setString(1, game.getName());

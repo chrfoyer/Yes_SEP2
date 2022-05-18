@@ -1,4 +1,5 @@
 package databaseAdapters;
 
-public interface UserDAO {
+public interface UserDAO
+{
 }

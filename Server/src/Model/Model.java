@@ -1,6 +1,5 @@
 package Model;
 
-import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,7 +9,8 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
-public interface Model {
+public interface Model
+{
   void addGame(Game game) throws SQLException;
 
   ArrayList<Game> getAllGames();

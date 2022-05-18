@@ -8,7 +8,7 @@ import java.util.Map;
 
 public abstract class ViewCreator
 {
-  private Map<String, ViewController> map;
+  private final Map<String, ViewController> map;
 
   public ViewCreator()
   {
@@ -34,7 +34,7 @@ public abstract class ViewCreator
   }
 
   protected abstract void initViewController(ViewController controller,
-      Region root);
+                                             Region root);
 
   /**
    * method for loading fxml files
@@ -52,8 +52,7 @@ public abstract class ViewCreator
       Region root = loader.load();
       controller = loader.getController();
       initViewController(controller, root);
-    }
-    catch (Exception e)
+    } catch (Exception e)
     {
       e.printStackTrace();
     }

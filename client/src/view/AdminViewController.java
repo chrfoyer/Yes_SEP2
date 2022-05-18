@@ -14,17 +14,23 @@ import java.util.Optional;
 public class AdminViewController extends ViewController
 {
 
-  @FXML public TextField registeredUsers;
-  @FXML public TextField totalGames;
-  @FXML public TextField rentedGames;
-  @FXML public TextField recentGame;
-  @FXML public Label errorLabel;
+  @FXML
+  public TextField registeredUsers;
+  @FXML
+  public TextField totalGames;
+  @FXML
+  public TextField rentedGames;
+  @FXML
+  public TextField recentGame;
+  @FXML
+  public Label errorLabel;
   private AdminViewModel viewModel;
 
   /**
    * method for initializing all the variables and binding them
    */
-  @Override protected void init()
+  @Override
+  protected void init()
   {
     viewModel = getViewModelFactory().getAdminViewModel();
     registeredUsers.textProperty().bind(viewModel.getRegisteredUsers());
@@ -49,7 +55,8 @@ public class AdminViewController extends ViewController
    *
    * @param actionEvent manageUsers button pressed
    */
-  @FXML public void manageUsers(ActionEvent actionEvent)
+  @FXML
+  public void manageUsers(ActionEvent actionEvent)
   {
     getViewHandler().openView("UserListView.fxml");
   }
@@ -59,7 +66,8 @@ public class AdminViewController extends ViewController
    *
    * @param actionEvent transactions button pressed
    */
-  @FXML public void transactions(ActionEvent actionEvent)
+  @FXML
+  public void transactions(ActionEvent actionEvent)
   {
     getViewHandler().openView("TransactionsView.fxml");
   }
@@ -69,17 +77,20 @@ public class AdminViewController extends ViewController
    *
    * @param actionEvent manageGames button pressed
    */
-  @FXML public void manageGames(ActionEvent actionEvent)
+  @FXML
+  public void manageGames(ActionEvent actionEvent)
   {
     getViewModelFactory().getInventoryViewModel().reset();
     getViewHandler().openView("InventoryView.fxml");
   }
 
-  public void logout(ActionEvent actionEvent) {
+  public void logout(ActionEvent actionEvent)
+  {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Are you sure you want to log out?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       getViewHandler().openView("LoginView.fxml");
       CurrentlyLoggedUser.logout();
     }
