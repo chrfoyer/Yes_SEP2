@@ -4,6 +4,7 @@ import Model.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import mediator.CurrentlyLoggedUser;
 import viewmodel.BrowseViewModel;
 import viewmodel.GameInfoViewModel;
 import viewmodel.SimpleGameViewModel;
@@ -88,20 +89,30 @@ public class BrowseViewController extends ViewController
    */
   public void rent() throws RemoteException
   {
-    // TODO: 11/05/2022 Confirmation window with name of game
-    SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
-    browseViewModel.rentGame(temp);
+    if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription())
+    {
+      // TODO: 11/05/2022 Confirmation window with name of game
+      SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
+      browseViewModel.rentGame(temp);
 
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "" + temp.getNameProperty().get()
-            + " - " + temp.getTimeProperty().get());
-    alert.showAndWait();
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+          "" + temp.getNameProperty().get() + " - " + temp.getTimeProperty()
+              .get());
+      alert.showAndWait();
 
-    Game debug=table.getSelectionModel().getSelectedItem().getGame();
+      Game debug = table.getSelectionModel().getSelectedItem().getGame();
 
-    getViewModelFactory().getUserProfileViewModel()
-        .rentGame(table.getSelectionModel().getSelectedItem());
-    browseViewModel.reset();
+      getViewModelFactory().getUserProfileViewModel()
+          .rentGame(table.getSelectionModel().getSelectedItem());
+      browseViewModel.reset();
+    }
+    else
+    {
+      Alert alert = new Alert(Alert.AlertType.ERROR,
+          "You cannot rent games without an active subscription!");
+      alert.showAndWait();
+    }
+
   }
 
   /**
