@@ -241,6 +241,11 @@ public class ModelManager implements Model
     return transactions;
   }
 
+  @Override public void setSubscriptionStatus(User user, boolean status)
+  {
+    users.findUserInList(user).setHasSubscription(status);
+  }
+
   @Override public int getBalance(User user)
   {
     return users.getBalance(user);

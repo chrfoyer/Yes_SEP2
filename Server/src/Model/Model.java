@@ -56,4 +56,6 @@ public interface Model
   void payForSubscription(User user);
 
   TransactionList getTransactionList();
+
+  void setSubscriptionStatus(User user,boolean status);
 }
