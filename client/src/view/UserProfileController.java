@@ -82,7 +82,20 @@ public class UserProfileController extends ViewController
   {
     SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
 
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+        "Are you sure you want to return " + selected.getNameProperty().get()
+            + "?");
+    Optional<ButtonType> option = alert.showAndWait();
+    if (option.get() == ButtonType.OK)
+    {
+      viewModel.leaveReview(getReviewScore(), selected);
+      viewModel.returnGame(selected.getGame());
+      viewModel.reset();
+    }
+  }
 
+  public int getReviewScore()
+  {
     Alert popup = new Alert(Alert.AlertType.INFORMATION,
         "You will have an option to leave a review,please follow the next prompt!");
     popup.showAndWait();
@@ -93,7 +106,6 @@ public class UserProfileController extends ViewController
     ButtonType fourStar = new ButtonType("4", ButtonBar.ButtonData.APPLY);
     ButtonType fiveStar = new ButtonType("5", ButtonBar.ButtonData.APPLY);
 
-    int review = 0;
     Alert reviewAlert = new Alert(Alert.AlertType.NONE,
         "Leave your review by choosing the button!", oneStar, twoStar,
         threeStar, fourStar, fiveStar);
@@ -101,34 +113,17 @@ public class UserProfileController extends ViewController
     switch (reviewChoice.get().getText())
     {
       case "1":
-        review = 1;
-        break;
+        return 1;
       case "2":
-        review = 2;
-        break;
-
+        return 2;
       case "3":
-        review = 3;
-        break;
-
+        return 3;
       case "4":
-        review = 4;
-        break;
-
+        return 4;
       case "5":
-        review = 5;
-        break;
+        return 5;
     }
-    viewModel.leaveReview(review,selected);
-
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "Are you sure you want to return " + selected.getNameProperty().get()
-            + "?");
-    Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK)
-    {
-      viewModel.returnGame(selected);
-    }
+    return 0;
   }
 
   /**

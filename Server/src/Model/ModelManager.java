@@ -23,7 +23,9 @@ public class ModelManager implements Model
 
     //todo remove test
     users.addUser(new User("admin", "admin"));
-    users.addUser(new User("bob", "test"));
+    User bob=new User("bob","test");
+    bob.setHasSubscription(true);
+    users.addUser(bob);
     LocalDate date =  LocalDate.of(1997,3,3);
     users.addUser(new User("martin","maxmax1","asdf@","afdadf","martin r",date));
     games.addGame(new Game("Minecraft", "Mojang", "PC", "E"));
@@ -240,6 +242,12 @@ public class ModelManager implements Model
     return games.findGameInList(game).getReview();
   }
 
+  @Override public ArrayList<Game> getGamesRentedByUser(User user)
+  {
+    // TODO: 2022. 05. 18. waiting for database
+    return null;
+  }
+
   @Override public int getBalance(User user)
   {
     return users.getBalance(user);
@@ -249,4 +257,10 @@ public class ModelManager implements Model
   {
     transactions.addTransaction(transaction);
   }
+
+  @Override public void returnGame(Game game, User user){
+    games.findGameInList(game).returnGame();
+    new Transaction(game,"Return",user.getUsername());
+  }
+
 }

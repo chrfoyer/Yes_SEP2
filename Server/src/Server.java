@@ -4,7 +4,8 @@ import mediator.RmiServer;
 
 import java.util.Scanner;
 
-public class ServerTest {
+public class Server
+{
   public static void main(String[] args) {
     boolean running = true;
 

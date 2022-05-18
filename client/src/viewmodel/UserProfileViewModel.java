@@ -71,7 +71,28 @@ public class UserProfileViewModel
     usernameProperty.set(
         "Currently logged in: " + CurrentlyLoggedUser.getLoggedInUser()
             .getUsername());
-    errorLabel.set("");
+    fillTable();
+  }
+
+  public void fillTable()
+  {
+    //todo for now you will see all rented games even if it does not belong to
+    //todo CRITICAL NEEDS FIX
+    try
+    {
+      rentedGames.clear();
+      for (Game game : model.viewGames().getGamesArrayCopy())
+      {
+        if (game.isRented())
+          rentedGames.add(new SimpleGameViewModel(game));
+        System.out.println(game);
+        errorLabel.set("");
+      }
+    }
+    catch (Exception e)
+    {
+      errorLabel.set(e.getMessage());
+    }
   }
 
   /**
@@ -79,32 +100,24 @@ public class UserProfileViewModel
    *
    * @param game game to be returned
    */
-  public void returnGame(SimpleGameViewModel game)
+  public void returnGame(Game game)
   {
-    if (game != null)
+    //todo logic
+    try
     {
-      try
-      {
-        model.addTransaction(
-            new Transaction(usernameProperty.get(), "Return", 0));
-      }
-      catch (RemoteException e)
-      {
-        e.printStackTrace();
-      }
-      rentedGames.remove(game);
+      model.returnGame(game,CurrentlyLoggedUser.getLoggedInUser());
     }
-    else
+    catch (Exception e)
     {
-      errorLabel.set("Game must be selected first");
+      errorLabel.set(e.getMessage());
     }
   }
 
-  public void leaveReview(int review,SimpleGameViewModel game)
+  public void leaveReview(int review, SimpleGameViewModel game)
   {
     try
     {
-      model.leaveReview(review,game.getGame());
+      model.leaveReview(review, game.getGame());
     }
     catch (Exception e)
     {

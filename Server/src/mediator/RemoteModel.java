@@ -53,4 +53,6 @@ public interface RemoteModel extends Remote
 
   float getReview(Game game) throws RemoteException;
 
+  void returnGame(Game game,User user) throws RemoteException;
+
 }
