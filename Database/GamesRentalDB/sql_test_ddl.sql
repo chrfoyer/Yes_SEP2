@@ -4,28 +4,27 @@ CREATE SCHEMA IF NOT EXISTS game_test;
 
 SET SCHEMA 'game_test';
 
-DROP TABLE games CASCADE ;
+DROP TABLE games CASCADE;
 
 CREATE TABLE IF NOT EXISTS games
 (
     id           SERIAL PRIMARY KEY,
-    name         varchar(60),
-    producer     varchar(40),
-    console      varchar(15),
-    rented       boolean, /* TODO obtain boolean with trigger?*/
-    days_left    int, /* TODO respect normalization by moving to rental */
-    review_count int,
-    review_sum   int,
-    review_avg   float, /* TODO obtain through trigger aggregating game */
-    esrb         VARCHAR(5),
-    date_added   date
+    name         varchar(60) NOT NULL,
+    producer     varchar(40) NOT NULL,
+    console      varchar(15) NOT NULL,
+    rented       boolean     NOT NULL, /* TODO obtain boolean with trigger?*/
+    days_left    int         NOT NULL, /* TODO respect normalization by moving to rental */
+    review_count int         NOT NULL,
+    review_sum   int         NOT NULL,
+    review_avg   float       NOT NULL, /* TODO obtain through trigger aggregating game */
+    esrb         VARCHAR(5)  NOT NULL,
+    date_added   date        NOT NULL
 );
 
 INSERT INTO games
-    (name)
-    VALUES ('Cod'), ('Rod'), ('Chod');
-
-
+(name, producer, console, rented, days_left, review_count, review_sum, review_avg, esrb, date_added)
+VALUES ('Minecraft', 'Mojang', 'PC', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE),
+       ('Rooster and Gall', 'Duty Toot', 'Xbox', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE);
 
 SELECT *
 FROM games

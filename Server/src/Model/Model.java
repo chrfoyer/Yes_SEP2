@@ -15,7 +15,7 @@ public interface Model
 
   ArrayList<Game> getAllGames();
 
-  void removeGame(Game game);
+  void removeGame(Game game) throws SQLException;
 
   void removeGame(String name);
 
@@ -27,9 +27,13 @@ public interface Model
 
   Game getGame(String name);
 
+  Game getMostRecentGame() throws SQLException;
+
   Game getGame(Game game);
 
   ArrayList<Game> getALlAvailableGames();
+
+  void refreshGameList() throws SQLException;
 
   GameList getGameList();
 
@@ -41,7 +45,7 @@ public interface Model
 
   UserList getUserList();
 
-  void updateGameInfo(Game gameOld, Game gameNew);
+  void updateGameInfo(Game gameOld, Game gameNew) throws SQLException;
 
   void addTransaction(Transaction transaction);
 

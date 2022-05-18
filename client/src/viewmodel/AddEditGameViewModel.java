@@ -128,7 +128,7 @@ public class AddEditGameViewModel
 
   public void addGame()
   {
-    //todo nullcheck
+    // TODO: 18/05/2022 Don't allow name or producer to be blank
     try
     {
       Game gameToAdd = new Game(name.get(), producer.get(), console.get(),
@@ -142,7 +142,7 @@ public class AddEditGameViewModel
 
   public void editGame()
   {
-    //todo nullcheck
+    // TODO: 18/05/2022 Don't allow name or producer to be blank
     try
     {
       Game gameOld = new Game(selectedGameProperty.get().getGame().getName(),

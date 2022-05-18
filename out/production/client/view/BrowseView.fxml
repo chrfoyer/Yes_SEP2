@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BrowseViewController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
+      minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="400.0" prefWidth="600.0"
+      style="-fx-border-color: #999999; -fx-border-width: 7;"
+      xmlns="http://javafx.com/javafx/17"
+      fx:controller="view.BrowseViewController">
     <children>
-        <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
+        <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0"
+              style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label style="-fx-font-weight: bold;" text="Browse" textFill="#c1c1c1">
+                <Label style="-fx-font-weight: bold;" text="Browse"
+                       textFill="#c1c1c1">
                     <font>
                         <Font size="36.0"/>
                     </font>
@@ -29,9 +26,11 @@
             <children>
                 <VBox prefHeight="282.0" prefWidth="628.0">
                     <children>
-                        <HBox alignment="CENTER" prefHeight="55.0" prefWidth="586.0">
+                        <HBox alignment="CENTER" prefHeight="55.0"
+                              prefWidth="586.0">
                             <children>
-                                <TextField fx:id="nameSearch" prefHeight="30.0" prefWidth="150.0"
+                                <TextField fx:id="nameSearch" prefHeight="30.0"
+                                           prefWidth="150.0"
                                            promptText="Game name">
                                     <font>
                                         <Font size="14.0"/>
@@ -40,17 +39,21 @@
                                         <Insets right="10.0"/>
                                     </HBox.margin>
                                 </TextField>
-                                <ChoiceBox fx:id="consoleSearch" prefHeight="30.0" prefWidth="150.0">
+                                <ChoiceBox fx:id="consoleSearch"
+                                           prefHeight="30.0" prefWidth="150.0">
                                     <HBox.margin>
                                         <Insets right="10.0"/>
                                     </HBox.margin>
                                 </ChoiceBox>
-                                <ChoiceBox fx:id="esrbSearch" prefHeight="30.0" prefWidth="150.0">
+                                <ChoiceBox fx:id="esrbSearch" prefHeight="30.0"
+                                           prefWidth="150.0">
                                     <HBox.margin>
                                         <Insets right="10.0"/>
                                     </HBox.margin>
                                 </ChoiceBox>
-                                <Button mnemonicParsing="false" onAction="#searchButton" prefHeight="30.0"
+                                <Button mnemonicParsing="false"
+                                        onAction="#searchButton"
+                                        prefHeight="30.0"
                                         prefWidth="80.0" text="Search">
                                     <font>
                                         <Font size="14.0"/>
@@ -62,39 +65,57 @@
                             <children>
                                 <VBox prefHeight="228.0" prefWidth="494.0">
                                     <children>
-                                        <ScrollPane prefHeight="229.0" prefWidth="266.0">
+                                        <ScrollPane prefHeight="229.0"
+                                                    prefWidth="266.0">
                                             <content>
-                                                <TableView fx:id="table" prefHeight="227.0" prefWidth="482.0">
+                                                <TableView fx:id="table"
+                                                           prefHeight="227.0"
+                                                           prefWidth="482.0">
                                                     <columns>
-                                                        <TableColumn fx:id="nameColumn" prefWidth="128.00000005960464"
-                                                                     text="Game"/>
-                                                        <TableColumn fx:id="consoleColumn"
-                                                                     prefWidth="125.60003662109375" text="Console"/>
-                                                        <TableColumn fx:id="producerColumn"
-                                                                     prefWidth="145.60003662109375" text="Producer"/>
-                                                        <TableColumn fx:id="esrbColumn" prefWidth="84.79998779296875"
-                                                                     text="ESRB"/>
+                                                        <TableColumn
+                                                                fx:id="nameColumn"
+                                                                prefWidth="128.00000005960464"
+                                                                text="Game"/>
+                                                        <TableColumn
+                                                                fx:id="consoleColumn"
+                                                                prefWidth="125.60003662109375"
+                                                                text="Console"/>
+                                                        <TableColumn
+                                                                fx:id="producerColumn"
+                                                                prefWidth="145.60003662109375"
+                                                                text="Producer"/>
+                                                        <TableColumn
+                                                                fx:id="esrbColumn"
+                                                                prefWidth="84.79998779296875"
+                                                                text="ESRB"/>
                                                     </columns>
                                                 </TableView>
                                             </content>
                                         </ScrollPane>
                                     </children>
                                 </VBox>
-                                <VBox alignment="CENTER" prefHeight="228.0" prefWidth="90.0" spacing="27.0">
+                                <VBox alignment="CENTER" prefHeight="228.0"
+                                      prefWidth="90.0" spacing="27.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#info" prefHeight="40.0"
+                                        <Button mnemonicParsing="false"
+                                                onAction="#info"
+                                                prefHeight="40.0"
                                                 prefWidth="80.0" text="Info">
                                             <font>
                                                 <Font size="18.0"/>
                                             </font>
                                         </Button>
-                                        <Button mnemonicParsing="false" onAction="#rent" prefHeight="40.0"
+                                        <Button mnemonicParsing="false"
+                                                onAction="#rent"
+                                                prefHeight="40.0"
                                                 prefWidth="80.0" text="Rent">
                                             <font>
                                                 <Font size="18.0"/>
                                             </font>
                                         </Button>
-                                        <Button mnemonicParsing="false" onAction="#back" prefHeight="40.0"
+                                        <Button mnemonicParsing="false"
+                                                onAction="#back"
+                                                prefHeight="40.0"
                                                 prefWidth="80.0" text="Back">
                                             <font>
                                                 <Font size="18.0"/>
@@ -108,9 +129,11 @@
                 </VBox>
             </children>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
+        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0"
+              style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR" textFill="RED"/>
+                <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR"
+                       textFill="RED"/>
             </children>
         </HBox>
     </children>

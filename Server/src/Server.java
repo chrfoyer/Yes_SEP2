@@ -2,6 +2,7 @@ import Model.Game;
 import Model.TransactionList;
 import mediator.RmiServer;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Server
@@ -51,7 +52,13 @@ public class Server
           if (input.nextInt() == 1)
           {
             System.out.println("Removing " + gameToRemove.getName());
-            server.removeGame(gameToRemove);
+            try
+            {
+              server.removeGame(gameToRemove);
+            } catch (SQLException e)
+            {
+              e.printStackTrace();
+            }
           } else
           {
             System.out.println(

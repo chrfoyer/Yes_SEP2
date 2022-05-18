@@ -4,6 +4,7 @@ import Model.Game;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class GameImpl implements GameDAO
 {
@@ -110,7 +111,9 @@ public class GameImpl implements GameDAO
     {
       Statement st = connection.createStatement();
       ResultSet rs = st.executeQuery(
-              "SELECT * " + "FROM games " + "WHERE id = 1;");
+              "SELECT * " +
+                      "FROM games " +
+                      "WHERE id = 1;");
       while (rs.next())
       {
         System.out.println("Id: " + rs.getString("id"));
@@ -135,7 +138,9 @@ public class GameImpl implements GameDAO
     {
       Statement st = connection.createStatement();
       ResultSet rs = st.executeQuery(
-              "SELECT * " + "FROM games " + "ORDER BY id DESC " +
+              "SELECT * " +
+                      "FROM games " +
+                      "ORDER BY id DESC " +
                       "LIMIT 1");
       while (rs.next())
       {
@@ -164,12 +169,64 @@ public class GameImpl implements GameDAO
   }
 
   @Override
+  public ArrayList<Game> getAllGames() throws SQLException
+  {
+    ArrayList<Game> gameArrayList = new ArrayList<>();
+    try (Connection connection = getConnection())
+    {
+      Statement st = connection.createStatement();
+      ResultSet rs = st.executeQuery(
+              "SELECT * " +
+                      "FROM games;");
+      while (rs.next())
+      {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        String producer = rs.getString("producer");
+        String console = rs.getString("console");
+        boolean rented = rs.getBoolean("rented");
+        int daysLeft = rs.getInt("days_left");
+        int reviewCount = rs.getInt("review_count");
+        int reviewSum = rs.getInt("review_sum");
+        float reviewAvg = rs.getFloat("review_avg");
+        String esrb = rs.getString("esrb");
+        Date dateSQL = rs.getDate("date_added");
+        LocalDate dateAdded = null;
+        if (dateSQL != null)
+        {
+          dateAdded = dateSQL.toLocalDate();
+        }
+        gameArrayList.add(new Game(id, name, producer, console, rented, daysLeft, reviewCount, reviewSum, reviewAvg, esrb, dateAdded));
+      }
+      st.close();
+      rs.close();
+    }
+    return gameArrayList;
+  }
+
+  @Override
   public void update(Game game) throws SQLException
   {
     // This is not ideal because a game should have an id unseen by the user
     // For now, this checks the name and console, which effectively means those cannot be accurately changed
-    delete(game);
-    create(game);
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+              "UPDATE games " +
+                      "SET name = ?, " +
+                      "producer = ?, " +
+                      "console = ?, " +
+                      "esrb = ? " +
+                      "WHERE id = ?;"
+      );
+      statement.setString(1, game.getName());
+      statement.setString(2, game.getProducer());
+      statement.setString(3, game.getConsole());
+      statement.setString(4, game.getEsrb());
+      statement.setInt(5, game.getId());
+      statement.executeUpdate();
+      statement.close();
+    }
   }
 
   @Override
@@ -178,9 +235,8 @@ public class GameImpl implements GameDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-              "DELETE FROM games " + "WHERE name = ? " + "AND console = ?;");
-      statement.setString(1, game.getName());
-      statement.setString(2, game.getConsole());
+              "DELETE FROM games " + "WHERE id = ? ");
+      statement.setInt(1, game.getId());
       statement.executeUpdate();
       statement.close();
     }

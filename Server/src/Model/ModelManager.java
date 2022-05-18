@@ -26,17 +26,22 @@ public class ModelManager implements Model
     this.users = new UserList();
     this.transactions = TransactionList.getInstance();
     gameDAO = GameImpl.getInstance();
+    refreshGameList();
 
-    //todo remove test
+    // TODO: 18/05/2022 Remove below test data when it is done in SQL 
     users.addUser(new User("admin", "admin"));
     User bob = new User("bob", "test");
     bob.setHasSubscription(true);
     users.addUser(bob);
     LocalDate date = LocalDate.of(1997, 3, 3);
     users.addUser(new User("martin", "maxmax1", "asdf@", "afdadf", "martin r", date));
+    Transaction transaction = new Transaction("rent", "admin", 3.5);
+
+    /*  Inserted in DDL
+
     games.addGame(new Game("Minecraft", "Mojang", "PC", "E"));
     games.addGame(new Game("CockAndBalls", "ShitFart", "Xbox", "E"));
-    Transaction transaction = new Transaction("rent", "admin", 3.5);
+    */
   }
 
   public void setGames(GameList games)
@@ -57,7 +62,7 @@ public class ModelManager implements Model
   @Override
   public void addGame(Game game) throws SQLException
   {
-    games.addGame(gameDAO.create(game)); // todo migrate to db
+    games.addGame(gameDAO.create(game));
   }
 
   /**
@@ -77,8 +82,9 @@ public class ModelManager implements Model
    * @param game is the game to be removed
    */
   @Override
-  public void removeGame(Game game)
+  public void removeGame(Game game) throws SQLException
   {
+    gameDAO.delete(game);
     games.removeGame(game);
   }
 
@@ -133,6 +139,12 @@ public class ModelManager implements Model
     return games.getGame(name);
   }
 
+  @Override
+  public Game getMostRecentGame() throws SQLException
+  {
+    return gameDAO.readMaxId();
+  }
+
   /**
    * method to get a Game from GameList using its name
    *
@@ -155,6 +167,17 @@ public class ModelManager implements Model
   public ArrayList<Game> getALlAvailableGames()
   {
     return games.getAvailableGames();
+  }
+
+  @Override
+  public void refreshGameList() throws SQLException
+  {
+    GameList temp = new GameList();
+    for (Game game : gameDAO.getAllGames())
+    {
+      temp.addGame(game);
+    }
+    games = temp;
   }
 
   /**
@@ -212,9 +235,11 @@ public class ModelManager implements Model
   }
 
   @Override
-  public void updateGameInfo(Game gameOld, Game gameNew)
+  public void updateGameInfo(Game gameOld, Game gameNew) throws SQLException
   {
-    games.updateGameInfo(gameOld, gameNew);
+    gameDAO.update(gameNew);
+    refreshGameList();
+    // games.updateGameInfo(gameOld, gameNew);
   }
 
   @Override

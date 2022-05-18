@@ -81,7 +81,7 @@ public class AdminViewModel
       int registeredUser = 0;
       int totalGame = 0;
       int totalRent = 0;
-      Game recent = model.viewGames().getGamesArrayCopy().get(0);
+      Game recent = model.getMostRecentGame();
       registeredUser = model.getUserList().size();
       ArrayList<Game> allGames = model.viewGames().getGamesArrayCopy();
       for (Game game : allGames)

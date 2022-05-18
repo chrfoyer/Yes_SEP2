@@ -93,6 +93,12 @@ public class RmiServer implements RemoteModel
   }
 
   @Override
+  public Game getMostRecentGame() throws SQLException, RemoteException
+  {
+    return model.getMostRecentGame();
+  }
+
+  @Override
   public boolean containsGame(String name) throws RemoteException
   {
     return model.containsGame(name);
@@ -117,7 +123,7 @@ public class RmiServer implements RemoteModel
   }
 
   @Override
-  public void updateGameInfo(Game gameOld, Game gameNew)
+  public void updateGameInfo(Game gameOld, Game gameNew) throws SQLException
   {
     model.updateGameInfo(gameOld, gameNew);
   }
@@ -157,7 +163,7 @@ public class RmiServer implements RemoteModel
    *
    * @param game game to be removed
    */
-  public void removeGame(Game game)
+  public void removeGame(Game game) throws SQLException
   {
     model.removeGame(game);
   }
