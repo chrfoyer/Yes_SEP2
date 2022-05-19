@@ -81,6 +81,7 @@ public class BrowseViewModel
             model.rentGame(game, CurrentlyLoggedUser.getLoggedInUser());
         } catch (Exception e)
         {
+            e.printStackTrace();
             errorLabel.set(e.getMessage());
         }
     }
