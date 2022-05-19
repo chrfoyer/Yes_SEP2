@@ -8,7 +8,9 @@ import mediator.RemoteModel;
 import java.util.ArrayList;
 
 /**
- * @version 0.1
+ * class that handles the logic for the Admin view controller
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
  */
 public class AdminViewModel
 {
@@ -45,21 +47,37 @@ public class AdminViewModel
         return registeredUsers;
     }
 
+    /**
+     * getter for total games
+     * @return totalGames
+     */
     public StringProperty getTotalGames()
     {
         return totalGames;
     }
 
+    /**
+     * getter for rented games
+     * @return rentedGames
+     */
     public StringProperty getRentedGames()
     {
         return rentedGames;
     }
 
+    /**
+     * getter for recent game
+     * @return recentGame
+     */
     public StringProperty getRecentGame()
     {
         return recentGame;
     }
 
+    /**
+     * getter for error label
+     * @return errorLabel
+     */
     public StringProperty getErrorLabel()
     {
         return errorLabel;
@@ -74,6 +92,9 @@ public class AdminViewModel
         errorLabel.set("");
     }
 
+    /**
+     * method for updating labels
+     */
     public void updateLabels()
     {
         try

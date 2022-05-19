@@ -8,7 +8,7 @@ import javafx.beans.property.StringProperty;
 import mediator.RemoteModel;
 
 /**
- * class that handles the logic for the Add Edit View
+ * class that handles the logic for the Add Edit View controller
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -83,7 +83,7 @@ public class AddEditGameViewModel
     }
 
     /**
-     * method for setting the selected
+     * method for setting the selected game property
      * @param selectedGameViewModel
      */
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel)
@@ -91,51 +91,90 @@ public class AddEditGameViewModel
         this.selectedGameProperty.set(selectedGameViewModel);
     }
 
+    /**
+     * method for getting the name of the game
+     * @return String game name
+     */
     public String getName()
     {
         return name.get();
     }
 
+    /**
+     * method for setting the game's name
+     * @param name what to set game name to
+     */
     public void setName(String name)
     {
         this.name.set(name);
     }
 
+    /**
+     * method for getting name property
+     * @return StringProperty name
+     */
     public StringProperty nameProperty()
     {
         return name;
     }
 
+    /**
+     * method for getting the game's console property
+     * @return StringProperty console
+     */
     public StringProperty consoleProperty()
     {
         return console;
     }
 
+    /**
+     * method for getting the game's producer property
+     * @return StringProperty producer
+     */
     public StringProperty producerProperty()
     {
         return producer;
     }
 
+    /**
+     * method for getting the game's esrb property
+     * @return StringProperty esrb
+     */
     public StringProperty esrbProperty()
     {
         return esrb;
     }
 
+    /**
+     * method for getting the error property
+     * @return StringProperty error
+     */
     public StringProperty errorProperty()
     {
         return error;
     }
 
+    /**
+     * method for setting the game's esrb
+     * @param esrb to assign to the game
+     */
     public void setEsrb(String esrb)
     {
         this.esrb.set(esrb);
     }
 
+    /**
+     * method for setting the games console
+     * @param console to assign to the game
+     */
     public void setConsole(String console)
     {
         this.console.set(console);
     }
 
+    /**
+     * method for adding a game
+     */
     public void addGame()
     {
         try
@@ -151,6 +190,9 @@ public class AddEditGameViewModel
         }
     }
 
+    /**
+     * method for editing a game
+     */
     public void editGame()
     {
         try
