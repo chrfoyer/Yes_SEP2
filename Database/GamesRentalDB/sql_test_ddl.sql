@@ -95,59 +95,12 @@ INSERT INTO users
 VALUES ('admin', 'admin'),
        ('bob', 'test');
 
-UPDATE users SET is_admin=true WHERE username='admin';
-       ('bob', 'test'),
-       ('wow', 'test');
-
-DROP FUNCTION IF EXISTS calculate_ages() CASCADE;
-DROP TRIGGER IF EXISTS age_check
-ON users;
-DROP FUNCTION IF EXISTS days_left() CASCADE;
-DROP TRIGGER IF EXISTS days_refresh
-ON rentals;
+UPDATE users
+SET is_admin= TRUE
+WHERE username = 'admin';
 
 
-CREATE FUNCTION calculate_ages()
-    RETURNS TRIGGER
-    LANGUAGE plpgsql
-AS
-$$
-BEGIN
-    UPDATE users
-    SET age = EXTRACT(YEAR FROM CURRENT_DATE - bDay);
-    RETURN NEW;
-END;
-$$;
 
-CREATE TRIGGER age_check
-    AFTER INSERT OR UPDATE
-    ON users
-    FOR EACH STATEMENT
-EXECUTE PROCEDURE calculate_ages();
-
-CREATE FUNCTION days_left()
-RETURNS TRIGGER
-LANGUAGE plpgsql
-AS
-    $$
-    BEGIN
-        if NEW.active = TRUE THEN
-            UPDATE rentals
-            SET days_left = CURRENT_DATE - ;
-
-            UPDATE games
-            SET days_left = new.days_left
-            WHERE id = NEW.game_id;
-        END IF;
-        RETURN NEW;
-    END;
-    $$;
-
-CREATE TRIGGER days_refresh
-    AFTER INSERT OR UPDATE
-    ON rentals
-    FOR EACH ROW
-    EXECUTE PROCEDURE days_left();
 
 
 
