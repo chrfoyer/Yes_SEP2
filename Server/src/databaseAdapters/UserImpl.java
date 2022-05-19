@@ -3,6 +3,7 @@ package databaseAdapters;
 import Model.User;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UserImpl implements UserDAO
@@ -45,8 +46,8 @@ public class UserImpl implements UserDAO
     {
       PreparedStatement statement = connection.prepareStatement(
           "INSERT INTO users"
-              + "(username, password, email, address, name, bday, has_subscription, balance,)"
-              + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+              + "(username, password, email, address, name, bday, has_subscription, balance)"
+              + "VALUES (?, ?, ?, ?, ?," + " ?, ?, ?);");
       statement.setString(1, user.getUsername());
       statement.setString(2, user.getPassword());
       statement.setString(3, user.getEmail());
@@ -56,23 +57,60 @@ public class UserImpl implements UserDAO
       statement.setBoolean(7, user.hasSubscription());
       statement.setInt(8, user.getBalance());
 
+      System.out.println(statement.toString());
       statement.executeUpdate();
       statement.close();
 
-      createdUser = readMaxId();
+      createdUser = readUsername(user.getUsername());
     }
     return createdUser;
   }
 
-  @Override public User readById(int id) throws SQLException
+  /*
+  @Override public User readByUsername() throws SQLException
+  {
+    User readUser = null;
+    try (Connection connection = getConnection())
+    {
+      Statement st = connection.createStatement();
+      ResultSet rs = st.executeQuery(
+          "SELECT * " + "FROM users " + "ORDER BY id DESC " + "LIMIT 1");
+
+      while (rs.next())
+      {
+        //username, password, email, address, name, bday, has_subscription, balance,age
+        System.out.println("Id: " + rs.getString("id"));
+        String user = rs.getString("username");
+        String password = rs.getString("password");
+        boolean isAdmin = rs.getBoolean("is_admin");
+        String email = rs.getString("email");
+        String address = rs.getString("address");
+        String name = rs.getString("name");
+        Date bday = rs.getDate("bday");
+        boolean has_subscription = rs.getBoolean("has_subscription");
+        int balance = rs.getInt("has_subscription");
+        int age = rs.getInt("age");
+
+        readUser = new User(age, user, password, isAdmin, email, address, name,
+            bday.toLocalDate(), has_subscription, balance);
+
+      }
+      rs.close();
+      st.close();
+    }
+    return readUser;
+  }
+   */
+
+  @Override public User readUsername(String username) throws SQLException
   {
     User readUser = null;
     try (Connection connection = getConnection())
     {
 
       PreparedStatement st = connection.prepareStatement(
-          "SELECT * " + "FROM users " + "WHERE id = ?;");
-      st.setInt(1, id);
+          "SELECT * " + "FROM users " + "WHERE username = ?;");
+      st.setString(1, username);
       ResultSet rs = st.executeQuery();
 
       while (rs.next())
@@ -86,46 +124,11 @@ public class UserImpl implements UserDAO
         String name = rs.getString("name");
         Date bday = rs.getDate("bday");
         boolean has_subscription = rs.getBoolean("has_subscription");
-        int balance = rs.getInt("has_subscription");
+        int balance = rs.getInt("balance");
         int age = rs.getInt("age");
 
         readUser = new User(age, user, password, isAdmin, email, address, name,
-            bday.toLocalDate(), has_subscription, balance, id);
-
-      }
-      rs.close();
-      st.close();
-    }
-    return readUser;
-  }
-
-  @Override public User readMaxId() throws SQLException
-  {
-    User readUser = null;
-    try (Connection connection = getConnection())
-    {
-      Statement st = connection.createStatement();
-      ResultSet rs = st.executeQuery(
-          "SELECT * " + "FROM users " + "ORDER BY id DESC " + "LIMIT 1");
-
-      while (rs.next())
-      {
-        //username, password, email, address, name, bday, has_subscription, balance,age
-        System.out.println("Id: " + rs.getString("id"));
-        int id = rs.getInt("id");
-        String user = rs.getString("username");
-        String password = rs.getString("password");
-        boolean isAdmin = rs.getBoolean("is_admin");
-        String email = rs.getString("email");
-        String address = rs.getString("address");
-        String name = rs.getString("name");
-        Date bday = rs.getDate("bday");
-        boolean has_subscription = rs.getBoolean("has_subscription");
-        int balance = rs.getInt("has_subscription");
-        int age = rs.getInt("age");
-
-        readUser = new User(age, user, password, isAdmin, email, address, name,
-            bday.toLocalDate(), has_subscription, balance, id);
+            bday.toLocalDate(), has_subscription, balance);
 
       }
       rs.close();
@@ -141,34 +144,32 @@ public class UserImpl implements UserDAO
     try (Connection connection = getConnection())
     {
       Statement st = connection.createStatement();
-      ResultSet rs = st.executeQuery(
-          "SELECT * " + "FROM users " + "ORDER BY id DESC " + "LIMIT 1");
+      ResultSet rs = st.executeQuery("SELECT * " + "FROM users ");
 
       while (rs.next())
       {
         //username, password, email, address, name, bday, has_subscription, balance,age
-        System.out.println("Id: " + rs.getString("id"));
-        int id = rs.getInt("id");
         String user = rs.getString("username");
         String password = rs.getString("password");
         boolean isAdmin = rs.getBoolean("is_admin");
         String email = rs.getString("email");
         String address = rs.getString("address");
         String name = rs.getString("name");
-        Date bday = rs.getDate("bday");
+        Date dateSQL = rs.getDate("bday");
         boolean has_subscription = rs.getBoolean("has_subscription");
-        int balance = rs.getInt("has_subscription");
+        int balance = rs.getInt("balance");
         int age = rs.getInt("age");
+
+        LocalDate bday = null;
+        if (dateSQL != null)bday = dateSQL.toLocalDate();
 
         userArrayList.add(
             new User(age, user, password, isAdmin, email, address, name,
-                bday.toLocalDate(), has_subscription, balance, id));
+                bday, has_subscription, balance));
 
-      }
-      rs.close();
+      } rs.close();
       st.close();
-    }
-    return userArrayList;
+    } return userArrayList;
   }
 
   @Override public void update(User user) throws SQLException
@@ -176,9 +177,9 @@ public class UserImpl implements UserDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE users " + "SET user = ?, " + "password = ?, " + "email = ?, "
-              + "name = ? " + "bday = ? " + "has_subscription = ? "
-              + "balance = ? " + "WHERE id = ?;");
+          "UPDATE users " + "SET password = ?, " + "email = ?, " + "name = ? "
+              + "bday = ? " + "has_subscription = ? " + "balance = ? "
+              + "WHERE id = ?;");
       statement.setString(1, user.getUsername());
       statement.setString(2, user.getPassword());
       statement.setString(3, user.getEmail());
@@ -186,7 +187,7 @@ public class UserImpl implements UserDAO
       statement.setDate(5, Date.valueOf(user.getBday()));
       statement.setBoolean(6, user.hasSubscription());
       statement.setInt(7, user.getBalance());
-      statement.setInt(8, user.getId());
+      statement.setString(8, user.getUsername());
 
       statement.executeUpdate();
       statement.close();
@@ -198,8 +199,8 @@ public class UserImpl implements UserDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "DELETE FROM games " + "WHERE id = ? ");
-      statement.setInt(1, user.getId());
+          "DELETE FROM games " + "WHERE username = ? ");
+      statement.setString(1, user.getUsername());
       statement.executeUpdate();
       statement.close();
     }

@@ -10,9 +10,9 @@ public interface UserDAO
 {
   User create(User user) throws SQLException;
 
-  User readById(int id) throws SQLException;
+  User readUsername(String username) throws SQLException;
 
-  User readMaxId() throws SQLException;
+ // User readByUsername() throws SQLException;
 
   ArrayList<User> getAllUsers() throws SQLException;
 

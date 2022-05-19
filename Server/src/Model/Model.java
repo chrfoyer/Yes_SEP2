@@ -34,6 +34,8 @@ public interface Model
   ArrayList<Game> getALlAvailableGames();
 
   void refreshGameList() throws SQLException;
+  void refreshUserList() throws SQLException;
+
 
   GameList getGameList();
 

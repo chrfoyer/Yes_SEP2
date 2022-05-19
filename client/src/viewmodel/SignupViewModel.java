@@ -137,12 +137,14 @@ public class SignupViewModel
                 "Passwords and confirmation have to match!");
       LocalDate dob = dobProperty.get();
       Period age = Period.between(dob, LocalDate.now());
-      if (age.getYears() < 13)
+      /*
+       if (age.getYears() < 13)
       {
         dobProperty.set(null);
         throw new IllegalArgumentException(
                 "User has to be at least 13 years old!");
       }
+       */
       if (usernameProperty.get().length() < 5)
         throw new IllegalArgumentException(
                 "Username has to be at least 5 characters!");
