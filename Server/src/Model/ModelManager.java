@@ -31,21 +31,7 @@ public class ModelManager implements Model
     gameDAO = GameImpl.getInstance();
     userDAO = UserImpl.getInstance();
     refreshGameList();
-
-    // TODO: 18/05/2022 Remove below test data when it is done in SQL
-    users.addUser(new User("admin", "admin"));
-    User bob = new User("bob", "test");
-    bob.setHasSubscription(true);
-    users.addUser(bob);
-    LocalDate date = LocalDate.of(1997, 3, 3);
-    users.addUser(new User("martin", "maxmax1", "asdf@", "afdadf", "martin r", date));
-    Transaction transaction = new Transaction("rent", "admin", 3.5);
-
-    /*  Inserted in DDL
-
-    games.addGame(new Game("Minecraft", "Mojang", "PC", "E"));
-    games.addGame(new Game("CockAndBalls", "ShitFart", "Xbox", "E"));
-    */
+    refreshUserList();
   }
 
   public void setGames(GameList games)

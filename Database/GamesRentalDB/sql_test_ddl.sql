@@ -95,13 +95,3 @@ INSERT INTO users
 VALUES ('admin', 'admin'),
        ('bob', 'test');
 
-
-UPDATE rentals
-SET date_returned = CURRENT_DATE,
-    active        = FALSE
-WHERE game_id = 1
-  AND active = TRUE;
-
-UPDATE games
-SET rented = FALSE
-WHERE id = 1;
