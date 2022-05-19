@@ -267,10 +267,24 @@ public class ModelManager implements Model
         users.removeUser(user);
     }
 
+    //todo remove
+
+    /**
+     * @deprecated USE SQL VERSION
+     */
     @Override
     public void updateUserInfo(User oldUser, User newUser)
     {
         users.updateUserInfo(oldUser, newUser);
+        //todo fix
+        try
+        {
+            userDAO.update(newUser);
+            refreshUserList();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -279,12 +293,27 @@ public class ModelManager implements Model
         users.modifyBalance(amount, user);
         Transaction transaction = new Transaction("Add money", user.getUsername(),
                 amount);
+        updateUserWithSQL(user);
     }
+
+    public void updateUserWithSQL(User user)
+    {
+        try
+        {
+            userDAO.update(users.findUserInList(user));
+            refreshUserList();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void payForSubscription(User user)
     {
         users.payForSubscription(user);
+        updateUserWithSQL(user);
     }
 
     @Override
