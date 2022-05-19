@@ -13,6 +13,11 @@ import mediator.RemoteModel;
 
 import java.rmi.RemoteException;
 
+/**
+ * class that handles the logic for the Browse view controller
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 // TODO: 12/05/2022 Delegation from the controller 
 public class BrowseViewModel
 {
@@ -23,6 +28,10 @@ public class BrowseViewModel
     // Need the list of games in an observable list
     // Need a property for the selected simple game view model
 
+    /**
+     *constructor for browse view model
+     * @param model to asssign to the remotemodel
+     */
     public BrowseViewModel(RemoteModel model)
     {
         this.model = model;
@@ -45,6 +54,9 @@ public class BrowseViewModel
         }
     }
 
+    /**
+     * method for resetting
+     */
     public void reset()
     {
         data.clear();
@@ -62,16 +74,29 @@ public class BrowseViewModel
         errorLabel.set("");
     }
 
+    /**
+     * getter for getting data
+     * @return data
+     */
     public ObservableList<SimpleGameViewModel> getData()
     {
         return data;
     }
 
+    /**
+     * method for getting the error label
+     * @return errorLabel
+     */
     public StringProperty getErrorLabel()
     {
         return errorLabel;
     }
 
+    /**
+     * method for renting a game
+     * @param game game to be rented
+     * @return boolean true or false of whether the game can be rented or not
+     */
     public boolean rentGame(Game game)
     {
         try
@@ -87,6 +112,11 @@ public class BrowseViewModel
         return false;
     }
 
+    /**
+     * method for checking if the user can rent a game
+     * @param selectedGame game to check its esrb to the users age
+     * @return boolean true or false depending on if the user meets the age requirement
+     */
     public boolean ageCheck(Game selectedGame){
         try {
             if(CurrentlyLoggedUser.getLoggedInUser().getAge() < 17 && selectedGame.getEsrb().equals("M")){
@@ -102,6 +132,10 @@ public class BrowseViewModel
         return true;
     }
 
+    /**
+     * method for setting the selected game property
+     * @param selectedGameProperty to assign to selectedGameProperty
+     */
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty)
     {
         this.selectedGameProperty.set(selectedGameProperty);

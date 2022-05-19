@@ -5,6 +5,9 @@ import javafx.beans.property.StringProperty;
 import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
+/**
+ * class that handles the logic for the balance view controller
+ */
 public class BalanceViewModel
 {
     private final RemoteModel model;
@@ -35,11 +38,19 @@ public class BalanceViewModel
         return balanceAmount;
     }
 
+    /**
+     * getter for the subscription display
+     * @return subscriptionDisplay
+     */
     public StringProperty getSubssriptionDisplay()
     {
         return subssriptionDisplay;
     }
 
+    /**
+     * getter for the error label
+     * @return errorLabel
+     */
     public StringProperty getErrorLabel()
     {
         return errorLabel;
