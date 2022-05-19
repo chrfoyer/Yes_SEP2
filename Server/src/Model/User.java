@@ -257,8 +257,7 @@ public class User implements Serializable
   public boolean hasSubscription()
   {
     if (balance < 0)
-      throw new IllegalStateException(
-          "Users with negative balance cant have an active subscription");
+      return false;
     return hasSubscription;
   }
 
