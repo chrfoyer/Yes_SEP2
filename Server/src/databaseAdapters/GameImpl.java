@@ -209,7 +209,18 @@ public class GameImpl implements GameDAO
   @Override
   public ArrayList<Game> getRentedGamesByUser(User user) throws SQLException
   {
-    return null;
+    ArrayList<Game> temp = new ArrayList<>();
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+              "SELECT *\n" +
+                      "FROM games\n" +
+                      "         JOIN game_test.rentals r ON games.id = r.game_id\n" +
+                      "WHERE username = ? AND active = TRUE; "
+      );
+      statement.setString(1, user.getUsername());
+    }
+    return temp;
   }
 
   @Override

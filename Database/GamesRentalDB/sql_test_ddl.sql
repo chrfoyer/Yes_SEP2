@@ -100,4 +100,4 @@ VALUES ('admin', 'admin'),
 SELECT *
 FROM games
          JOIN game_test.rentals r ON games.id = r.game_id
-WHERE username = 'fillMe'
+WHERE username = 'bob' AND active = TRUE;
