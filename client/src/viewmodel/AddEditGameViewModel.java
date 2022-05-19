@@ -7,6 +7,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import mediator.RemoteModel;
 
+/**
+ * class that handles the logic for the Add Edit View
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class AddEditGameViewModel
 {
     private final RemoteModel model;
@@ -19,6 +24,10 @@ public class AddEditGameViewModel
     private final ObjectProperty<Boolean> rented;
     private final StringProperty error;
 
+    /**
+     * constructer creating view model and setting the remote model to model
+     * @param model what the model will be set to
+     */
     public AddEditGameViewModel(RemoteModel model)
     {
         this.model = model;
@@ -32,6 +41,9 @@ public class AddEditGameViewModel
         selectedGameProperty = new SimpleObjectProperty<>();
     }
 
+    /**
+     * logic behind the reset for the Add Edit view
+     */
     public void reset()
     {
         try
@@ -61,11 +73,19 @@ public class AddEditGameViewModel
         }
     }
 
+    /**
+     * method for getting the SimpleGameViewModel of the selected game
+     * @return SimpleGameViewModel of selected game
+     */
     public SimpleGameViewModel getSelectedGameProperty()
     {
         return selectedGameProperty.get();
     }
 
+    /**
+     * method for setting the selected
+     * @param selectedGameViewModel
+     */
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel)
     {
         this.selectedGameProperty.set(selectedGameViewModel);

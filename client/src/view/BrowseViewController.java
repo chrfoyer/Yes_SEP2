@@ -98,6 +98,8 @@ public class BrowseViewController extends ViewController
             SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
             Game selectedGame = temp.getGame();
 
+
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                     "Are you sure you want to rent game? -> " + selectedGame.getName());
             Optional<ButtonType> option = alert.showAndWait();
