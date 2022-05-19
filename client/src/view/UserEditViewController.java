@@ -7,6 +7,9 @@ import viewmodel.UserEditViewModel;
 
 import java.util.Optional;
 
+/**
+ * controller for the User Edit View
+ */
 public class UserEditViewController extends ViewController
 {
     @FXML
@@ -80,6 +83,10 @@ public class UserEditViewController extends ViewController
 
     }
 
+    /**
+     * logic for fine/refund button pressed, fining/refunding a user and subtracting/adding from their balance
+     * @param actionEvent fine/refund button pressed
+     */
     public void fine_refund(ActionEvent actionEvent)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
@@ -93,6 +100,10 @@ public class UserEditViewController extends ViewController
         }
     }
 
+    /**
+     * logic behind banHammer button, revoking a user's subscription
+     * @param actionEvent ban button pressed
+     */
     public void banHammer(ActionEvent actionEvent)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,

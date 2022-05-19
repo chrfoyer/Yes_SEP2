@@ -6,6 +6,12 @@ import viewmodel.AddEditGameViewModel;
 
 import java.util.Optional;
 
+/**
+ * controller for the AddEditGame
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
+
 public class AddEditGameController extends ViewController
 {
     public TextField gameName;

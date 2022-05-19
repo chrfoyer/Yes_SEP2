@@ -8,6 +8,11 @@ import viewmodel.BalanceViewModel;
 
 import java.util.Optional;
 
+/**
+ * controller for the BalanceView
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class BalanceViewController extends ViewController
 {
     public Label balanceAmount;
@@ -15,6 +20,9 @@ public class BalanceViewController extends ViewController
     public Label subscriptionDisplay;
     private BalanceViewModel viewModel;
 
+    /**
+     * method initializing all variables
+     */
     @Override
     protected void init()
     {
@@ -26,6 +34,10 @@ public class BalanceViewController extends ViewController
         viewModel.reset();
     }
 
+    /**
+     * logic for teh addFunds button, adding funds to a user
+     * @param actionEvent addFunds button pressed
+     */
     public void addFunds(ActionEvent actionEvent)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
@@ -45,11 +57,19 @@ public class BalanceViewController extends ViewController
         }
     }
 
+    /**
+     * logic behind the paySubscription button, using funds to give the user a subscription
+     * @param actionEvent pay subscription button pressed
+     */
     public void paySubscription(ActionEvent actionEvent)
     {
         viewModel.paySubscription();
     }
 
+    /**
+     * logic for the back button pressed, opening the UserProfileView
+     * @param actionEvent back button pressed
+     */
     public void back(ActionEvent actionEvent)
     {
         getViewModelFactory().getUserProfileViewModel().reset();

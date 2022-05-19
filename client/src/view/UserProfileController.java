@@ -10,6 +10,8 @@ import java.util.Optional;
 
 /**
  * Class which delegates to UserProfileViewModel
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
  */
 public class UserProfileController extends ViewController
 {
@@ -83,6 +85,10 @@ public class UserProfileController extends ViewController
         }
     }
 
+    /**
+     * method for asking the user to leave a review(int 1-5)
+     * @return int value (1-5) of the review
+     */
     public int getReviewScore()
     {
         Alert popup = new Alert(Alert.AlertType.INFORMATION,
@@ -116,9 +122,9 @@ public class UserProfileController extends ViewController
     }
 
     /**
-     * Logic off the button that extends the rented time of the game Has a confirmation popup
+     * Logic of the button that extends the rented time of the game Has a confirmation popup
      *
-     * @param actionEvent
+     * @param actionEvent extend button pressed
      */
     public void extend(ActionEvent actionEvent)
     {
@@ -162,6 +168,10 @@ public class UserProfileController extends ViewController
         //or nothign happens
     }
 
+    /**
+     * method for contacting admin
+     * @param actionEvent contact admin button pressed
+     */
     public void contactAdmin(ActionEvent actionEvent)
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION,

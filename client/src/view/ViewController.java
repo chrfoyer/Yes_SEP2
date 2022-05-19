@@ -3,6 +3,11 @@ package view;
 import javafx.scene.layout.Region;
 import viewmodel.ViewModelFactory;
 
+/**
+ * class that contains functionality for the view controllers
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public abstract class ViewController
 {
     private Region root;

@@ -9,6 +9,11 @@ import viewmodel.SimpleGameViewModel;
 
 import java.util.Optional;
 
+/**
+ * controller for the Inventory View
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class InventoryViewController extends ViewController
 {
     @FXML
@@ -30,6 +35,9 @@ public class InventoryViewController extends ViewController
     private InventoryViewModel viewModel;
     private AddEditGameViewModel gameViewModel;
 
+    /**
+     * method for initializing all variables
+     */
     @Override
     protected void init()
     {
@@ -56,6 +64,9 @@ public class InventoryViewController extends ViewController
         reset();
     }
 
+    /**
+     * method to reset the model
+     */
     public void reset()
     {
         table.getSelectionModel().clearSelection();
@@ -63,11 +74,10 @@ public class InventoryViewController extends ViewController
         gameViewModel.reset();
     }
 
-    @FXML
-    public void add(ActionEvent actionEvent)
-    {
-    }
-
+    /**
+     * logic behind the addEdit button, adding or editing a game
+     * @param actionEvent addEdit button pressed
+     */
     @FXML
     public void addEdit(ActionEvent actionEvent)
     {
@@ -77,6 +87,10 @@ public class InventoryViewController extends ViewController
         getViewHandler().openView("AddEditGame.fxml");
     }
 
+    /**
+     * logic behind cancel button, opening AdminView
+     * @param actionEvent cancel button pressed
+     */
     @FXML
     public void cancel(ActionEvent actionEvent)
     {
@@ -84,6 +98,10 @@ public class InventoryViewController extends ViewController
         getViewHandler().openView("AdminView.fxml");
     }
 
+    /**
+     * logic behind  the remove button, removing selected game
+     * @param actionEvent remove button pressed
+     */
     @FXML
     public void remove(ActionEvent actionEvent)
     {

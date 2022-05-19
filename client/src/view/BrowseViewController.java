@@ -10,6 +10,10 @@ import viewmodel.SimpleGameViewModel;
 import java.rmi.RemoteException;
 import java.util.Optional;
 
+
+/**
+ * controller for the Browse View
+ */
 public class BrowseViewController extends ViewController
 {
     public TextField nameSearch;
