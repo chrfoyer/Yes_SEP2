@@ -11,6 +11,11 @@ import viewmodel.AdminViewModel;
 
 import java.util.Optional;
 
+/**
+ * controller for the AdminView
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class AdminViewController extends ViewController
 {
 
@@ -84,6 +89,10 @@ public class AdminViewController extends ViewController
         getViewHandler().openView("InventoryView.fxml");
     }
 
+    /**
+     * method for the logout button, logging a user out and opening the LoginView
+     * @param actionEvent logout button pressed
+     */
     public void logout(ActionEvent actionEvent)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,

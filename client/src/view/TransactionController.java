@@ -7,6 +7,9 @@ import javafx.scene.control.TableView;
 import viewmodel.SimpleTransactionViewModel;
 import viewmodel.TransactionViewModel;
 
+/**
+ * controller for the Transaction View
+ */
 public class TransactionController extends ViewController
 {
     public TableView<SimpleTransactionViewModel> table;
@@ -17,6 +20,9 @@ public class TransactionController extends ViewController
     public Label error;
     private TransactionViewModel viewModel;
 
+    /**
+     * method initializing all variables
+     */
     @Override
     protected void init()
     {
@@ -36,6 +42,10 @@ public class TransactionController extends ViewController
 
     }
 
+    /**
+     * logic for back button, opening Admin View
+     * @param actionEvent back button pressed
+     */
     public void back(ActionEvent actionEvent)
     {
         getViewHandler().openView("AdminView.fxml");

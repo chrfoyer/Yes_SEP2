@@ -11,6 +11,9 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.Optional;
 
+/**
+ * controller for the User List View
+ */
 public class UserListViewController extends ViewController
 {
     @FXML
@@ -49,11 +52,19 @@ public class UserListViewController extends ViewController
         reset();
     }
 
+    /**
+     * method for resetting the viewmodel
+     */
     public void reset()
     {
         viewModel.reset();
     }
 
+    /**
+     * logic for remove button, removing a user
+     * @param actionEvent remove button pressed
+     * @throws RemoteException
+     */
     @FXML
     public void remove(ActionEvent actionEvent) throws RemoteException
     {
@@ -72,7 +83,6 @@ public class UserListViewController extends ViewController
 
     /**
      * method for opening UserEditView
-     *
      * @param actionEvent edit button pressed
      */
     @FXML
@@ -83,6 +93,10 @@ public class UserListViewController extends ViewController
         getViewHandler().openView("UserEditView.fxml");
     }
 
+    /**
+     * logic for back button, opening the Admin View
+     * @param actionEvent back button pressed
+     */
     public void back(ActionEvent actionEvent)
     {
         getViewHandler().openView("AdminView.fxml");

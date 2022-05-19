@@ -5,6 +5,11 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import viewmodel.ViewModelFactory;
 
+/**
+ * class that handles swapping from view to view
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class ViewHandler extends ViewCreator
 {
     private final ViewModelFactory viewModelFactory;

@@ -4,6 +4,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import viewmodel.GameInfoViewModel;
 
+/**
+ * controller for the Game Info View
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class GameInfoViewController extends ViewController
 {
 

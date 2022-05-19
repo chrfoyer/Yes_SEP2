@@ -6,6 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import viewmodel.SignupViewModel;
 
+/**
+ * controller for the Signup View
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
+
 public class SignupViewController extends ViewController
 {
     public TextField fullName;
@@ -37,14 +43,16 @@ public class SignupViewController extends ViewController
         dob.valueProperty().bindBidirectional(viewModel.getDobProperty());
     }
 
+    /**
+     * method for resetting viewmodel
+     */
     public void reset()
     {
         viewModel.reset();
     }
 
     /**
-     * methodd for signing up
-     *
+     * method for signing up
      * @param actionEvent when clicking the signup button
      */
     public void signup(ActionEvent actionEvent)
