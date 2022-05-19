@@ -99,8 +99,86 @@ UPDATE users
 SET is_admin= TRUE
 WHERE username = 'admin';
 
+DROP FUNCTION IF EXISTS calculate_ages() CASCADE;
+DROP TRIGGER IF EXISTS age_check
+    ON users;
+DROP FUNCTION IF EXISTS days_left() CASCADE;
+DROP TRIGGER IF EXISTS days_refresh
+    ON rentals;
 
 
+CREATE FUNCTION calculate_ages()
+    RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    UPDATE users
+    SET age = EXTRACT(YEAR FROM CURRENT_DATE - bDay);
+    RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER age_check
+    AFTER INSERT OR UPDATE
+    ON users
+    FOR EACH STATEMENT
+EXECUTE PROCEDURE calculate_ages();
+
+CREATE FUNCTION days_left()
+    RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    IF PG_TRIGGER_DEPTH() <> 1 THEN
+        RETURN NEW;
+    END IF;
+    UPDATE rentals
+    SET days_left = CURRENT_DATE - rentals.date_rented + rental_length_allowed
+    WHERE active = TRUE;
+    RETURN NEW;
+END;
+$$;
+
+
+CREATE TRIGGER days_refresh
+    AFTER INSERT OR UPDATE
+    ON rentals
+    FOR EACH STATEMENT
+EXECUTE PROCEDURE days_left();
+
+/*
+
+DROP FUNCTION IF EXISTS wow();
+
+CREATE FUNCTION wow()
+    RETURNS INTEGER
+    LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    diff integer;
+BEGIN
+    diff = CURRENT_DATE - '2022-05-10';
+    RETURN diff;
+END;
+$$;
+
+SELECT wow();
+
+ */
+
+UPDATE rentals
+SET date_rented = CURRENT_DATE
+WHERE id = 14;
+
+SELECT days_left
+FROM rentals
+WHERE id = 14;
+
+UPDATE rentals
+SET days_left = NULL;
 
 
 
