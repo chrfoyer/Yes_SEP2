@@ -238,7 +238,8 @@ public class GameImpl implements GameDAO
                       "SET date_returned = CURRENT_DATE, " +
                       "    active        = FALSE " +
                       "WHERE game_id = ? " +
-                      "  AND active = TRUE; " +
+                      "  AND active = TRUE " +
+                      "  AND days_left = NULL; " +
 
                       "UPDATE games " +
                       "SET rented = FALSE " +
