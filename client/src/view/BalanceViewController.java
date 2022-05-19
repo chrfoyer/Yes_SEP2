@@ -10,49 +10,49 @@ import java.util.Optional;
 
 public class BalanceViewController extends ViewController
 {
-  public Label balanceAmount;
-  public Label errorLabel;
-  public Label subscriptionDisplay;
-  private BalanceViewModel viewModel;
+    public Label balanceAmount;
+    public Label errorLabel;
+    public Label subscriptionDisplay;
+    private BalanceViewModel viewModel;
 
-  @Override
-  protected void init()
-  {
-    viewModel = getViewModelFactory().getBalanceViewModel();
-
-    balanceAmount.textProperty().bind(viewModel.getBalanceAmount());
-    errorLabel.textProperty().bind(viewModel.getErrorLabel());
-    subscriptionDisplay.textProperty().bind(viewModel.getSubssriptionDisplay());
-    viewModel.reset();
-  }
-
-  public void addFunds(ActionEvent actionEvent)
-  {
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-            "Transactions are handled by an external provider. Are you alright with that?");
-    Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK)
+    @Override
+    protected void init()
     {
-      try
-      {
-        //Desktop.getDesktop().browse(
-        //    new URL("https://www.youtube.com/watch?v=UX0sbhIy9MA").toURI());
-        viewModel.addFunds();
-      } catch (Exception e)
-      {
-        e.printStackTrace();
-      }
+        viewModel = getViewModelFactory().getBalanceViewModel();
+
+        balanceAmount.textProperty().bind(viewModel.getBalanceAmount());
+        errorLabel.textProperty().bind(viewModel.getErrorLabel());
+        subscriptionDisplay.textProperty().bind(viewModel.getSubssriptionDisplay());
+        viewModel.reset();
     }
-  }
 
-  public void paySubscription(ActionEvent actionEvent)
-  {
-    viewModel.paySubscription();
-  }
+    public void addFunds(ActionEvent actionEvent)
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Transactions are handled by an external provider. Are you alright with that?");
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get() == ButtonType.OK)
+        {
+            try
+            {
+                //Desktop.getDesktop().browse(
+                //    new URL("https://www.youtube.com/watch?v=UX0sbhIy9MA").toURI());
+                viewModel.addFunds();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
 
-  public void back(ActionEvent actionEvent)
-  {
-    getViewModelFactory().getUserProfileViewModel().reset();
-    getViewHandler().openView("UserProfileView.fxml");
-  }
+    public void paySubscription(ActionEvent actionEvent)
+    {
+        viewModel.paySubscription();
+    }
+
+    public void back(ActionEvent actionEvent)
+    {
+        getViewModelFactory().getUserProfileViewModel().reset();
+        getViewHandler().openView("UserProfileView.fxml");
+    }
 }

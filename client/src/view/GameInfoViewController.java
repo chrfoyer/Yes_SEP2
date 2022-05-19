@@ -7,47 +7,47 @@ import viewmodel.GameInfoViewModel;
 public class GameInfoViewController extends ViewController
 {
 
-  public TextField name;
-  public TextField producer;
-  public TextField esrb;
-  public TextField rating;
-  public TextField console;
-  public Label error;
-  public GameInfoViewModel viewModel;
+    public TextField name;
+    public TextField producer;
+    public TextField esrb;
+    public TextField rating;
+    public TextField console;
+    public Label error;
+    public GameInfoViewModel viewModel;
 
-  /**
-   * method initializing all the variables and cells
-   */
-  @Override
-  protected void init()
-  {
-    viewModel = getViewModelFactory().getGameInfoViewModel();
-    name.textProperty().bindBidirectional(viewModel.nameProperty());
-    producer.textProperty().bindBidirectional(viewModel.producerProperty());
-    esrb.textProperty().bindBidirectional(viewModel.esrbProperty());
-    // Bind rating
-    console.textProperty().bindBidirectional(viewModel.consoleProperty());
-    error.textProperty().bind(viewModel.errorProperty());
-    rating.textProperty().bind(viewModel.reviewProperty());
-  }
+    /**
+     * method initializing all the variables and cells
+     */
+    @Override
+    protected void init()
+    {
+        viewModel = getViewModelFactory().getGameInfoViewModel();
+        name.textProperty().bindBidirectional(viewModel.nameProperty());
+        producer.textProperty().bindBidirectional(viewModel.producerProperty());
+        esrb.textProperty().bindBidirectional(viewModel.esrbProperty());
+        // Bind rating
+        console.textProperty().bindBidirectional(viewModel.consoleProperty());
+        error.textProperty().bind(viewModel.errorProperty());
+        rating.textProperty().bind(viewModel.reviewProperty());
+    }
 
-  /**
-   * method that resets the fields in the view
-   */
-  public void reset()
-  {
-    viewModel.reset();
-  }
+    /**
+     * method that resets the fields in the view
+     */
+    public void reset()
+    {
+        viewModel.reset();
+    }
 
-  /**
-   * Logic for the button that opens the BrowseView
-   */
-  public void backButton()
-  {
-    // TODO: 12/05/2022 reset
+    /**
+     * Logic for the button that opens the BrowseView
+     */
+    public void backButton()
+    {
+        // TODO: 12/05/2022 reset
 
-    getViewHandler().openView("BrowseView.fxml");
-    // Note: This might not always be the case, depending upon where we come from to get to this window.
-  }
+        getViewHandler().openView("BrowseView.fxml");
+        // Note: This might not always be the case, depending upon where we come from to get to this window.
+    }
 
 }

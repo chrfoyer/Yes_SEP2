@@ -14,48 +14,48 @@ import java.sql.SQLException;
  */
 public interface RemoteModel extends Remote
 {
-  void rentGame(Game game, User user) throws RemoteException;
+    void rentGame(Game game, User user) throws RemoteException;
 
-  Game getGame(String name) throws RemoteException;
+    Game getGame(String name) throws RemoteException;
 
-  GameList viewGames() throws RemoteException;
+    GameList viewGames() throws RemoteException;
 
-  Game getMostRecentGame() throws SQLException, RemoteException;
+    Game getMostRecentGame() throws SQLException, RemoteException;
 
-  boolean containsGame(String name) throws RemoteException;
+    boolean containsGame(String name) throws RemoteException;
 
-  void signup(User user) throws RemoteException;
+    void signup(User user) throws RemoteException;
 
-  boolean login(User user) throws RemoteException;
+    boolean login(User user) throws RemoteException;
 
-  UserList getUserList() throws RemoteException;
+    UserList getUserList() throws RemoteException;
 
-  void updateGameInfo(Game gameOld, Game gameNew) throws RemoteException, SQLException;
+    void updateGameInfo(Game gameOld, Game gameNew) throws RemoteException, SQLException;
 
-  void addGame(Game game) throws RemoteException, SQLException;
+    void addGame(Game game) throws RemoteException, SQLException;
 
-  void removeGame(Game game) throws RemoteException, SQLException;
+    void removeGame(Game game) throws RemoteException, SQLException;
 
-  void removeUser(User user) throws RemoteException;
+    void removeUser(User user) throws RemoteException;
 
-  void updateUserInfo(User oldUser, User newUser) throws RemoteException;
+    void updateUserInfo(User oldUser, User newUser) throws RemoteException;
 
-  void addTransaction(Transaction transaction) throws RemoteException;
+    void addTransaction(Transaction transaction) throws RemoteException;
 
-  int getBalance(User user) throws RemoteException;
+    int getBalance(User user) throws RemoteException;
 
-  void modifyBalance(int amount, User user) throws RemoteException;
+    void modifyBalance(int amount, User user) throws RemoteException;
 
-  void payForSubscription(User user) throws RemoteException;
+    void payForSubscription(User user) throws RemoteException;
 
-  void setSubscription(User user, boolean status) throws RemoteException;
+    void setSubscription(User user, boolean status) throws RemoteException;
 
-  TransactionList getTransactionList() throws RemoteException;
+    TransactionList getTransactionList() throws RemoteException;
 
-  void leaveReview(int review, Game game) throws RemoteException;
+    void leaveReview(int review, Game game) throws RemoteException;
 
-  float getReview(Game game) throws RemoteException;
+    float getReview(Game game) throws RemoteException;
 
-  void returnGame(Game game, User user) throws RemoteException;
+    void returnGame(Game game, User user) throws RemoteException;
 
 }

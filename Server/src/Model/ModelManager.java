@@ -17,162 +17,162 @@ import java.util.ArrayList;
  */
 public class ModelManager implements Model
 {
-  private final TransactionList transactions;
-  private final GameDAO gameDAO;
-  private UserDAO userDAO;
-  private GameList games;
-  private UserList users;
+    private final TransactionList transactions;
+    private final GameDAO gameDAO;
+    private UserDAO userDAO;
+    private GameList games;
+    private UserList users;
 
-  public ModelManager() throws SQLException
-  {
-    this.games = new GameList();
-    this.users = new UserList();
-    this.transactions = TransactionList.getInstance();
-    gameDAO = GameImpl.getInstance();
-    userDAO = UserImpl.getInstance();
-    refreshGameList();
+    public ModelManager() throws SQLException
+    {
+        this.games = new GameList();
+        this.users = new UserList();
+        this.transactions = TransactionList.getInstance();
+        gameDAO = GameImpl.getInstance();
+        userDAO = UserImpl.getInstance();
+        refreshGameList();
 
-    // TODO: 18/05/2022 Remove below test data when it is done in SQL 
-    users.addUser(new User("admin", "admin"));
-    User bob = new User("bob", "test");
-    bob.setHasSubscription(true);
-    users.addUser(bob);
-    LocalDate date = LocalDate.of(1997, 3, 3);
-    users.addUser(new User("martin", "maxmax1", "asdf@", "afdadf", "martin r", date));
-    Transaction transaction = new Transaction("rent", "admin", 3.5);
+        // TODO: 18/05/2022 Remove below test data when it is done in SQL
+        users.addUser(new User("admin", "admin"));
+        User bob = new User("bob", "test");
+        bob.setHasSubscription(true);
+        users.addUser(bob);
+        LocalDate date = LocalDate.of(1997, 3, 3);
+        users.addUser(new User("martin", "maxmax1", "asdf@", "afdadf", "martin r", date));
+        Transaction transaction = new Transaction("rent", "admin", 3.5);
 
     /*  Inserted in DDL
 
     games.addGame(new Game("Minecraft", "Mojang", "PC", "E"));
     games.addGame(new Game("CockAndBalls", "ShitFart", "Xbox", "E"));
     */
-  }
-
-  public void setGames(GameList games)
-  {
-    this.games = games;
-  }
-
-  public void setUsers(UserList users)
-  {
-    this.users = users;
-  }
-
-  /**
-   * Adds a new Game to the list
-   *
-   * @param game is the Game to be added to the list
-   */
-  @Override
-  public void addGame(Game game) throws SQLException
-  {
-    games.addGame(gameDAO.create(game));
-  }
-
-  /**
-   * returns all the games
-   *
-   * @return arrayList<Game> of all the games
-   */
-  @Override
-  public ArrayList<Game> getAllGames()
-  {
-    return games.getGamesArrayCopy();
-  }
-
-  /**
-   * We remove a specific game from the list
-   *
-   * @param game is the game to be removed
-   */
-  @Override
-  public void removeGame(Game game) throws SQLException
-  {
-    gameDAO.delete(game);
-    games.removeGame(game);
-  }
-
-  /**
-   * Removes a game from the GameList using its name
-   *
-   * @param name name of the game to be removed
-   */
-  @Override
-  public void removeGame(String name)
-  {
-    games.removeGame(name);
-  }
-
-  /**
-   * Decrements the days left in the rental period for all games in the list
-   */
-  @Override
-  public void decrementDay()
-  {
-    games.decrementDayForRented();
-  }
-
-  /**
-   * Sets the rented to true for given game
-   *
-   * @param game to be rented
-   */
-  @Override
-  public void rentGame(Game game, User user) throws SQLException
-  {
-    if (game == null)
-    {
-      throw new IllegalArgumentException("Game to rent cant be null");
-    } else
-    {
-      games.findGameInList(game).rentGame();
-      gameDAO.rent(game, user);
-      new Transaction(game, "Rent", user.getUsername());
-
     }
-  }
 
-  /**
-   * method to get a Gmae from GameList using a Game object
-   *
-   * @param name of the game to be searched for
-   * @return the selected game from the GameList
-   */
-  @Override
-  public Game getGame(String name)
-  {
-    return games.getGame(name);
-  }
+    public void setGames(GameList games)
+    {
+        this.games = games;
+    }
 
-  @Override
-  public Game getMostRecentGame() throws SQLException
-  {
-    return gameDAO.readMaxId();
-  }
+    public void setUsers(UserList users)
+    {
+        this.users = users;
+    }
 
-  /**
-   * method to get a Game from GameList using its name
-   *
-   * @param game to be searched for
-   * @return the selected game from the GameList
-   */
-  @Override
-  public Game getGame(Game game)
-  {
-    return games.getGame(game);
-  }
+    /**
+     * Adds a new Game to the list
+     *
+     * @param game is the Game to be added to the list
+     */
+    @Override
+    public void addGame(Game game) throws SQLException
+    {
+        games.addGame(gameDAO.create(game));
+    }
 
-  /**
-   * Method to get all non-rented games
-   *
-   * @return an ArrayList containing all non-rented Games
-   */
+    /**
+     * returns all the games
+     *
+     * @return arrayList<Game> of all the games
+     */
+    @Override
+    public ArrayList<Game> getAllGames()
+    {
+        return games.getGamesArrayCopy();
+    }
 
-  @Override
-  public ArrayList<Game> getALlAvailableGames()
-  {
-    return games.getAvailableGames();
-  }
+    /**
+     * We remove a specific game from the list
+     *
+     * @param game is the game to be removed
+     */
+    @Override
+    public void removeGame(Game game) throws SQLException
+    {
+        gameDAO.delete(game);
+        games.removeGame(game);
+    }
+
+    /**
+     * Removes a game from the GameList using its name
+     *
+     * @param name name of the game to be removed
+     */
+    @Override
+    public void removeGame(String name)
+    {
+        games.removeGame(name);
+    }
+
+    /**
+     * Decrements the days left in the rental period for all games in the list
+     */
+    @Override
+    public void decrementDay()
+    {
+        games.decrementDayForRented();
+    }
+
+    /**
+     * Sets the rented to true for given game
+     *
+     * @param game to be rented
+     */
+    @Override
+    public void rentGame(Game game, User user) throws SQLException
+    {
+        if (game == null)
+        {
+            throw new IllegalArgumentException("Game to rent cant be null");
+        } else
+        {
+            games.findGameInList(game).rentGame();
+            gameDAO.rent(game, user);
+            new Transaction(game, "Rent", user.getUsername());
+
+        }
+    }
+
+    /**
+     * method to get a Gmae from GameList using a Game object
+     *
+     * @param name of the game to be searched for
+     * @return the selected game from the GameList
+     */
+    @Override
+    public Game getGame(String name)
+    {
+        return games.getGame(name);
+    }
+
+    @Override
+    public Game getMostRecentGame() throws SQLException
+    {
+        return gameDAO.readMaxId();
+    }
+
+    /**
+     * method to get a Game from GameList using its name
+     *
+     * @param game to be searched for
+     * @return the selected game from the GameList
+     */
+    @Override
+    public Game getGame(Game game)
+    {
+        return games.getGame(game);
+    }
+
+    /**
+     * Method to get all non-rented games
+     *
+     * @return an ArrayList containing all non-rented Games
+     */
+
+    @Override
+    public ArrayList<Game> getALlAvailableGames()
+    {
+        return games.getAvailableGames();
+    }
 
     /**
      * Syncs gameList with database
@@ -180,9 +180,11 @@ public class ModelManager implements Model
      * @throws SQLException
      */
     @Override
-    public void refreshGameList() throws SQLException {
+    public void refreshGameList() throws SQLException
+    {
         GameList temp = new GameList();
-        for (Game game : gameDAO.getAllGames()) {
+        for (Game game : gameDAO.getAllGames())
+        {
             temp.addGame(game);
         }
         games = temp;
@@ -194,10 +196,12 @@ public class ModelManager implements Model
      * @throws SQLException
      */
     @Override
-    public void refreshUserList() throws SQLException {
+    public void refreshUserList() throws SQLException
+    {
         UserList temp = new UserList();
         for (User user : userDAO.getAllUsers()
-        ) {
+        )
+        {
             temp.addUser(user);
         }
         users = temp;
@@ -209,7 +213,8 @@ public class ModelManager implements Model
      * @return GameList containing everything
      */
     @Override
-    public GameList getGameList() {
+    public GameList getGameList()
+    {
         return games;
     }
 
@@ -221,10 +226,13 @@ public class ModelManager implements Model
      * @author Raedrim
      */
     @Override
-    public boolean containsGame(String name) {
+    public boolean containsGame(String name)
+    {
         boolean ret = false;
-        for (Game game : games.getGamesArrayCopy()) {
-            if (game.getName().equals(name)) {
+        for (Game game : games.getGamesArrayCopy())
+        {
+            if (game.getName().equals(name))
+            {
                 ret = true;
             }
         }
@@ -232,7 +240,8 @@ public class ModelManager implements Model
     }
 
     @Override
-    public void signup(User user) throws SQLException {
+    public void signup(User user) throws SQLException
+    {
         User check = users.findUserInList(user);
         if (check != null) throw new IllegalArgumentException("User already exists on the server!");
 
@@ -242,97 +251,98 @@ public class ModelManager implements Model
     }
 
     @Override
-    public boolean login(User user) {
+    public boolean login(User user)
+    {
         return users.login(user);
     }
 
-  @Override
-  public UserList getUserList()
-  {
-    return users;
-  }
+    @Override
+    public UserList getUserList()
+    {
+        return users;
+    }
 
-  @Override
-  public void updateGameInfo(Game gameOld, Game gameNew) throws SQLException
-  {
-    gameDAO.update(gameNew);
-    refreshGameList();
-    // games.updateGameInfo(gameOld, gameNew);
-  }
+    @Override
+    public void updateGameInfo(Game gameOld, Game gameNew) throws SQLException
+    {
+        gameDAO.update(gameNew);
+        refreshGameList();
+        // games.updateGameInfo(gameOld, gameNew);
+    }
 
-  @Override
-  public void removeUser(User user)
-  {
-    users.removeUser(user);
-  }
+    @Override
+    public void removeUser(User user)
+    {
+        users.removeUser(user);
+    }
 
-  @Override
-  public void updateUserInfo(User oldUser, User newUser)
-  {
-    users.updateUserInfo(oldUser, newUser);
-  }
+    @Override
+    public void updateUserInfo(User oldUser, User newUser)
+    {
+        users.updateUserInfo(oldUser, newUser);
+    }
 
-  @Override
-  public void modifyBalance(int amount, User user)
-  {
-    users.modifyBalance(amount, user);
-    Transaction transaction = new Transaction("Add money", user.getUsername(),
-            amount);
-  }
+    @Override
+    public void modifyBalance(int amount, User user)
+    {
+        users.modifyBalance(amount, user);
+        Transaction transaction = new Transaction("Add money", user.getUsername(),
+                amount);
+    }
 
-  @Override
-  public void payForSubscription(User user)
-  {
-    users.payForSubscription(user);
-  }
+    @Override
+    public void payForSubscription(User user)
+    {
+        users.payForSubscription(user);
+    }
 
-  @Override
-  public TransactionList getTransactionList()
-  {
-    return transactions;
-  }
+    @Override
+    public TransactionList getTransactionList()
+    {
+        return transactions;
+    }
 
-  @Override
-  public void setSubscriptionStatus(User user, boolean status)
-  {
-    users.findUserInList(user).setHasSubscription(status);
-  }
+    @Override
+    public void setSubscriptionStatus(User user, boolean status)
+    {
+        users.findUserInList(user).setHasSubscription(status);
+    }
 
-  @Override
-  public void leaveReview(int review, Game game)
-  {
-    games.findGameInList(game).leaveReview(review);
-  }
+    @Override
+    public void leaveReview(int review, Game game)
+    {
+        games.findGameInList(game).leaveReview(review);
+    }
 
-  @Override
-  public float getReview(Game game)
-  {
-    return games.findGameInList(game).getReview();
-  }
+    @Override
+    public float getReview(Game game)
+    {
+        return games.findGameInList(game).getReview();
+    }
 
-  @Override
-  public ArrayList<Game> getGamesRentedByUser(User user) throws SQLException
-  {
-    return gameDAO.getRentedGamesByUser(user);
-  }
+    @Override
+    public ArrayList<Game> getGamesRentedByUser(User user) throws SQLException
+    {
+        return gameDAO.getRentedGamesByUser(user);
+    }
 
-  @Override
-  public int getBalance(User user)
-  {
-    return users.getBalance(user);
-  }
+    @Override
+    public int getBalance(User user)
+    {
+        return users.getBalance(user);
+    }
 
-  @Override
-  public void addTransaction(Transaction transaction)
-  {
-    transactions.addTransaction(transaction);
-  }
+    @Override
+    public void addTransaction(Transaction transaction)
+    {
+        transactions.addTransaction(transaction);
+    }
 
-  @Override
-  public void returnGame(Game game, User user)
-  {
-    games.findGameInList(game).returnGame();
-    new Transaction(game, "Return", user.getUsername());
-  }
+    @Override
+    public void returnGame(Game game, User user)
+    {
+        games.findGameInList(game).returnGame();
+        new Transaction(game, "Return", user.getUsername());
+    }
 
 }

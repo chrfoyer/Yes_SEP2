@@ -10,49 +10,49 @@ import java.time.LocalDate;
  */
 public class Transaction implements Serializable
 {
-  private final double amount;
-  private final String user;
-  private final String type;
-  private final LocalDate date;
+    private final double amount;
+    private final String user;
+    private final String type;
+    private final LocalDate date;
 
-  //constructor for renting game/ returning game
-  public Transaction(Game game, String type, String user)
-  {
-    amount = 0;
-    this.user = user;
-    this.type = type;
-    date = LocalDate.now();
-    TransactionList.getInstance().addTransaction(this);
-  }
+    //constructor for renting game/ returning game
+    public Transaction(Game game, String type, String user)
+    {
+        amount = 0;
+        this.user = user;
+        this.type = type;
+        date = LocalDate.now();
+        TransactionList.getInstance().addTransaction(this);
+    }
 
-  //constructor for refunds
-  public Transaction(String type, String user, double amount)
-  {
-    this.type = type;
-    this.user = user;
-    this.amount = amount;
-    date = LocalDate.now();
-    TransactionList.getInstance().addTransaction(this);
-  }
+    //constructor for refunds
+    public Transaction(String type, String user, double amount)
+    {
+        this.type = type;
+        this.user = user;
+        this.amount = amount;
+        date = LocalDate.now();
+        TransactionList.getInstance().addTransaction(this);
+    }
 
-  public double getAmount()
-  {
-    return amount;
-  }
+    public double getAmount()
+    {
+        return amount;
+    }
 
-  public LocalDate getDate()
-  {
-    return date;
-  }
+    public LocalDate getDate()
+    {
+        return date;
+    }
 
-  public String getType()
-  {
-    return type;
-  }
+    public String getType()
+    {
+        return type;
+    }
 
-  public String getUser()
-  {
-    return user;
-  }
+    public String getUser()
+    {
+        return user;
+    }
 
 }

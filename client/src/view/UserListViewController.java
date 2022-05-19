@@ -13,78 +13,78 @@ import java.util.Optional;
 
 public class UserListViewController extends ViewController
 {
-  @FXML
-  public TableColumn<SimpleUserViewModel, String> usernameColumn;
-  @FXML
-  public TableColumn<SimpleUserViewModel, LocalDate> birthdayColumn;
-  @FXML
-  public TableColumn<SimpleUserViewModel, String> emailColumn;
-  @FXML
-  public TableView<SimpleUserViewModel> table;
-  @FXML
-  public Label error;
-  private UserListViewModel viewModel;
-  private UserEditViewModel editViewModel;
+    @FXML
+    public TableColumn<SimpleUserViewModel, String> usernameColumn;
+    @FXML
+    public TableColumn<SimpleUserViewModel, LocalDate> birthdayColumn;
+    @FXML
+    public TableColumn<SimpleUserViewModel, String> emailColumn;
+    @FXML
+    public TableView<SimpleUserViewModel> table;
+    @FXML
+    public Label error;
+    private UserListViewModel viewModel;
+    private UserEditViewModel editViewModel;
 
-  /**
-   * method for initializing all the variables and binding them
-   */
-  @Override
-  protected void init()
-  {
-    viewModel = getViewModelFactory().getUserListViewModel();
-    usernameColumn.setCellValueFactory(
-            cellData -> cellData.getValue().usernameProperty());
-    birthdayColumn.setCellValueFactory(
-            cellData -> cellData.getValue().bdayProperty());
-    emailColumn.setCellValueFactory(
-            cellData -> cellData.getValue().emailProperty());
-    table.setItems(viewModel.getUsers());
-    error.textProperty().bind(viewModel.errorProperty());
-
-    editViewModel = getViewModelFactory().getUserEditViewModel();
-
-    table.getSelectionModel().selectedItemProperty().addListener(
-            (obs, oldV, newV) -> editViewModel.setSelectedUserProperty(newV));
-    reset();
-  }
-
-  public void reset()
-  {
-    viewModel.reset();
-  }
-
-  @FXML
-  public void remove(ActionEvent actionEvent) throws RemoteException
-  {
-    // TODO: 11/05/2022 Add confirmation window with the name of the User.
-
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-            "Are you sure you want to delete this user?");
-    Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK)
+    /**
+     * method for initializing all the variables and binding them
+     */
+    @Override
+    protected void init()
     {
-      viewModel.setSelectedUser(editViewModel.getUser());
-      viewModel.removeUser();
-      viewModel.reset();
+        viewModel = getViewModelFactory().getUserListViewModel();
+        usernameColumn.setCellValueFactory(
+                cellData -> cellData.getValue().usernameProperty());
+        birthdayColumn.setCellValueFactory(
+                cellData -> cellData.getValue().bdayProperty());
+        emailColumn.setCellValueFactory(
+                cellData -> cellData.getValue().emailProperty());
+        table.setItems(viewModel.getUsers());
+        error.textProperty().bind(viewModel.errorProperty());
+
+        editViewModel = getViewModelFactory().getUserEditViewModel();
+
+        table.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldV, newV) -> editViewModel.setSelectedUserProperty(newV));
+        reset();
     }
-  }
 
-  /**
-   * method for opening UserEditView
-   *
-   * @param actionEvent edit button pressed
-   */
-  @FXML
-  public void edit(ActionEvent actionEvent)
-  {
-    // Must use the selected user
-    getViewModelFactory().getUserEditViewModel().reset();
-    getViewHandler().openView("UserEditView.fxml");
-  }
+    public void reset()
+    {
+        viewModel.reset();
+    }
 
-  public void back(ActionEvent actionEvent)
-  {
-    getViewHandler().openView("AdminView.fxml");
-  }
+    @FXML
+    public void remove(ActionEvent actionEvent) throws RemoteException
+    {
+        // TODO: 11/05/2022 Add confirmation window with the name of the User.
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to delete this user?");
+        Optional<ButtonType> option = alert.showAndWait();
+        if (option.get() == ButtonType.OK)
+        {
+            viewModel.setSelectedUser(editViewModel.getUser());
+            viewModel.removeUser();
+            viewModel.reset();
+        }
+    }
+
+    /**
+     * method for opening UserEditView
+     *
+     * @param actionEvent edit button pressed
+     */
+    @FXML
+    public void edit(ActionEvent actionEvent)
+    {
+        // Must use the selected user
+        getViewModelFactory().getUserEditViewModel().reset();
+        getViewHandler().openView("UserEditView.fxml");
+    }
+
+    public void back(ActionEvent actionEvent)
+    {
+        getViewHandler().openView("AdminView.fxml");
+    }
 }

@@ -10,87 +10,87 @@ import java.time.LocalDate;
 
 public class SimpleGameViewModel
 {
-  private final StringProperty name;
-  private final ObjectProperty<Integer> timeLeft;
-  private final StringProperty console;
-  private final StringProperty producer;
-  private final StringProperty esrb;
-  private final ObjectProperty<Boolean> rented;
-  private final ObjectProperty<LocalDate> dateAdded;
-  private final Game game;
-  private final ObjectProperty<Float> review;
+    private final StringProperty name;
+    private final ObjectProperty<Integer> timeLeft;
+    private final StringProperty console;
+    private final StringProperty producer;
+    private final StringProperty esrb;
+    private final ObjectProperty<Boolean> rented;
+    private final ObjectProperty<LocalDate> dateAdded;
+    private final Game game;
+    private final ObjectProperty<Float> review;
 
-  public SimpleGameViewModel(Game game)
-  {
-    this.name = new SimpleStringProperty(game.getName());
-    this.timeLeft = new SimpleObjectProperty<>(game.getDaysLeft());
-    this.producer = new SimpleStringProperty(game.getProducer());
-    this.esrb = new SimpleStringProperty(game.getEsrb());
-    this.rented = new SimpleObjectProperty<>(game.isRented());
-    this.console = new SimpleStringProperty(game.getConsole());
-    this.dateAdded = new SimpleObjectProperty<>(game.getDateAdded());
-    this.review = new SimpleObjectProperty(game.getReview());
-    this.game = game;
-  }
-
-  public StringProperty getNameProperty()
-  {
-    return name;
-  }
-
-  public ObjectProperty<Integer> getTimeProperty()
-  {
-    return timeLeft;
-  }
-
-  public ObjectProperty<Boolean> getRentedProperty()
-  {
-    return rented;
-  }
-
-  public StringProperty getRentedStringProperty()
-  {
-    if (rented.get())
+    public SimpleGameViewModel(Game game)
     {
-      return new SimpleStringProperty("Yes");
-    } else
-    {
-      return new SimpleStringProperty("No");
+        this.name = new SimpleStringProperty(game.getName());
+        this.timeLeft = new SimpleObjectProperty<>(game.getDaysLeft());
+        this.producer = new SimpleStringProperty(game.getProducer());
+        this.esrb = new SimpleStringProperty(game.getEsrb());
+        this.rented = new SimpleObjectProperty<>(game.isRented());
+        this.console = new SimpleStringProperty(game.getConsole());
+        this.dateAdded = new SimpleObjectProperty<>(game.getDateAdded());
+        this.review = new SimpleObjectProperty(game.getReview());
+        this.game = game;
     }
-  }
 
-  public StringProperty getEsrbProperty()
-  {
-    return esrb;
-  }
+    public StringProperty getNameProperty()
+    {
+        return name;
+    }
 
-  public StringProperty getProducer()
-  {
-    return producer;
-  }
+    public ObjectProperty<Integer> getTimeProperty()
+    {
+        return timeLeft;
+    }
 
-  public StringProperty getConsole()
-  {
-    return console;
-  }
+    public ObjectProperty<Boolean> getRentedProperty()
+    {
+        return rented;
+    }
 
-  public Game getGame()
-  {
-    return game;
-  }
+    public StringProperty getRentedStringProperty()
+    {
+        if (rented.get())
+        {
+            return new SimpleStringProperty("Yes");
+        } else
+        {
+            return new SimpleStringProperty("No");
+        }
+    }
 
-  public ObjectProperty<LocalDate> getDateAdded()
-  {
-    return dateAdded;
-  }
+    public StringProperty getEsrbProperty()
+    {
+        return esrb;
+    }
 
-  public void rent()
-  {
-    game.rentGame();
-  }
+    public StringProperty getProducer()
+    {
+        return producer;
+    }
 
-  public ObjectProperty<Float> getReview()
-  {
-    return review;
-  }
+    public StringProperty getConsole()
+    {
+        return console;
+    }
+
+    public Game getGame()
+    {
+        return game;
+    }
+
+    public ObjectProperty<LocalDate> getDateAdded()
+    {
+        return dateAdded;
+    }
+
+    public void rent()
+    {
+        game.rentGame();
+    }
+
+    public ObjectProperty<Float> getReview()
+    {
+        return review;
+    }
 }

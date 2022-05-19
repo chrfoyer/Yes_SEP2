@@ -11,37 +11,37 @@ import java.rmi.Naming;
 
 public class MyApplication extends Application
 {
-  public void start(Stage primaryStage)
-  {
-    try
+    public void start(Stage primaryStage)
     {
-      RemoteModel server = null;
-      try
-      {
-        server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
-        System.out.println("Stub pulled");
-      } catch (Exception ex)
-      {
-        ex.printStackTrace();
-        Alert alert = new Alert(Alert.AlertType.ERROR,
-                "Server connection not detected, please restart server");
-        Platform.runLater(alert::showAndWait);
-      }
-      // The model is now responsible for creating the client object
+        try
+        {
+            RemoteModel server = null;
+            try
+            {
+                server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
+                System.out.println("Stub pulled");
+            } catch (Exception ex)
+            {
+                ex.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Server connection not detected, please restart server");
+                Platform.runLater(alert::showAndWait);
+            }
+            // The model is now responsible for creating the client object
 
-      ViewModelFactory viewModelFactory = new ViewModelFactory(server);
-      ViewHandler view = new ViewHandler(viewModelFactory);
+            ViewModelFactory viewModelFactory = new ViewModelFactory(server);
+            ViewHandler view = new ViewHandler(viewModelFactory);
 
-      //      RmiClient rmiClient = new RmiClient();
-      //      rmiClient.setUsername("BobTest");
-      //      rmiClient.send("I'm locked in");
+            //      RmiClient rmiClient = new RmiClient();
+            //      rmiClient.setUsername("BobTest");
+            //      rmiClient.send("I'm locked in");
 
-      CurrentlyLoggedUser.setModel(server);
+            CurrentlyLoggedUser.setModel(server);
 
-      view.start(primaryStage);
-    } catch (Exception e)
-    {
-      e.printStackTrace();
+            view.start(primaryStage);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
-  }
 }

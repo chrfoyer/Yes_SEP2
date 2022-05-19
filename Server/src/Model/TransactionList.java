@@ -10,106 +10,106 @@ import java.util.ArrayList;
 public class TransactionList implements Serializable
 {
 
-  private static final Object lock = new Object();
-  private static TransactionList instance;
-  private final ArrayList<Transaction> transactions;
+    private static final Object lock = new Object();
+    private static TransactionList instance;
+    private final ArrayList<Transaction> transactions;
 
-  /**
-   * constructor creating a arrayList of transaction type
-   */
-  private TransactionList()
-  {
-    transactions = new ArrayList<>();
-  }
-
-  /**
-   * method for getting instance of transactionlist
-   *
-   * @return returns instance of transactionlist
-   */
-  public static TransactionList getInstance()
-  {
-    if (instance == null)
+    /**
+     * constructor creating a arrayList of transaction type
+     */
+    private TransactionList()
     {
-      synchronized (lock)
-      {
+        transactions = new ArrayList<>();
+    }
+
+    /**
+     * method for getting instance of transactionlist
+     *
+     * @return returns instance of transactionlist
+     */
+    public static TransactionList getInstance()
+    {
         if (instance == null)
         {
-          instance = new TransactionList();
+            synchronized (lock)
+            {
+                if (instance == null)
+                {
+                    instance = new TransactionList();
+                }
+            }
         }
-      }
+        return instance;
     }
-    return instance;
-  }
 
-  public static void writeTransactions(TransactionList list)
-  {
-
-    File file = new File("Transactions.xml");
-    try
+    public static void writeTransactions(TransactionList list)
     {
-      PrintWriter out = new PrintWriter(file);
 
-      String xml = "";
-      xml +=
-              "<?xml version=\"1.0\" encoding=\"UTF-8\"" + "standalone=\"no\"?>\n";
-      ArrayList<Transaction> transactions = list.getList();
-      for (int i = 0; i < list.getSize(); i++)
-      {
-        xml += "\n<Transaction>";
-        xml += "\n    <Amount>" + transactions.get(i).getAmount() + "</Amount>";
-        xml += "\n    <User>" + transactions.get(i).getUser() + "</User>";
-        xml += "\n    <Type>" + transactions.get(i).getType() + "</Type>";
-        xml += "\n    <Date>" + transactions.get(i).getDate() + "</Date>";
+        File file = new File("Transactions.xml");
+        try
+        {
+            PrintWriter out = new PrintWriter(file);
 
-        xml += "\n</Transaction>";
-      }
-      out.println(xml);
-      out.close();
+            String xml = "";
+            xml +=
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"" + "standalone=\"no\"?>\n";
+            ArrayList<Transaction> transactions = list.getList();
+            for (int i = 0; i < list.getSize(); i++)
+            {
+                xml += "\n<Transaction>";
+                xml += "\n    <Amount>" + transactions.get(i).getAmount() + "</Amount>";
+                xml += "\n    <User>" + transactions.get(i).getUser() + "</User>";
+                xml += "\n    <Type>" + transactions.get(i).getType() + "</Type>";
+                xml += "\n    <Date>" + transactions.get(i).getDate() + "</Date>";
 
-    } catch (FileNotFoundException e)
-    {
-      e.printStackTrace();
+                xml += "\n</Transaction>";
+            }
+            out.println(xml);
+            out.close();
+
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
     }
-  }
 
-  /**
-   * method getting transactions
-   *
-   * @return returns arrayList of transaction type
-   */
-  public ArrayList<Transaction> getTransactions()
-  {
-    return transactions;
-  }
+    /**
+     * method getting transactions
+     *
+     * @return returns arrayList of transaction type
+     */
+    public ArrayList<Transaction> getTransactions()
+    {
+        return transactions;
+    }
 
-  /**
-   * method for adding transaction to list
-   *
-   * @param transaction transaction to be added
-   */
-  public synchronized void addTransaction(Transaction transaction)
-  {
-    transactions.add(transaction);
-  }
+    /**
+     * method for adding transaction to list
+     *
+     * @param transaction transaction to be added
+     */
+    public synchronized void addTransaction(Transaction transaction)
+    {
+        transactions.add(transaction);
+    }
 
-  /**
-   * method for removing transaction
-   *
-   * @param transaction transaction to be removed
-   */
-  public synchronized void removeTransaction(Transaction transaction)
-  {
-    transactions.remove(transaction);
-  }
+    /**
+     * method for removing transaction
+     *
+     * @param transaction transaction to be removed
+     */
+    public synchronized void removeTransaction(Transaction transaction)
+    {
+        transactions.remove(transaction);
+    }
 
-  public int getSize()
-  {
-    return transactions.size();
-  }
+    public int getSize()
+    {
+        return transactions.size();
+    }
 
-  public ArrayList<Transaction> getList()
-  {
-    return transactions;
-  }
+    public ArrayList<Transaction> getList()
+    {
+        return transactions;
+    }
 }

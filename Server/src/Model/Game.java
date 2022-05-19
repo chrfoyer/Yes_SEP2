@@ -12,294 +12,294 @@ import java.time.LocalDate;
  */
 public class Game implements Serializable
 {
-  private final int id;
-  private final LocalDate dateAdded;
-  private String name;
-  private String producer;
-  private String console;
-  private boolean rented;
-  private int daysLeft;
-  private int reviewCount;
-  private int reviewSum;
-  private float reviewAverage;
-  private String esrb;
+    private final int id;
+    private final LocalDate dateAdded;
+    private String name;
+    private String producer;
+    private String console;
+    private boolean rented;
+    private int daysLeft;
+    private int reviewCount;
+    private int reviewSum;
+    private float reviewAverage;
+    private String esrb;
 
-  public Game(int id, String name, String producer, String console, boolean rented, int daysLeft, int reviewCount, int reviewSum, float reviewAverage, String esrb, LocalDate dateAdded)
-  {
-    this.id = id;
-    this.name = name;
-    this.producer = producer;
-    this.console = console;
-    this.rented = rented;
-    this.daysLeft = daysLeft;
-    this.reviewCount = reviewCount;
-    this.reviewSum = reviewSum;
-    this.reviewAverage = reviewAverage;
-    this.esrb = esrb;
-    this.dateAdded = dateAdded;
-  }
-
-  /**
-   * constructor for game
-   *
-   * @param name     name of game
-   * @param producer producer of the game
-   * @param esrb     rating of the game
-   */
-  public Game(String name, String producer, String console, String esrb)
-  {
-    if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T")
-            || esrb.equals("M") || esrb.equals("AO")))
+    public Game(int id, String name, String producer, String console, boolean rented, int daysLeft, int reviewCount, int reviewSum, float reviewAverage, String esrb, LocalDate dateAdded)
     {
-      throw new IllegalArgumentException("Unknown rating");
+        this.id = id;
+        this.name = name;
+        this.producer = producer;
+        this.console = console;
+        this.rented = rented;
+        this.daysLeft = daysLeft;
+        this.reviewCount = reviewCount;
+        this.reviewSum = reviewSum;
+        this.reviewAverage = reviewAverage;
+        this.esrb = esrb;
+        this.dateAdded = dateAdded;
     }
-    if (!(console.equals("PC") || console.equals("PlayStation")
-            || console.equals("Xbox") || console.equals("Nintendo")))
+
+    /**
+     * constructor for game
+     *
+     * @param name     name of game
+     * @param producer producer of the game
+     * @param esrb     rating of the game
+     */
+    public Game(String name, String producer, String console, String esrb)
     {
-      throw new IllegalArgumentException("Unknown console");
+        if (!(esrb.equals("E") || esrb.equals("E10+") || esrb.equals("T")
+                || esrb.equals("M") || esrb.equals("AO")))
+        {
+            throw new IllegalArgumentException("Unknown rating");
+        }
+        if (!(console.equals("PC") || console.equals("PlayStation")
+                || console.equals("Xbox") || console.equals("Nintendo")))
+        {
+            throw new IllegalArgumentException("Unknown console");
+        }
+        id = 0;
+        this.esrb = esrb;
+        this.producer = producer;
+        this.name = name;
+        rented = false;
+        daysLeft = 0;
+        this.console = console;
+        this.dateAdded = LocalDate.now();
+        reviewCount = 0;
+        reviewSum = 0;
+        reviewAverage = 0;
     }
-    id = 0;
-    this.esrb = esrb;
-    this.producer = producer;
-    this.name = name;
-    rented = false;
-    daysLeft = 0;
-    this.console = console;
-    this.dateAdded = LocalDate.now();
-    reviewCount = 0;
-    reviewSum = 0;
-    reviewAverage = 0;
-  }
 
-  /**
-   * Checks if obj is equals to a game
-   *
-   * @param obj fed into method to compare to a game
-   * @return boolean if the games are equal or not
-   */
-  public boolean equals(Object obj)
-  {
-    if (!(obj instanceof Game))
+    /**
+     * Checks if obj is equals to a game
+     *
+     * @param obj fed into method to compare to a game
+     * @return boolean if the games are equal or not
+     */
+    public boolean equals(Object obj)
     {
-      return false;
+        if (!(obj instanceof Game))
+        {
+            return false;
+        }
+        Game game = (Game) obj;
+        return name.equals(game.getName()) && rented == game.isRented() && producer.equals(game.getProducer()) && console.equals(game.getConsole());
     }
-    Game game = (Game) obj;
-    return name.equals(game.getName()) && rented == game.isRented() && producer.equals(game.getProducer()) && console.equals(game.getConsole());
-  }
 
-  /**
-   * Prints string of name of game
-   *
-   * @return name of game
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * Changes the name of the game to a new given name
-   *
-   * @param name new name of the game
-   */
-  public void setName(String name)
-  {
-    this.name = name;
-  }
-
-  /**
-   * Checks if game is rented
-   *
-   * @return boolean of if game is rented or not
-   */
-  public boolean isRented()
-  {
-    return rented;
-  }
-
-  /**
-   * Getter for the days left in the rental period for the game
-   *
-   * @return int of days left
-   */
-  public int getDaysLeft()
-  {
-    return daysLeft;
-  }
-
-  /**
-   * Setter for the days left in the rental period for the game
-   *
-   * @param daysLeft in of days left in the rental per
-   */
-  public void setDaysLeft(int daysLeft)
-  {
-    this.daysLeft = daysLeft;
-  }
-
-  /**
-   * Decreases the days left in the rental period. If the game is not rented, an exception is thrown. If the game ran
-   * out of days also sets rented to false
-   *
-   * @author Raedrim
-   */
-  public void decrementDaysLeft()
-  {
-    if (rented)
+    /**
+     * Prints string of name of game
+     *
+     * @return name of game
+     */
+    public String getName()
     {
-      daysLeft--;
-      if (daysLeft <= 0)
-      {
-        System.out.println(name + " Ran out of time, game not rented anymore");
-      }
-    } else
-    {
-      throw new IllegalStateException(
-              "Game is not currently rented, so the days can't be decreased.");
+        return name;
     }
-  }
 
-  /**
-   * Prints out a string of the game
-   *
-   * @return name of game and whether the game is rented or not
-   */
-  public String toString()
-  {
-    String str = "Name: " + name + " Rented: " + rented;
-    if (rented)
+    /**
+     * Changes the name of the game to a new given name
+     *
+     * @param name new name of the game
+     */
+    public void setName(String name)
     {
-      str += "\nDays Left: " + daysLeft;
+        this.name = name;
     }
-    return str;
-  }
 
-  /**
-   * Sets rented to true
-   */
-  public void rentGame()
-  {
-    if (rented)
+    /**
+     * Checks if game is rented
+     *
+     * @return boolean of if game is rented or not
+     */
+    public boolean isRented()
     {
-      throw new IllegalStateException("Game is already rented!");
-    } else
-    {
-      this.rented = true;
-      this.daysLeft = 14;
+        return rented;
     }
-  }
 
-  /**
-   * Sets rented to false
-   */
-  public void returnGame()
-  {
-    if (!rented)
+    /**
+     * Getter for the days left in the rental period for the game
+     *
+     * @return int of days left
+     */
+    public int getDaysLeft()
     {
-      throw new IllegalStateException(
-              "Game is not rented so it cannot be returned!");
-    } else
-    {
-      this.rented = false;
-      this.daysLeft = 0;
-      new Transaction(this, "Return", "User");
+        return daysLeft;
     }
-  }
 
-  /**
-   * Gets the production company of the game
-   *
-   * @return production company
-   */
-  public String getProducer()
-  {
-    return producer;
-  }
+    /**
+     * Setter for the days left in the rental period for the game
+     *
+     * @param daysLeft in of days left in the rental per
+     */
+    public void setDaysLeft(int daysLeft)
+    {
+        this.daysLeft = daysLeft;
+    }
 
-  /**
-   * Changes the production house of the game to a new given production house
-   *
-   * @param producer new production house of the game
-   */
-  public void setProducer(String producer)
-  {
-    this.producer = producer;
-  }
+    /**
+     * Decreases the days left in the rental period. If the game is not rented, an exception is thrown. If the game ran
+     * out of days also sets rented to false
+     *
+     * @author Raedrim
+     */
+    public void decrementDaysLeft()
+    {
+        if (rented)
+        {
+            daysLeft--;
+            if (daysLeft <= 0)
+            {
+                System.out.println(name + " Ran out of time, game not rented anymore");
+            }
+        } else
+        {
+            throw new IllegalStateException(
+                    "Game is not currently rented, so the days can't be decreased.");
+        }
+    }
 
-  /**
-   * Gets the review of the game (1-5)
-   *
-   * @return a decimal number review of the game
-   */
-  public float getReview()
-  {
-    return reviewAverage;
-  }
+    /**
+     * Prints out a string of the game
+     *
+     * @return name of game and whether the game is rented or not
+     */
+    public String toString()
+    {
+        String str = "Name: " + name + " Rented: " + rented;
+        if (rented)
+        {
+            str += "\nDays Left: " + daysLeft;
+        }
+        return str;
+    }
 
-  /**
-   * Gets the international video game rating for the game
-   *
-   * @return String of the ESRB rating
-   */
-  public String getEsrb()
-  {
-    return esrb;
-  }
+    /**
+     * Sets rented to true
+     */
+    public void rentGame()
+    {
+        if (rented)
+        {
+            throw new IllegalStateException("Game is already rented!");
+        } else
+        {
+            this.rented = true;
+            this.daysLeft = 14;
+        }
+    }
 
-  /**
-   * Changes the ESRB rating of the game to a new rating
-   *
-   * @param esrb new rating for the game
-   */
-  public void setEsrb(String esrb)
-  {
-    this.esrb = esrb;
-  }
+    /**
+     * Sets rented to false
+     */
+    public void returnGame()
+    {
+        if (!rented)
+        {
+            throw new IllegalStateException(
+                    "Game is not rented so it cannot be returned!");
+        } else
+        {
+            this.rented = false;
+            this.daysLeft = 0;
+            new Transaction(this, "Return", "User");
+        }
+    }
 
-  public String getConsole()
-  {
-    return console;
-  }
+    /**
+     * Gets the production company of the game
+     *
+     * @return production company
+     */
+    public String getProducer()
+    {
+        return producer;
+    }
 
-  public void setConsole(String console)
-  {
-    this.console = console;
-  }
+    /**
+     * Changes the production house of the game to a new given production house
+     *
+     * @param producer new production house of the game
+     */
+    public void setProducer(String producer)
+    {
+        this.producer = producer;
+    }
 
-  /**
-   * Returns the date which the Game object was created
-   *
-   * @return LocalDateTime
-   */
-  public LocalDate getDateAdded()
-  {
-    return dateAdded;
-  }
+    /**
+     * Gets the review of the game (1-5)
+     *
+     * @return a decimal number review of the game
+     */
+    public float getReview()
+    {
+        return reviewAverage;
+    }
 
-  public void leaveReview(int review)
-  {
-    reviewCount++;
-    reviewSum += review;
-    reviewAverage = (float) reviewSum / reviewCount;
-  }
+    /**
+     * Gets the international video game rating for the game
+     *
+     * @return String of the ESRB rating
+     */
+    public String getEsrb()
+    {
+        return esrb;
+    }
 
-  public int getId()
-  {
-    return id;
-  }
+    /**
+     * Changes the ESRB rating of the game to a new rating
+     *
+     * @param esrb new rating for the game
+     */
+    public void setEsrb(String esrb)
+    {
+        this.esrb = esrb;
+    }
 
-  public int getReviewCount()
-  {
-    return reviewCount;
-  }
+    public String getConsole()
+    {
+        return console;
+    }
 
-  public int getReviewSum()
-  {
-    return reviewSum;
-  }
+    public void setConsole(String console)
+    {
+        this.console = console;
+    }
 
-  public float getReviewAverage()
-  {
-    return reviewAverage;
-  }
+    /**
+     * Returns the date which the Game object was created
+     *
+     * @return LocalDateTime
+     */
+    public LocalDate getDateAdded()
+    {
+        return dateAdded;
+    }
+
+    public void leaveReview(int review)
+    {
+        reviewCount++;
+        reviewSum += review;
+        reviewAverage = (float) reviewSum / reviewCount;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public int getReviewCount()
+    {
+        return reviewCount;
+    }
+
+    public int getReviewSum()
+    {
+        return reviewSum;
+    }
+
+    public float getReviewAverage()
+    {
+        return reviewAverage;
+    }
 }
