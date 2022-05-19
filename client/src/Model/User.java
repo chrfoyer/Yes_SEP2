@@ -13,6 +13,7 @@ import java.time.Period;
  */
 public class User implements Serializable
 {
+  private final int id;
   private final int age;
   private String username;
   private String password;
@@ -23,6 +24,27 @@ public class User implements Serializable
   private LocalDate bday;
   private boolean hasSubscription;
   private int balance;
+
+  /**
+   * THIS IS RETARDED DO NOT USE
+   * @implNote SERIOUSLY DON'T
+   */
+  public User(int age, String username, String password, boolean isAdmin,
+      String email, String address, String name, LocalDate bday,
+      boolean hasSubscription, int balance,int id)
+  {
+    this.age = age;
+    this.username = username;
+    this.password = password;
+    this.isAdmin = isAdmin;
+    this.email = email;
+    this.address = address;
+    this.name = name;
+    this.bday = bday;
+    this.hasSubscription = hasSubscription;
+    this.balance = balance;
+    this.id=id;
+  }
 
   /**
    * Constructor taking only string username and string password. checks to see if user is an admin.
@@ -46,6 +68,7 @@ public class User implements Serializable
       hasSubscription = true;
     }
     balance = 20;
+    id=0;
   }
 
   /**
@@ -59,7 +82,7 @@ public class User implements Serializable
    * @param bday     birthday to be assigned to user
    */
   public User(String username, String password, String email, String address,
-              String name, LocalDate bday)
+      String name, LocalDate bday)
   {
     this.username = username;
     this.password = password;
@@ -71,6 +94,7 @@ public class User implements Serializable
     hasSubscription = false;
     balance = 30;
     age = Period.between(LocalDate.now(), bday).getYears();
+    id=0;
   }
 
   /**
@@ -238,7 +262,7 @@ public class User implements Serializable
   {
     if (balance < 0)
       throw new IllegalStateException(
-              "Users with negative balance cant have an active subscription");
+          "Users with negative balance cant have an active subscription");
     return hasSubscription;
   }
 
@@ -270,5 +294,10 @@ public class User implements Serializable
     }
     User user = (User) obj;
     return (user.getUsername().equals(this.getUsername()));
+  }
+
+  public int getId()
+  {
+    return id;
   }
 }
