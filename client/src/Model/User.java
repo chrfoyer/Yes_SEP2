@@ -306,16 +306,4 @@ public class User implements Serializable
     User user = (User) obj;
     return (user.getUsername().equals(this.getUsername()));
   }
-<<<<<<< Updated upstream
-=======
-
-  /**
-   * method for getting user's ID
-   * @return int id of user
-   */
-  public int getId()
-  {
-    return id;
-  }
->>>>>>> Stashed changes
 }
