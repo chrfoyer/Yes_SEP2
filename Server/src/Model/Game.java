@@ -4,11 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * The game is the object that is rented in the system. The attributes are currently just the name, but more attributes
- * will be included according the domain model
+ * The game is the object that is rented in the system.
  *
  * @author Chris, Martin, Levente, Kruno
- * @version 0.2 5/5/22
+ * @version 0.4 19/5/22
  */
 public class Game implements Serializable
 {
@@ -24,6 +23,21 @@ public class Game implements Serializable
     private float reviewAverage;
     private String esrb;
 
+    /**
+     * constructer initializing variables
+     *
+     * @param id            id of the game
+     * @param name          name of the game
+     * @param producer      producer of the game
+     * @param console       the console the game is played on
+     * @param rented        if the game is rented or not
+     * @param daysLeft      days left until the game has to be returned
+     * @param reviewCount   the number of reviews for the game
+     * @param reviewSum     the total sum of all the reviews for the game
+     * @param reviewAverage the average of all the reviews for the game
+     * @param esrb          the rating of the game
+     * @param dateAdded     date the game is added
+     */
     public Game(int id, String name, String producer, String console, boolean rented, int daysLeft, int reviewCount, int reviewSum, float reviewAverage, String esrb, LocalDate dateAdded)
     {
         this.id = id;
@@ -130,7 +144,7 @@ public class Game implements Serializable
     /**
      * Setter for the days left in the rental period for the game
      *
-     * @param daysLeft in of days left in the rental per
+     * @param daysLeft int of days left in the rental period
      */
     public void setDaysLeft(int daysLeft)
     {
@@ -162,7 +176,7 @@ public class Game implements Serializable
     /**
      * Prints out a string of the game
      *
-     * @return name of game and whether the game is rented or not
+     * @return name of game and whether the game is rented or not and the days left before the game has to be returned
      */
     public String toString()
     {
@@ -175,7 +189,7 @@ public class Game implements Serializable
     }
 
     /**
-     * Sets rented to true
+     * rents a game by setting rented to true and daysLeft to 14
      */
     public void rentGame()
     {
@@ -190,7 +204,7 @@ public class Game implements Serializable
     }
 
     /**
-     * Sets rented to false
+     * returns a game by setting rented to false and days left to 0.
      */
     public void returnGame()
     {
@@ -256,11 +270,21 @@ public class Game implements Serializable
         this.esrb = esrb;
     }
 
+    /**
+     * Gets the console that the game is played on
+     *
+     * @return console-platform the game is for
+     */
     public String getConsole()
     {
         return console;
     }
 
+    /**
+     * sets the console of the game to console
+     *
+     * @param console what to set the games console to
+     */
     public void setConsole(String console)
     {
         this.console = console;
@@ -276,6 +300,11 @@ public class Game implements Serializable
         return dateAdded;
     }
 
+    /**
+     * leaves a review int 1-5 for a game by adding it to the reviewSum and incrementing reviewCount so that reviewAverage can be updated
+     *
+     * @param review the int (1-5)
+     */
     public void leaveReview(int review)
     {
         reviewCount++;
@@ -283,21 +312,41 @@ public class Game implements Serializable
         reviewAverage = (float) reviewSum / reviewCount;
     }
 
+    /**
+     * method for getting game's ID
+     *
+     * @return int ID
+     */
     public int getId()
     {
         return id;
     }
 
+    /**
+     * method for getting number of reviews a game has
+     *
+     * @return int number of reviews
+     */
     public int getReviewCount()
     {
         return reviewCount;
     }
 
+    /**
+     * method for getting the sum of all reviews for a game
+     *
+     * @return int of sum of all reviews for a game
+     */
     public int getReviewSum()
     {
         return reviewSum;
     }
 
+    /**
+     * method for getting the average of the reviews of a game
+     *
+     * @return float average of all reviews for a game
+     */
     public float getReviewAverage()
     {
         return reviewAverage;

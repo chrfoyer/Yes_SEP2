@@ -96,9 +96,8 @@ public class UserList implements Serializable
     }
 
     /**
-     * @param given the user we want to authenticate
-     * @return true if server manged to log in user
-     * @exception IllegalArgumentException if the password is wrong
+     * @param given
+     * @return
      */
     public boolean login(User given)
     {
@@ -118,24 +117,13 @@ public class UserList implements Serializable
         throw new IllegalArgumentException("User does not exist on the server!");
     }
 
-    /**
-     * Gets an arrayList of all the users stored
-     * @return ArrayList<User>
-     */
     public ArrayList<User> getUsers()
     {
         return users;
     }
 
-    /**
-     * @throws IllegalArgumentException if the user does not exist on the server
-     * @deprecated use SQL function instead
-     * @param oldUser User to change from
-     * @param newUser User to change to
-     */
     public void updateUserInfo(User oldUser, User newUser)
     {
-        // TODO: 2022. 05. 19. read @deprecated
         boolean foundOld = false;
         for (User user : users)
         {

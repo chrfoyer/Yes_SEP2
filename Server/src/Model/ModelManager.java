@@ -181,11 +181,6 @@ public class ModelManager implements Model
         games = temp;
     }
 
-    /**
-     * Syncs userList with database
-     *
-     * @throws SQLException
-     */
     @Override
     public void refreshUserList() throws SQLException
     {
@@ -225,6 +220,7 @@ public class ModelManager implements Model
             if (game.getName().equals(name))
             {
                 ret = true;
+                break;
             }
         }
         return ret;

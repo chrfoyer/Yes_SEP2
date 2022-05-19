@@ -53,7 +53,7 @@ public class SimpleUserViewModel
     {
         return isAdmin.get();
     }
-    
+
     public String getEmail()
     {
         return email.get();

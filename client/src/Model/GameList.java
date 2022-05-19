@@ -167,18 +167,17 @@ public class GameList implements Serializable
     public String toString()
     {
 
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
 
         for (Game game : games)
         {
-            ret += "Game -> " + game.getName() + " : " + game.getProducer() + " : "
-                    + game.getEsrb() + " : Rented: " + game.isRented() + "\n";
+            ret.append("Game -> ").append(game.getName()).append(" : ").append(game.getProducer()).append(" : ").append(game.getEsrb()).append(" : Rented: ").append(game.isRented()).append("\n");
             if (game.isRented())
             {
-                ret += game.getDaysLeft() + " days left\n";
+                ret.append(game.getDaysLeft()).append(" days left\n");
             }
         }
-        return ret;
+        return ret.toString();
     }
 
     /**

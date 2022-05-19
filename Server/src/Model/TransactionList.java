@@ -6,7 +6,13 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-//a class that creates a list of transactions
+/**
+ * a class that creates a list of transactions
+ *
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
+
 public class TransactionList implements Serializable
 {
 
@@ -42,6 +48,11 @@ public class TransactionList implements Serializable
         return instance;
     }
 
+    /**
+     * method for writing transactions into xml file
+     *
+     * @param list transaction list that is to be read and turned into a xml file
+     */
     public static void writeTransactions(TransactionList list)
     {
 
@@ -50,19 +61,18 @@ public class TransactionList implements Serializable
         {
             PrintWriter out = new PrintWriter(file);
 
-            String xml = "";
-            xml +=
-                    "<?xml version=\"1.0\" encoding=\"UTF-8\"" + "standalone=\"no\"?>\n";
+            StringBuilder xml = new StringBuilder();
+            xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"" + "standalone=\"no\"?>\n");
             ArrayList<Transaction> transactions = list.getList();
             for (int i = 0; i < list.getSize(); i++)
             {
-                xml += "\n<Transaction>";
-                xml += "\n    <Amount>" + transactions.get(i).getAmount() + "</Amount>";
-                xml += "\n    <User>" + transactions.get(i).getUser() + "</User>";
-                xml += "\n    <Type>" + transactions.get(i).getType() + "</Type>";
-                xml += "\n    <Date>" + transactions.get(i).getDate() + "</Date>";
+                xml.append("\n<Transaction>");
+                xml.append("\n    <Amount>").append(transactions.get(i).getAmount()).append("</Amount>");
+                xml.append("\n    <User>").append(transactions.get(i).getUser()).append("</User>");
+                xml.append("\n    <Type>").append(transactions.get(i).getType()).append("</Type>");
+                xml.append("\n    <Date>").append(transactions.get(i).getDate()).append("</Date>");
 
-                xml += "\n</Transaction>";
+                xml.append("\n</Transaction>");
             }
             out.println(xml);
             out.close();
@@ -103,11 +113,22 @@ public class TransactionList implements Serializable
         transactions.remove(transaction);
     }
 
+    /**
+     * method for getting the size of the list
+     *
+     * @return int size of the transaction list
+     */
     public int getSize()
     {
         return transactions.size();
     }
 
+
+    /**
+     * method for getting the transaction list
+     *
+     * @return ArrayList<Transaction> list of transactions
+     */
     public ArrayList<Transaction> getList()
     {
         return transactions;
