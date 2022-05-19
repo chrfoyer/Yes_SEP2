@@ -72,18 +72,35 @@ public class BrowseViewModel
         return errorLabel;
     }
 
-    public void rentGame(Game game)
+    public boolean rentGame(Game game)
     {
         try
         {
             if (game == null)
                 throw new IllegalArgumentException("You must make a selection first!");
             model.rentGame(game, CurrentlyLoggedUser.getLoggedInUser());
+            return true;
         } catch (Exception e)
         {
             e.printStackTrace();
             errorLabel.set(e.getMessage());
         }
+        return false;
+    }
+
+    public boolean ageCheck(Game selectedGame){
+        try {
+            if(CurrentlyLoggedUser.getLoggedInUser().getAge() < 17 && selectedGame.getEsrb().equals("M")){
+                throw new IllegalAccessException("You are too young for this game");
+            } else if(CurrentlyLoggedUser.getLoggedInUser().getAge() < 18 && selectedGame.getEsrb().equals("AO"))
+            {
+                throw new IllegalAccessException("You are too young for this game");
+            }
+        } catch(Exception e){
+            errorLabel.set(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty)

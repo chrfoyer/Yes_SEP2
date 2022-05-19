@@ -96,23 +96,30 @@ public class BrowseViewController extends ViewController
         {SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
             Game selectedGame = temp.getGame();
 
-
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                    "Are you sure you want to rent game? -> " + selectedGame.getName());
-            Optional<ButtonType> option = alert.showAndWait();
-            if (option.isPresent() && option.get() == ButtonType.OK)
+            if(browseViewModel.ageCheck(selectedGame))
             {
-                browseViewModel.rentGame(selectedGame);
-                //displaying confirmation message
-                alert.setAlertType(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Congratulations, Game rented");
-                alert.setContentText("Now you have the game (" + selectedGame.getName()
-                        + ") for 14 days\n"
-                        + "If you would like to extend it you may do that on your profile!");
-                alert.showAndWait();
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                        "Are you sure you want to rent game? -> " + selectedGame.getName());
+                Optional<ButtonType> option = alert.showAndWait();
+                if (option.isPresent() && option.get() == ButtonType.OK)
+                {
+                    if (browseViewModel.rentGame(selectedGame))
+                    {
+
+                        browseViewModel.rentGame(selectedGame);
+                        //displaying confirmation message
+                        alert.setAlertType(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText("Congratulations, Game rented");
+                        alert.setContentText("Now you have the game (" + selectedGame.getName()
+                                + ") for 14 days\n"
+                                + "If you would like to extend it you may do that on your profile!");
+                        alert.showAndWait();
+                        browseViewModel.reset();
+                    }
+                }
             }
-            browseViewModel.reset();
+         //   browseViewModel.reset();
         } else
         {
             Alert alert = new Alert(Alert.AlertType.ERROR,
