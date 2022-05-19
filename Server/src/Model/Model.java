@@ -21,7 +21,7 @@ public interface Model
 
   void decrementDay();
 
-  void rentGame(Game game, User user);
+  void rentGame(Game game, User user) throws SQLException;
 
   void returnGame(Game game, User user);
 
@@ -69,5 +69,5 @@ public interface Model
 
   float getReview(Game game);
 
-  ArrayList<Game> getGamesRentedByUser(User user);
+  ArrayList<Game> getGamesRentedByUser(User user) throws SQLException;
 }

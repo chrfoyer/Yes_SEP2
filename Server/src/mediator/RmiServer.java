@@ -73,7 +73,7 @@ public class RmiServer implements RemoteModel
    * @param game game to be rented
    */
   @Override
-  public void rentGame(Game game, User user)
+  public void rentGame(Game game, User user) throws SQLException
   {
     if (game == null)
       throw new IllegalArgumentException("Game to rent cant be null");

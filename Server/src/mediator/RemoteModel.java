@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public interface RemoteModel extends Remote
 {
-  void rentGame(Game game, User user) throws RemoteException;
+  void rentGame(Game game, User user) throws RemoteException, SQLException;
 
   Game getGame(String name) throws RemoteException;
 

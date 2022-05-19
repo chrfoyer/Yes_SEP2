@@ -122,6 +122,7 @@ public class UserProfileViewModel
     if (game != null)
     {
       game.getTimeProperty().set(game.getTimeProperty().get() + 5);
+
     } else
     {
       errorLabel.set("Game must be selected first");
