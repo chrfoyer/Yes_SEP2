@@ -7,7 +7,6 @@ import java.time.Period;
 /**
  * This is the User class which has the constructors for creating a user. It also checks whether the user is an admin or
  * not. It has basic setters and getters
- *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -307,4 +306,16 @@ public class User implements Serializable
     User user = (User) obj;
     return (user.getUsername().equals(this.getUsername()));
   }
+<<<<<<< Updated upstream
+=======
+
+  /**
+   * method for getting user's ID
+   * @return int id of user
+   */
+  public int getId()
+  {
+    return id;
+  }
+>>>>>>> Stashed changes
 }
