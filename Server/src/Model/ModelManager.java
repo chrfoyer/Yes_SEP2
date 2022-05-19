@@ -109,6 +109,10 @@ public class ModelManager implements Model
     if (game == null)
     {
       throw new IllegalArgumentException("Game to rent cant be null");
+    } else if(game.getEsrb().equals("M") && user.getAge() < 17){
+      throw new IllegalAccessError("You are too young to rent this game!");
+    } else if (game.getEsrb().equals("AO") && user.getAge() < 18){
+      throw new IllegalAccessError("You are too young to rent this game!");
     } else
     {
       games.findGameInList(game).rentGame();
