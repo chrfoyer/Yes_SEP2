@@ -13,7 +13,7 @@ import java.time.Period;
  */
 public class User implements Serializable
 {
-  private final int id;
+
   private final int age;
   private String username;
   private String password;
