@@ -105,8 +105,6 @@ public class InventoryViewController extends ViewController
     @FXML
     public void remove(ActionEvent actionEvent)
     {
-        // TODO: 11/05/2022 Add confirmation window with the name of the game.
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                 "Are you sure you want to delete the game? -> "
                         + gameViewModel.getSelectedGameProperty().getGame().getName());

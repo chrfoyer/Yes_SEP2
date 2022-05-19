@@ -76,7 +76,6 @@ public class UserEditViewController extends ViewController
     @FXML
     public void apply(ActionEvent actionEvent)
     {
-        // TODO: 11/05/2022 Actually edit the user info
         viewModel.editUser();
         getViewModelFactory().getUserListViewModel().reset();
         getViewHandler().openView("UserListView.fxml");

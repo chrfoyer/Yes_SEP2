@@ -91,11 +91,6 @@ public class AddEditGameViewModel
         this.selectedGameProperty.set(selectedGameViewModel);
     }
 
-    public ObjectProperty<SimpleGameViewModel> selectedGamePropertyProperty()
-    {
-        return selectedGameProperty;
-    }
-
     public String getName()
     {
         return name.get();
@@ -126,11 +121,6 @@ public class AddEditGameViewModel
         return esrb;
     }
 
-    public ObjectProperty<Boolean> rentedProperty()
-    {
-        return rented;
-    }
-
     public StringProperty errorProperty()
     {
         return error;
@@ -148,9 +138,10 @@ public class AddEditGameViewModel
 
     public void addGame()
     {
-        // TODO: 18/05/2022 Don't allow name or producer to be blank
         try
         {
+            if (name.get().equals("") || producer.get().equals(""))
+                throw new IllegalArgumentException("Name and producer cant be empty");
             Game gameToAdd = new Game(name.get(), producer.get(), console.get(),
                     esrb.get());
             model.addGame(gameToAdd);
@@ -162,16 +153,17 @@ public class AddEditGameViewModel
 
     public void editGame()
     {
-        // TODO: 18/05/2022 Don't allow name or producer to be blank
         try
         {
+            if (name.get().equals("") || producer.get().equals(""))
+                throw new IllegalArgumentException("Name and producer cant be empty");
+
             Game gameOld = new Game(selectedGameProperty.get().getGame().getName(),
                     selectedGameProperty.get().getGame().getProducer(),
                     selectedGameProperty.get().getGame().getConsole(),
                     selectedGameProperty.get().getGame().getEsrb());
 
             Game gameNew = selectedGameProperty.get().getGame();
-            gameNew = selectedGameProperty.get().getGame();
             gameNew.setConsole(console.get());
             gameNew.setProducer(producer.get());
             gameNew.setEsrb(esrb.get());

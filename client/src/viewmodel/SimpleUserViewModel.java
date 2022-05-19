@@ -49,21 +49,11 @@ public class SimpleUserViewModel
         return password.get();
     }
 
-    public StringProperty passwordProperty()
-    {
-        return password;
-    }
-
     public boolean isIsAdmin()
     {
         return isAdmin.get();
     }
-
-    public BooleanProperty isAdminProperty()
-    {
-        return isAdmin;
-    }
-
+    
     public String getEmail()
     {
         return email.get();
