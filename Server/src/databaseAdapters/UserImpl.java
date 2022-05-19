@@ -182,18 +182,20 @@ public class UserImpl implements UserDAO
     {
         try (Connection connection = getConnection())
         {
+            Date date=Date.valueOf(user.getBday());
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE users " + "SET password = ?, " + "email = ?, " + "name = ? "
-                            + "bday = ? " + "has_subscription = ? " + "balance = ? "
-                            + "WHERE id = ?;");
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getName());
-            statement.setDate(5, Date.valueOf(user.getBday()));
-            statement.setBoolean(6, user.hasSubscription());
-            statement.setInt(7, user.getBalance());
-            statement.setString(8, user.getUsername());
+                    "UPDATE users " + "SET password = ?, " + "email = ?, " + "name = ?, "
+                            + "bday = ?, " + "has_subscription = ?, " + "balance = ? "
+                            + "WHERE username = ?;");
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getName());
+            statement.setDate(4, date);
+            statement.setBoolean(5, user.hasSubscription());
+            statement.setInt(6, user.getBalance());
+            statement.setString(7, user.getUsername());
+
+            System.out.println(statement.toString());
 
             statement.executeUpdate();
             statement.close();
