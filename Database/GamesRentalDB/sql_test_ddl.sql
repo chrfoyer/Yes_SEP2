@@ -28,7 +28,9 @@ VALUES ('Minecraft', 'Mojang', 'PC', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE),
 
 CREATE DOMAIN email AS varchar(40) CHECK (VALUE LIKE '%@%');
 CREATE DOMAIN passwordDom AS varchar(30); /* Here in case we want to change the rules */
-CREATE DOMAIN bDay AS date CHECK (13 >= DATE_PART('year', CURRENT_DATE) - DATE_PART('year', value));
+DROP DOMAIN IF EXISTS bday;
+CREATE DOMAIN bDay AS date ;
+    /* CHECK (13 >= DATE_PART('year', CURRENT_DATE) - DATE_PART('year', value)); */
 
 DROP TABLE IF EXISTS users CASCADE;
 
@@ -94,6 +96,3 @@ INSERT INTO users
     (username, password)
 VALUES ('admin', 'admin'),
        ('bob', 'test');
-
-INSERT INTO rentals
-(game_id, username, date_rented, date_returned, rental_length_allowed, days_left, active, overdue)

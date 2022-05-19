@@ -239,7 +239,10 @@ public class GameImpl implements GameDAO
       PreparedStatement st = connection.prepareStatement(
               "INSERT INTO rental " +
                       "(game_id, username, date_rented, rental_length_allowed, active, overdue) " +
-                      "VALUES (?, ?, CURRENT_DATE, 14, TRUE, FALSE); "
+                      "VALUES (?, ?, CURRENT_DATE, 14, TRUE, FALSE); " +
+
+                      "UPDATE games " +
+                      "SET "
       );
       st.setInt(1, game.getId());
       st.setString(2, user.getUsername());
