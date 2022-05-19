@@ -107,6 +107,7 @@ public class BrowseViewModel
             return true;
         } catch (Exception e)
         {
+            e.printStackTrace();
             errorLabel.set(e.getMessage());
         }
         return false;

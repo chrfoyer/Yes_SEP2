@@ -94,6 +94,16 @@ INSERT INTO users
     (username, password)
 VALUES ('admin', 'admin'),
        ('bob', 'test');
-	   
-UPDATE users SET is_admin=true WHERE username='admin';
+
+UPDATE users
+SET is_admin= TRUE
+WHERE username = 'admin';
+
+
+
+
+
+
+
+
 
