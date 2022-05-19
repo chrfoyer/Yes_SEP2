@@ -89,9 +89,7 @@ public class BrowseViewController extends ViewController
     public void rent() throws RemoteException
     {
         if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription())
-        {
-            // TODO: 11/05/2022 Confirmation window with name of game
-            SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
+        {SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
             Game selectedGame = temp.getGame();
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION,

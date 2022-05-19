@@ -25,11 +25,6 @@ public class SimpleTransactionViewModel
         this.transaction = transaction;
     }
 
-    public Double getAmount()
-    {
-        return amount.get();
-    }
-
     public ObjectProperty<Double> amountProperty()
     {
         return amount;
@@ -45,19 +40,9 @@ public class SimpleTransactionViewModel
         return user;
     }
 
-    public String getType()
-    {
-        return type.get();
-    }
-
     public StringProperty typeProperty()
     {
         return type;
-    }
-
-    public LocalDate getDate()
-    {
-        return date.get();
     }
 
     public ObjectProperty<LocalDate> dateProperty()
@@ -65,8 +50,4 @@ public class SimpleTransactionViewModel
         return date;
     }
 
-    public Transaction getTransaction()
-    {
-        return transaction;
-    }
 }

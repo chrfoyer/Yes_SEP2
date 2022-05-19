@@ -60,7 +60,7 @@ public class UserListViewController extends ViewController
         // TODO: 11/05/2022 Add confirmation window with the name of the User.
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Are you sure you want to delete this user?");
+                "Are you sure you want to delete this user? ->" +editViewModel.getUser());
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == ButtonType.OK)
         {

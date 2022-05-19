@@ -71,7 +71,6 @@ public class Server
                     break;
                 case 4:
                     System.out.println("Advancing day...");
-                    //todo doesnt seem to do anything
                     server.decrementDay();
                     System.out.println("See you in tomorrow");
                     break;

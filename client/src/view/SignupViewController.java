@@ -9,7 +9,7 @@ import viewmodel.SignupViewModel;
 public class SignupViewController extends ViewController
 {
     public TextField fullName;
-    public DatePicker dob;    // TODO: 11.5.2022. HOW TO BIND THIS SHIT!!!
+    public DatePicker dob;
     public TextField address;
     public TextField email;
     public TextField username;

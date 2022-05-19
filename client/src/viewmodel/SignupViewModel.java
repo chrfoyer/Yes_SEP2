@@ -148,6 +148,8 @@ public class SignupViewModel
             if (usernameProperty.get().length() < 5)
                 throw new IllegalArgumentException(
                         "Username has to be at least 5 characters!");
+            if (usernameProperty.get().contains(" "))
+                throw new IllegalArgumentException("Username cannot contain spaces!");
             if (passwordProperty.get().length() < 7)
                 throw new IllegalArgumentException(
                         "password has to be at least 7 characters!");

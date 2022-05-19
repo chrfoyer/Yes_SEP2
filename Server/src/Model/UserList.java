@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * as the size method and get method.
  *
  * @author Chris, Martin, Levente, Kruno
- * @version 0.1 11/5/22
+ * @version 0.4 19/5/22
  */
 public class UserList implements Serializable
 {
@@ -95,25 +95,17 @@ public class UserList implements Serializable
         return false;
     }
 
+    /**
+     * @param given the user we want to authenticate
+     * @return true if server manged to log in user
+     * @exception IllegalArgumentException if the password is wrong
+     */
     public boolean login(User given)
     {
-        User foundFromList = null;
-        for (User user : users)
-        {
-            if (user.getUsername().equals(given.getUsername()))
-                foundFromList = user;
-        }
-        if (foundFromList == null)
-            throw new IllegalArgumentException("User does not exist on server");
-        else
-        {
-            //Authenticate password
-            if (!given.getPassword().equals(foundFromList.getPassword()))
-                throw new IllegalArgumentException(
-                        "Password does not match stored credentials");
-            else
-                return true;
-        }
+        User foundFromList = findUserInList(given);
+        if (foundFromList == null) throw new IllegalArgumentException("User does not exist on server");
+        if (foundFromList.getPassword().equals(given.getPassword())) return true;
+        throw new IllegalArgumentException("Password does not match stored credentials");
     }
 
     public User findUserInList(User user)
@@ -126,13 +118,24 @@ public class UserList implements Serializable
         throw new IllegalArgumentException("User does not exist on the server!");
     }
 
+    /**
+     * Gets an arrayList of all the users stored
+     * @return ArrayList<User>
+     */
     public ArrayList<User> getUsers()
     {
         return users;
     }
 
+    /**
+     * @throws IllegalArgumentException if the user does not exist on the server
+     * @deprecated use SQL function instead
+     * @param oldUser User to change from
+     * @param newUser User to change to
+     */
     public void updateUserInfo(User oldUser, User newUser)
     {
+        // TODO: 2022. 05. 19. read @deprecated
         boolean foundOld = false;
         for (User user : users)
         {

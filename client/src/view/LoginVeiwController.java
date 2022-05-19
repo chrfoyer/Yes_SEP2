@@ -51,31 +51,6 @@ public class LoginVeiwController extends ViewController
      */
     public void login()
     {
-        // TODO: 2022. 05. 18. lev testing do not remove pls
-    /*
-    try
-    {
-      URL url=new URL("https://howlongtobeat.com/game?id=6064");
-      Scanner scanner=new Scanner(url.openStream());
-
-      StringBuffer stringBuffer=new StringBuffer();
-      while (scanner.hasNext())
-      {
-        stringBuffer.append(scanner.next());
-      }
-      String result=stringBuffer.toString();
-      result = result.replaceAll("<[^>]*>", "");
-      result.contains("a");
-
-
-    }
-    catch (Exception e)
-    {
-      errorLabel.setText(e.getMessage());
-    }
-     */
-
-
         if (getViewModelFactory().getLoginViewModel().login())
         {
             if (CurrentlyLoggedUser.isAdmin())

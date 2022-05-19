@@ -61,7 +61,7 @@ public class BalanceViewModel
                                 "Yes" :
                                 "No");
             }
-            //todo hopefully just debug
+            //debug
             else
                 balanceAmount.set("NO LOGGED IN USER DETECTED");
         } catch (Exception e)

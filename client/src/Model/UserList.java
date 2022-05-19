@@ -101,23 +101,10 @@ public class UserList implements Serializable
      */
     public boolean login(User given)
     {
-        User foundFromList = null;
-        for (User user : users)
-        {
-            if (user.getUsername().equals(given.getUsername()))
-                foundFromList = user;
-        }
-        if (foundFromList == null)
-            throw new IllegalArgumentException("User does not exist on server");
-        else
-        {
-            //Authenticate password
-            if (!given.getPassword().equals(foundFromList.getPassword()))
-                throw new IllegalArgumentException(
-                        "Password does not match stored credentials");
-            else
-                return true;
-        }
+        User foundFromList = findUserInList(given);
+        if (foundFromList == null) throw new IllegalArgumentException("User does not exist on server");
+        if (foundFromList.getPassword().equals(given.getPassword())) return true;
+        throw new IllegalArgumentException("Password does not match stored credentials");
     }
 
     public User findUserInList(User user)
