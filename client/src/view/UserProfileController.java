@@ -10,6 +10,7 @@ import java.util.Optional;
 
 /**
  * Class which delegates to UserProfileViewModel
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -87,6 +88,7 @@ public class UserProfileController extends ViewController
 
     /**
      * method for asking the user to leave a review(int 1-5)
+     *
      * @return int value (1-5) of the review
      */
     public int getReviewScore()
@@ -128,15 +130,22 @@ public class UserProfileController extends ViewController
      */
     public void extend(ActionEvent actionEvent)
     {
-        SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Are you sure you want to extend " + selected.getNameProperty().get()
-                        + "?");
-        Optional<ButtonType> option = alert.showAndWait();
-        if (option.get() == ButtonType.OK)
+        if (table.getSelectionModel().getSelectedItem() == null)
         {
-            viewModel.extendGame(table.getSelectionModel().getSelectedItem());
+            table.getSelectionModel().clearSelection();
+        } else
+        {
+            SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to extend " + selected.getNameProperty().get()
+                            + "?");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK)
+            {
+                viewModel.extendGame(table.getSelectionModel().getSelectedItem());
+            }
         }
+
     }
 
     /**
@@ -170,6 +179,7 @@ public class UserProfileController extends ViewController
 
     /**
      * method for contacting admin
+     *
      * @param actionEvent contact admin button pressed
      */
     public void contactAdmin(ActionEvent actionEvent)

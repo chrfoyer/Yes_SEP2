@@ -181,11 +181,6 @@ public class ModelManager implements Model
         games = temp;
     }
 
-    /**
-     * Syncs userList with database
-     *
-     * @throws SQLException
-     */
     @Override
     public void refreshUserList() throws SQLException
     {
@@ -225,6 +220,7 @@ public class ModelManager implements Model
             if (game.getName().equals(name))
             {
                 ret = true;
+                break;
             }
         }
         return ret;
@@ -233,8 +229,12 @@ public class ModelManager implements Model
     @Override
     public void signup(User user) throws SQLException
     {
-        User check = users.findUserInList(user);
-        if (check != null) throw new IllegalArgumentException("User already exists on the server!");
+        for (User temp : users.getUsers()
+        )
+        {
+            if (temp.equals(user.getUsername()))
+                throw new IllegalArgumentException("User already exists on the server!");
+        }
         if (user.getUsername().length() > 30) throw new IllegalArgumentException("Username is too long!");
         User created = userDAO.create(user);
         users.addUser(created);

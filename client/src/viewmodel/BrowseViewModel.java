@@ -54,7 +54,6 @@ public class BrowseViewModel
             for (Game game : temp.getAvailableGames())
             {
                 data.add(new SimpleGameViewModel(game));
-                System.out.println(game);
             }
         } catch (Exception e)
         {

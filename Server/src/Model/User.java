@@ -9,10 +9,11 @@ import java.time.Period;
  * not. It has basic setters and getters
  *
  * @author Chris, Martin, Levente, Kruno
- * @version 0.1 11/5/22
+ * @version 0.4 19/5/22
  */
 public class User implements Serializable
 {
+
     private final int age;
     private String username;
     private String password;
@@ -25,9 +26,7 @@ public class User implements Serializable
     private int balance;
 
     /**
-     * THIS IS RETARDED DO NOT USE
-     *
-     * @implNote SERIOUSLY DON'T
+     * constructor for user
      */
     public User(int age, String username, String password, boolean isAdmin,
                 String email, String address, String name, LocalDate bday,
@@ -234,6 +233,11 @@ public class User implements Serializable
         this.hasSubscription = hasSubscription;
     }
 
+    /**
+     * method for finding out if a user is a admin
+     *
+     * @return boolean value of whether user is admin or not
+     */
     public boolean isAdmin()
     {
         return isAdmin;
@@ -262,11 +266,21 @@ public class User implements Serializable
         return hasSubscription;
     }
 
+    /**
+     * gets the user's balance
+     *
+     * @return int balance of user
+     */
     public int getBalance()
     {
         return balance;
     }
 
+    /**
+     * gets the user's age
+     *
+     * @return int age of user
+     */
     public int getAge()
     {
         return age;
@@ -282,6 +296,12 @@ public class User implements Serializable
         this.balance += ammount;
     }
 
+    /**
+     * checks if an object is equals to user
+     *
+     * @param obj to be compared to user
+     * @return boolean true or false of whether they are equal
+     */
     public boolean equals(Object obj)
     {
         if (!(obj instanceof User))
