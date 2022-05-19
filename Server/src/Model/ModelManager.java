@@ -2,6 +2,8 @@ package Model;
 
 import databaseAdapters.GameDAO;
 import databaseAdapters.GameImpl;
+import databaseAdapters.UserDAO;
+import databaseAdapters.UserImpl;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -17,6 +19,7 @@ public class ModelManager implements Model
 {
   private final TransactionList transactions;
   private final GameDAO gameDAO;
+  private UserDAO userDAO;
   private GameList games;
   private UserList users;
 
@@ -26,6 +29,7 @@ public class ModelManager implements Model
     this.users = new UserList();
     this.transactions = TransactionList.getInstance();
     gameDAO = GameImpl.getInstance();
+    userDAO = UserImpl.getInstance();
     refreshGameList();
 
     // TODO: 18/05/2022 Remove below test data when it is done in SQL 
@@ -213,13 +217,13 @@ public class ModelManager implements Model
   }
 
   @Override
-  public void signup(User user)
+  public void signup(User user) throws SQLException
   {
     if (users.contains(user))
       throw new IllegalArgumentException(
               "Given user is already registered in the system!");
     else
-      users.addUser(user);
+      users.addUser(userDAO.create(user));
   }
 
   @Override

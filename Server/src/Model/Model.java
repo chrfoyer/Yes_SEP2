@@ -39,7 +39,7 @@ public interface Model
 
   boolean containsGame(String name);
 
-  void signup(User user);
+  void signup(User user) throws SQLException;
 
   boolean login(User user);
 

@@ -24,7 +24,7 @@ public interface RemoteModel extends Remote
 
   boolean containsGame(String name) throws RemoteException;
 
-  void signup(User user) throws RemoteException;
+  void signup(User user) throws RemoteException, SQLException;
 
   boolean login(User user) throws RemoteException;
 

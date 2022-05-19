@@ -1,6 +1,7 @@
 package databaseAdapters;
 
 import Model.Game;
+import Model.User;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -109,11 +110,12 @@ public class GameImpl implements GameDAO
     Game readGame = null;
     try (Connection connection = getConnection())
     {
-      Statement st = connection.createStatement();
-      ResultSet rs = st.executeQuery(
+      PreparedStatement st = connection.prepareStatement(
               "SELECT * " +
                       "FROM games " +
-                      "WHERE id = 1;");
+                      "WHERE id = ?;");
+      st.setInt(1, id);
+      ResultSet rs = st.executeQuery();
       while (rs.next())
       {
         System.out.println("Id: " + rs.getString("id"));
@@ -230,6 +232,23 @@ public class GameImpl implements GameDAO
   }
 
   @Override
+  public void rent(Game game, User user) throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement st = connection.prepareStatement(
+              "INSERT INTO rental " +
+                      "(game_id, username, date_rented, rental_length_allowed, active, overdue) " +
+                      "VALUES (?, ?, CURRENT_DATE, 14, TRUE, FALSE); "
+      );
+      st.setInt(1, game.getId());
+      st.setString(2, user.getUsername());
+      st.executeUpdate();
+      st.close();
+    }
+  }
+
+  @Override
   public void delete(Game game) throws SQLException
   {
     try (Connection connection = getConnection())
@@ -240,6 +259,5 @@ public class GameImpl implements GameDAO
       statement.executeUpdate();
       statement.close();
     }
-
   }
 }

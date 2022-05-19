@@ -105,7 +105,7 @@ public class RmiServer implements RemoteModel
   }
 
   @Override
-  public void signup(User user) throws RemoteException
+  public void signup(User user) throws RemoteException, SQLException
   {
     model.signup(user);
   }

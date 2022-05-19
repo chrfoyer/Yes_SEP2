@@ -1,10 +1,10 @@
-DROP SCHEMA game_test CASCADE;
+DROP SCHEMA IF EXISTS game_test CASCADE;
 
 CREATE SCHEMA IF NOT EXISTS game_test;
 
 SET SCHEMA 'game_test';
 
-DROP TABLE games CASCADE;
+DROP TABLE IF EXISTS games CASCADE;
 
 CREATE TABLE IF NOT EXISTS games
 (
@@ -26,24 +26,21 @@ INSERT INTO games
 VALUES ('Minecraft', 'Mojang', 'PC', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE),
        ('Rooster and Gall', 'Duty Toot', 'Xbox', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE);
 
-SELECT *
-FROM games
-ORDER BY id DESC
-LIMIT 1;
-
 CREATE DOMAIN email AS varchar(40) CHECK (VALUE LIKE '%@%');
 CREATE DOMAIN passwordDom AS varchar(30); /* Here in case we want to change the rules */
 CREATE DOMAIN bDay AS date CHECK (13 >= DATE_PART('year', CURRENT_DATE) - DATE_PART('year', value));
+
+DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE IF NOT EXISTS users
 (
     username         varchar(30) PRIMARY KEY,
     password         passwordDom NOT NULL,
     is_admin         boolean,
-    email            email       NOT NULL,
+    email            email,
     address          varchar(100),
     name             varchar(30),
-    bDay             bDay        NOT NULL,
+    bDay             bDay,
     has_subscription boolean,
     balance          int, /* TODO Plz change */
     age              int /* TODO extract value using date diff */
@@ -92,3 +89,11 @@ CREATE TABLE rentals
     FOREIGN KEY (game_id) REFERENCES games (id),
     FOREIGN KEY (username) REFERENCES users (username)
 );
+
+INSERT INTO users
+    (username, password)
+VALUES ('admin', 'admin'),
+       ('bob', 'test');
+
+INSERT INTO rentals
+(game_id, username, date_rented, date_returned, rental_length_allowed, days_left, active, overdue)

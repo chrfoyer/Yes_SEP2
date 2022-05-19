@@ -1,6 +1,7 @@
 package databaseAdapters;
 
 import Model.Game;
+import Model.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public interface GameDAO
   Game readMaxId() throws SQLException;
 
   ArrayList<Game> getAllGames() throws SQLException;
+
+  void rent(Game game, User user) throws SQLException;
 
   void update(Game game) throws SQLException;
 
