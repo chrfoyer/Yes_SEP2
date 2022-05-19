@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Class with an ArrayList of games, where games are added, removed and edited
  *
  * @author Chris, Martin, Levente, Kruno
- * @version 0.2 5/5/22
+ * @version 0.4 19/5/22
  */
 public class GameList implements Serializable
 {
@@ -116,7 +116,7 @@ public class GameList implements Serializable
   }
 
   /**
-   * Gets all non rented game
+   * Gets all non rented games
    *
    * @return returns an arrayList of games
    */
@@ -181,6 +181,11 @@ public class GameList implements Serializable
     return ret;
   }
 
+  /**
+   * updates the values of a existing game
+   * @param gameOld the old game
+   * @param gameNew the new game
+   */
   public void updateGameInfo(Game gameOld, Game gameNew)
   {
     boolean foundOld = false;
@@ -203,6 +208,11 @@ public class GameList implements Serializable
               "No game found on server that could be updated");
   }
 
+  /**
+   * finds a game in the gameList
+   * @param game game to search for
+   * @return game if it is found in the gameList
+   */
   public Game findGameInList(Game game)
   {
     for (Game temp : games)

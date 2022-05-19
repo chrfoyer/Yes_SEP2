@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * as the size method and get method.
  *
  * @author Chris, Martin, Levente, Kruno
- * @version 0.1 11/5/22
+ * @version 0.4 19/5/22
  */
 public class UserList implements Serializable
 {
@@ -95,6 +95,11 @@ public class UserList implements Serializable
     return false;
   }
 
+  /**
+   * 
+   * @param given
+   * @return
+   */
   public boolean login(User given)
   {
     User foundFromList = null;

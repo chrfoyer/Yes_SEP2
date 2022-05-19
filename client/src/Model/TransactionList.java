@@ -6,7 +6,12 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-//a class that creates a list of transactions
+/**
+ *a class that creates a list of transactions
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
+
 public class TransactionList implements Serializable
 {
 
@@ -42,6 +47,10 @@ public class TransactionList implements Serializable
     return instance;
   }
 
+  /**
+   * method for writing transactions into xml file
+   * @param list transaction list that is to be read and turned into a xml file
+   */
   public static void writeTransactions(TransactionList list)
   {
 
@@ -103,11 +112,20 @@ public class TransactionList implements Serializable
     transactions.remove(transaction);
   }
 
+  /**
+   * method for getting the size of the list
+   * @return int size of the transaction list
+   */
   public int getSize()
   {
     return transactions.size();
   }
 
+
+  /**
+   * method for getting the transaction list
+   * @return ArrayList<Transaction> list of transactions
+   */
   public ArrayList<Transaction> getList()
   {
     return transactions;
