@@ -16,15 +16,15 @@ import java.time.Period;
  */
 public class SignupViewModel
 {
-  private RemoteModel model;
-  private StringProperty usernameProperty;
-  private StringProperty passwordProperty;
-  private StringProperty nameProperty;
-  private ObjectProperty<LocalDate> dobProperty;
-  private StringProperty addressProperty;
-  private StringProperty emailProperty;
-  private StringProperty confirmProperty;
-  private StringProperty errorLabel;
+  private final RemoteModel model;
+  private final StringProperty usernameProperty;
+  private final StringProperty passwordProperty;
+  private final StringProperty nameProperty;
+  private final ObjectProperty<LocalDate> dobProperty;
+  private final StringProperty addressProperty;
+  private final StringProperty emailProperty;
+  private final StringProperty confirmProperty;
+  private final StringProperty errorLabel;
 
   /**
    * ViewModel that connects Signup to the model
@@ -134,29 +134,28 @@ public class SignupViewModel
     {
       if (!passwordProperty.get().equals(confirmProperty.get()))
         throw new IllegalArgumentException(
-            "Passwords and confirmation have to match!");
+                "Passwords and confirmation have to match!");
       LocalDate dob = dobProperty.get();
       Period age = Period.between(dob, LocalDate.now());
       if (age.getYears() < 13)
       {
         dobProperty.set(null);
         throw new IllegalArgumentException(
-            "User has to be at least 13 years old!");
+                "User has to be at least 13 years old!");
       }
       if (usernameProperty.get().length() < 5)
         throw new IllegalArgumentException(
-            "Username has to be at least 5 characters!");
+                "Username has to be at least 5 characters!");
       if (passwordProperty.get().length() < 7)
         throw new IllegalArgumentException(
-            "password has to be at least 7 characters!");
+                "password has to be at least 7 characters!");
       if (!emailProperty.get().contains("@"))
         throw new IllegalArgumentException("Email not in correct format!");
       User user = new User(usernameProperty.get(), passwordProperty.get(),
-          emailProperty.get(), addressProperty.get(), nameProperty.get(), dob);
+              emailProperty.get(), addressProperty.get(), nameProperty.get(), dob);
       model.signup(user);
       return true;
-    }
-    catch (Exception e)
+    } catch (Exception e)
     {
       errorLabel.set(e.getMessage());
     }

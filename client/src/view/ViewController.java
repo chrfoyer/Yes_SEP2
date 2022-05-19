@@ -19,7 +19,7 @@ public abstract class ViewController
    * @param root             root to set the root to
    */
   public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory,
-      Region root)
+                   Region root)
   {
     this.root = root;
     this.viewHandler = viewHandler;

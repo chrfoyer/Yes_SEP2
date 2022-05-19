@@ -9,14 +9,19 @@ import viewmodel.ViewModelFactory;
 
 import java.rmi.Naming;
 
-public class MyApplication extends Application {
-  public void start(Stage primaryStage) {
-    try {
+public class MyApplication extends Application
+{
+  public void start(Stage primaryStage)
+  {
+    try
+    {
       RemoteModel server = null;
-      try {
+      try
+      {
         server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
         System.out.println("Stub pulled");
-      } catch (Exception ex) {
+      } catch (Exception ex)
+      {
         ex.printStackTrace();
         Alert alert = new Alert(Alert.AlertType.ERROR,
                 "Server connection not detected, please restart server");
@@ -34,7 +39,8 @@ public class MyApplication extends Application {
       CurrentlyLoggedUser.setModel(server);
 
       view.start(primaryStage);
-    } catch (Exception e) {
+    } catch (Exception e)
+    {
       e.printStackTrace();
     }
   }

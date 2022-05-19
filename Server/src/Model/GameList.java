@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class GameList implements Serializable
 {
-  private ArrayList<Game> games;
+  private final ArrayList<Game> games;
 
   /**
    * constructor that initializes arraylist
@@ -163,7 +163,8 @@ public class GameList implements Serializable
    *
    * @return The string with the information about the game object.
    */
-  @Override public String toString()
+  @Override
+  public String toString()
   {
 
     String ret = "";
@@ -171,7 +172,7 @@ public class GameList implements Serializable
     for (Game game : games)
     {
       ret += "Game -> " + game.getName() + " : " + game.getProducer() + " : "
-          + game.getEsrb() + " : Rented: " + game.isRented() + "\n";
+              + game.getEsrb() + " : Rented: " + game.isRented() + "\n";
       if (game.isRented())
       {
         ret += game.getDaysLeft() + " days left\n";
@@ -189,7 +190,7 @@ public class GameList implements Serializable
       {
         if (game.isRented())
           throw new IllegalStateException(
-              "Game is rented, changing of information is not allowed!");
+                  "Game is rented, changing of information is not allowed!");
         game.setName(gameNew.getName());
         game.setEsrb(gameNew.getEsrb());
         game.setConsole(gameNew.getConsole());
@@ -199,11 +200,13 @@ public class GameList implements Serializable
     }
     if (!foundOld)
       throw new IllegalArgumentException(
-          "No game found on server that could be updated");
+              "No game found on server that could be updated");
   }
 
-  public Game findGameInList(Game game) {
-    for (Game temp : games) {
+  public Game findGameInList(Game game)
+  {
+    for (Game temp : games)
+    {
       if (game.equals(temp))
         return temp;
     }

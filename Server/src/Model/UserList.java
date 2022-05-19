@@ -10,13 +10,15 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.1 11/5/22
  */
-public class UserList implements Serializable {
-  private ArrayList<User> users;
+public class UserList implements Serializable
+{
+  private final ArrayList<User> users;
 
   /**
    * Constructor initializing an arrayList of User type.
    */
-  public UserList() {
+  public UserList()
+  {
     users = new ArrayList<>();
   }
 
@@ -25,7 +27,8 @@ public class UserList implements Serializable {
    *
    * @param user user to be added to the userList
    */
-  public void addUser(User user) {
+  public void addUser(User user)
+  {
     users.add(user);
   }
 
@@ -34,18 +37,23 @@ public class UserList implements Serializable {
    *
    * @param user user to be removed from the userList
    */
-  public void removeUser(User user) {
-    if (user.getUsername().equals("admin")) {
+  public void removeUser(User user)
+  {
+    if (user.getUsername().equals("admin"))
+    {
       throw new IllegalArgumentException("wtf bro");
     }
     boolean found = false;
-    for (int i = 0; i < users.size(); i++) {
-      if (users.get(i).getUsername().equals(user.getUsername())) {
+    for (int i = 0; i < users.size(); i++)
+    {
+      if (users.get(i).getUsername().equals(user.getUsername()))
+      {
         users.remove(i);
         found = true;
       }
     }
-    if (!found) {
+    if (!found)
+    {
       throw new IllegalArgumentException("User not found on server");
     }
   }
@@ -55,7 +63,8 @@ public class UserList implements Serializable {
    *
    * @return size of userList as an int
    */
-  public int size() {
+  public int size()
+  {
     return users.size();
   }
 
@@ -65,7 +74,8 @@ public class UserList implements Serializable {
    * @param index index to fetch the user from
    * @return user at the given index
    */
-  public User get(int index) {
+  public User get(int index)
+  {
     return users.get(index);
   }
 
@@ -75,23 +85,28 @@ public class UserList implements Serializable {
    * @param given user to check against existing list
    * @return true if it contains
    */
-  public boolean contains(User given) {
-    for (User user : users) {
+  public boolean contains(User given)
+  {
+    for (User user : users)
+    {
       if (user.getUsername().equals(given.getUsername()))
         return true;
     }
     return false;
   }
 
-  public boolean login(User given) {
+  public boolean login(User given)
+  {
     User foundFromList = null;
-    for (User user : users) {
+    for (User user : users)
+    {
       if (user.getUsername().equals(given.getUsername()))
         foundFromList = user;
     }
     if (foundFromList == null)
       throw new IllegalArgumentException("User does not exist on server");
-    else {
+    else
+    {
       //Authenticate password
       if (!given.getPassword().equals(foundFromList.getPassword()))
         throw new IllegalArgumentException(
@@ -101,22 +116,28 @@ public class UserList implements Serializable {
     }
   }
 
-  public User findUserInList(User user) {
-    for (User temp : users) {
+  public User findUserInList(User user)
+  {
+    for (User temp : users)
+    {
       if (temp.getUsername().equals(user.getUsername()))
         return temp;
     }
     throw new IllegalArgumentException("User does not exist on the server!");
   }
 
-  public ArrayList<User> getUsers() {
+  public ArrayList<User> getUsers()
+  {
     return users;
   }
 
-  public void updateUserInfo(User oldUser, User newUser) {
+  public void updateUserInfo(User oldUser, User newUser)
+  {
     boolean foundOld = false;
-    for (User user : users) {
-      if (oldUser.equals(user)) {
+    for (User user : users)
+    {
+      if (oldUser.equals(user))
+      {
         user.setName(newUser.getName());
         user.setUsername(newUser.getUsername());
         user.setPassword(newUser.getPassword());
@@ -133,16 +154,19 @@ public class UserList implements Serializable {
               "No User found on server that could be updated");
   }
 
-  public void modifyBalance(int ammount, User user) {
+  public void modifyBalance(int ammount, User user)
+  {
     User temp = findUserInList(user);
     temp.modifyBalance(ammount);
   }
 
-  public int getBalance(User user) {
+  public int getBalance(User user)
+  {
     return findUserInList(user).getBalance();
   }
 
-  public void payForSubscription(User user) {
+  public void payForSubscription(User user)
+  {
     User temp = findUserInList(user);
 
     if (temp.getBalance() < 0)

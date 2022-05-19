@@ -7,7 +7,8 @@ import viewmodel.UserEditViewModel;
 
 import java.util.Optional;
 
-public class UserEditViewController extends ViewController {
+public class UserEditViewController extends ViewController
+{
   @FXML
   public TextField fullName;
   @FXML
@@ -33,7 +34,8 @@ public class UserEditViewController extends ViewController {
    * method for initializing all the variables and binding them
    */
   @Override
-  protected void init() {
+  protected void init()
+  {
     viewModel = getViewModelFactory().getUserEditViewModel();
     fullName.textProperty().bindBidirectional(viewModel.getNameProperty());
     dob.valueProperty().bindBidirectional(viewModel.getDobProperty());
@@ -57,7 +59,8 @@ public class UserEditViewController extends ViewController {
    * @param actionEvent cancel button pressed
    */
   @FXML
-  public void cancel(ActionEvent actionEvent) {
+  public void cancel(ActionEvent actionEvent)
+  {
     getViewHandler().openView("UserListView.fxml");
 
   }
@@ -68,7 +71,8 @@ public class UserEditViewController extends ViewController {
    * @param actionEvent apply button pressed
    */
   @FXML
-  public void apply(ActionEvent actionEvent) {
+  public void apply(ActionEvent actionEvent)
+  {
     // TODO: 11/05/2022 Actually edit the user info
     viewModel.editUser();
     getViewModelFactory().getUserListViewModel().reset();
@@ -76,22 +80,26 @@ public class UserEditViewController extends ViewController {
 
   }
 
-  public void fine_refund(ActionEvent actionEvent) {
+  public void fine_refund(ActionEvent actionEvent)
+  {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Are you sure you want to revoke this user's subscription?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       viewModel.fineRefund();
       getViewModelFactory().getUserListViewModel().reset();
       getViewHandler().openView("UserListView.fxml");
     }
   }
 
-  public void banHammer(ActionEvent actionEvent) {
+  public void banHammer(ActionEvent actionEvent)
+  {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Are you sure you want to revoke this user's subscription?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       viewModel.revokeSubscription();
       getViewModelFactory().getUserListViewModel().reset();
       getViewHandler().openView("UserListView.fxml");

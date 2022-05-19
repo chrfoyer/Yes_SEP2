@@ -9,15 +9,15 @@ import mediator.RemoteModel;
 
 public class AddEditGameViewModel
 {
-  private RemoteModel model;
-  private ObjectProperty<SimpleGameViewModel> selectedGameProperty;
-  private StringProperty name;
-  private ObjectProperty<Integer> timeLeft;
-  private StringProperty console;
-  private StringProperty producer;
-  private StringProperty esrb;
-  private ObjectProperty<Boolean> rented;
-  private StringProperty error;
+  private final RemoteModel model;
+  private final ObjectProperty<SimpleGameViewModel> selectedGameProperty;
+  private final StringProperty name;
+  private final ObjectProperty<Integer> timeLeft;
+  private final StringProperty console;
+  private final StringProperty producer;
+  private final StringProperty esrb;
+  private final ObjectProperty<Boolean> rented;
+  private final StringProperty error;
 
   public AddEditGameViewModel(RemoteModel model)
   {
@@ -42,8 +42,7 @@ public class AddEditGameViewModel
         producer.set("");
         esrb.set("E");
         console.set("PC");
-      }
-      else
+      } else
       {
         SimpleGameViewModel selectedGameViewModel = selectedGameProperty.get();
         name.set(selectedGameViewModel.getNameProperty().get());
@@ -55,8 +54,7 @@ public class AddEditGameViewModel
 
         error.set("");
       }
-    }
-    catch (Exception e)
+    } catch (Exception e)
     {
       error.set(e.getMessage());
       e.printStackTrace();
@@ -130,14 +128,13 @@ public class AddEditGameViewModel
 
   public void addGame()
   {
-    //todo nullcheck
+    // TODO: 18/05/2022 Don't allow name or producer to be blank
     try
     {
       Game gameToAdd = new Game(name.get(), producer.get(), console.get(),
-          esrb.get());
+              esrb.get());
       model.addGame(gameToAdd);
-    }
-    catch (Exception e)
+    } catch (Exception e)
     {
       error.set(e.getMessage());
     }
@@ -145,13 +142,13 @@ public class AddEditGameViewModel
 
   public void editGame()
   {
-    //todo nullcheck
+    // TODO: 18/05/2022 Don't allow name or producer to be blank
     try
     {
       Game gameOld = new Game(selectedGameProperty.get().getGame().getName(),
-          selectedGameProperty.get().getGame().getProducer(),
-          selectedGameProperty.get().getGame().getConsole(),
-          selectedGameProperty.get().getGame().getEsrb());
+              selectedGameProperty.get().getGame().getProducer(),
+              selectedGameProperty.get().getGame().getConsole(),
+              selectedGameProperty.get().getGame().getEsrb());
 
       Game gameNew = selectedGameProperty.get().getGame();
       gameNew = selectedGameProperty.get().getGame();
@@ -163,8 +160,7 @@ public class AddEditGameViewModel
       model.updateGameInfo(gameOld, gameNew);
 
       //change finished without error
-    }
-    catch (Exception e)
+    } catch (Exception e)
     {
       error.set(e.getMessage());
     }

@@ -13,12 +13,12 @@ import java.util.ArrayList;
 public class AdminViewModel
 {
 
-  private RemoteModel model;
-  private StringProperty registeredUsers;
-  private StringProperty totalGames;
-  private StringProperty rentedGames;
-  private StringProperty recentGame;
-  private StringProperty errorLabel;
+  private final RemoteModel model;
+  private final StringProperty registeredUsers;
+  private final StringProperty totalGames;
+  private final StringProperty rentedGames;
+  private final StringProperty recentGame;
+  private final StringProperty errorLabel;
 
   /**
    * ViewModel that connects Login to the model
@@ -81,7 +81,7 @@ public class AdminViewModel
       int registeredUser = 0;
       int totalGame = 0;
       int totalRent = 0;
-      Game recent = model.viewGames().getGamesArrayCopy().get(0);
+      Game recent = model.getMostRecentGame();
       registeredUser = model.getUserList().size();
       ArrayList<Game> allGames = model.viewGames().getGamesArrayCopy();
       for (Game game : allGames)
@@ -94,8 +94,7 @@ public class AdminViewModel
       totalGames.set(totalGame + "");
       rentedGames.set(totalRent + "");
       recentGame.set(recent.getName());
-    }
-    catch (Exception e)
+    } catch (Exception e)
     {
       errorLabel.set(e.getMessage());
     }

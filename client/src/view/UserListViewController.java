@@ -11,7 +11,8 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class UserListViewController extends ViewController {
+public class UserListViewController extends ViewController
+{
   @FXML
   public TableColumn<SimpleUserViewModel, String> usernameColumn;
   @FXML
@@ -29,7 +30,8 @@ public class UserListViewController extends ViewController {
    * method for initializing all the variables and binding them
    */
   @Override
-  protected void init() {
+  protected void init()
+  {
     viewModel = getViewModelFactory().getUserListViewModel();
     usernameColumn.setCellValueFactory(
             cellData -> cellData.getValue().usernameProperty());
@@ -47,18 +49,21 @@ public class UserListViewController extends ViewController {
     reset();
   }
 
-  public void reset() {
+  public void reset()
+  {
     viewModel.reset();
   }
 
   @FXML
-  public void remove(ActionEvent actionEvent) throws RemoteException {
+  public void remove(ActionEvent actionEvent) throws RemoteException
+  {
     // TODO: 11/05/2022 Add confirmation window with the name of the User.
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Are you sure you want to delete this user?");
     Optional<ButtonType> option = alert.showAndWait();
-    if (option.get() == ButtonType.OK) {
+    if (option.get() == ButtonType.OK)
+    {
       viewModel.setSelectedUser(editViewModel.getUser());
       viewModel.removeUser();
       viewModel.reset();
@@ -71,13 +76,15 @@ public class UserListViewController extends ViewController {
    * @param actionEvent edit button pressed
    */
   @FXML
-  public void edit(ActionEvent actionEvent) {
+  public void edit(ActionEvent actionEvent)
+  {
     // Must use the selected user
     getViewModelFactory().getUserEditViewModel().reset();
     getViewHandler().openView("UserEditView.fxml");
   }
 
-  public void back(ActionEvent actionEvent) {
+  public void back(ActionEvent actionEvent)
+  {
     getViewHandler().openView("AdminView.fxml");
   }
 }

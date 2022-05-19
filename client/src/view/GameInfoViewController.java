@@ -18,7 +18,8 @@ public class GameInfoViewController extends ViewController
   /**
    * method initializing all the variables and cells
    */
-  @Override protected void init()
+  @Override
+  protected void init()
   {
     viewModel = getViewModelFactory().getGameInfoViewModel();
     name.textProperty().bindBidirectional(viewModel.nameProperty());

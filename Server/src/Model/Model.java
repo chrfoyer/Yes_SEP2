@@ -1,5 +1,6 @@
 package Model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -8,12 +9,13 @@ import java.util.ArrayList;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.2 5/5/22
  */
-public interface Model {
-  void addGame(Game game);
+public interface Model
+{
+  void addGame(Game game) throws SQLException;
 
   ArrayList<Game> getAllGames();
 
-  void removeGame(Game game);
+  void removeGame(Game game) throws SQLException;
 
   void removeGame(String name);
 
@@ -25,27 +27,31 @@ public interface Model {
 
   Game getGame(String name);
 
+  Game getMostRecentGame() throws SQLException;
+
   Game getGame(Game game);
 
   ArrayList<Game> getALlAvailableGames();
 
+  void refreshGameList() throws SQLException;
+
   GameList getGameList();
 
-  public boolean containsGame(String name);
+  boolean containsGame(String name);
 
   void signup(User user);
 
   boolean login(User user);
 
-  public UserList getUserList();
+  UserList getUserList();
 
-  public void updateGameInfo(Game gameOld, Game gameNew);
+  void updateGameInfo(Game gameOld, Game gameNew) throws SQLException;
 
   void addTransaction(Transaction transaction);
 
-  public void removeUser(User user);
+  void removeUser(User user);
 
-  public void updateUserInfo(User oldUser, User newUser);
+  void updateUserInfo(User oldUser, User newUser);
 
   int getBalance(User user);
 

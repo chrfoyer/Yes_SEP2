@@ -11,18 +11,18 @@ import java.time.Period;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.1 11/5/22
  */
-public class User implements Serializable {
+public class User implements Serializable
+{
+  private final int age;
   private String username;
   private String password;
   private boolean isAdmin;
-
   private String email;
   private String address;
   private String name;
   private LocalDate bday;
   private boolean hasSubscription;
   private int balance;
-  private int age;
 
   /**
    * Constructor taking only string username and string password. checks to see if user is an admin.
@@ -30,7 +30,8 @@ public class User implements Serializable {
    * @param username username to be assigned to user
    * @param password password to be assigned to user
    */
-  public User(String username, String password) {
+  public User(String username, String password)
+  {
     this.username = username;
     this.password = password;
     this.email = null;
@@ -39,7 +40,8 @@ public class User implements Serializable {
     this.bday = null;
     this.age = 21;
     hasSubscription = false;
-    if (username.equals("admin") && password.equals("admin")) {
+    if (username.equals("admin") && password.equals("admin"))
+    {
       isAdmin = true;
       hasSubscription = true;
     }
@@ -57,7 +59,8 @@ public class User implements Serializable {
    * @param bday     birthday to be assigned to user
    */
   public User(String username, String password, String email, String address,
-              String name, LocalDate bday) {
+              String name, LocalDate bday)
+  {
     this.username = username;
     this.password = password;
     this.email = email;
@@ -75,62 +78,9 @@ public class User implements Serializable {
    *
    * @return user's username
    */
-  public String getUsername() {
+  public String getUsername()
+  {
     return username;
-  }
-
-  /**
-   * gets user's password
-   *
-   * @return user's password
-   */
-  public String getPassword() {
-    return password;
-  }
-
-  /**
-   * gets user's email
-   *
-   * @return user's email
-   */
-  public String getEmail() {
-    return email;
-  }
-
-  /**
-   * gets user's address
-   *
-   * @return user's address
-   */
-  public String getAddress() {
-    return address;
-  }
-
-  /**
-   * gets user's name
-   *
-   * @return user's name
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * gets user's birthday
-   *
-   * @return user's birthday
-   */
-  public LocalDate getBday() {
-    return bday;
-  }
-
-  /**
-   * gets user's subscription status
-   *
-   * @return status of subscription
-   */
-  public boolean getSubscription() {
-    return hasSubscription;
   }
 
   /**
@@ -138,8 +88,19 @@ public class User implements Serializable {
    *
    * @param username what user's username will be set to
    */
-  public void setUsername(String username) {
+  public void setUsername(String username)
+  {
     this.username = username;
+  }
+
+  /**
+   * gets user's password
+   *
+   * @return user's password
+   */
+  public String getPassword()
+  {
+    return password;
   }
 
   /**
@@ -147,8 +108,19 @@ public class User implements Serializable {
    *
    * @param password what user's password will be set to
    */
-  public void setPassword(String password) {
+  public void setPassword(String password)
+  {
     this.password = password;
+  }
+
+  /**
+   * gets user's email
+   *
+   * @return user's email
+   */
+  public String getEmail()
+  {
+    return email;
   }
 
   /**
@@ -156,8 +128,19 @@ public class User implements Serializable {
    *
    * @param email what user's email will be set to
    */
-  public void setEmail(String email) {
+  public void setEmail(String email)
+  {
     this.email = email;
+  }
+
+  /**
+   * gets user's address
+   *
+   * @return user's address
+   */
+  public String getAddress()
+  {
+    return address;
   }
 
   /**
@@ -165,8 +148,19 @@ public class User implements Serializable {
    *
    * @param address what the user's address will be set to
    */
-  public void setAddress(String address) {
+  public void setAddress(String address)
+  {
     this.address = address;
+  }
+
+  /**
+   * gets user's name
+   *
+   * @return user's name
+   */
+  public String getName()
+  {
+    return name;
   }
 
   /**
@@ -174,8 +168,19 @@ public class User implements Serializable {
    *
    * @param name what the user's name will be set to
    */
-  public void setName(String name) {
+  public void setName(String name)
+  {
     this.name = name;
+  }
+
+  /**
+   * gets user's birthday
+   *
+   * @return user's birthday
+   */
+  public LocalDate getBday()
+  {
+    return bday;
   }
 
   /**
@@ -183,17 +188,19 @@ public class User implements Serializable {
    *
    * @param bday what the user's birthday will be set to
    */
-  public void setBday(LocalDate bday) {
+  public void setBday(LocalDate bday)
+  {
     this.bday = bday;
   }
 
   /**
-   * sets user's admin status
+   * gets user's subscription status
    *
-   * @param admin boolean deciding whether user is a admin or not
+   * @return status of subscription
    */
-  public void setAdmin(boolean admin) {
-    isAdmin = admin;
+  public boolean getSubscription()
+  {
+    return hasSubscription;
   }
 
   /**
@@ -201,12 +208,24 @@ public class User implements Serializable {
    *
    * @param hasSubscription status of subscription
    */
-  public void setHasSubscription(boolean hasSubscription) {
+  public void setHasSubscription(boolean hasSubscription)
+  {
     this.hasSubscription = hasSubscription;
   }
 
-  public boolean isAdmin() {
+  public boolean isAdmin()
+  {
     return isAdmin;
+  }
+
+  /**
+   * sets user's admin status
+   *
+   * @param admin boolean deciding whether user is a admin or not
+   */
+  public void setAdmin(boolean admin)
+  {
+    isAdmin = admin;
   }
 
   /**
@@ -215,18 +234,21 @@ public class User implements Serializable {
    * @return boolean
    * @throws IllegalStateException if balance is below 0
    */
-  public boolean hasSubscription() {
+  public boolean hasSubscription()
+  {
     if (balance < 0)
       throw new IllegalStateException(
               "Users with negative balance cant have an active subscription");
     return hasSubscription;
   }
 
-  public int getBalance() {
+  public int getBalance()
+  {
     return balance;
   }
 
-  public int getAge() {
+  public int getAge()
+  {
     return age;
   }
 
@@ -235,12 +257,15 @@ public class User implements Serializable {
    *
    * @param ammount integer works with negative values
    */
-  public void modifyBalance(int ammount) {
+  public void modifyBalance(int ammount)
+  {
     this.balance += ammount;
   }
 
-  public boolean equals(Object obj) {
-    if (!(obj instanceof User)) {
+  public boolean equals(Object obj)
+  {
+    if (!(obj instanceof User))
+    {
       return false;
     }
     User user = (User) obj;

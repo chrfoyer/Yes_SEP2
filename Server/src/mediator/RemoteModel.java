@@ -4,6 +4,7 @@ import Model.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 /**
  * Interface used to establish Client - Server connection using RMI
@@ -11,12 +12,15 @@ import java.rmi.RemoteException;
  * @author Chris, Martin, Levente, Kruno
  * @version 0.3 5/5/22
  */
-public interface RemoteModel extends Remote {
+public interface RemoteModel extends Remote
+{
   void rentGame(Game game, User user) throws RemoteException;
 
   Game getGame(String name) throws RemoteException;
 
   GameList viewGames() throws RemoteException;
+
+  Game getMostRecentGame() throws SQLException, RemoteException;
 
   boolean containsGame(String name) throws RemoteException;
 
@@ -26,11 +30,11 @@ public interface RemoteModel extends Remote {
 
   UserList getUserList() throws RemoteException;
 
-  void updateGameInfo(Game gameOld, Game gameNew) throws RemoteException;
+  void updateGameInfo(Game gameOld, Game gameNew) throws RemoteException, SQLException;
 
-  void addGame(Game game) throws RemoteException;
+  void addGame(Game game) throws RemoteException, SQLException;
 
-  void removeGame(Game game) throws RemoteException;
+  void removeGame(Game game) throws RemoteException, SQLException;
 
   void removeUser(User user) throws RemoteException;
 

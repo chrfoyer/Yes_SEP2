@@ -21,7 +21,8 @@ public class SignupViewController extends ViewController
   /**
    * initializes all the variables and binds them
    */
-  @Override protected void init()
+  @Override
+  protected void init()
   {
     viewModel = getViewModelFactory().getSignupViewModel();
     fullName.textProperty().bindBidirectional(viewModel.getNameProperty());
@@ -30,7 +31,7 @@ public class SignupViewController extends ViewController
     username.textProperty().bindBidirectional(viewModel.getUsernameProperty());
     password.textProperty().bindBidirectional(viewModel.getPasswordProperty());
     confirmPassword.textProperty()
-        .bindBidirectional(viewModel.getConfirmProperty());
+            .bindBidirectional(viewModel.getConfirmProperty());
     error.textProperty().bind(viewModel.getErrorLabel());
     reset();
     dob.valueProperty().bindBidirectional(viewModel.getDobProperty());

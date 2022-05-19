@@ -10,7 +10,8 @@ import viewmodel.SimpleGameViewModel;
 import java.rmi.RemoteException;
 import java.util.Optional;
 
-public class BrowseViewController extends ViewController {
+public class BrowseViewController extends ViewController
+{
   public TextField nameSearch;
   public ChoiceBox<String> consoleSearch;
   public ChoiceBox<String> esrbSearch;
@@ -28,7 +29,8 @@ public class BrowseViewController extends ViewController {
    * method initializing all the variables and cells
    */
   @Override
-  protected void init() {
+  protected void init()
+  {
     consoleSearch.getItems().addAll("PC", "Xbox", "PlayStation");
     esrbSearch.getItems().addAll("E", "E10+", "T", "M", "AO");
     consoleSearch.setValue("PC");
@@ -53,7 +55,8 @@ public class BrowseViewController extends ViewController {
   /**
    * method that resets the fields in the view
    */
-  public void reset() {
+  public void reset()
+  {
     table.getSelectionModel().clearSelection();
     browseViewModel.reset();
     gameInfoViewModel.reset();
@@ -62,7 +65,8 @@ public class BrowseViewController extends ViewController {
   /**
    * Logic for the button that opens the GameInfoView
    */
-  public void searchButton() {
+  public void searchButton()
+  {
     // TODO: 12/05/2022 search functionality
     // Use these values to search the games and reset the table
     String name = nameSearch.getText();
@@ -73,7 +77,8 @@ public class BrowseViewController extends ViewController {
   /**
    * Logic for the button that opens the GameInfoView
    */
-  public void info() {
+  public void info()
+  {
     gameInfoViewModel.reset();
     getViewHandler().openView("GameInfoView.fxml");
   }
@@ -81,14 +86,16 @@ public class BrowseViewController extends ViewController {
   /**
    * Logic for the button that handles renting of the game
    */
-  public void rent() throws RemoteException {
-    if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription()) {
+  public void rent() throws RemoteException
+  {
+    if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription())
+    {
       // TODO: 11/05/2022 Confirmation window with name of game
       SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
       Game selectedGame = temp.getGame();
 
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-          "Are you sure you want to rent game? -> " + selectedGame.getName());
+              "Are you sure you want to rent game? -> " + selectedGame.getName());
       Optional<ButtonType> option = alert.showAndWait();
       if (option.isPresent() && option.get() == ButtonType.OK)
       {
@@ -97,12 +104,13 @@ public class BrowseViewController extends ViewController {
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Congratulations, Game rented");
         alert.setContentText("Now you have the game (" + selectedGame.getName()
-            + ") for 14 days\n"
-            + "If you would like to extend it you may do that on your profile!");
+                + ") for 14 days\n"
+                + "If you would like to extend it you may do that on your profile!");
         alert.showAndWait();
       }
       browseViewModel.reset();
-    } else {
+    } else
+    {
       Alert alert = new Alert(Alert.AlertType.ERROR,
               "You cannot rent games without an active subscription!");
       alert.showAndWait();
@@ -113,7 +121,8 @@ public class BrowseViewController extends ViewController {
   /**
    * Logic for the button that opens the UserProfileView
    */
-  public void back() {
+  public void back()
+  {
     getViewModelFactory().getUserProfileViewModel().reset();
     getViewHandler().openView("UserProfileView.fxml");
   }

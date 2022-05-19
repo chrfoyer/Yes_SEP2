@@ -19,7 +19,8 @@ public class AddEditGameController extends ViewController
   /**
    * method initializing all the variables and cells
    */
-  @Override protected void init()
+  @Override
+  protected void init()
   {
     viewModel = getViewModelFactory().getAddEditGameViewModel();
     gameName.textProperty().bindBidirectional(viewModel.nameProperty());
@@ -40,7 +41,7 @@ public class AddEditGameController extends ViewController
   {
     viewModel.reset();
     title.setText(
-        viewModel.getSelectedGameProperty() != null ? "Edit Game" : "Add Game");
+            viewModel.getSelectedGameProperty() != null ? "Edit Game" : "Add Game");
   }
 
   /**
@@ -58,11 +59,11 @@ public class AddEditGameController extends ViewController
    */
   public void confirm(ActionEvent actionEvent)
   {
-    viewModel.setConsole(console.getValue().toString());
-    viewModel.setEsrb(esrb.getValue().toString());
+    viewModel.setConsole(console.getValue());
+    viewModel.setEsrb(esrb.getValue());
 
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-        "Are you sure you want to change the game info?");
+            "Are you sure you want to change the game info?");
     Optional<ButtonType> option = alert.showAndWait();
     if (option.get() == ButtonType.OK)
     {

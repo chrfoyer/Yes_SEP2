@@ -9,19 +9,21 @@ import mediator.RemoteModel;
 /**
  * @version 0.3
  */
-public class LoginViewModel {
+public class LoginViewModel
+{
 
-  private RemoteModel model;
-  private StringProperty usernameProperty;
-  private StringProperty passwordProperty;
-  private StringProperty errorLabel;
+  private final RemoteModel model;
+  private final StringProperty usernameProperty;
+  private final StringProperty passwordProperty;
+  private final StringProperty errorLabel;
 
   /**
    * ViewModel that connects Login to the model
    *
    * @param model RemoteModel because of RMI
    */
-  public LoginViewModel(RemoteModel model) {
+  public LoginViewModel(RemoteModel model)
+  {
     this.model = model;
     usernameProperty = new SimpleStringProperty();
     passwordProperty = new SimpleStringProperty();
@@ -33,7 +35,8 @@ public class LoginViewModel {
    *
    * @return usernameProperty
    */
-  public StringProperty getUsernameProperty() {
+  public StringProperty getUsernameProperty()
+  {
     return usernameProperty;
   }
 
@@ -42,16 +45,20 @@ public class LoginViewModel {
    *
    * @return passwordProperty
    */
-  public StringProperty getPasswordProperty() {
+  public StringProperty getPasswordProperty()
+  {
     return passwordProperty;
   }
 
-  public StringProperty getErrorLabel() {
+  public StringProperty getErrorLabel()
+  {
     return errorLabel;
   }
 
-  public boolean login() {
-    try {
+  public boolean login()
+  {
+    try
+    {
       // TODO: 2022. 05. 11. Model logic validate login
       if (getUsernameProperty().get().equals(""))
         throw new IllegalArgumentException("Username cant be empty");
@@ -59,12 +66,14 @@ public class LoginViewModel {
         throw new IllegalArgumentException("Password cant be empty");
       User user = new User(getUsernameProperty().getValue(),
               getPasswordProperty().getValue());
-      if (model.login(user)) {
+      if (model.login(user))
+      {
         CurrentlyLoggedUser.login(user);
         return true;
       }
       return false;
-    } catch (Exception e) {
+    } catch (Exception e)
+    {
       errorLabel.set(e.getMessage());
     }
     return false;
@@ -73,13 +82,15 @@ public class LoginViewModel {
   /**
    * Call this to reset the text inside the fields
    */
-  public void reset() {
+  public void reset()
+  {
     usernameProperty.set("");
     passwordProperty.set("");
     errorLabel.set("");
   }
 
-  public void logout() {
+  public void logout()
+  {
     CurrentlyLoggedUser.logout();
   }
 }

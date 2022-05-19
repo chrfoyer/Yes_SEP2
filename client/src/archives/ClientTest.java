@@ -15,8 +15,7 @@ public class ClientTest
     try
     {
       client = new RmiClient();
-    }
-    catch (RemoteException e2)
+    } catch (RemoteException e2)
     {
       e2.printStackTrace();
     }

@@ -2,7 +2,6 @@ package mediator;
 
 import Model.User;
 import Model.UserList;
-import viewmodel.LoginViewModel;
 
 import java.rmi.RemoteException;
 
@@ -11,7 +10,8 @@ import java.rmi.RemoteException;
  *
  * @author Raedrim
  */
-public class CurrentlyLoggedUser {
+public class CurrentlyLoggedUser
+{
   static User loggedInUser = null;
   static RemoteModel model = null;
 
@@ -21,7 +21,8 @@ public class CurrentlyLoggedUser {
    * @param user the user that you want to log-in
    * @throws RemoteException if something goes wrong server
    */
-  public static void login(User user) throws RemoteException {
+  public static void login(User user) throws RemoteException
+  {
     UserList userList = model.getUserList();
     loggedInUser = userList.findUserInList(user);
   }
@@ -31,14 +32,16 @@ public class CurrentlyLoggedUser {
    *
    * @param model is the server
    */
-  public static void setModel(RemoteModel model) {
+  public static void setModel(RemoteModel model)
+  {
     CurrentlyLoggedUser.model = model;
   }
 
   /**
    * Sets loggedInUser to null
    */
-  public static void logout() {
+  public static void logout()
+  {
     loggedInUser = null;
   }
 
@@ -47,7 +50,8 @@ public class CurrentlyLoggedUser {
    *
    * @return User
    */
-  public static User getLoggedInUser() {
+  public static User getLoggedInUser()
+  {
     return loggedInUser;
   }
 
@@ -56,7 +60,8 @@ public class CurrentlyLoggedUser {
    *
    * @return boolean
    */
-  public static boolean isAdmin() {
+  public static boolean isAdmin()
+  {
     updateInfoWithServer();
     return loggedInUser.isAdmin();
 
@@ -69,10 +74,13 @@ public class CurrentlyLoggedUser {
    * @implNote ALWAYS CALL AFTER FINISHING METHODS
    * @hidden basically a git push lmao
    */
-  public static void updateInfoWithServer() {
-    try {
+  public static void updateInfoWithServer()
+  {
+    try
+    {
       loggedInUser = model.getUserList().findUserInList(loggedInUser);
-    } catch (Exception e) {
+    } catch (Exception e)
+    {
       e.printStackTrace();
     }
   }

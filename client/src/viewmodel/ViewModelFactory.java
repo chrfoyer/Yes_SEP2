@@ -4,24 +4,26 @@ import mediator.RemoteModel;
 
 import java.rmi.RemoteException;
 
-public class ViewModelFactory {
+public class ViewModelFactory
+{
 
-  private LoginViewModel loginViewModel;
-  private SignupViewModel signupViewModel;
-  private UserProfileViewModel userProfileViewModel;
-  private AdminViewModel adminViewModel;
-  private BrowseViewModel browseViewModel;
-  private InventoryViewModel inventoryViewModel;
-  private GameInfoViewModel gameInfoViewModel;
-  private AddEditGameViewModel addEditGameViewModel;
-  private UserListViewModel userListViewModel;
-  private UserEditViewModel userEditViewModel;
-  private BalanceViewModel balanceViewModel;
-  private TransactionViewModel transactionViewModel;
+  private final LoginViewModel loginViewModel;
+  private final SignupViewModel signupViewModel;
+  private final UserProfileViewModel userProfileViewModel;
+  private final AdminViewModel adminViewModel;
+  private final BrowseViewModel browseViewModel;
+  private final InventoryViewModel inventoryViewModel;
+  private final GameInfoViewModel gameInfoViewModel;
+  private final AddEditGameViewModel addEditGameViewModel;
+  private final UserListViewModel userListViewModel;
+  private final UserEditViewModel userEditViewModel;
+  private final BalanceViewModel balanceViewModel;
+  private final TransactionViewModel transactionViewModel;
 
   //  private ChatViewModel chatViewModel;
 
-  public ViewModelFactory(RemoteModel model) throws RemoteException {
+  public ViewModelFactory(RemoteModel model) throws RemoteException
+  {
     //    chatViewModel = new ChatViewModel(model);
     loginViewModel = new LoginViewModel(model);
     signupViewModel = new SignupViewModel(model);
@@ -42,51 +44,63 @@ public class ViewModelFactory {
   //    return chatViewModel;
   //  }
   //
-  public LoginViewModel getLoginViewModel() {
+  public LoginViewModel getLoginViewModel()
+  {
     return loginViewModel;
   }
 
-  public SignupViewModel getSignupViewModel() {
+  public SignupViewModel getSignupViewModel()
+  {
     return signupViewModel;
   }
 
-  public UserProfileViewModel getUserProfileViewModel() {
+  public UserProfileViewModel getUserProfileViewModel()
+  {
     return userProfileViewModel;
   }
 
-  public AdminViewModel getAdminViewModel() {
+  public AdminViewModel getAdminViewModel()
+  {
     return adminViewModel;
   }
 
-  public BrowseViewModel getBrowseViewModel() {
+  public BrowseViewModel getBrowseViewModel()
+  {
     return browseViewModel;
   }
 
-  public InventoryViewModel getInventoryViewModel() {
+  public InventoryViewModel getInventoryViewModel()
+  {
     return inventoryViewModel;
   }
 
-  public GameInfoViewModel getGameInfoViewModel() {
+  public GameInfoViewModel getGameInfoViewModel()
+  {
     return gameInfoViewModel;
   }
 
-  public AddEditGameViewModel getAddEditGameViewModel() {
+  public AddEditGameViewModel getAddEditGameViewModel()
+  {
     return addEditGameViewModel;
   }
 
-  public UserListViewModel getUserListViewModel() {
+  public UserListViewModel getUserListViewModel()
+  {
     return userListViewModel;
   }
 
-  public UserEditViewModel getUserEditViewModel() {
+  public UserEditViewModel getUserEditViewModel()
+  {
     return userEditViewModel;
   }
 
-  public BalanceViewModel getBalanceViewModel() {
+  public BalanceViewModel getBalanceViewModel()
+  {
     return balanceViewModel;
   }
 
-  public TransactionViewModel getTransactionViewModel() {
+  public TransactionViewModel getTransactionViewModel()
+  {
     return transactionViewModel;
   }
 }
