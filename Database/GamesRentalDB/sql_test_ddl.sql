@@ -24,7 +24,15 @@ CREATE TABLE IF NOT EXISTS games
 INSERT INTO games
 (name, producer, console, rented, days_left, review_count, review_sum, review_avg, esrb, date_added)
 VALUES ('Minecraft', 'Mojang', 'PC', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE),
-       ('Rooster and Gall', 'Duty Toot', 'Xbox', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE);
+       ('Rooster and Gall', 'Duty Toot', 'Xbox', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE),
+       ('Call of Duty', 'Activision', 'Xbox', FALSE, 0, 0, 0, 3.0, 'T', CURRENT_DATE),
+    ('Call of Duty', 'Activision', 'PC', FALSE, 0, 0, 0, 3.0, 'T', CURRENT_DATE),
+        ('Call of Duty', 'Activision', 'PlayStation', FALSE, 0, 0, 0, 3.0, 'T', CURRENT_DATE),
+        ('DOOM', 'id Software','PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
+       ('Apex Legends', 'Respawn Entertainment','PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
+       ('Apex Legends', 'Respawn Entertainment','Xbox', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
+       ('Apex Legends', 'Respawn Entertainment','PlayStation', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
+       ('Valheim','Iron Gate AB', 'PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE);
 
 CREATE DOMAIN email AS varchar(40) CHECK (VALUE LIKE '%@%');
 CREATE DOMAIN passwordDom AS varchar(30); /* Here in case we want to change the rules */
