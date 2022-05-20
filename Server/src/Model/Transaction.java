@@ -7,72 +7,45 @@ import java.time.LocalDate;
  * A class to hold information about a single transaction. These transactions are created within the game object when
  * actions are taken upon the game, such as renting and returning. In addition, a refund or subscription payment can be
  * made without a game object.
- *
- * @author Chris, Martin, Levente, Kruno
- * @version 0.4 19/5/22
  */
 public class Transaction implements Serializable
 {
-    private final double amount;
+    private final int id;
     private final String user;
-    private final String type;
+    private final String action;
     private final LocalDate date;
 
-    //constructor for renting game/ returning game
-    public Transaction(Game game, String type, String user)
+    public Transaction(String user, String action)
     {
-        amount = 0;
+        this.id=0;
+        this.action = action;
         this.user = user;
-        this.type = type;
         date = LocalDate.now();
+    }
+    public Transaction(int id, String user, String action, LocalDate date)
+    {
+        this.action = action;
+        this.user = user;
+        this.id = id;
+        this.date = date;
         TransactionList.getInstance().addTransaction(this);
     }
 
-    //constructor for refunds
-    public Transaction(String type, String user, double amount)
+    public double getId()
     {
-        this.type = type;
-        this.user = user;
-        this.amount = amount;
-        date = LocalDate.now();
-        TransactionList.getInstance().addTransaction(this);
+        return id;
     }
 
-    /**
-     * method for getting the amount
-     *
-     * @return double amount
-     */
-    public double getAmount()
-    {
-        return amount;
-    }
-
-    /**
-     * method for getting the date of transaction
-     *
-     * @return LocalDate
-     */
     public LocalDate getDate()
     {
         return date;
     }
 
-    /**
-     * method for getting type of transaction
-     *
-     * @return String type of transaction
-     */
-    public String getType()
+    public String getAction()
     {
-        return type;
+        return action;
     }
 
-    /**
-     * method for getting user who did the transaction
-     *
-     * @return String user of who used the transaction
-     */
     public String getUser()
     {
         return user;

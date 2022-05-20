@@ -203,13 +203,13 @@ public class RmiServer implements RemoteModel
 
   @Override
   public void modifyBalance(int amount, User user)
-          throws RemoteException
+          throws RemoteException, SQLException
   {
     model.modifyBalance(amount, user);
   }
 
   @Override
-  public void payForSubscription(User user) throws RemoteException
+  public void payForSubscription(User user) throws RemoteException, SQLException
   {
     model.payForSubscription(user);
   }

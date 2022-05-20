@@ -6,19 +6,13 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * a class that creates a list of transactions
- *
- * @author Chris, Martin, Levente, Kruno
- * @version 0.4 19/5/22
- */
-
+//a class that creates a list of transactions
 public class TransactionList implements Serializable
 {
 
     private static final Object lock = new Object();
     private static TransactionList instance;
-    private final ArrayList<Transaction> transactions;
+    private ArrayList<Transaction> transactions;
 
     /**
      * constructor creating a arrayList of transaction type
@@ -48,11 +42,6 @@ public class TransactionList implements Serializable
         return instance;
     }
 
-    /**
-     * method for writing transactions into xml file
-     *
-     * @param list transaction list that is to be read and turned into a xml file
-     */
     public static void writeTransactions(TransactionList list)
     {
 
@@ -67,9 +56,9 @@ public class TransactionList implements Serializable
             for (int i = 0; i < list.getSize(); i++)
             {
                 xml.append("\n<Transaction>");
-                xml.append("\n    <Amount>").append(transactions.get(i).getAmount()).append("</Amount>");
+                xml.append("\n    <Amount>").append(transactions.get(i).getId()).append("</Amount>");
                 xml.append("\n    <User>").append(transactions.get(i).getUser()).append("</User>");
-                xml.append("\n    <Type>").append(transactions.get(i).getType()).append("</Type>");
+                xml.append("\n    <Type>").append(transactions.get(i).getAction()).append("</Type>");
                 xml.append("\n    <Date>").append(transactions.get(i).getDate()).append("</Date>");
 
                 xml.append("\n</Transaction>");
@@ -81,16 +70,6 @@ public class TransactionList implements Serializable
         {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * method getting transactions
-     *
-     * @return returns arrayList of transaction type
-     */
-    public ArrayList<Transaction> getTransactions()
-    {
-        return transactions;
     }
 
     /**
@@ -113,24 +92,19 @@ public class TransactionList implements Serializable
         transactions.remove(transaction);
     }
 
-    /**
-     * method for getting the size of the list
-     *
-     * @return int size of the transaction list
-     */
     public int getSize()
     {
         return transactions.size();
     }
 
-
-    /**
-     * method for getting the transaction list
-     *
-     * @return ArrayList<Transaction> list of transactions
-     */
     public ArrayList<Transaction> getList()
     {
         return transactions;
+    }
+
+    public void setTransactions(ArrayList<Transaction> transactions)
+    {
+        this.transactions.clear();
+        this.transactions = transactions;
     }
 }

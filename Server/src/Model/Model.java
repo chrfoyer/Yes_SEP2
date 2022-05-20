@@ -37,6 +37,7 @@ public interface Model
 
   void refreshUserList() throws SQLException;
 
+  void refreshTransactionList() throws SQLException;
 
   GameList getGameList();
 
@@ -60,9 +61,9 @@ public interface Model
 
   int getBalance(User user);
 
-  void modifyBalance(int amount, User user);
+  void modifyBalance(int amount, User user) throws SQLException;
 
-  void payForSubscription(User user);
+  void payForSubscription(User user) throws SQLException;
 
   TransactionList getTransactionList();
 

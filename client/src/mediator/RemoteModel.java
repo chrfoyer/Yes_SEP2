@@ -49,7 +49,7 @@ public interface RemoteModel extends Remote
 
   int getBalance(User user) throws RemoteException;
 
-  void modifyBalance(int amount, User user) throws RemoteException;
+  void modifyBalance(int amount, User user) throws RemoteException, SQLException;
 
   void payForSubscription(User user) throws RemoteException;
 

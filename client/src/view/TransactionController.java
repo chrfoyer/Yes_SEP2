@@ -13,9 +13,8 @@ import viewmodel.TransactionViewModel;
 public class TransactionController extends ViewController
 {
     public TableView<SimpleTransactionViewModel> table;
-    public TableColumn<SimpleTransactionViewModel, Double> amountColumn;
     public TableColumn<SimpleTransactionViewModel, String> userColumn;
-    public TableColumn<SimpleTransactionViewModel, String> typeColumn;
+    public TableColumn<SimpleTransactionViewModel, String> actionColumn;
     public TableColumn<SimpleTransactionViewModel, String> dateColumn;
     public Label error;
     private TransactionViewModel viewModel;
@@ -26,11 +25,9 @@ public class TransactionController extends ViewController
     @Override
     protected void init()
     {
-        amountColumn.setCellValueFactory(
-                cellData -> cellData.getValue().amountProperty());
         userColumn.setCellValueFactory(
                 cellData -> cellData.getValue().userProperty());
-        typeColumn.setCellValueFactory(
+        actionColumn.setCellValueFactory(
                 cellData -> cellData.getValue().typeProperty());
         dateColumn.setCellValueFactory(
                 cellData -> cellData.getValue().dateProperty().asString());
