@@ -1,6 +1,7 @@
 package view;
 
 import Model.Game;
+import javafx.application.Platform;
 import javafx.scene.control.*;
 import mediator.CurrentlyLoggedUser;
 import viewmodel.BrowseViewModel;
@@ -35,8 +36,8 @@ public class BrowseViewController extends ViewController
     @Override
     protected void init()
     {
-        consoleSearch.getItems().addAll("<Select>","PC", "Xbox", "PlayStation");
-        esrbSearch.getItems().addAll("<Select>","E", "E10+", "T", "M", "AO");
+        consoleSearch.getItems().addAll("<Select>", "PC", "Xbox", "PlayStation");
+        esrbSearch.getItems().addAll("<Select>", "E", "E10+", "T", "M", "AO");
         consoleSearch.setValue("<Select>");
         esrbSearch.setValue("<Select>");
         nameColumn.setCellValueFactory(
@@ -67,17 +68,30 @@ public class BrowseViewController extends ViewController
     }
 
     /**
-     * Logic for the button that opens the GameInfoView
+     * The logic for the search button that takes in the values from the name text field, console choice box, and
+     * esrb rating. The games returned by the search are updated to the table on the window.
      */
     public void searchButton()
     {
-        // TODO: 12/05/2022 search functionality
-        // Use these values to search the games and reset the table
-        String name = nameSearch.getText();
-        String console = consoleSearch.getValue();
-        String esrb = esrbSearch.getValue();
-
-
+        String name = null;
+        String console = null;
+        String esrb = null;
+        if (!nameSearch.getText().isEmpty())
+        {
+            name = nameSearch.getText();
+        }
+        if (!consoleSearch.getValue().equals("<Select>"))
+        {
+            console = consoleSearch.getValue();
+        }
+        if (!esrbSearch.getValue().equals("<Select>"))
+        {
+            esrb = esrbSearch.getValue();
+        }
+        String finalEsrb = esrb;
+        String finalConsole = console;
+        String finalName = name;
+        Platform.runLater(() -> browseViewModel.search(finalName, finalConsole, finalEsrb));
     }
 
     /**
@@ -95,10 +109,11 @@ public class BrowseViewController extends ViewController
     public void rent() throws RemoteException
     {
         if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription())
-        {SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
+        {
+            SimpleGameViewModel temp = table.getSelectionModel().getSelectedItem();
             Game selectedGame = temp.getGame();
 
-            if(browseViewModel.ageCheck(selectedGame))
+            if (browseViewModel.ageCheck(selectedGame))
             {
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
@@ -121,7 +136,7 @@ public class BrowseViewController extends ViewController
                     }
                 }
             }
-         //   browseViewModel.reset();
+            //   browseViewModel.reset();
         } else
         {
             Alert alert = new Alert(Alert.AlertType.ERROR,

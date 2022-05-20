@@ -211,11 +211,51 @@ public class ModelManager implements Model
         return games;
     }
 
-    // TODO: 20/05/2022 Implement
+
+    /**
+     * Returns an array list containing games matching the parameters of the search.
+     *
+     * @param name Part of the name of the games returned
+     * @param console The selected console
+     * @param esrb The selected age restriction rating
+     * @return The arraylist of games matching the parameters
+     */
     @Override
-    public GameList searchGames(String name, String console, String esrb)
+    public ArrayList<Game> searchGames(String name, String console, String esrb)
     {
-        return null;
+        ArrayList<Game> searchArray = new ArrayList<>(games.getAvailableGames());
+        ArrayList<Game> returnArray = new ArrayList<>();
+        // Runs in reverse order to avoid commodification exception (can't remove and browse at the same time)
+        for (int i = searchArray.size() - 1; i >= 0; i--)
+        {
+            boolean add = true;
+            if (name != null)
+            {
+                if (!searchArray.get(i).getName().contains(name))
+                {
+                    add = false;
+                }
+            }
+            if (console != null)
+            {
+                if (!searchArray.get(i).getConsole().equals(console))
+                {
+                    add = false;
+                }
+            }
+            if (esrb != null)
+            {
+                if (!searchArray.get(i).getEsrb().equals(esrb))
+                {
+                    add = false;
+                }
+            }
+            if (add)
+            {
+                returnArray.add(searchArray.get(i));
+            }
+        }
+        return returnArray;
     }
 
     /**
@@ -242,7 +282,8 @@ public class ModelManager implements Model
 
     /**
      * Signs up user on the system
-     * @param user  User we get from client
+     *
+     * @param user User we get from client
      * @throws SQLException in case a database error
      */
     @Override
