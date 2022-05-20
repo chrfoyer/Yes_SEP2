@@ -12,7 +12,9 @@ import java.time.LocalDate;
 import java.time.Period;
 
 /**
- * @version 0.3
+ * class that handles the logic for the Signup View
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
  */
 public class SignupViewModel
 {

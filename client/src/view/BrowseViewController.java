@@ -109,7 +109,7 @@ public class BrowseViewController extends ViewController
                     if (browseViewModel.rentGame(selectedGame))
                     {
 
-                        browseViewModel.rentGame(selectedGame);
+
                         //displaying confirmation message
                         alert.setAlertType(Alert.AlertType.INFORMATION);
                         alert.setHeaderText("Congratulations, Game rented");

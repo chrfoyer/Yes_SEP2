@@ -26,6 +26,10 @@ public class InventoryViewModel
     // Need the list of games in an observable list
     // Need a property for the selected simple game view model
 
+    /**
+     * constructor for the Inventory Viewmodel
+     * @param model model to assign to the remotemodel
+     */
     public InventoryViewModel(RemoteModel model)
     {
         this.model = model;
@@ -34,11 +38,17 @@ public class InventoryViewModel
         list = FXCollections.observableArrayList();
     }
 
+    /**
+     * method for resetting
+     */
     public void reset()
     {
         fillTable();
     }
 
+    /**
+     * method for filling the table
+     */
     public void fillTable()
     {
         try
@@ -58,21 +68,36 @@ public class InventoryViewModel
         }
     }
 
+    /**
+     * gets the ObservableList<SimpleGameViewModel> list
+     * @return ObservableList<SimpleGameViewModel> list
+     */
     public ObservableList<SimpleGameViewModel> getList()
     {
         return list;
     }
 
+    /**
+     * gets the ObservableList<SimpleGameViewModel> selectedGameProperty
+     * @return ObservableList<SimpleGameViewModel> selectedGameProperty
+     */
     public ObjectProperty<SimpleGameViewModel> getSelectedGameProperty()
     {
         return selectedGameProperty;
     }
 
+    /**
+     * sets the SimpleGameViewModel selectedGameProperty
+     * @param selectedGameProperty selectedGameProperty
+     */
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty)
     {
         this.selectedGameProperty.set(selectedGameProperty);
     }
 
+    /**
+     * method for removing a game
+     */
     public void removeGame()
     {
         try
@@ -85,6 +110,10 @@ public class InventoryViewModel
         }
     }
 
+    /**
+     * method for getting the error
+     * @return errorLabel
+     */
     public StringProperty getError()
     {
         return errorLabel;
