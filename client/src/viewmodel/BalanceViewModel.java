@@ -1,9 +1,14 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
+
+import java.awt.*;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 /**
  * class that handles the logic for the balance view controller
@@ -40,6 +45,7 @@ public class BalanceViewModel
 
     /**
      * getter for the subscription display
+     *
      * @return subscriptionDisplay
      */
     public StringProperty getSubssriptionDisplay()
@@ -49,6 +55,7 @@ public class BalanceViewModel
 
     /**
      * getter for the error label
+     *
      * @return errorLabel
      */
     public StringProperty getErrorLabel()
@@ -87,15 +94,18 @@ public class BalanceViewModel
      */
     public void addFunds()
     {
-        try
+        Platform.runLater(() ->
         {
-            model.modifyBalance(30, CurrentlyLoggedUser.getLoggedInUser());
-            CurrentlyLoggedUser.updateInfoWithServer();
-            reset();
-        } catch (Exception e)
-        {
-            errorLabel.set(e.getMessage());
-        }
+            try
+            {
+                model.modifyBalance(30, CurrentlyLoggedUser.getLoggedInUser());
+                CurrentlyLoggedUser.updateInfoWithServer();
+                reset();
+            } catch (Exception e)
+            {
+                errorLabel.set(e.getMessage());
+            }
+        });
     }
 
     /**
@@ -105,14 +115,17 @@ public class BalanceViewModel
      */
     public void paySubscription()
     {
-        try
+        Platform.runLater(() ->
         {
-            model.payForSubscription(CurrentlyLoggedUser.getLoggedInUser());
-            CurrentlyLoggedUser.updateInfoWithServer();
-            reset();
-        } catch (Exception e)
-        {
-            errorLabel.set(e.getMessage());
-        }
+            try
+            {
+                model.payForSubscription(CurrentlyLoggedUser.getLoggedInUser());
+                CurrentlyLoggedUser.updateInfoWithServer();
+                reset();
+            } catch (Exception e)
+            {
+                errorLabel.set(e.getMessage());
+            }
+        });
     }
 }

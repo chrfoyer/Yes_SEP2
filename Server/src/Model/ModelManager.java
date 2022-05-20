@@ -352,7 +352,8 @@ public class ModelManager implements Model
     {
         users.modifyBalance(amount, user);
         updateUserWithSQL(user);
-        transactionDAO.create(new  Transaction(user.getUsername(), "Changed balance by: " + amount));
+        Transaction transaction = new Transaction(user.getUsername(), "Changed balance by: " + amount);
+        transactionDAO.create(transaction);
         refreshTransactionList();
     }
 

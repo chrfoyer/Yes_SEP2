@@ -43,20 +43,23 @@ public class TransactionImpl implements TransactionDAO
     public Transaction create(Transaction transaction) throws SQLException
     {
         Transaction createdTransaction = null;
-        try(Connection connection = getConnection())
+        try (Connection connection = getConnection())
         {
             PreparedStatement ps = connection.prepareStatement(
                     "INSERT INTO transactions" +
                             "    (username, action, date)" +
                             "VALUES (?, ?, ?);"
             );
-            ps.setString(1,transaction.getUser());
-            ps.setString(2,transaction.getAction());
+            ps.setString(1, transaction.getUser());
+            ps.setString(2, transaction.getAction());
             ps.setDate(3, Date.valueOf(transaction.getDate()));
             ps.executeUpdate();
             ps.close();
 
             createdTransaction = readMaxId();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
         return createdTransaction;
     }
@@ -83,18 +86,19 @@ public class TransactionImpl implements TransactionDAO
                 {
                     date = dateSQL.toLocalDate();
                 }
-                readTransaction = new Transaction(id,username,action,date);
+                readTransaction = new Transaction(id, username, action, date);
             }
             rs.close();
             st.close();
         }
         return readTransaction;
     }
+
     @Override
     public ArrayList<Transaction> getAllTransactions() throws SQLException
     {
         ArrayList<Transaction> transactionArrayList = new ArrayList<>();
-        try(Connection connection = getConnection())
+        try (Connection connection = getConnection())
         {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(
@@ -112,11 +116,11 @@ public class TransactionImpl implements TransactionDAO
                 {
                     date = dateSQL.toLocalDate();
                 }
-                transactionArrayList.add(new Transaction(id,username,action,date));
+                transactionArrayList.add(new Transaction(id, username, action, date));
             }
             st.close();
             rs.close();
         }
-        return null;
+        return transactionArrayList;
     }
 }

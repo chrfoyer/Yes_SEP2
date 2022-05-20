@@ -113,6 +113,7 @@ DROP TRIGGER IF EXISTS age_check
 DROP FUNCTION IF EXISTS days_left() CASCADE;
 DROP TRIGGER IF EXISTS days_refresh
     ON rentals;
+
 INSERT INTO transactions
     (username, action, date)
 VALUES ('bob','fucking died', current_date);
