@@ -28,7 +28,8 @@ VALUES ('Minecraft', 'Mojang', 'PC', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE),
 
 CREATE DOMAIN email AS varchar(40) CHECK (VALUE LIKE '%@%');
 CREATE DOMAIN passwordDom AS varchar(30); /* Here in case we want to change the rules */
-CREATE DOMAIN bDay AS date CHECK (13 >= DATE_PART('year', CURRENT_DATE) - DATE_PART('year', value));
+CREATE DOMAIN bDay AS date;
+/*CHECK (13 >= DATE_PART('year', CURRENT_DATE) - DATE_PART('year', value)); */
 
 DROP TABLE IF EXISTS users CASCADE;
 
@@ -113,8 +114,13 @@ CREATE FUNCTION calculate_ages()
 AS
 $$
 BEGIN
+    IF PG_TRIGGER_DEPTH() <> 1 THEN
+        RETURN NEW;
+    END IF;
+
     UPDATE users
-    SET age = EXTRACT(YEAR FROM CURRENT_DATE - bDay);
+    SET age = EXTRACT(YEAR FROM age(bday))
+    WHERE is_admin IS NOT TRUE;
     RETURN NEW;
 END;
 $$;
@@ -136,9 +142,9 @@ BEGIN
     END IF;
 
     UPDATE rentals
-    SET days_left = CURRENT_DATE - rentals.date_rented + rental_length_allowed
+    SET days_left = rental_length_allowed - (CURRENT_DATE - rentals.date_rented)
     WHERE active = TRUE;
-    
+
     RETURN NEW;
 END;
 $$;
@@ -149,10 +155,3 @@ CREATE TRIGGER days_refresh
     ON rentals
     FOR EACH STATEMENT
 EXECUTE PROCEDURE days_left();
-
-
-
-
-
-
-
