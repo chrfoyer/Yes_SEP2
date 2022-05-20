@@ -21,7 +21,7 @@ public interface RemoteModel extends Remote
 
   GameList viewGames() throws RemoteException;
 
-  GameList searchGames(String name, String console, String esrb) throws RemoteException;
+  ArrayList<Game> searchGames(String name, String console, String esrb) throws RemoteException;
 
   ArrayList<Game> getGamesRentedByUser(User user) throws SQLException, RemoteException;
 
