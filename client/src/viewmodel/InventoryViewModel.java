@@ -11,6 +11,11 @@ import mediator.RemoteModel;
 
 import java.util.ArrayList;
 
+/**
+ * class that handles the logic for Inventory View
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 // TODO: 12/05/2022 Delegation from the controller
 public class InventoryViewModel
 {
