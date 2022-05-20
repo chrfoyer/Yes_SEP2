@@ -2,6 +2,7 @@ package viewmodel;
 
 import Model.Game;
 import Model.GameList;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,9 +13,11 @@ import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  * class that handles the logic for the Browse view controller
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -29,7 +32,8 @@ public class BrowseViewModel
     // Need a property for the selected simple game view model
 
     /**
-     *constructor for browse view model
+     * constructor for browse view model
+     *
      * @param model to asssign to the remotemodel
      */
     public BrowseViewModel(RemoteModel model)
@@ -60,6 +64,7 @@ public class BrowseViewModel
     public void reset()
     {
         data.clear();
+        errorLabel.set("");
         try
         {
             GameList temp = model.viewGames();
@@ -71,11 +76,11 @@ public class BrowseViewModel
         {
             errorLabel.set(e.getMessage());
         }
-        errorLabel.set("");
     }
 
     /**
      * getter for getting data
+     *
      * @return data
      */
     public ObservableList<SimpleGameViewModel> getData()
@@ -85,6 +90,7 @@ public class BrowseViewModel
 
     /**
      * method for getting the error label
+     *
      * @return errorLabel
      */
     public StringProperty getErrorLabel()
@@ -94,6 +100,7 @@ public class BrowseViewModel
 
     /**
      * method for renting a game
+     *
      * @param game game to be rented
      * @return boolean true or false of whether the game can be rented or not
      */
@@ -113,29 +120,50 @@ public class BrowseViewModel
         return false;
     }
 
-    // TODO: 20/05/2022 javadoc
-    // TODO: 20/05/2022 Implement
-    public void search(String name, String console, String esrb) throws RemoteException
+    /**
+     * Search through the available games using the parameters and set the observable list of game view models
+     * accordingly.
+     *
+     * @param name A part of the name one is searching for
+     * @param console The selected console
+     * @param esrb The selected age restricted rating
+     */
+    public void search(String name, String console, String esrb)
     {
-        data.clear();
-        GameList temp = model.searchGames(name, console, esrb);
+        try
+        {
+            data.clear();
+            ArrayList<Game> searchHolder = model.searchGames(name, console, esrb);
+            ArrayList<SimpleGameViewModel> searchViewModelHolder = new ArrayList<>();
+            for (Game game : searchHolder) {
+                searchViewModelHolder.add(new SimpleGameViewModel(game));
+            }
+            Platform.runLater(() -> data.addAll(searchViewModelHolder));
+        } catch (RemoteException e)
+        {
+            errorLabel.set(e.getMessage());
+        }
     }
-
 
     /**
      * method for checking if the user can rent a game
+     *
      * @param selectedGame game to check its esrb to the users age
      * @return boolean true or false depending on if the user meets the age requirement
      */
-    public boolean ageCheck(Game selectedGame){
-        try {
-            if(CurrentlyLoggedUser.getLoggedInUser().getAge() < 17 && selectedGame.getEsrb().equals("M")){
+    public boolean ageCheck(Game selectedGame)
+    {
+        try
+        {
+            if (CurrentlyLoggedUser.getLoggedInUser().getAge() < 17 && selectedGame.getEsrb().equals("M"))
+            {
                 throw new IllegalAccessException("You are too young for this game");
-            } else if(CurrentlyLoggedUser.getLoggedInUser().getAge() < 18 && selectedGame.getEsrb().equals("AO"))
+            } else if (CurrentlyLoggedUser.getLoggedInUser().getAge() < 18 && selectedGame.getEsrb().equals("AO"))
             {
                 throw new IllegalAccessException("You are too young for this game");
             }
-        } catch(Exception e){
+        } catch (Exception e)
+        {
             errorLabel.set(e.getMessage());
             return false;
         }
@@ -144,6 +172,7 @@ public class BrowseViewModel
 
     /**
      * method for setting the selected game property
+     *
      * @param selectedGameProperty to assign to selectedGameProperty
      */
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty)

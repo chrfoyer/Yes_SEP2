@@ -11,66 +11,66 @@ import java.util.ArrayList;
  */
 public interface Model
 {
-  void addGame(Game game) throws SQLException;
+    void addGame(Game game) throws SQLException;
 
-  ArrayList<Game> getAllGames();
+    ArrayList<Game> getAllGames();
 
-  void removeGame(Game game) throws SQLException;
+    void removeGame(Game game) throws SQLException;
 
-  void removeGame(String name);
+    void removeGame(String name);
 
-  void decrementDay();
+    void decrementDay();
 
-  void rentGame(Game game, User user) throws SQLException;
+    void rentGame(Game game, User user) throws SQLException;
 
-  void returnGame(Game game, User user) throws SQLException;
+    void returnGame(Game game, User user) throws SQLException;
 
-  Game getGame(String name);
+    Game getGame(String name);
 
-  Game getMostRecentGame() throws SQLException;
+    Game getMostRecentGame() throws SQLException;
 
-  Game getGame(Game game);
+    Game getGame(Game game);
 
-  ArrayList<Game> getALlAvailableGames();
+    ArrayList<Game> getALlAvailableGames();
 
-  void refreshGameList() throws SQLException;
+    void refreshGameList() throws SQLException;
 
-  void refreshUserList() throws SQLException;
+    void refreshUserList() throws SQLException;
 
 
-  GameList getGameList();
+    GameList getGameList();
 
-  GameList searchGames(String name, String console, String esrb);
+    ArrayList<Game> searchGames(String name, String console, String esrb);
 
-  boolean containsGame(String name);
+    boolean containsGame(String name);
 
-  void signup(User user) throws SQLException;
+    void signup(User user) throws SQLException;
 
-  boolean login(User user);
+    boolean login(User user);
 
-  UserList getUserList();
+    UserList getUserList();
 
-  void updateGameInfo(Game gameOld, Game gameNew) throws SQLException;
+    void updateGameInfo(Game gameOld, Game gameNew) throws SQLException;
 
-  void addTransaction(Transaction transaction);
+    void addTransaction(Transaction transaction);
 
-  void removeUser(User user);
+    void removeUser(User user);
 
-  void updateUserInfo(User oldUser, User newUser);
+    void updateUserInfo(User oldUser, User newUser);
 
-  int getBalance(User user);
+    int getBalance(User user);
 
-  void modifyBalance(int amount, User user);
+    void modifyBalance(int amount, User user);
 
-  void payForSubscription(User user);
+    void payForSubscription(User user);
 
-  TransactionList getTransactionList();
+    TransactionList getTransactionList();
 
-  void setSubscriptionStatus(User user, boolean status);
+    void setSubscriptionStatus(User user, boolean status);
 
-  void leaveReview(int review, Game game);
+    void leaveReview(int review, Game game);
 
-  float getReview(Game game);
+    float getReview(Game game);
 
-  ArrayList<Game> getGamesRentedByUser(User user) throws SQLException;
+    ArrayList<Game> getGamesRentedByUser(User user) throws SQLException;
 }
