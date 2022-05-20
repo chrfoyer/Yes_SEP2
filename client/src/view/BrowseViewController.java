@@ -35,10 +35,10 @@ public class BrowseViewController extends ViewController
     @Override
     protected void init()
     {
-        consoleSearch.getItems().addAll("PC", "Xbox", "PlayStation");
-        esrbSearch.getItems().addAll("E", "E10+", "T", "M", "AO");
-        consoleSearch.setValue("PC");
-        esrbSearch.setValue("E");
+        consoleSearch.getItems().addAll("<Select>","PC", "Xbox", "PlayStation");
+        esrbSearch.getItems().addAll("<Select>","E", "E10+", "T", "M", "AO");
+        consoleSearch.setValue("<Select>");
+        esrbSearch.setValue("<Select>");
         nameColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getNameProperty());
         consoleColumn.setCellValueFactory(
@@ -76,6 +76,8 @@ public class BrowseViewController extends ViewController
         String name = nameSearch.getText();
         String console = consoleSearch.getValue();
         String esrb = esrbSearch.getValue();
+
+
     }
 
     /**

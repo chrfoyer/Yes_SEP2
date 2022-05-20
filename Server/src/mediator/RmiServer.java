@@ -94,6 +94,12 @@ public class RmiServer implements RemoteModel
   }
 
   @Override
+  public GameList searchGames(String name, String console, String esrb) throws RemoteException
+  {
+    return model.searchGames(name, console, esrb);
+  }
+
+  @Override
   public ArrayList<Game> getGamesRentedByUser(User user) throws SQLException
   {
     return model.getGamesRentedByUser(user);

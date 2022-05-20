@@ -204,6 +204,13 @@ public class ModelManager implements Model
         return games;
     }
 
+    // TODO: 20/05/2022 Implement
+    @Override
+    public GameList searchGames(String name, String console, String esrb)
+    {
+        return null;
+    }
+
     /**
      * Method to check if a given name is in the gameList
      *

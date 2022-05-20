@@ -113,6 +113,15 @@ public class BrowseViewModel
         return false;
     }
 
+    // TODO: 20/05/2022 javadoc
+    // TODO: 20/05/2022 Implement
+    public void search(String name, String console, String esrb) throws RemoteException
+    {
+        data.clear();
+        GameList temp = model.searchGames(name, console, esrb);
+    }
+
+
     /**
      * method for checking if the user can rent a game
      * @param selectedGame game to check its esrb to the users age

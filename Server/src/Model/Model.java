@@ -40,6 +40,8 @@ public interface Model
 
   GameList getGameList();
 
+  GameList searchGames(String name, String console, String esrb);
+
   boolean containsGame(String name);
 
   void signup(User user) throws SQLException;
