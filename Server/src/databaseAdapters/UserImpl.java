@@ -6,16 +6,32 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Class that implements the CRUD functionality of the UserDAO
+ *
+ * @author Raedrim
+ */
 public class UserImpl implements UserDAO
 {
     private static final Object lock = new Object();
     private static UserImpl instance;
 
+    /**
+     * Private constructor for singleton
+     *
+     * @throws SQLException
+     */
     private UserImpl() throws SQLException
     {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
+    /**
+     * Singleton instance getter
+     *
+     * @return
+     * @throws SQLException
+     */
     public static UserImpl getInstance() throws SQLException
     {
         if (instance == null)
@@ -31,6 +47,12 @@ public class UserImpl implements UserDAO
         return instance;
     }
 
+    /**
+     * Creates datrabse connection
+     *
+     * @return Connection
+     * @throws SQLException
+     */
     private Connection getConnection() throws SQLException
     {
         return DriverManager.getConnection(
@@ -38,6 +60,13 @@ public class UserImpl implements UserDAO
                 DBKey.username, DBKey.password);
     }
 
+    /**
+     * Creates a new user using the database
+     *
+     * @param user User to pass down to database
+     * @return user that we got from database
+     * @throws SQLException
+     */
     @Override
     public User create(User user) throws SQLException
     {
@@ -47,8 +76,8 @@ public class UserImpl implements UserDAO
         {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO users"
-                            + "(username, password, email, address, name, bday, has_subscription, balance)"
-                            + "VALUES (?, ?, ?, ?, ?," + " ?, ?, ?);");
+                            + "(username, password, email, address, name, bday, has_subscription, balance, is_admin)"
+                            + "VALUES (?, ?, ?, ?, ?," + " ?, ?, ?, ?);");
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getEmail());
@@ -57,6 +86,7 @@ public class UserImpl implements UserDAO
             statement.setDate(6, bDay);
             statement.setBoolean(7, user.hasSubscription());
             statement.setInt(8, user.getBalance());
+            statement.setBoolean(9, user.isAdmin());
 
             System.out.println(statement.toString());
             statement.executeUpdate();
@@ -103,6 +133,13 @@ public class UserImpl implements UserDAO
   }
    */
 
+    /**
+     * Finds an user in the database based on the username (the primary key)
+     *
+     * @param username String username
+     * @return User or null
+     * @throws SQLException
+     */
     @Override
     public User readUsername(String username) throws SQLException
     {
@@ -139,6 +176,12 @@ public class UserImpl implements UserDAO
         return readUser;
     }
 
+    /**
+     * Gets every use from the database
+     *
+     * @return ArrayList<User>
+     * @throws SQLException
+     */
     @Override
     public ArrayList<User> getAllUsers() throws SQLException
     {
@@ -177,12 +220,18 @@ public class UserImpl implements UserDAO
         return userArrayList;
     }
 
+    /**
+     * Updates an existing User with new information
+     *
+     * @param user User with new data
+     * @throws SQLException
+     */
     @Override
     public void update(User user) throws SQLException
     {
         try (Connection connection = getConnection())
         {
-            Date date=Date.valueOf(user.getBday());
+            Date date = Date.valueOf(user.getBday());
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE users " + "SET password = ?, " + "email = ?, " + "name = ?, "
                             + "bday = ?, " + "has_subscription = ?, " + "balance = ? "
@@ -202,6 +251,12 @@ public class UserImpl implements UserDAO
         }
     }
 
+    /**
+     * Deletes User from database
+     *
+     * @param user User to be deleted
+     * @throws SQLException
+     */
     @Override
     public void delete(User user) throws SQLException
     {

@@ -226,6 +226,11 @@ public class ModelManager implements Model
         return ret;
     }
 
+    /**
+     * Signs up user on the system
+     * @param user  User we get from client
+     * @throws SQLException in case a database error
+     */
     @Override
     public void signup(User user) throws SQLException
     {
