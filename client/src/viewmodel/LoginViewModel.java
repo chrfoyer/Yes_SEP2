@@ -7,7 +7,9 @@ import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
 /**
- * @version 0.3
+ * class that handles the logic for the Login View
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
  */
 public class LoginViewModel
 {
@@ -50,11 +52,19 @@ public class LoginViewModel
         return passwordProperty;
     }
 
+    /**
+     * getter for error label
+     * @return errorLabel
+     */
     public StringProperty getErrorLabel()
     {
         return errorLabel;
     }
 
+    /**
+     * boolean method to check if user can log in
+     * @return true or false depending on whether a user can log in
+     */
     public boolean login()
     {
         try
@@ -88,6 +98,9 @@ public class LoginViewModel
         errorLabel.set("");
     }
 
+    /**
+     * method for logging out a user
+     */
     public void logout()
     {
         CurrentlyLoggedUser.logout();
