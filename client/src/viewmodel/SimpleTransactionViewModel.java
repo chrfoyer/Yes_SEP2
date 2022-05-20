@@ -18,9 +18,9 @@ public class SimpleTransactionViewModel
 
     public SimpleTransactionViewModel(Transaction transaction)
     {
-        this.amount = new SimpleObjectProperty<>(transaction.getAmount());
+        this.amount = new SimpleObjectProperty<>(transaction.getId());
         this.user = new SimpleStringProperty(transaction.getUser());
-        this.type = new SimpleStringProperty(transaction.getType());
+        this.type = new SimpleStringProperty(transaction.getAction());
         this.date = new SimpleObjectProperty<>(transaction.getDate());
         this.transaction = transaction;
     }

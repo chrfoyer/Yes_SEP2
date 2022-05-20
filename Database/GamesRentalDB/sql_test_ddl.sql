@@ -71,12 +71,12 @@ CREATE TABLE IF NOT EXISTS reviews
 
 
  */
+ DROP TABLE IF EXISTS transactions CASCADE ;
 CREATE TABLE transactions
 (
     id       SERIAL PRIMARY KEY,
     username varchar(30) NOT NULL,
-    amount   int         NOT NULL,
-    type     varchar(15),
+    action     varchar(50) NOT NULL,
     date     date,
 
     FOREIGN KEY (username) REFERENCES users (username)
@@ -114,6 +114,17 @@ DROP FUNCTION IF EXISTS days_left() CASCADE;
 DROP TRIGGER IF EXISTS days_refresh
     ON rentals;
 
+INSERT INTO transactions
+    (username, action, date)
+VALUES ('bob','fucking died', current_date);
+
+SELECT *
+FROM transactions;
+
+SELECT *
+FROM transactions
+ORDER BY id DESC
+LIMIT 1;
 
 CREATE FUNCTION calculate_ages()
     RETURNS TRIGGER
@@ -151,7 +162,7 @@ BEGIN
     UPDATE rentals
     SET days_left = rental_length_allowed - (CURRENT_DATE - rentals.date_rented)
     WHERE active = TRUE;
-    
+
     RETURN NEW;
 END;
 $$;

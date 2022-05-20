@@ -1,9 +1,6 @@
 package Model;
 
-import databaseAdapters.GameDAO;
-import databaseAdapters.GameImpl;
-import databaseAdapters.UserDAO;
-import databaseAdapters.UserImpl;
+import databaseAdapters.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,22 +13,25 @@ import java.util.ArrayList;
  */
 public class ModelManager implements Model
 {
-    private final TransactionList transactions;
-    private final GameDAO gameDAO;
-    private UserDAO userDAO;
-    private GameList games;
-    private UserList users;
+  private final TransactionList transactions;
+  private final GameDAO gameDAO;
+  private UserDAO userDAO;
+  private TransactionDAO transactionDAO;
+  private GameList games;
+  private UserList users;
 
-    public ModelManager() throws SQLException
-    {
-        this.games = new GameList();
-        this.users = new UserList();
-        this.transactions = TransactionList.getInstance();
-        gameDAO = GameImpl.getInstance();
-        userDAO = UserImpl.getInstance();
-        refreshGameList();
-        refreshUserList();
-    }
+  public ModelManager() throws SQLException
+  {
+    this.games = new GameList();
+    this.users = new UserList();
+    this.transactions = TransactionList.getInstance();
+    gameDAO = GameImpl.getInstance();
+    userDAO = UserImpl.getInstance();
+    transactionDAO = TransactionImpl.getInstance();
+    refreshGameList();
+    refreshUserList();
+    refreshTransactionList();
+  }
 
     public void setGames(GameList games)
     {
@@ -118,8 +118,8 @@ public class ModelManager implements Model
         {
             games.findGameInList(game).rentGame();
             gameDAO.rent(game, user);
-            new Transaction(game, "Rent", user.getUsername());
-
+            transactionDAO.create(new Transaction(user.getUsername(),"Rented " + game.getName()));
+            refreshTransactionList();
         }
     }
 
@@ -191,6 +191,13 @@ public class ModelManager implements Model
             temp.addUser(user);
         }
         users = temp;
+    }
+
+    @Override
+    public void refreshTransactionList() throws SQLException
+    {
+        ArrayList<Transaction> temp = transactionDAO.getAllTransactions();
+        transactions.setTransactions(temp);
     }
 
     /**
@@ -341,12 +348,13 @@ public class ModelManager implements Model
     }
 
     @Override
-    public void modifyBalance(int amount, User user)
+    public void modifyBalance(int amount, User user) throws SQLException
     {
         users.modifyBalance(amount, user);
-        Transaction transaction = new Transaction("Add money", user.getUsername(),
-                amount);
         updateUserWithSQL(user);
+        Transaction transaction = new Transaction(user.getUsername(), "Changed balance by: " + amount);
+        transactionDAO.create(transaction);
+        refreshTransactionList();
     }
 
     public void updateUserWithSQL(User user)
@@ -361,12 +369,14 @@ public class ModelManager implements Model
         }
     }
 
-
     @Override
-    public void payForSubscription(User user)
+    public void payForSubscription(User user) throws SQLException
     {
         users.payForSubscription(user);
         updateUserWithSQL(user);
+        transactionDAO.create(new Transaction(user.getUsername(),"Payed subscription"));
+        refreshTransactionList();
+
     }
 
     @Override
@@ -411,12 +421,13 @@ public class ModelManager implements Model
         transactions.addTransaction(transaction);
     }
 
-    @Override
-    public void returnGame(Game game, User user) throws SQLException
-    {
-        games.findGameInList(game).returnGame();
-        new Transaction(game, "Return", user.getUsername());
-        gameDAO.returnGame(game);
-    }
+  @Override
+  public void returnGame(Game game, User user) throws SQLException
+  {
+    games.findGameInList(game).returnGame();
+    transactionDAO.create(new  Transaction(user.getUsername(),"Returned " + game.getName()));
+    refreshTransactionList();
+    gameDAO.returnGame(game);
+  }
 
 }

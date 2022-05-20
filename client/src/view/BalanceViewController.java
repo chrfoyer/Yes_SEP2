@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -49,7 +50,8 @@ public class BalanceViewController extends ViewController
             {
                 //Desktop.getDesktop().browse(
                 //    new URL("https://www.youtube.com/watch?v=UX0sbhIy9MA").toURI());
-                viewModel.addFunds();
+                System.out.println("Funds");
+                Platform.runLater(() -> viewModel.addFunds());
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -63,7 +65,7 @@ public class BalanceViewController extends ViewController
      */
     public void paySubscription(ActionEvent actionEvent)
     {
-        viewModel.paySubscription();
+        Platform.runLater(() -> viewModel.paySubscription());
     }
 
     /**
