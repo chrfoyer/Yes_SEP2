@@ -89,7 +89,7 @@ public class GameInfoViewModel
 
     /**
      * getter for selectedGameProperty
-     * @return
+     * @return An object property containing the selected game view model
      */
     public ObjectProperty<SimpleGameViewModel> selectedGamePropertyProperty()
     {
@@ -142,8 +142,8 @@ public class GameInfoViewModel
     }
 
     /**
-     * getter for the Object Property<Integer> of time left on a rental
-     * @return timeleft
+     * getter for the object property of time left on a rental
+     * @return time left object property
      */
     public ObjectProperty<Integer> timeLeftProperty()
     {
@@ -259,7 +259,7 @@ public class GameInfoViewModel
     }
 
     /**
-     * gets the ObjectProperty<Boolean> rentedProperty
+     * gets the object property of the boolean for rentedProperty
      * @return rentedProperty
      */
     public ObjectProperty<Boolean> rentedProperty()

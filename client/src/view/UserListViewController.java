@@ -62,14 +62,11 @@ public class UserListViewController extends ViewController
 
     /**
      * logic for remove button, removing a user
-     * @param actionEvent remove button pressed
-     * @throws RemoteException
+     * @throws RemoteException Thrown when an error occurs
      */
     @FXML
-    public void remove(ActionEvent actionEvent) throws RemoteException
+    public void remove() throws RemoteException
     {
-        // TODO: 11/05/2022 Add confirmation window with the name of the User.
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                 "Are you sure you want to delete this user? ->" +editViewModel.getUser());
         Optional<ButtonType> option = alert.showAndWait();
@@ -83,10 +80,9 @@ public class UserListViewController extends ViewController
 
     /**
      * method for opening UserEditView
-     * @param actionEvent edit button pressed
      */
     @FXML
-    public void edit(ActionEvent actionEvent)
+    public void edit()
     {
         // Must use the selected user
         getViewModelFactory().getUserEditViewModel().reset();
@@ -95,9 +91,8 @@ public class UserListViewController extends ViewController
 
     /**
      * logic for back button, opening the Admin View
-     * @param actionEvent back button pressed
      */
-    public void back(ActionEvent actionEvent)
+    public void back()
     {
         getViewHandler().openView("AdminView.fxml");
     }

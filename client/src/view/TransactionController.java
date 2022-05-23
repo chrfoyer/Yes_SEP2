@@ -41,9 +41,8 @@ public class TransactionController extends ViewController
 
     /**
      * logic for back button, opening Admin View
-     * @param actionEvent back button pressed
      */
-    public void back(ActionEvent actionEvent)
+    public void back()
     {
         getViewHandler().openView("AdminView.fxml");
     }

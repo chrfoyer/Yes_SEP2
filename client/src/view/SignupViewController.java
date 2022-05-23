@@ -54,9 +54,8 @@ public class SignupViewController extends ViewController
 
     /**
      * method for signing up
-     * @param actionEvent when clicking the signup button
      */
-    public void signup(ActionEvent actionEvent)
+    public void signup()
     {
         if (viewModel.signup())
         {
@@ -71,10 +70,8 @@ public class SignupViewController extends ViewController
 
     /**
      * method for canceling the signupview
-     *
-     * @param actionEvent button for canceling signupview
      */
-    public void cancel(ActionEvent actionEvent)
+    public void cancel()
     {
         getViewHandler().openView("LoginView.fxml");
         getViewModelFactory().getSignupViewModel().reset();

@@ -34,7 +34,7 @@ public class SignupViewModel
      *
      * @param model RemoteModel because of RMI
      */
-    public SignupViewModel(RemoteModel model) throws RemoteException
+    public SignupViewModel(RemoteModel model)
     {
         this.model = model;
         usernameProperty = new SimpleStringProperty();
@@ -130,6 +130,8 @@ public class SignupViewModel
 
     /**
      * The method that calls when you press the sign-up button
+     *
+     * @return A boolean representing if the signup was successful
      */
     public boolean signup()
     {

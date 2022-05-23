@@ -58,11 +58,9 @@ public class UserEditViewController extends ViewController
 
     /**
      * method for canceling and opening the UserlistView
-     *
-     * @param actionEvent cancel button pressed
      */
     @FXML
-    public void cancel(ActionEvent actionEvent)
+    public void cancel()
     {
         getViewHandler().openView("UserListView.fxml");
 
@@ -70,11 +68,9 @@ public class UserEditViewController extends ViewController
 
     /**
      * method for applying the user edit changes
-     *
-     * @param actionEvent apply button pressed
      */
     @FXML
-    public void apply(ActionEvent actionEvent)
+    public void apply()
     {
         viewModel.editUser();
         getViewModelFactory().getUserListViewModel().reset();
@@ -84,9 +80,8 @@ public class UserEditViewController extends ViewController
 
     /**
      * logic for fine/refund button pressed, fining/refunding a user and subtracting/adding from their balance
-     * @param actionEvent fine/refund button pressed
      */
-    public void fine_refund(ActionEvent actionEvent)
+    public void fine_refund()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                 "Are you sure you want to revoke this user's subscription?");
@@ -101,9 +96,8 @@ public class UserEditViewController extends ViewController
 
     /**
      * logic behind banHammer button, revoking a user's subscription
-     * @param actionEvent ban button pressed
      */
-    public void banHammer(ActionEvent actionEvent)
+    public void banHammer()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                 "Are you sure you want to revoke this user's subscription?");

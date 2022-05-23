@@ -70,9 +70,9 @@ public class InventoryViewModel
     }
 
     /**
-     * gets the ObservableList<SimpleGameViewModel> list
+     * gets the ObservableList of simple game view models
      *
-     * @return ObservableList<SimpleGameViewModel> list
+     * @return The list of simple game view models within an observable list
      */
     public ObservableList<SimpleGameViewModel> getList()
     {
@@ -80,9 +80,9 @@ public class InventoryViewModel
     }
 
     /**
-     * gets the ObservableList<SimpleGameViewModel> selectedGameProperty
+     * gets the object property with the simple game view model of selectedGameProperty
      *
-     * @return ObservableList<SimpleGameViewModel> selectedGameProperty
+     * @return object property with the simple game view model of selectedGameProperty
      */
     public ObjectProperty<SimpleGameViewModel> getSelectedGameProperty()
     {

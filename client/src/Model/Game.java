@@ -37,7 +37,6 @@ public class Game implements Serializable
      * @param reviewAverage the average of all the reviews for the game
      * @param esrb          the rating of the game
      * @param dateAdded     date the game is added
-     * @implNote Used after the create game method is called in the gameDAO
      */
     public Game(int id, String name, String producer, String console, boolean rented, int daysLeft, int reviewCount, int reviewSum, float reviewAverage, String esrb, LocalDate dateAdded)
     {
@@ -59,6 +58,7 @@ public class Game implements Serializable
      *
      * @param name     name of game
      * @param producer producer of the game
+     * @param console  platform on which the game can be played
      * @param esrb     rating of the game
      */
     public Game(String name, String producer, String console, String esrb)

@@ -305,7 +305,6 @@ public class GameImpl implements GameDAO
      * @param game The game to be rented
      * @param user The user renting the game
      * @throws SQLException Thrown when the connection with the database cannot be established
-     * @implNote The user should be the currently logged-in user
      */
     @Override
     public void rent(Game game, User user) throws SQLException

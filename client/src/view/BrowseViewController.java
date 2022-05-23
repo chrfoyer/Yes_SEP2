@@ -106,7 +106,7 @@ public class BrowseViewController extends ViewController
     /**
      * Logic for the button that handles renting of the game
      */
-    public void rent() throws RemoteException
+    public void rent()
     {
         if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription())
         {

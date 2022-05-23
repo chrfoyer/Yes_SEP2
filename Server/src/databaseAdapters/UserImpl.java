@@ -179,7 +179,7 @@ public class UserImpl implements UserDAO
     /**
      * Gets every use from the database
      *
-     * @return ArrayList<User> of all users in the database
+     * @return Array list of all users in the database
      * @throws SQLException Thrown when the connection with the database cannot be established
      */
     @Override

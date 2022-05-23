@@ -84,7 +84,7 @@ public class AddEditGameViewModel
 
     /**
      * method for setting the selected game property
-     * @param selectedGameViewModel
+     * @param selectedGameViewModel The simple game view model of the selected game
      */
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel)
     {

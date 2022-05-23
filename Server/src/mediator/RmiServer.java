@@ -27,6 +27,7 @@ public class RmiServer implements RemoteModel
      *
      * @throws RemoteException       when there is an issue with the connection with the client
      * @throws MalformedURLException when stub is unsuccessfully created
+     * @throws SQLException          database errors
      */
     public RmiServer() throws RemoteException, MalformedURLException, SQLException
     {
@@ -112,7 +113,6 @@ public class RmiServer implements RemoteModel
      * @param user The user to search the rentals of
      * @return An array list with all the games rented by the user
      * @throws SQLException Thrown when the connection to the database fails or the query is malformed
-     * @implNote Should be the currently logged-in user
      */
     @Override
     public ArrayList<Game> getGamesRentedByUser(User user) throws SQLException
@@ -190,7 +190,6 @@ public class RmiServer implements RemoteModel
      * @param gameOld The old version of the game before the update
      * @param gameNew The new version of the game after the update
      * @throws SQLException Thrown when the connection to the database fails or the query is malformed
-     * @implNote Should only be called by the admin
      */
     @Override
     public void updateGameInfo(Game gameOld, Game gameNew) throws SQLException

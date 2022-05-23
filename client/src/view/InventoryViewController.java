@@ -77,11 +77,9 @@ public class InventoryViewController extends ViewController
 
     /**
      * logic behind the addEdit button, adding or editing a game
-     *
-     * @param actionEvent addEdit button pressed
      */
     @FXML
-    public void addEdit(ActionEvent actionEvent)
+    public void addEdit()
     {
 
         gameViewModel.reset();
@@ -91,11 +89,9 @@ public class InventoryViewController extends ViewController
 
     /**
      * logic behind cancel button, opening AdminView
-     *
-     * @param actionEvent cancel button pressed
      */
     @FXML
-    public void cancel(ActionEvent actionEvent)
+    public void cancel()
     {
         getViewModelFactory().getAdminViewModel().reset();
         getViewHandler().openView("AdminView.fxml");
@@ -103,11 +99,9 @@ public class InventoryViewController extends ViewController
 
     /**
      * logic behind  the remove button, removing selected game
-     *
-     * @param actionEvent remove button pressed
      */
     @FXML
-    public void remove(ActionEvent actionEvent)
+    public void remove()
     {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                     "Are you sure you want to delete the game? -> "

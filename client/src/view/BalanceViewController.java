@@ -37,9 +37,8 @@ public class BalanceViewController extends ViewController
 
     /**
      * logic for teh addFunds button, adding funds to a user
-     * @param actionEvent addFunds button pressed
      */
-    public void addFunds(ActionEvent actionEvent)
+    public void addFunds()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                 "Transactions are handled by an external provider. Are you alright with that?");
@@ -61,18 +60,16 @@ public class BalanceViewController extends ViewController
 
     /**
      * logic behind the paySubscription button, using funds to give the user a subscription
-     * @param actionEvent pay subscription button pressed
      */
-    public void paySubscription(ActionEvent actionEvent)
+    public void paySubscription()
     {
         Platform.runLater(() -> viewModel.paySubscription());
     }
 
     /**
      * logic for the back button pressed, opening the UserProfileView
-     * @param actionEvent back button pressed
      */
-    public void back(ActionEvent actionEvent)
+    public void back()
     {
         getViewModelFactory().getUserProfileViewModel().reset();
         getViewHandler().openView("UserProfileView.fxml");

@@ -146,7 +146,7 @@ public class UserProfileViewModel
   /**
    * getter for an ObservableList displayed in the table
    *
-   * @return ObservableList<SimpleGameViewModel>
+   * @return ObservableList of simple game view models
    */
   public ObservableList<SimpleGameViewModel> getData()
   {

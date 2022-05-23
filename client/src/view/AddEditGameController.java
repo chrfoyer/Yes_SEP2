@@ -53,7 +53,7 @@ public class AddEditGameController extends ViewController
     /**
      * logic for the button that cancels the editing and opens the InventoryView
      */
-    public void cancel(ActionEvent actionEvent)
+    public void cancel()
     {
         getViewModelFactory().getInventoryViewModel().reset();
         getViewHandler().openView("InventoryView.fxml");
@@ -63,7 +63,7 @@ public class AddEditGameController extends ViewController
     /**
      * logic for the button that applies changes and  opens the InventoryView
      */
-    public void confirm(ActionEvent actionEvent)
+    public void confirm()
     {
         viewModel.setConsole(console.getValue());
         viewModel.setEsrb(esrb.getValue());

@@ -57,33 +57,27 @@ public class AdminViewController extends ViewController
 
     /**
      * method for opening UserlistView
-     *
-     * @param actionEvent manageUsers button pressed
      */
     @FXML
-    public void manageUsers(ActionEvent actionEvent)
+    public void manageUsers()
     {
         getViewHandler().openView("UserListView.fxml");
     }
 
     /**
      * method for opening transaction view
-     *
-     * @param actionEvent transactions button pressed
      */
     @FXML
-    public void transactions(ActionEvent actionEvent)
+    public void transactions()
     {
         getViewHandler().openView("TransactionsView.fxml");
     }
 
     /**
      * method for opening inventory
-     *
-     * @param actionEvent manageGames button pressed
      */
     @FXML
-    public void manageGames(ActionEvent actionEvent)
+    public void manageGames()
     {
         getViewModelFactory().getInventoryViewModel().reset();
         getViewHandler().openView("InventoryView.fxml");
@@ -91,9 +85,8 @@ public class AdminViewController extends ViewController
 
     /**
      * method for the logout button, logging a user out and opening the LoginView
-     * @param actionEvent logout button pressed
      */
-    public void logout(ActionEvent actionEvent)
+    public void logout()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                 "Are you sure you want to log out?");

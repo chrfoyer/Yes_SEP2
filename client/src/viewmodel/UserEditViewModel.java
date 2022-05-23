@@ -32,7 +32,7 @@ public class UserEditViewModel
      *
      * @param model RemoteModel because of RMI
      */
-    public UserEditViewModel(RemoteModel model) throws RemoteException
+    public UserEditViewModel(RemoteModel model)
     {
         this.model = model;
         usernameProperty = new SimpleStringProperty();

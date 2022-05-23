@@ -58,7 +58,7 @@ public class ModelManager implements Model
     /**
      * returns all the games
      *
-     * @return arrayList<Game> of all the games
+     * @return array list of all the games
      */
     @Override
     public ArrayList<Game> getAllGames()
@@ -172,7 +172,7 @@ public class ModelManager implements Model
     /**
      * Syncs gameList with database
      *
-     * @throws SQLException
+     * @throws SQLException Thrown when issues occur with the database
      */
     @Override
     public void refreshGameList() throws SQLException
@@ -190,7 +190,7 @@ public class ModelManager implements Model
     /**
      * Syncs userList with database
      *
-     * @throws SQLException
+     * @throws SQLException Thrown when issues occur with the database
      */
     @Override
     public void refreshUserList() throws SQLException
@@ -209,7 +209,7 @@ public class ModelManager implements Model
     /**
      * Syncs transactionList with database
      *
-     * @throws SQLException
+     * @throws SQLException Thrown when errors occur with the database
      */
     @Override
     public void refreshTransactionList() throws SQLException
@@ -380,7 +380,6 @@ public class ModelManager implements Model
      * @param amount int value to modify by
      * @param user   the user we are making the change on
      * @throws SQLException in case of database errors
-     * @implNote negative numbers work if you want to fine
      */
     @Override
     public void modifyBalance(int amount, User user) throws SQLException
@@ -481,7 +480,7 @@ public class ModelManager implements Model
      * Gets all the games rented by a specific user
      *
      * @param user the User we want to find the games for
-     * @return ArrayList<Game>
+     * @return Array list of the games rented by the user
      * @throws SQLException in case of Databse errors
      */
     @Override

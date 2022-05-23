@@ -81,8 +81,6 @@ public class RmiClient
     /**
      * Method to rent a given name
      *
-     * @throws RemoteException          if server connection doesn't exist
-     * @throws IllegalArgumentException if the game doesn't exist on the server
      */
     public void rentGame()
     {

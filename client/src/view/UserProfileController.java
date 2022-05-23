@@ -54,10 +54,8 @@ public class UserProfileController extends ViewController
 
     /**
      * Logic of the button that handles payments Has a confirmation popup
-     *
-     * @param actionEvent
      */
-    public void payment(ActionEvent actionEvent)
+    public void payment()
     {
         getViewModelFactory().getBalanceViewModel().reset();
         getViewHandler().openView("BalanceView.fxml");
@@ -67,10 +65,8 @@ public class UserProfileController extends ViewController
 
     /**
      * Logic of the button to return a game Has a confirmation popup
-     *
-     * @param actionEvent
      */
-    public void returnGame(ActionEvent actionEvent)
+    public void returnGame()
     {
         SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
         if (!(selected == null))
@@ -128,10 +124,8 @@ public class UserProfileController extends ViewController
 
     /**
      * Logic of the button that extends the rented time of the game Has a confirmation popup
-     *
-     * @param actionEvent extend button pressed
      */
-    public void extend(ActionEvent actionEvent)
+    public void extend()
     {
         if (table.getSelectionModel().getSelectedItem() == null)
         {
@@ -153,10 +147,8 @@ public class UserProfileController extends ViewController
 
     /**
      * Method for opening browse view Has a confirmation popup
-     *
-     * @param actionEvent browse button clicked
      */
-    public void browse(ActionEvent actionEvent)
+    public void browse()
     {
         getViewModelFactory().getBrowseViewModel().reset();
         getViewHandler().openView("BrowseView.fxml");
@@ -164,10 +156,8 @@ public class UserProfileController extends ViewController
 
     /**
      * Brings user back to log-in screen Has a confirmation popup
-     *
-     * @param actionEvent
      */
-    public void logout(ActionEvent actionEvent)
+    public void logout()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                 "Are you sure you want to log out?");
@@ -182,10 +172,8 @@ public class UserProfileController extends ViewController
 
     /**
      * method for contacting admin
-     *
-     * @param actionEvent contact admin button pressed
      */
-    public void contactAdmin(ActionEvent actionEvent)
+    public void contactAdmin()
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION,
                 "If you wish to change your information, " +

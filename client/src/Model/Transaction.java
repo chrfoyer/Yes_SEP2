@@ -7,6 +7,9 @@ import java.time.LocalDate;
  * A class to hold information about a single transaction. These transactions are created within the game object when
  * actions are taken upon the game, such as renting and returning. In addition, a refund or subscription payment can be
  * made without a game object.
+ *
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
  */
 public class Transaction implements Serializable
 {
@@ -36,7 +39,6 @@ public class Transaction implements Serializable
      * @param user   The user doing the action
      * @param action The type of action
      * @param date   The date that the transaction occurred
-     * @implNote Used after the transaction is passed into the database to get the serial id
      */
     public Transaction(int id, String user, String action, LocalDate date)
     {

@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 /**
  * A class that holds all the transactions within an array list.
+ *
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
  */
 public class TransactionList implements Serializable
 {

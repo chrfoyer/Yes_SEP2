@@ -8,7 +8,8 @@ import java.rmi.RemoteException;
 /**
  * Class to track the currently logged-in user with static variables also has ""callback"" functionalities
  *
- * @author Raedrim
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
  */
 public class CurrentlyLoggedUser
 {
@@ -48,7 +49,7 @@ public class CurrentlyLoggedUser
     /**
      * gets the logged-in user
      *
-     * @return User
+     * @return User that is logged in
      */
     public static User getLoggedInUser()
     {
@@ -58,7 +59,7 @@ public class CurrentlyLoggedUser
     /**
      * Checks if the user has admin privileges
      *
-     * @return boolean
+     * @return boolean of whether is the user is an admin
      */
     public static boolean isAdmin()
     {
@@ -70,8 +71,6 @@ public class CurrentlyLoggedUser
     /**
      * Updates the user with the one on serverside
      *
-     * @throws java.rmi.RemoteException if the stars hate you
-     * @implNote ALWAYS CALL AFTER FINISHING METHODS
      * @hidden basically a git push lmao
      */
     public static void updateInfoWithServer()
