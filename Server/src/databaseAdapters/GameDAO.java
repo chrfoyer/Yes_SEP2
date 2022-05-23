@@ -17,6 +17,8 @@ public interface GameDAO
 
   ArrayList<Game> getRentedGamesByUser(User user) throws SQLException;
 
+  void updateRentalInfo(Game game)throws SQLException;
+
   void rent(Game game, User user) throws SQLException;
 
   void returnGame(Game game) throws SQLException;

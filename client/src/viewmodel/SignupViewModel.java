@@ -13,6 +13,7 @@ import java.time.Period;
 
 /**
  * class that handles the logic for the Signup View
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -139,14 +140,13 @@ public class SignupViewModel
                         "Passwords and confirmation have to match!");
             LocalDate dob = dobProperty.get();
             Period age = Period.between(dob, LocalDate.now());
-      /*
-       if (age.getYears() < 13)
-      {
-        dobProperty.set(null);
-        throw new IllegalArgumentException(
-                "User has to be at least 13 years old!");
-      }
-       */
+
+            if (age.getYears() < 13)
+            {
+                throw new IllegalArgumentException(
+                        "User has to be at least 13 years old!");
+            }
+
             if (usernameProperty.get().length() < 5)
                 throw new IllegalArgumentException(
                         "Username has to be at least 5 characters!");
@@ -155,8 +155,13 @@ public class SignupViewModel
             if (passwordProperty.get().length() < 7)
                 throw new IllegalArgumentException(
                         "password has to be at least 7 characters!");
-            if (!emailProperty.get().contains("@"))
+            if (!emailProperty.get().contains("@") || !emailProperty.get().contains("."))
                 throw new IllegalArgumentException("Email not in correct format!");
+            if (nameProperty.get().equals(""))
+                throw new IllegalArgumentException("Full name is empty !");
+            if (addressProperty.get().equals(""))
+                throw new IllegalArgumentException("Address field is empty !");
+
             User user = new User(usernameProperty.get(), passwordProperty.get(),
                     emailProperty.get(), addressProperty.get(), nameProperty.get(), dob);
             model.signup(user);

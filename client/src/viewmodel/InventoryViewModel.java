@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 /**
  * class that handles the logic for Inventory View
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -28,6 +29,7 @@ public class InventoryViewModel
 
     /**
      * constructor for the Inventory Viewmodel
+     *
      * @param model model to assign to the remotemodel
      */
     public InventoryViewModel(RemoteModel model)
@@ -60,7 +62,6 @@ public class InventoryViewModel
                 SimpleGameViewModel temp = new SimpleGameViewModel(game);
                 if (!list.contains(temp))
                     list.add(temp);
-                System.out.println(temp);
             }
         } catch (Exception e)
         {
@@ -70,6 +71,7 @@ public class InventoryViewModel
 
     /**
      * gets the ObservableList<SimpleGameViewModel> list
+     *
      * @return ObservableList<SimpleGameViewModel> list
      */
     public ObservableList<SimpleGameViewModel> getList()
@@ -79,6 +81,7 @@ public class InventoryViewModel
 
     /**
      * gets the ObservableList<SimpleGameViewModel> selectedGameProperty
+     *
      * @return ObservableList<SimpleGameViewModel> selectedGameProperty
      */
     public ObjectProperty<SimpleGameViewModel> getSelectedGameProperty()
@@ -88,6 +91,7 @@ public class InventoryViewModel
 
     /**
      * sets the SimpleGameViewModel selectedGameProperty
+     *
      * @param selectedGameProperty selectedGameProperty
      */
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameProperty)
@@ -102,6 +106,8 @@ public class InventoryViewModel
     {
         try
         {
+            if (selectedGameProperty.get().getGame().isRented())
+                throw new IllegalArgumentException("Cannot delete a rented game, wait until user returns it!");
             model.removeGame(selectedGameProperty.get().getGame());
             reset();
         } catch (Exception e)
@@ -112,6 +118,7 @@ public class InventoryViewModel
 
     /**
      * method for getting the error
+     *
      * @return errorLabel
      */
     public StringProperty getError()

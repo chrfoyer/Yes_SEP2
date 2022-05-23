@@ -197,6 +197,8 @@ public class AddEditGameViewModel
     {
         try
         {
+            if(rented.get())throw new IllegalArgumentException("You cannot edit a rented game!");
+
             if (name.get().equals("") || producer.get().equals(""))
                 throw new IllegalArgumentException("Name and producer cant be empty");
 

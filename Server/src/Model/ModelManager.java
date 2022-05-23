@@ -176,6 +176,7 @@ public class ModelManager implements Model
         GameList temp = new GameList();
         for (Game game : gameDAO.getAllGames())
         {
+            gameDAO.updateRentalInfo(game);
             temp.addGame(game);
         }
         games = temp;

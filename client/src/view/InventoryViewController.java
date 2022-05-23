@@ -11,6 +11,7 @@ import java.util.Optional;
 
 /**
  * controller for the Inventory View
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -76,6 +77,7 @@ public class InventoryViewController extends ViewController
 
     /**
      * logic behind the addEdit button, adding or editing a game
+     *
      * @param actionEvent addEdit button pressed
      */
     @FXML
@@ -89,6 +91,7 @@ public class InventoryViewController extends ViewController
 
     /**
      * logic behind cancel button, opening AdminView
+     *
      * @param actionEvent cancel button pressed
      */
     @FXML
@@ -100,20 +103,21 @@ public class InventoryViewController extends ViewController
 
     /**
      * logic behind  the remove button, removing selected game
+     *
      * @param actionEvent remove button pressed
      */
     @FXML
     public void remove(ActionEvent actionEvent)
     {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Are you sure you want to delete the game? -> "
-                        + gameViewModel.getSelectedGameProperty().getGame().getName());
-        Optional<ButtonType> option = alert.showAndWait();
-        if (option.get() == ButtonType.OK)
-        {
-            viewModel.setSelectedGameProperty(
-                    gameViewModel.getSelectedGameProperty());
-            viewModel.removeGame();
-        }
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to delete the game? -> "
+                            + gameViewModel.getSelectedGameProperty().getGame().getName());
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK)
+            {
+                viewModel.setSelectedGameProperty(
+                        gameViewModel.getSelectedGameProperty());
+                viewModel.removeGame();
+            }
     }
 }

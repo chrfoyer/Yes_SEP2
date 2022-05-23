@@ -182,6 +182,25 @@ public class GameImpl implements GameDAO
   }
 
   @Override
+  public void updateRentalInfo(Game game) throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
+      Statement st = connection.createStatement();
+      ResultSet rs = st.executeQuery(
+              "select * from rentals WHERE game_id="+game.getId()+";");
+      while (rs.next())
+      {
+        game.setDaysLeft(rs.getInt("days_left"));
+        update(game);
+      }
+      rs.close();
+      st.close();
+    }
+
+  }
+
+  @Override
   public void update(Game game) throws SQLException
   {
     // This is not ideal because a game should have an id unseen by the user
@@ -193,14 +212,16 @@ public class GameImpl implements GameDAO
                       "SET name = ?, " +
                       "producer = ?, " +
                       "console = ?, " +
-                      "esrb = ? " +
+                      "esrb = ?, " +
+                      "days_left = ? "+
                       "WHERE id = ?;"
       );
       statement.setString(1, game.getName());
       statement.setString(2, game.getProducer());
       statement.setString(3, game.getConsole());
       statement.setString(4, game.getEsrb());
-      statement.setInt(5, game.getId());
+      statement.setInt(5, game.getDaysLeft());
+      statement.setInt(6, game.getId());
       statement.executeUpdate();
       statement.close();
     }
