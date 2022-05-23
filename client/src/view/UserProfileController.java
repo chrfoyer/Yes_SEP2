@@ -73,16 +73,19 @@ public class UserProfileController extends ViewController
     public void returnGame(ActionEvent actionEvent)
     {
         SimpleGameViewModel selected = table.getSelectionModel().getSelectedItem();
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Are you sure you want to return " + selected.getNameProperty().get()
-                        + "?");
-        Optional<ButtonType> option = alert.showAndWait();
-        if (option.get() == ButtonType.OK)
+        if (!(selected == null))
         {
-            viewModel.leaveReview(getReviewScore(), selected);
-            viewModel.returnGame(selected.getGame());
-            viewModel.reset();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to return " + selected.getNameProperty().get()
+                            + "?");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK)
+            {
+                viewModel.leaveReview(getReviewScore(), selected);
+                viewModel.returnGame(selected.getGame());
+                viewModel.reset();
+            }
         }
     }
 

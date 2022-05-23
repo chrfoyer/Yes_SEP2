@@ -29,7 +29,7 @@ public class SimpleGameViewModel
         this.rented = new SimpleObjectProperty<>(game.isRented());
         this.console = new SimpleStringProperty(game.getConsole());
         this.dateAdded = new SimpleObjectProperty<>(game.getDateAdded());
-        this.review = new SimpleObjectProperty(game.getReview());
+        this.review = new SimpleObjectProperty(game.getReviewAverage());
         this.game = game;
     }
 

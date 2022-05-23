@@ -213,6 +213,9 @@ public class GameImpl implements GameDAO
                             "producer = ?, " +
                             "console = ?, " +
                             "esrb = ?, " +
+                            "review_count = ?, " +
+                            "review_sum = ?, " +
+                            "review_avg = ?, " +
                             "days_left = ? " +
                             "WHERE id = ?;"
             );
@@ -220,8 +223,12 @@ public class GameImpl implements GameDAO
             statement.setString(2, game.getProducer());
             statement.setString(3, game.getConsole());
             statement.setString(4, game.getEsrb());
-            statement.setInt(5, game.getDaysLeft());
-            statement.setInt(6, game.getId());
+            statement.setInt(5, game.getReviewCount());
+            statement.setInt(6, game.getReviewSum());
+            statement.setFloat(7, game.getReviewAverage());
+
+            statement.setInt(8, game.getDaysLeft());
+            statement.setInt(9, game.getId());
             statement.executeUpdate();
             statement.close();
         }

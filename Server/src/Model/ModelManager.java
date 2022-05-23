@@ -187,6 +187,11 @@ public class ModelManager implements Model
         System.out.println("Game list refreshed");
     }
 
+    /**
+     * Syncs userList with database
+     *
+     * @throws SQLException
+     */
     @Override
     public void refreshUserList() throws SQLException
     {
@@ -197,8 +202,14 @@ public class ModelManager implements Model
             temp.addUser(user);
         }
         users = temp;
-    }
 
+
+    }
+    /**
+     * Syncs transactionList with database
+     *
+     * @throws SQLException
+     */
     @Override
     public void refreshTransactionList() throws SQLException
     {
@@ -362,6 +373,13 @@ public class ModelManager implements Model
         }
     }
 
+    /**
+     * Modifies user balance
+     * @implNote negative numbers work if you want to fine
+     * @param amount int value to modify by
+     * @param user the user we are making the change on
+     * @throws SQLException in case of database errors
+     */
     @Override
     public void modifyBalance(int amount, User user) throws SQLException
     {
@@ -372,6 +390,11 @@ public class ModelManager implements Model
         refreshTransactionList();
     }
 
+    /**
+     * Syncs local user with database version
+     * @param user is the user we want to sync
+     * @throws SQLException in case of database errors
+     */
     @Override
     public void updateUserWithSQL(User user) throws SQLException
     {
@@ -379,6 +402,12 @@ public class ModelManager implements Model
         refreshUserList();
     }
 
+
+    /**
+     * Sets hasSubscription to true on the user
+     * @param user User which we make the changes on
+     * @throws SQLException in case of database errors
+     */
     @Override
     public void payForSubscription(User user) throws SQLException
     {
@@ -389,48 +418,97 @@ public class ModelManager implements Model
         System.out.println(user.getUsername() + " payed for their subscription");
     }
 
+    /**
+     * Simple getter for TransactionList
+     * @return TransactionList
+     */
     @Override
     public TransactionList getTransactionList()
     {
         return transactions;
     }
 
+    /**
+     * Sets the subscriptionStatus of a user
+     * @param user User to make the changes on
+     * @param status true or false
+     */
     @Override
     public void setSubscriptionStatus(User user, boolean status)
     {
         users.findUserInList(user).setHasSubscription(status);
     }
 
+    /**
+     * Leaves review for a game
+     * @param review int 1-5
+     * @param game is the Game to make the changes on
+     */
     @Override
     public void leaveReview(int review, Game game)
     {
-        games.findGameInList(game).leaveReview(review);
+        game.leaveReview(review);
+        try
+        {
+            gameDAO.update(game);
+            refreshGameList();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Gets reviews for a game
+     * @param game Game used
+     * @return float 1.0 - 5.0
+     */
     @Override
     public float getReview(Game game)
     {
         return games.findGameInList(game).getReview();
     }
 
+    /**
+     * Gets all the games rented by a specific user
+     * @param user the User we want to find the games for
+     * @return ArrayList<Game>
+     * @throws SQLException in case of Databse errors
+     */
     @Override
     public ArrayList<Game> getGamesRentedByUser(User user) throws SQLException
     {
         return gameDAO.getRentedGamesByUser(user);
     }
 
+    /**
+     * Gets balance for user
+     * @param user is the user we get from
+     * @return int balance
+     */
     @Override
     public int getBalance(User user)
     {
         return users.getBalance(user);
     }
 
+    /**
+     * Adds a new Transaction to the TransactionList
+     * @param transaction is a Transaction to be added
+     */
     @Override
     public void addTransaction(Transaction transaction)
     {
         transactions.addTransaction(transaction);
     }
 
+    /**
+     * Returns a game to the system
+     * @param game game to be returned
+     * @param user user that returns it
+     * @throws SQLException in case of databse erros
+     */
     @Override
     public void returnGame(Game game, User user) throws SQLException
     {
