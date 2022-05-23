@@ -21,7 +21,6 @@ public class RmiServer implements RemoteModel
 {
 
     private final Model model;
-    private final GameList gameList;
 
     /**
      * Creates new GameList and RmiServer object, Model interface and starts the Server
@@ -31,9 +30,7 @@ public class RmiServer implements RemoteModel
      */
     public RmiServer() throws RemoteException, MalformedURLException, SQLException
     {
-        gameList = new GameList(); // to be deleted
         model = new ModelManager();
-        // TODO: 18/05/2022 Where do these exceptions go when I sleep at night?
         startServer();
     }
 
@@ -96,9 +93,9 @@ public class RmiServer implements RemoteModel
     /**
      * Returns an array list containing games matching the parameters of the search.
      *
-     * @param name Part of the name of the games returned
+     * @param name    Part of the name of the games returned
      * @param console The selected console
-     * @param esrb The selected age restriction rating
+     * @param esrb    The selected age restriction rating
      * @return The arraylist of games matching the parameters
      * @throws RemoteException Thrown when issues relating to communication across the server and client
      */
@@ -216,18 +213,18 @@ public class RmiServer implements RemoteModel
         model.addTransaction(transaction);
     }
 
-  @Override
-  public void modifyBalance(int amount, User user)
-          throws RemoteException, SQLException
-  {
-    model.modifyBalance(amount, user);
-  }
+    @Override
+    public void modifyBalance(int amount, User user)
+            throws RemoteException, SQLException
+    {
+        model.modifyBalance(amount, user);
+    }
 
-  @Override
-  public void payForSubscription(User user) throws RemoteException, SQLException
-  {
-    model.payForSubscription(user);
-  }
+    @Override
+    public void payForSubscription(User user) throws RemoteException, SQLException
+    {
+        model.payForSubscription(user);
+    }
 
     @Override
     public void setSubscription(User user, boolean status)

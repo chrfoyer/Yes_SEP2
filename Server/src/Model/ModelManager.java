@@ -15,8 +15,8 @@ public class ModelManager implements Model
 {
     private final TransactionList transactions;
     private final GameDAO gameDAO;
-    private UserDAO userDAO;
-    private TransactionDAO transactionDAO;
+    private final UserDAO userDAO;
+    private final TransactionDAO transactionDAO;
     private GameList games;
     private UserList users;
 
@@ -122,6 +122,7 @@ public class ModelManager implements Model
             gameDAO.rent(game, user);
             transactionDAO.create(new Transaction(user.getUsername(), "Rented " + game.getName()));
             refreshTransactionList();
+            refreshGameList();
             System.out.println(user.getUsername() + " rented " + game.getName() + " on " + game.getConsole());
         }
     }

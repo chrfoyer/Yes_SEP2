@@ -1,8 +1,5 @@
-import Model.Game;
-import Model.TransactionList;
 import mediator.RmiServer;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Server
@@ -24,9 +21,11 @@ public class Server
         {
             System.out.println("Press [0] to close the server");
             int given = input.nextInt();
-            if (given == 0) {
+            if (given == 0)
+            {
                 running = false;
-            } else {
+            } else
+            {
                 System.out.println("Input not recognized. Please try again");
             }
             /*  DEPRECATED
@@ -104,5 +103,6 @@ public class Server
              */
         }
         System.out.println("See you soon!");
+        System.exit(0);
     }
 }
