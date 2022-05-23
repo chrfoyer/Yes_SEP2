@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Interface used to establish Client - Server connection using RMI
  *
  * @author Chris, Martin, Levente, Kruno
- * @version 0.3 5/5/22
+ * @version 0.7 5/23/22
  */
 public interface RemoteModel extends Remote
 {

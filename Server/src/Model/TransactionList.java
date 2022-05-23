@@ -6,7 +6,9 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-//a class that creates a list of transactions
+/**
+ * A class that holds all the transactions within an array list.
+ */
 public class TransactionList implements Serializable
 {
 
@@ -42,6 +44,10 @@ public class TransactionList implements Serializable
         return instance;
     }
 
+    /**
+     * @param list The transaction list object containing the transactions
+     * @deprecated Creates the xml file to write the transactions and then appends them in
+     */
     public static void writeTransactions(TransactionList list)
     {
 
@@ -92,16 +98,31 @@ public class TransactionList implements Serializable
         transactions.remove(transaction);
     }
 
+    /**
+     * Gets the count of the transactions present in the list.
+     *
+     * @return The count of transactions
+     */
     public int getSize()
     {
         return transactions.size();
     }
 
+    /**
+     * Gets an array list with all the transactions
+     *
+     * @return Array list with all the transactions
+     */
     public ArrayList<Transaction> getList()
     {
         return transactions;
     }
 
+    /**
+     * Sets the transactions in the list
+     *
+     * @param transactions The array list to be set as the transaction list
+     */
     public void setTransactions(ArrayList<Transaction> transactions)
     {
         this.transactions.clear();

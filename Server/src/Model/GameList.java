@@ -99,7 +99,7 @@ public class GameList implements Serializable
     }
 
     /**
-     * Removes a game from arraylist
+     * Removes a game from arraylist using the name
      *
      * @param name to be removed from list
      */
@@ -132,7 +132,9 @@ public class GameList implements Serializable
     }
 
     /**
-     * Decrements the days left in all games that are rented within the list.
+     * @deprecated Decrements the days left in all games that are rented within the list. When I was a young boy, we
+     * used to decrement the days by marking an X on the paper calendar. I remember thinking "there must be a better
+     * way". Well, here it is.
      */
     public void decrementDayForRented()
     {
@@ -146,9 +148,8 @@ public class GameList implements Serializable
     }
 
     /**
-     * Rents a game using its name
-     *
      * @param name game to be rented
+     * @deprecated Rents a game using its name
      */
     public void rentGame(String name)
     {
@@ -158,8 +159,11 @@ public class GameList implements Serializable
         addGame(rentTemp);
     }
 
+    // TODO: 23/05/2022 Update for all attributes
+
     /**
-     * Returns a string containing the attributes of the game. If the game is not rented, the days left will not appear.
+     * Returns a string containing the attributes of the game. If the game is not rented, the days left will not
+     * appear.
      *
      * @return The string with the information about the game object.
      */
@@ -181,10 +185,9 @@ public class GameList implements Serializable
     }
 
     /**
-     * updates the values of a existing game
-     *
      * @param gameOld the old game
      * @param gameNew the new game
+     * @deprecated updates the values of a existing game
      */
     public void updateGameInfo(Game gameOld, Game gameNew)
     {
@@ -209,7 +212,7 @@ public class GameList implements Serializable
     }
 
     /**
-     * finds a game in the gameList
+     * Finds a game in the gameList
      *
      * @param game game to search for
      * @return game if it is found in the gameList

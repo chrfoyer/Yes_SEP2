@@ -7,16 +7,35 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * A class implementing the game data access object. Statements are prepared and then executed on the database. The
+ * singleton design pattern is used to avoid registering the driver too many times.
+ *
+ * @author Chris, Martin, Levente, Kruno
+ * @version v0.3 23/5/22
+ */
 public class GameImpl implements GameDAO
 {
     private static final Object lock = new Object();
     private static GameImpl instance;
 
+    /**
+     * A zero argument private constructor creating the object by registering the driver.
+     *
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     private GameImpl() throws SQLException
     {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
+    /**
+     * A static method returning the instance of the object. The private constructor is called when the instance is
+     * null.
+     *
+     * @return The instance of the game implementation
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     public static GameImpl getInstance() throws SQLException
     {
         if (instance == null)
@@ -32,6 +51,13 @@ public class GameImpl implements GameDAO
         return instance;
     }
 
+    /**
+     * A method for returning the connection to the database. It uses the credentials held within the DBKey class to
+     * authenticate.
+     *
+     * @return The connection to the database
+     * @throws SQLException Thrown when the credentials or url do not match the database
+     */
     private Connection getConnection() throws SQLException
     {
         return DriverManager.getConnection(
@@ -39,6 +65,13 @@ public class GameImpl implements GameDAO
                 DBKey.username, DBKey.password);
     }
 
+    /**
+     * Inserts the game in the games relation within the database and returns the game object with the id.
+     *
+     * @param game The game to add to the database
+     * @return The game that was inserted with the serial id included
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     @Override
     public Game create(Game game) throws SQLException
     {
@@ -69,6 +102,12 @@ public class GameImpl implements GameDAO
         return createdGame;
     }
 
+    /**
+     * Returns the game with the highest id and therefore the most recent game to be added to the database
+     *
+     * @return The game object with the highest id
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     @Override
     public Game readMaxId() throws SQLException
     {
@@ -107,6 +146,12 @@ public class GameImpl implements GameDAO
         return readGame;
     }
 
+    /**
+     * Returns all the games within the database
+     *
+     * @return An arraylist of all the games in the database
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     @Override
     public ArrayList<Game> getAllGames() throws SQLException
     {
@@ -143,6 +188,13 @@ public class GameImpl implements GameDAO
         return gameArrayList;
     }
 
+    /**
+     * A method to get all the games currently rented by a specified user.
+     *
+     * @param user The user that the information is requested for
+     * @return The arraylist of all games that are actively rented by the user
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     @Override
     public ArrayList<Game> getRentedGamesByUser(User user) throws SQLException
     {
@@ -181,6 +233,12 @@ public class GameImpl implements GameDAO
         return gameArrayList;
     }
 
+    /**
+     * A method to set the days left in the game object to the value within the rental in the database.
+     *
+     * @param game The game that needs the days left set
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     @Override
     public void updateRentalInfo(Game game) throws SQLException
     {
@@ -200,6 +258,12 @@ public class GameImpl implements GameDAO
 
     }
 
+    /**
+     * A method to update the information of the game by the admin.
+     *
+     * @param game The game that needs to be updated
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     @Override
     public void update(Game game) throws SQLException
     {
@@ -234,6 +298,15 @@ public class GameImpl implements GameDAO
         }
     }
 
+    /**
+     * A method to communicate the rental of the game to the database. This inserts a new line in the rentals relation
+     * that contains information about the rental.
+     *
+     * @param game The game to be rented
+     * @param user The user renting the game
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     * @implNote The user should be the currently logged-in user
+     */
     @Override
     public void rent(Game game, User user) throws SQLException
     {
@@ -256,6 +329,12 @@ public class GameImpl implements GameDAO
         }
     }
 
+    /**
+     * A method to communicate with the database that a game has been returned.
+     *
+     * @param game The game to be returned
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     public void returnGame(Game game) throws SQLException
     {
         // TODO: 19/05/2022 Trigger rented within games from active in rental
@@ -280,6 +359,12 @@ public class GameImpl implements GameDAO
         }
     }
 
+    /**
+     * A method to delete a game from the database.
+     *
+     * @param game The game to be deleted
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     @Override
     public void delete(Game game) throws SQLException
     {

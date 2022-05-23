@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * This is the UserList class which is an arraylist of users. it contains methods for adding and removing users as well
+ * This is the UserList class which is an arraylist of users. It contains methods for adding and removing users as well
  * as the size method and get method.
  *
  * @author Chris, Martin, Levente, Kruno
@@ -96,8 +96,9 @@ public class UserList implements Serializable
     }
 
     /**
-     * @param given
-     * @return
+     * @param given The user to login
+     * @return A boolean representing if the login is successful
+     * @throws IllegalArgumentException thrown if the password does not match
      */
     public boolean login(User given)
     {
@@ -107,6 +108,13 @@ public class UserList implements Serializable
         throw new IllegalArgumentException("Password does not match stored credentials");
     }
 
+    /**
+     * Finds a user within the user list.
+     *
+     * @param user The user to find
+     * @return The user if they are found
+     * @throws IllegalArgumentException Thrown when no user is found
+     */
     public User findUserInList(User user)
     {
         for (User temp : users)
@@ -117,11 +125,22 @@ public class UserList implements Serializable
         throw new IllegalArgumentException("User does not exist on the server!");
     }
 
+    /**
+     * Gets an array list with all the users
+     *
+     * @return All the users
+     */
     public ArrayList<User> getUsers()
     {
         return users;
     }
 
+    /**
+     * @param oldUser The old version of the user
+     * @param newUser The updated version of the user
+     * @throws IllegalArgumentException Thrown when the user cannot be found
+     * @deprecated Update the information of the user
+     */
     public void updateUserInfo(User oldUser, User newUser)
     {
         boolean foundOld = false;
@@ -145,17 +164,36 @@ public class UserList implements Serializable
                     "No User found on server that could be updated");
     }
 
+    /**
+     * Modifies the balance of a user
+     *
+     * @param ammount The amount to add or subtract
+     * @param user    The user to modify
+     */
     public void modifyBalance(int ammount, User user)
     {
         User temp = findUserInList(user);
         temp.modifyBalance(ammount);
     }
 
+    /**
+     * Get the balance of the user
+     *
+     * @param user The user to retrieve the balance of
+     * @return The balance of the user
+     */
     public int getBalance(User user)
     {
         return findUserInList(user).getBalance();
     }
 
+    /**
+     * Removes 30 balance from the user and set their subscription to active
+     *
+     * @param user The user to activate the subscription for
+     * @throws IllegalStateException    Thrown when the balance of the user is negative
+     * @throws IllegalArgumentException Thrown when the user has less than 30 balance
+     */
     public void payForSubscription(User user)
     {
         User temp = findUserInList(user);

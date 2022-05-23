@@ -24,7 +24,7 @@ public class Game implements Serializable
     private String esrb;
 
     /**
-     * constructer initializing variables
+     * An 11 argument constructor used to copy the information from the database.
      *
      * @param id            id of the game
      * @param name          name of the game
@@ -37,6 +37,7 @@ public class Game implements Serializable
      * @param reviewAverage the average of all the reviews for the game
      * @param esrb          the rating of the game
      * @param dateAdded     date the game is added
+     * @implNote Used after the create game method is called in the gameDAO
      */
     public Game(int id, String name, String producer, String console, boolean rented, int daysLeft, int reviewCount, int reviewSum, float reviewAverage, String esrb, LocalDate dateAdded)
     {
@@ -54,7 +55,7 @@ public class Game implements Serializable
     }
 
     /**
-     * constructor for game
+     * A 4 argument constructor used to create a game from the information given in the add game view.
      *
      * @param name     name of game
      * @param producer producer of the game
@@ -300,7 +301,8 @@ public class Game implements Serializable
     }
 
     /**
-     * leaves a review int 1-5 for a game by adding it to the reviewSum and incrementing reviewCount so that reviewAverage can be updated
+     * leaves a review int 1-5 for a game by adding it to the reviewSum and incrementing reviewCount so that
+     * reviewAverage can be updated
      *
      * @param review the int (1-5)
      */

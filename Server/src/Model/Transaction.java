@@ -15,13 +15,29 @@ public class Transaction implements Serializable
     private final String action;
     private final LocalDate date;
 
+    /**
+     * A 2 argument constructor creating the transaction with an id of 0 and a date of now
+     *
+     * @param user   The user that is doing the action
+     * @param action The type of transaction occurring
+     */
     public Transaction(String user, String action)
     {
-        this.id=0;
+        this.id = 0;
         this.action = action;
         this.user = user;
         date = LocalDate.now();
     }
+
+    /**
+     * A 4 argument constructor for the transaction.
+     *
+     * @param id     The serial id of the transaction
+     * @param user   The user doing the action
+     * @param action The type of action
+     * @param date   The date that the transaction occurred
+     * @implNote Used after the transaction is passed into the database to get the serial id
+     */
     public Transaction(int id, String user, String action, LocalDate date)
     {
         this.action = action;
@@ -31,21 +47,41 @@ public class Transaction implements Serializable
         TransactionList.getInstance().addTransaction(this);
     }
 
+    /**
+     * Gets the id
+     *
+     * @return The serial id
+     */
     public double getId()
     {
         return id;
     }
 
+    /**
+     * Gets the date of the transaction
+     *
+     * @return The date of the transaction
+     */
     public LocalDate getDate()
     {
         return date;
     }
 
+    /**
+     * Gets the type of action
+     *
+     * @return The type of action
+     */
     public String getAction()
     {
         return action;
     }
 
+    /**
+     * Gets the username of the actor doing the action
+     *
+     * @return The username of the actor
+     */
     public String getUser()
     {
         return user;

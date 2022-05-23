@@ -205,6 +205,7 @@ public class ModelManager implements Model
 
 
     }
+
     /**
      * Syncs transactionList with database
      *
@@ -375,10 +376,11 @@ public class ModelManager implements Model
 
     /**
      * Modifies user balance
-     * @implNote negative numbers work if you want to fine
+     *
      * @param amount int value to modify by
-     * @param user the user we are making the change on
+     * @param user   the user we are making the change on
      * @throws SQLException in case of database errors
+     * @implNote negative numbers work if you want to fine
      */
     @Override
     public void modifyBalance(int amount, User user) throws SQLException
@@ -392,6 +394,7 @@ public class ModelManager implements Model
 
     /**
      * Syncs local user with database version
+     *
      * @param user is the user we want to sync
      * @throws SQLException in case of database errors
      */
@@ -405,6 +408,7 @@ public class ModelManager implements Model
 
     /**
      * Sets hasSubscription to true on the user
+     *
      * @param user User which we make the changes on
      * @throws SQLException in case of database errors
      */
@@ -420,6 +424,7 @@ public class ModelManager implements Model
 
     /**
      * Simple getter for TransactionList
+     *
      * @return TransactionList
      */
     @Override
@@ -430,7 +435,8 @@ public class ModelManager implements Model
 
     /**
      * Sets the subscriptionStatus of a user
-     * @param user User to make the changes on
+     *
+     * @param user   User to make the changes on
      * @param status true or false
      */
     @Override
@@ -441,8 +447,9 @@ public class ModelManager implements Model
 
     /**
      * Leaves review for a game
+     *
      * @param review int 1-5
-     * @param game is the Game to make the changes on
+     * @param game   is the Game to make the changes on
      */
     @Override
     public void leaveReview(int review, Game game)
@@ -452,8 +459,7 @@ public class ModelManager implements Model
         {
             gameDAO.update(game);
             refreshGameList();
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -461,6 +467,7 @@ public class ModelManager implements Model
 
     /**
      * Gets reviews for a game
+     *
      * @param game Game used
      * @return float 1.0 - 5.0
      */
@@ -472,6 +479,7 @@ public class ModelManager implements Model
 
     /**
      * Gets all the games rented by a specific user
+     *
      * @param user the User we want to find the games for
      * @return ArrayList<Game>
      * @throws SQLException in case of Databse errors
@@ -484,6 +492,7 @@ public class ModelManager implements Model
 
     /**
      * Gets balance for user
+     *
      * @param user is the user we get from
      * @return int balance
      */
@@ -495,6 +504,7 @@ public class ModelManager implements Model
 
     /**
      * Adds a new Transaction to the TransactionList
+     *
      * @param transaction is a Transaction to be added
      */
     @Override
@@ -505,6 +515,7 @@ public class ModelManager implements Model
 
     /**
      * Returns a game to the system
+     *
      * @param game game to be returned
      * @param user user that returns it
      * @throws SQLException in case of databse erros

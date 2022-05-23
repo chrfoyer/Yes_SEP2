@@ -9,7 +9,8 @@ import java.util.ArrayList;
 /**
  * Class that implements the CRUD functionality of the UserDAO
  *
- * @author Raedrim
+ * @author Chris, Martin, Levente, Kruno
+ * @version v0.3 23/5/22
  */
 public class UserImpl implements UserDAO
 {
@@ -19,7 +20,7 @@ public class UserImpl implements UserDAO
     /**
      * Private constructor for singleton
      *
-     * @throws SQLException
+     * @throws SQLException Thrown when the connection with the database cannot be established
      */
     private UserImpl() throws SQLException
     {
@@ -29,8 +30,8 @@ public class UserImpl implements UserDAO
     /**
      * Singleton instance getter
      *
-     * @return
-     * @throws SQLException
+     * @return The instance of the user implementation
+     * @throws SQLException Thrown when the connection with the database cannot be established
      */
     public static UserImpl getInstance() throws SQLException
     {
@@ -51,7 +52,7 @@ public class UserImpl implements UserDAO
      * Creates datrabse connection
      *
      * @return Connection
-     * @throws SQLException
+     * @throws SQLException Thrown when the connection with the database cannot be established
      */
     private Connection getConnection() throws SQLException
     {
@@ -65,7 +66,7 @@ public class UserImpl implements UserDAO
      *
      * @param user User to pass down to database
      * @return user that we got from database
-     * @throws SQLException
+     * @throws SQLException Thrown when the connection with the database cannot be established
      */
     @Override
     public User create(User user) throws SQLException
@@ -137,7 +138,7 @@ public class UserImpl implements UserDAO
      *
      * @param username String username
      * @return User or null
-     * @throws SQLException
+     * @throws SQLException Thrown when the connection with the database cannot be established
      */
     @Override
     public User readUsername(String username) throws SQLException
@@ -178,8 +179,8 @@ public class UserImpl implements UserDAO
     /**
      * Gets every use from the database
      *
-     * @return ArrayList<User>
-     * @throws SQLException
+     * @return ArrayList<User> of all users in the database
+     * @throws SQLException Thrown when the connection with the database cannot be established
      */
     @Override
     public ArrayList<User> getAllUsers() throws SQLException
@@ -223,7 +224,7 @@ public class UserImpl implements UserDAO
      * Updates an existing User with new information
      *
      * @param user User with new data
-     * @throws SQLException
+     * @throws SQLException Thrown when the connection with the database cannot be established
      */
     @Override
     public void update(User user) throws SQLException
@@ -256,7 +257,7 @@ public class UserImpl implements UserDAO
      * Deletes User from database
      *
      * @param user User to be deleted
-     * @throws SQLException
+     * @throws SQLException Thrown when the connection with the database cannot be established
      */
     @Override
     public void delete(User user) throws SQLException

@@ -26,7 +26,18 @@ public class User implements Serializable
     private int balance;
 
     /**
-     * constructor for user
+     * A ten argument constructor taking in every attribute
+     *
+     * @param age             Age in user
+     * @param username        The username used to log-in
+     * @param password        The password needed to log-in
+     * @param isAdmin         Shows whether the user has administrator priveledges
+     * @param email           The e-mail to contact the user if needed
+     * @param address         The physical mailing address to use to send the games
+     * @param name            The full name of the user
+     * @param bday            The date of birth of the user
+     * @param hasSubscription Shows whether the user has an active subscription and can rent games
+     * @param balance         The balance of money that the user has
      */
     public User(int age, String username, String password, boolean isAdmin,
                 String email, String address, String name, LocalDate bday,
@@ -45,7 +56,7 @@ public class User implements Serializable
     }
 
     /**
-     * Constructor taking only string username and string password. checks to see if user is an admin.
+     * Constructor taking only string username and string password. From there, other default and null values are set.
      *
      * @param username username to be assigned to user
      * @param password password to be assigned to user

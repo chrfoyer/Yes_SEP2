@@ -1,22 +1,40 @@
 package databaseAdapters;
 
-import Model.Game;
 import Model.Transaction;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * A class implementing the transaction data access object. Statements are prepared and then executed on the database.
+ * The singleton design pattern is used to avoid registering the driver too many times.
+ *
+ * @author Chris, Martin, Levente, Kruno
+ * @version v0.3 23/5/22
+ */
 public class TransactionImpl implements TransactionDAO
 {
-    private static Object lock = new Object();
+    private static final Object lock = new Object();
     private static TransactionImpl instance;
 
+    /**
+     * A zero argument private constructor creating the object by registering the driver.
+     *
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     private TransactionImpl() throws SQLException
     {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
+    /**
+     * A static method returning the instance of the object. The private constructor is called when the instance is
+     * null.
+     *
+     * @return The instance of the transaction implementation
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     public static TransactionDAO getInstance() throws SQLException
     {
         if (instance == null)
@@ -32,6 +50,13 @@ public class TransactionImpl implements TransactionDAO
         return instance;
     }
 
+    /**
+     * A method for returning the connection to the database. It uses the credentials held within the DBKey class to
+     * authenticate.
+     *
+     * @return The connection to the database
+     * @throws SQLException Thrown when the credentials or url do not match the database
+     */
     private Connection getConnection() throws SQLException
     {
         return DriverManager.getConnection(
@@ -39,6 +64,13 @@ public class TransactionImpl implements TransactionDAO
                 DBKey.username, DBKey.password);
     }
 
+    /**
+     * Inserts the transaction into the database and returns it.
+     *
+     * @param transaction The transaction to insert
+     * @return The inserted transaction
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     @Override
     public Transaction create(Transaction transaction) throws SQLException
     {
@@ -57,13 +89,19 @@ public class TransactionImpl implements TransactionDAO
             ps.close();
 
             createdTransaction = readMaxId();
-        }
-        catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
         return createdTransaction;
     }
 
+    /**
+     * Returns the most recent transaction with the highest serial id.
+     *
+     * @return The most recent transaction
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     public Transaction readMaxId() throws SQLException
     {
         Transaction readTransaction = null;
@@ -94,6 +132,12 @@ public class TransactionImpl implements TransactionDAO
         return readTransaction;
     }
 
+    /**
+     * A method to return all the transactions held within the database.
+     *
+     * @return An array list of all transactions
+     * @throws SQLException Thrown when the connection with the database cannot be established
+     */
     @Override
     public ArrayList<Transaction> getAllTransactions() throws SQLException
     {
