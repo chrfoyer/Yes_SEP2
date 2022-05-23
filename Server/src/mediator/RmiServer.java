@@ -204,6 +204,12 @@ public class RmiServer implements RemoteModel
     }
 
     @Override
+    public void updateUserWithSQL(User user) throws RemoteException, SQLException
+    {
+        model.updateUserWithSQL(user);
+    }
+
+    @Override
     public void addTransaction(Transaction transaction)
             throws RemoteException
     {

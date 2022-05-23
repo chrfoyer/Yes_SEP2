@@ -45,13 +45,15 @@ public interface RemoteModel extends Remote
 
     void updateUserInfo(User oldUser, User newUser) throws RemoteException;
 
+    void updateUserWithSQL(User user) throws RemoteException, SQLException;
+
     void addTransaction(Transaction transaction) throws RemoteException;
 
     int getBalance(User user) throws RemoteException;
 
-  void modifyBalance(int amount, User user) throws RemoteException, SQLException;
+    void modifyBalance(int amount, User user) throws RemoteException, SQLException;
 
-  void payForSubscription(User user) throws RemoteException, SQLException;
+    void payForSubscription(User user) throws RemoteException, SQLException;
 
     void setSubscription(User user, boolean status) throws RemoteException;
 

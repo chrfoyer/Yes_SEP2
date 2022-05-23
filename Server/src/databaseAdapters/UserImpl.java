@@ -88,7 +88,6 @@ public class UserImpl implements UserDAO
             statement.setInt(8, user.getBalance());
             statement.setBoolean(9, user.isAdmin());
 
-            System.out.println(statement.toString());
             statement.executeUpdate();
             statement.close();
 
@@ -231,7 +230,11 @@ public class UserImpl implements UserDAO
     {
         try (Connection connection = getConnection())
         {
-            Date date = Date.valueOf(user.getBday());
+            Date date = null;
+            if (user.getBday() != null)
+            {
+                date = Date.valueOf(user.getBday());
+            }
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE users " + "SET password = ?, " + "email = ?, " + "name = ?, "
                             + "bday = ?, " + "has_subscription = ?, " + "balance = ? "
@@ -243,8 +246,6 @@ public class UserImpl implements UserDAO
             statement.setBoolean(5, user.hasSubscription());
             statement.setInt(6, user.getBalance());
             statement.setString(7, user.getUsername());
-
-            System.out.println(statement.toString());
 
             statement.executeUpdate();
             statement.close();

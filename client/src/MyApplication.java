@@ -19,7 +19,6 @@ public class MyApplication extends Application
             try
             {
                 server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
-                System.out.println("Stub pulled");
             } catch (Exception ex)
             {
                 ex.printStackTrace();

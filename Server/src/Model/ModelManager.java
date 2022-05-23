@@ -13,25 +13,25 @@ import java.util.ArrayList;
  */
 public class ModelManager implements Model
 {
-  private final TransactionList transactions;
-  private final GameDAO gameDAO;
-  private UserDAO userDAO;
-  private TransactionDAO transactionDAO;
-  private GameList games;
-  private UserList users;
+    private final TransactionList transactions;
+    private final GameDAO gameDAO;
+    private UserDAO userDAO;
+    private TransactionDAO transactionDAO;
+    private GameList games;
+    private UserList users;
 
-  public ModelManager() throws SQLException
-  {
-    this.games = new GameList();
-    this.users = new UserList();
-    this.transactions = TransactionList.getInstance();
-    gameDAO = GameImpl.getInstance();
-    userDAO = UserImpl.getInstance();
-    transactionDAO = TransactionImpl.getInstance();
-    refreshGameList();
-    refreshUserList();
-    refreshTransactionList();
-  }
+    public ModelManager() throws SQLException
+    {
+        this.games = new GameList();
+        this.users = new UserList();
+        this.transactions = TransactionList.getInstance();
+        gameDAO = GameImpl.getInstance();
+        userDAO = UserImpl.getInstance();
+        transactionDAO = TransactionImpl.getInstance();
+        refreshGameList();
+        refreshUserList();
+        refreshTransactionList();
+    }
 
     public void setGames(GameList games)
     {
@@ -52,6 +52,7 @@ public class ModelManager implements Model
     public void addGame(Game game) throws SQLException
     {
         games.addGame(gameDAO.create(game));
+        System.out.println("Game added: " + game.getName() + " on " + game.getConsole());
     }
 
     /**
@@ -75,6 +76,7 @@ public class ModelManager implements Model
     {
         gameDAO.delete(game);
         games.removeGame(game);
+        System.out.println("Game removed: " + game.getName() + " on " + game.getConsole());
     }
 
     /**
@@ -118,8 +120,9 @@ public class ModelManager implements Model
         {
             games.findGameInList(game).rentGame();
             gameDAO.rent(game, user);
-            transactionDAO.create(new Transaction(user.getUsername(),"Rented " + game.getName()));
+            transactionDAO.create(new Transaction(user.getUsername(), "Rented " + game.getName()));
             refreshTransactionList();
+            System.out.println(user.getUsername() + " rented " + game.getName() + " on " + game.getConsole());
         }
     }
 
@@ -180,6 +183,7 @@ public class ModelManager implements Model
             temp.addGame(game);
         }
         games = temp;
+        System.out.println("Game list refreshed");
     }
 
     @Override
@@ -216,9 +220,9 @@ public class ModelManager implements Model
     /**
      * Returns an array list containing games matching the parameters of the search.
      *
-     * @param name Part of the name of the games returned
+     * @param name    Part of the name of the games returned
      * @param console The selected console
-     * @param esrb The selected age restriction rating
+     * @param esrb    The selected age restriction rating
      * @return The arraylist of games matching the parameters
      */
     @Override
@@ -299,13 +303,22 @@ public class ModelManager implements Model
         if (user.getUsername().length() > 30) throw new IllegalArgumentException("Username is too long!");
         User created = userDAO.create(user);
         users.addUser(created);
-
+        System.out.println(user.getName() + " signed up with username " + user.getUsername());
     }
 
     @Override
     public boolean login(User user)
     {
-        return users.login(user);
+        System.out.println(user.getUsername() + " logged in");
+        if (users.login(user))
+        {
+            System.out.println(user.getUsername() + " logged in");
+            return true;
+        } else
+        {
+            System.out.println(user.getUsername() + " failed to log in");
+            return false;
+        }
     }
 
     @Override
@@ -358,16 +371,11 @@ public class ModelManager implements Model
         refreshTransactionList();
     }
 
-    public void updateUserWithSQL(User user)
+    @Override
+    public void updateUserWithSQL(User user) throws SQLException
     {
-        try
-        {
-            userDAO.update(users.findUserInList(user));
-            refreshUserList();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        userDAO.update(users.findUserInList(user));
+        refreshUserList();
     }
 
     @Override
@@ -375,9 +383,9 @@ public class ModelManager implements Model
     {
         users.payForSubscription(user);
         updateUserWithSQL(user);
-        transactionDAO.create(new Transaction(user.getUsername(),"Payed subscription"));
+        transactionDAO.create(new Transaction(user.getUsername(), "Payed subscription"));
         refreshTransactionList();
-
+        System.out.println(user.getUsername() + " payed for their subscription");
     }
 
     @Override
@@ -422,13 +430,14 @@ public class ModelManager implements Model
         transactions.addTransaction(transaction);
     }
 
-  @Override
-  public void returnGame(Game game, User user) throws SQLException
-  {
-    games.findGameInList(game).returnGame();
-    transactionDAO.create(new  Transaction(user.getUsername(),"Returned " + game.getName()));
-    refreshTransactionList();
-    gameDAO.returnGame(game);
-  }
+    @Override
+    public void returnGame(Game game, User user) throws SQLException
+    {
+        games.findGameInList(game).returnGame();
+        transactionDAO.create(new Transaction(user.getUsername(), "Returned " + game.getName()));
+        refreshTransactionList();
+        gameDAO.returnGame(game);
+        System.out.println(user.getUsername() + " returned " + game.getName() + " on " + game.getConsole());
+    }
 
 }

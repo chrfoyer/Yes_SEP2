@@ -59,6 +59,8 @@ public interface Model
 
     void updateUserInfo(User oldUser, User newUser);
 
+    void updateUserWithSQL(User user) throws SQLException;
+
     int getBalance(User user);
 
   void modifyBalance(int amount, User user) throws SQLException;

@@ -22,6 +22,14 @@ public class Server
         Scanner input = new Scanner(System.in);
         while (running)
         {
+            System.out.println("Press [0] to close the server");
+            int given = input.nextInt();
+            if (given == 0) {
+                running = false;
+            } else {
+                System.out.println("Input not recognized. Please try again");
+            }
+            /*  DEPRECATED
             System.out.println("Please choose a command");
             System.out.println("Press [1] to add a new game");
             System.out.println("Press [2] to remove a game");
@@ -92,6 +100,8 @@ public class Server
                     break;
 
             }
+
+             */
         }
         System.out.println("See you soon!");
     }

@@ -170,12 +170,15 @@ public class UserEditViewModel
             if (!emailProperty.get().contains("@"))
                 throw new IllegalArgumentException("Email not in correct format!");
 
+            /*
             User oldUser = new User(selectedUserProperty.get().getUsername(),
                     selectedUserProperty.get().getPassword(),
                     selectedUserProperty.get().getEmail(),
                     selectedUserProperty.get().getAddress(),
                     selectedUserProperty.get().getName(),
                     selectedUserProperty.get().getBday());
+
+             */
             User newUser = selectedUserProperty.get().getUser();
             newUser = selectedUserProperty.get().getUser();
             newUser.setUsername(usernameProperty.get());
@@ -188,7 +191,7 @@ public class UserEditViewModel
             newUser.setHasSubscription(
                     selectedUserProperty.get().isHasSubscription());
 
-            model.updateUserInfo(oldUser, newUser);
+            model.updateUserWithSQL(newUser);
 
             //change finished without error
         } catch (Exception e)
@@ -295,7 +298,6 @@ public class UserEditViewModel
         } catch (Exception e)
         {
             errorLabel.set(e.getMessage());
-
         }
 
     }
