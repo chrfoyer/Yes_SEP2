@@ -20,6 +20,11 @@ public class ModelManager implements Model
     private GameList games;
     private UserList users;
 
+    /**
+     * A zero argument constructor implementing the model and creating a model manager object.
+     *
+     * @throws SQLException If database errors occur when data access objects
+     */
     public ModelManager() throws SQLException
     {
         this.games = new GameList();
@@ -33,6 +38,11 @@ public class ModelManager implements Model
         refreshTransactionList();
     }
 
+    /**
+     * Sets the games within the game list
+     *
+     * @param games The games list to set instance of the game list to
+     */
     public void setGames(GameList games)
     {
         this.games = games;
@@ -128,7 +138,7 @@ public class ModelManager implements Model
     }
 
     /**
-     * method to get a Gmae from GameList using a Game object
+     * method to get a Game from GameList using a Game object
      *
      * @param name of the game to be searched for
      * @return the selected game from the GameList
@@ -139,6 +149,12 @@ public class ModelManager implements Model
         return games.getGame(name);
     }
 
+    /**
+     * Gets the most recently added game
+     *
+     * @return The most recently added game
+     * @throws SQLException Thrown when database issues occur
+     */
     @Override
     public Game getMostRecentGame() throws SQLException
     {
@@ -162,7 +178,6 @@ public class ModelManager implements Model
      *
      * @return an ArrayList containing all non-rented Games
      */
-
     @Override
     public ArrayList<Game> getALlAvailableGames()
     {
@@ -281,7 +296,6 @@ public class ModelManager implements Model
      *
      * @param name is the name of the game
      * @return true if the gameList contains the game false if it does not
-     * @author Raedrim
      */
     @Override
     public boolean containsGame(String name)
@@ -319,6 +333,12 @@ public class ModelManager implements Model
         System.out.println(user.getName() + " signed up with username " + user.getUsername());
     }
 
+    /**
+     * Tries to log-in and returns true if it is successful
+     *
+     * @param user The user to log-in
+     * @return The boolean representing the success of the log-in
+     */
     @Override
     public boolean login(User user)
     {
@@ -334,12 +354,24 @@ public class ModelManager implements Model
         }
     }
 
+    /**
+     * Gets the user list
+     *
+     * @return The user list of the system
+     */
     @Override
     public UserList getUserList()
     {
         return users;
     }
 
+    /**
+     * Updates the info of the game
+     *
+     * @param gameOld The old version of the game
+     * @param gameNew The new version of the game after the update
+     * @throws SQLException Thrown by errors with the database
+     */
     @Override
     public void updateGameInfo(Game gameOld, Game gameNew) throws SQLException
     {
@@ -348,6 +380,11 @@ public class ModelManager implements Model
         // games.updateGameInfo(gameOld, gameNew);
     }
 
+    /**
+     * Remove the specified user
+     *
+     * @param user The user to remove
+     */
     @Override
     public void removeUser(User user)
     {
@@ -358,6 +395,10 @@ public class ModelManager implements Model
 
     /**
      * @deprecated USE SQL VERSION
+     * Updates the information of the user
+     *
+     * @param oldUser The old version of the user
+     * @param newUser The new version of the user
      */
     @Override
     public void updateUserInfo(User oldUser, User newUser)
