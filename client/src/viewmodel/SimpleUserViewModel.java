@@ -5,6 +5,11 @@ import javafx.beans.property.*;
 
 import java.time.LocalDate;
 
+/**
+ * class that holds a User object and relevant properties to display information
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class SimpleUserViewModel
 {
 
@@ -19,6 +24,11 @@ public class SimpleUserViewModel
     private final User user;
     private IntegerProperty age;
 
+    /**
+     * Constructor for new Simple user view model.
+     *
+     * @param user the user
+     */
     public SimpleUserViewModel(User user)
     {
         username = new SimpleStringProperty(user.getUsername());
@@ -34,91 +44,131 @@ public class SimpleUserViewModel
         // age = new SimpleIntegerProperty(user....)
     }
 
+    /**
+     * Gets username.
+     *
+     * @return the username
+     */
     public String getUsername()
     {
         return username.get();
     }
 
+    /**
+     * Username property string property.
+     *
+     * @return the string property
+     */
     public StringProperty usernameProperty()
     {
         return username;
     }
 
+    /**
+     * Gets password.
+     *
+     * @return the password
+     */
     public String getPassword()
     {
         return password.get();
     }
 
+    /**
+     * Is is admin boolean.
+     *
+     * @return the boolean
+     */
     public boolean isIsAdmin()
     {
         return isAdmin.get();
     }
 
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
     public String getEmail()
     {
         return email.get();
     }
 
+    /**
+     * Email property string property.
+     *
+     * @return the string property
+     */
     public StringProperty emailProperty()
     {
         return email;
     }
 
+    /**
+     * Gets address.
+     *
+     * @return the address
+     */
     public String getAddress()
     {
         return address.get();
     }
 
-    public StringProperty addressProperty()
-    {
-        return address;
-    }
-
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName()
     {
         return name.get();
     }
 
-    public StringProperty nameProperty()
-    {
-        return name;
-    }
-
+    /**
+     * Gets bday.
+     *
+     * @return the bday
+     */
     public LocalDate getBday()
     {
         return bday.get();
     }
 
+    /**
+     * Bday property object property.
+     *
+     * @return the object property
+     */
     public ObjectProperty<LocalDate> bdayProperty()
     {
         return bday;
     }
 
-    public StringProperty bdayStringProperty()
-    {
-        return new SimpleStringProperty(bday.get().toString());
-    }
-
+    /**
+     * Is has subscription boolean.
+     *
+     * @return the boolean
+     */
     public boolean isHasSubscription()
     {
         return hasSubscription.get();
     }
 
-    public BooleanProperty hasSubscriptionProperty()
-    {
-        return hasSubscription;
-    }
-
+    /**
+     * Gets age.
+     *
+     * @return the age
+     */
     public int getAge()
     {
         return age.get();
     }
 
-    public IntegerProperty ageProperty()
-    {
-        return age;
-    }
-
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
     public User getUser()
     {
         return user;

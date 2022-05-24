@@ -13,6 +13,11 @@ import mediator.RemoteModel;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * class that handles the logic for the UserList View
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class UserListViewModel
 {
     private final ObservableList<SimpleUserViewModel> list;
@@ -20,7 +25,12 @@ public class UserListViewModel
     private final StringProperty error;
     private final RemoteModel model;
 
-    public UserListViewModel(RemoteModel model) throws RemoteException
+    /**
+     * Constructor for a new User list view model.
+     *
+     * @param model the model we got from server
+     */
+    public UserListViewModel(RemoteModel model)
     {
         list = FXCollections.observableArrayList();
         selectedUser = new SimpleObjectProperty<>();
@@ -29,11 +39,17 @@ public class UserListViewModel
         reset();
     }
 
+    /**
+     * Resets the viewModel
+     */
     public void reset()
     {
         fillTable();
     }
 
+    /**
+     * Fills the table with relevant information about all the users
+     */
     public void fillTable()
     {
         try
@@ -51,32 +67,51 @@ public class UserListViewModel
         }
     }
 
+    /**
+     * Gets users.
+     *
+     * @return the users
+     */
     public ObservableList<SimpleUserViewModel> getUsers()
     {
         return list;
     }
 
-    public SimpleUserViewModel getSelectedUser()
-    {
-        return selectedUser.get();
-    }
-
+    /**
+     * Sets selected user.
+     *
+     * @param selectedUser the selected user
+     */
     public void setSelectedUser(SimpleUserViewModel selectedUser)
     {
         this.selectedUser.set(selectedUser);
     }
 
+    /**
+     * Error property string property.
+     *
+     * @return the string property
+     */
     public StringProperty errorProperty()
     {
         return error;
     }
 
+    /**
+     * Gets the Error as a string
+     *
+     * @return the error
+     */
     public String getError()
     {
         return error.get();
     }
 
-    public void removeUser() throws RemoteException
+    /**
+     * Removes the selected user.
+     *
+     */
+    public void removeUser()
     {
         try
         {

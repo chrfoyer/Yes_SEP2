@@ -9,8 +9,19 @@ import viewmodel.ViewModelFactory;
 
 import java.rmi.Naming;
 
+
+/**
+ * Class to start the GUI and connect to the server
+ *
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class MyApplication extends Application
 {
+    /**
+     * Starts the GUI and creates server connection
+     * @param primaryStage Stage
+     */
     public void start(Stage primaryStage)
     {
         try
@@ -30,10 +41,6 @@ public class MyApplication extends Application
 
             ViewModelFactory viewModelFactory = new ViewModelFactory(server);
             ViewHandler view = new ViewHandler(viewModelFactory);
-
-            //      RmiClient rmiClient = new RmiClient();
-            //      rmiClient.setUsername("BobTest");
-            //      rmiClient.send("I'm locked in");
 
             CurrentlyLoggedUser.setModel(server);
 

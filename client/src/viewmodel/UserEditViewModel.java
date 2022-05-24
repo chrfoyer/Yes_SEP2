@@ -7,10 +7,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import mediator.RemoteModel;
 
-import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * class that handles the logic for the UserEdit View
+ * @author Chris, Martin, Levente, Kruno
+ * @version 0.4 19/5/22
+ */
 public class UserEditViewModel
 {
     private final RemoteModel model;
@@ -54,7 +58,7 @@ public class UserEditViewModel
     /**
      * Getter for property
      *
-     * @return usernameProperty
+     * @return usernameProperty name property
      */
     public StringProperty getNameProperty()
     {
@@ -64,7 +68,7 @@ public class UserEditViewModel
     /**
      * Getter for property
      *
-     * @return getDobProperty
+     * @return getDobProperty dob property
      */
     public ObjectProperty<LocalDate> getDobProperty()
     {
@@ -74,7 +78,7 @@ public class UserEditViewModel
     /**
      * Getter for property
      *
-     * @return getAddressProperty
+     * @return getAddressProperty address property
      */
     public StringProperty getAddressProperty()
     {
@@ -84,7 +88,7 @@ public class UserEditViewModel
     /**
      * Getter for property
      *
-     * @return emailProperty
+     * @return emailProperty email property
      */
     public StringProperty getEmailProperty()
     {
@@ -121,16 +125,31 @@ public class UserEditViewModel
         return errorLabel;
     }
 
+    /**
+     * Gets balance label.
+     *
+     * @return the balance label
+     */
     public StringProperty getBalanceLabel()
     {
         return balanceLabel;
     }
 
+    /**
+     * Gets fine refund property.
+     *
+     * @return the fine refund property
+     */
     public StringProperty getFineRefundProperty()
     {
         return fineRefundProperty;
     }
 
+    /**
+     * Gets has subscription property.
+     *
+     * @return the has subscription property
+     */
     public StringProperty getHasSubscriptionProperty()
     {
         return hasSubscriptionProperty;
@@ -139,13 +158,16 @@ public class UserEditViewModel
     /**
      * Getter for property
      *
-     * @return passwordProperty
+     * @return passwordProperty password property
      */
     public StringProperty getPasswordProperty()
     {
         return passwordProperty;
     }
 
+    /**
+     * Edits the user with the given properties
+     */
     public void editUser()
     {
         try
@@ -170,17 +192,7 @@ public class UserEditViewModel
             if (!emailProperty.get().contains("@"))
                 throw new IllegalArgumentException("Email not in correct format!");
 
-            /*
-            User oldUser = new User(selectedUserProperty.get().getUsername(),
-                    selectedUserProperty.get().getPassword(),
-                    selectedUserProperty.get().getEmail(),
-                    selectedUserProperty.get().getAddress(),
-                    selectedUserProperty.get().getName(),
-                    selectedUserProperty.get().getBday());
-
-             */
             User newUser = selectedUserProperty.get().getUser();
-            newUser = selectedUserProperty.get().getUser();
             newUser.setUsername(usernameProperty.get());
             newUser.setAddress(addressProperty.get());
             newUser.setName(nameProperty.get());
@@ -200,20 +212,14 @@ public class UserEditViewModel
         }
     }
 
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
     public SimpleUserViewModel getUser()
     {
         return selectedUserProperty.get();
-    }
-
-    public void removeUser(User user) throws RemoteException
-    {
-        try
-        {
-            model.removeUser(user);
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -260,6 +266,11 @@ public class UserEditViewModel
         }
     }
 
+    /**
+     * Sets selected user property.
+     *
+     * @param simp the simp
+     */
     public void setSelectedUserProperty(SimpleUserViewModel simp)
     {
         this.selectedUserProperty.set(simp);
