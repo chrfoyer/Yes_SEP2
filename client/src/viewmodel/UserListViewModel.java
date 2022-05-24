@@ -119,6 +119,7 @@ public class UserListViewModel
             {
                 throw new IllegalArgumentException("Congratulations you played yourself");
             }
+
             model.removeUser(selectedUser.get().getUser());
         } catch (Exception ex)
         {
