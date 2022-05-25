@@ -99,33 +99,31 @@ public class UserList implements Serializable
 
     /**
      * User login with encryption
+     *
      * @param username String username
      * @param password String password
      * @return boolean depending on if login was successful
      */
-    public boolean login(String username, String password)
+    public boolean login(String username, String password) throws Exception
     {
         User foundFromList = null;
         for (User user : users
         )
         {
-            if (user.getUsername().equals(username)) foundFromList = user;
+            if (user.getUsername().equals(username))
+            {
+                foundFromList = user;
+                break;
+            }
         }
-
 
         if (foundFromList == null) throw new IllegalArgumentException("User does not exist on server");
+        String calculatedHash = "";
 
-        try
-        {
-            String calculatedHash = PasswordEncryptor.getEncryptedPassword(password, foundFromList.getSalt());
-            System.out.println(calculatedHash);
-            if (calculatedHash.equals(foundFromList.getPassword())) return true;
-            throw new IllegalArgumentException("Password does not match stored credentials");
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return false;
+        calculatedHash = PasswordEncryptor.getEncryptedPassword(password, foundFromList.getSalt());
+        System.out.println(calculatedHash);
+        if (calculatedHash.equals(foundFromList.getPassword())) return true;
+        throw new IllegalArgumentException("Password does not match stored credentials");
     }
 
     /**
@@ -193,8 +191,7 @@ public class UserList implements Serializable
      */
     public void modifyBalance(int ammount, User user)
     {
-        User temp = findUserInList(user);
-        temp.modifyBalance(ammount);
+        user.modifyBalance(ammount);
     }
 
     /**
@@ -217,15 +214,13 @@ public class UserList implements Serializable
      */
     public void payForSubscription(User user)
     {
-        User temp = findUserInList(user);
-
-        if (temp.getBalance() < 0)
+        if (user.getBalance() < 0)
             throw new IllegalStateException(
                     "Users with negative balance cant pay for a subscription");
-        if (temp.getBalance() < 30)
+        if (user.getBalance() < 30)
             throw new IllegalArgumentException(
                     "Less than 30 money, add money to pay for subscription!");
-        temp.modifyBalance(-30);
-        temp.setHasSubscription(true);
+        user.modifyBalance(-30);
+        user.setHasSubscription(true);
     }
 }

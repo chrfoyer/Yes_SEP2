@@ -191,8 +191,7 @@ public class UserList implements Serializable
      */
     public void modifyBalance(int ammount, User user)
     {
-        User temp = findUserInList(user);
-        temp.modifyBalance(ammount);
+        user.modifyBalance(ammount);
     }
 
     /**
@@ -215,15 +214,13 @@ public class UserList implements Serializable
      */
     public void payForSubscription(User user)
     {
-        User temp = findUserInList(user);
-
-        if (temp.getBalance() < 0)
+        if (user.getBalance() < 0)
             throw new IllegalStateException(
                     "Users with negative balance cant pay for a subscription");
-        if (temp.getBalance() < 30)
+        if (user.getBalance() < 30)
             throw new IllegalArgumentException(
                     "Less than 30 money, add money to pay for subscription!");
-        temp.modifyBalance(-30);
-        temp.setHasSubscription(true);
+        user.modifyBalance(-30);
+        user.setHasSubscription(true);
     }
 }
