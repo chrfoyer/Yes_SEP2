@@ -107,7 +107,7 @@
                                         <Font size="17.5"/>
                                     </font>
                                 </Label>
-                                <PasswordField fx:id="confirmPassword"/>
+                                <PasswordField fx:id="confirmPassword" onAction="#onEnter"/>
                             </children>
                         </HBox>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="64.0"

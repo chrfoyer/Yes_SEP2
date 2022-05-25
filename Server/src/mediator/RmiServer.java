@@ -162,14 +162,15 @@ public class RmiServer implements RemoteModel
     /**
      * Logs the user in and returns a boolean representing whether the log-in was successful
      *
-     * @param user The user to log-in
+     * @param username The user to log-in
+     * @param password The password we got
      * @return A boolean representing whether the log-in was successful
      * @throws RemoteException Thrown when issues occur with the remote model
      */
     @Override
-    public boolean login(User user) throws RemoteException
+    public boolean login(String username, String password) throws RemoteException
     {
-        return model.login(user);
+        return model.login(username, password);
     }
 
     /**
@@ -387,9 +388,9 @@ public class RmiServer implements RemoteModel
     }
 
     @Override
-    public void extendGame(Game game,User user) throws RemoteException, SQLException
+    public void extendGame(Game game, User user) throws RemoteException, SQLException
     {
-        model.extendGame(game,user);
+        model.extendGame(game, user);
     }
 
     /**

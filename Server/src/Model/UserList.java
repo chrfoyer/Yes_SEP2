@@ -1,5 +1,7 @@
 package Model;
 
+import mediator.PasswordEncryptor;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -96,16 +98,34 @@ public class UserList implements Serializable
     }
 
     /**
-     * @param given The user to login
-     * @return A boolean representing if the login is successful
-     * @throws IllegalArgumentException thrown if the password does not match
+     * User login with encryption
+     * @param username String username
+     * @param password String password
+     * @return boolean depending on if login was successful
      */
-    public boolean login(User given)
+    public boolean login(String username, String password)
     {
-        User foundFromList = findUserInList(given);
+        User foundFromList = null;
+        for (User user : users
+        )
+        {
+            if (user.getUsername().equals(username)) foundFromList = user;
+        }
+
+
         if (foundFromList == null) throw new IllegalArgumentException("User does not exist on server");
-        if (foundFromList.getPassword().equals(given.getPassword())) return true;
-        throw new IllegalArgumentException("Password does not match stored credentials");
+
+        try
+        {
+            String calculatedHash = PasswordEncryptor.getEncryptedPassword(password, foundFromList.getSalt());
+            System.out.println(calculatedHash);
+            if (calculatedHash.equals(foundFromList.getPassword())) return true;
+            throw new IllegalArgumentException("Password does not match stored credentials");
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -150,7 +170,8 @@ public class UserList implements Serializable
             {
                 user.setName(newUser.getName());
                 user.setUsername(newUser.getUsername());
-                user.setPassword(newUser.getPassword());
+                // TODO: 2022. 05. 25. make this work lol 
+                user.changePassword(newUser.getPassword());
                 user.setEmail(newUser.getEmail());
                 user.setBday(newUser.getBday());
                 user.setAdmin(newUser.isAdmin());

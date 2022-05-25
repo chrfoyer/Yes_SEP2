@@ -334,22 +334,22 @@ public class ModelManager implements Model
     }
 
     /**
-     * Tries to log-in and returns true if it is successful
-     *
-     * @param user The user to log-in
-     * @return The boolean representing the success of the log-in
+     * Tries to log in returns true if successfully
+     * @param username String username
+     * @param password String password
+     * @return boolean depending on success
      */
     @Override
-    public boolean login(User user)
+    public boolean login(String username,String password)
     {
-        System.out.println(user.getUsername() + " logged in");
-        if (users.login(user))
+        System.out.println(username + " logged in");
+        if (users.login(username,password))
         {
-            System.out.println(user.getUsername() + " logged in");
+            System.out.println(username + " logged in");
             return true;
         } else
         {
-            System.out.println(user.getUsername() + " failed to log in");
+            System.out.println(username + " failed to log in");
             return false;
         }
     }

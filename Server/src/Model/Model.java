@@ -47,7 +47,7 @@ public interface Model
 
     void signup(User user) throws SQLException;
 
-    boolean login(User user);
+    boolean login(String username,String password);
 
     UserList getUserList();
 

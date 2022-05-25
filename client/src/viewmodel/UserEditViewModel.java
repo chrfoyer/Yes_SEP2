@@ -197,7 +197,7 @@ public class UserEditViewModel
             newUser.setAddress(addressProperty.get());
             newUser.setName(nameProperty.get());
             newUser.setBday(dobProperty.get());
-            newUser.setPassword(passwordProperty.get());
+            newUser.changePassword(passwordProperty.get());
             newUser.setAdmin(selectedUserProperty.get().isIsAdmin());
             newUser.setEmail(emailProperty.get());
             newUser.setHasSubscription(

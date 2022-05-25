@@ -31,7 +31,7 @@ public interface RemoteModel extends Remote
 
     void signup(User user) throws RemoteException, SQLException;
 
-    boolean login(User user) throws RemoteException;
+    boolean login(String username,String password) throws RemoteException;
 
     UserList getUserList() throws RemoteException;
 
