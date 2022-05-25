@@ -79,7 +79,7 @@ CREATE TABLE transactions
     action     varchar(50) NOT NULL,
     date     date,
 
-    FOREIGN KEY (username) REFERENCES users (username)
+    FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
 );
 
 CREATE TABLE rentals
@@ -94,8 +94,8 @@ CREATE TABLE rentals
     active                boolean     NOT NULL /* TODO extract value using trigger */,
     overdue               boolean /* TODO extract from daysLeft */,
 
-    FOREIGN KEY (game_id) REFERENCES games (id),
-    FOREIGN KEY (username) REFERENCES users (username)
+    FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE,
+    FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
 );
 
 INSERT INTO users

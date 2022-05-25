@@ -29,6 +29,8 @@ public interface GameDAO
 
     void returnGame(Game game) throws SQLException;
 
+    void extend(Game game) throws SQLException;
+
     void update(Game game) throws SQLException;
 
     void delete(Game game) throws SQLException;

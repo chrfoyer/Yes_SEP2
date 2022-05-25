@@ -246,7 +246,7 @@ public class GameImpl implements GameDAO
         {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(
-                    "select * from rentals WHERE game_id=" + game.getId() + ";");
+                    "SELECT * FROM rentals WHERE game_id=" + game.getId() + ";");
             while (rs.next())
             {
                 game.setDaysLeft(rs.getInt("days_left"));
@@ -355,6 +355,19 @@ public class GameImpl implements GameDAO
             statement.setInt(2, game.getId());
             statement.executeUpdate();
             statement.close();
+        }
+    }
+
+    @Override public void extend(Game game) throws SQLException {
+        try (Connection connection = getConnection()) {
+            PreparedStatement statement1 = connection.prepareStatement(
+                    "SELECT rental_period_allowed " +
+                            "FROM rentals " +
+                            "WHERE game_id = ? " +
+                            "AND active = true;"
+            );
+            statement1.setInt(1, game.getId());
+            ResultSet rs = statement1.executeQuery();
         }
     }
 
