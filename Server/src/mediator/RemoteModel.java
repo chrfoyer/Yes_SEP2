@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Interface used to establish Client - Server connection using RMI
  *
  * @author Chris, Martin, Levente, Kruno
- * @version 0.7 5/23/22
+ * @version 0.7 23/5/22
  */
 public interface RemoteModel extends Remote
 {
@@ -64,5 +64,7 @@ public interface RemoteModel extends Remote
     float getReview(Game game) throws RemoteException;
 
     void returnGame(Game game, User user) throws RemoteException, SQLException;
+
+    void extendGame(Game game) throws RemoteException, SQLException;
 
 }

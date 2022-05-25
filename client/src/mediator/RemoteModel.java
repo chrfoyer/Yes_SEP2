@@ -41,7 +41,7 @@ public interface RemoteModel extends Remote
 
     void removeGame(Game game) throws RemoteException, SQLException;
 
-    void removeUser(User user) throws RemoteException;
+    void removeUser(User user) throws RemoteException, SQLException;
 
     void updateUserInfo(User oldUser, User newUser) throws RemoteException;
 
@@ -64,5 +64,7 @@ public interface RemoteModel extends Remote
     float getReview(Game game) throws RemoteException;
 
     void returnGame(Game game, User user) throws RemoteException, SQLException;
+
+    void extendGame(Game game) throws RemoteException, SQLException;
 
 }

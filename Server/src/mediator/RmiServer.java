@@ -386,6 +386,12 @@ public class RmiServer implements RemoteModel
         model.returnGame(game, user);
     }
 
+    @Override
+    public void extendGame(Game game) throws RemoteException, SQLException
+    {
+        model.extendGame(game);
+    }
+
     /**
      * Gets the balance on the user account.
      *

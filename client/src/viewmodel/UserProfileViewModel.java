@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -146,7 +147,14 @@ public class UserProfileViewModel
     {
         if (game != null)
         {
-            game.getTimeProperty().set(game.getTimeProperty().get() + 5);
+            try
+            {
+                model.extendGame(game.getGame());
+                reset();
+            } catch (Exception e)
+            {
+                errorLabel.set(e.getMessage());
+            }
 
         } else
         {

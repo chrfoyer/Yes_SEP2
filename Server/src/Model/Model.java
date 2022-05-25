@@ -76,4 +76,6 @@ public interface Model
     float getReview(Game game);
 
     ArrayList<Game> getGamesRentedByUser(User user) throws SQLException;
+
+    void extendGame(Game game) throws SQLException;
 }

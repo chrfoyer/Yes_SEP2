@@ -536,6 +536,14 @@ public class ModelManager implements Model
         return gameDAO.getRentedGamesByUser(user);
     }
 
+    @Override
+    public void extendGame(Game game) throws SQLException
+    {
+       gameDAO.extend(game);
+       transactionDAO.create(new Transaction("user", "extend"));
+       refreshGameList();
+    }
+
     /**
      * Gets balance for user
      *
