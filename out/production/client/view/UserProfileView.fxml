@@ -77,18 +77,23 @@
                             <children>
                                 <VBox prefHeight="228.0" prefWidth="420.0">
                                     <children>
-                                        <ScrollPane prefHeight="229.0" prefWidth="266.0">
-                                            <content>
-                                                <TableView fx:id="table" prefHeight="227.0" prefWidth="402.0">
+                                        <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                                   minWidth="-Infinity" prefHeight="227.0" prefWidth="419.0">
+                                            <children>
+                                                <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity"
+                                                           minHeight="-Infinity" minWidth="-Infinity" prefHeight="227.0"
+                                                           prefWidth="419.0">
                                                     <columns>
-                                                        <TableColumn fx:id="nameColumn" prefWidth="211.2000122666359"
-                                                                     text="Game"/>
-                                                        <TableColumn fx:id="timeColumn" prefWidth="133.5999755859375"
+                                                        <TableColumn fx:id="nameColumn" prefWidth="274.0" text="Game"/>
+                                                        <TableColumn fx:id="timeColumn" prefWidth="143.0"
                                                                      text="Time left"/>
                                                     </columns>
+                                                    <columnResizePolicy>
+                                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                                    </columnResizePolicy>
                                                 </TableView>
-                                            </content>
-                                        </ScrollPane>
+                                            </children>
+                                        </StackPane>
                                     </children>
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="228.0" prefWidth="169.0" spacing="40.0">
