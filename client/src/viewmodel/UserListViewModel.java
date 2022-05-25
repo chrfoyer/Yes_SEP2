@@ -12,6 +12,7 @@ import mediator.RemoteModel;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.function.ToDoubleBiFunction;
 
 /**
  * class that handles the logic for the UserList View
@@ -45,6 +46,8 @@ public class UserListViewModel
     public void reset()
     {
         fillTable();
+      //  error.set("");
+        //// TODO: 24/05/2022 how to reset error label? when i reset it in method then the error is never shown when i delete a user who has a active rental.
     }
 
     /**
@@ -119,6 +122,7 @@ public class UserListViewModel
             {
                 throw new IllegalArgumentException("Congratulations you played yourself");
             }
+
             model.removeUser(selectedUser.get().getUser());
         } catch (Exception ex)
         {

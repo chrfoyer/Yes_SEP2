@@ -386,9 +386,15 @@ public class ModelManager implements Model
      * @param user The user to remove
      */
     @Override
-    public void removeUser(User user)
+    public void removeUser(User user) throws SQLException
     {
-        users.removeUser(user);
+        if (!userDAO.hasRental(user)){
+            userDAO.delete(user);
+            refreshUserList();
+        } else {
+            throw new IllegalArgumentException("User can not be deleted because they have a rental!");
+        }
+
     }
 
     //todo remove

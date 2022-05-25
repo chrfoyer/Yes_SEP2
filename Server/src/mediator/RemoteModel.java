@@ -41,7 +41,7 @@ public interface RemoteModel extends Remote
 
     void removeGame(Game game) throws RemoteException, SQLException;
 
-    void removeUser(User user) throws RemoteException;
+    void removeUser(User user) throws RemoteException, SQLException;
 
     void updateUserInfo(User oldUser, User newUser) throws RemoteException;
 

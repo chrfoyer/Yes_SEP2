@@ -247,7 +247,7 @@ public class RmiServer implements RemoteModel
      * @throws RemoteException Thrown when an issue with the remote model occurs
      */
     @Override
-    public void removeUser(User user) throws RemoteException
+    public void removeUser(User user) throws RemoteException, SQLException
     {
         model.removeUser(user);
     }

@@ -235,4 +235,29 @@ public class UserImpl implements UserDAO
             statement.close();
         }
     }
+
+    @Override
+    public boolean hasRental(User user) throws SQLException
+    {
+        try (Connection connection = getConnection())
+        {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT COUNT(*) " + "FROM rentals " + "Where username = '" + user.getUsername() + "';");
+
+            while (rs.next())
+            {
+                //get count of rentals
+                int count = rs.getInt("count");
+                if (count != 0)
+                {
+                    return true;
+                }
+            }
+        }
+            return false;
+
+
+
+
+        }
 }

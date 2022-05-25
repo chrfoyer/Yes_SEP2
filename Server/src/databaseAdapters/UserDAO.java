@@ -24,4 +24,6 @@ public interface UserDAO
     void update(User user) throws SQLException;
 
     void delete(User user) throws SQLException;
+
+    boolean hasRental(User user) throws SQLException;
 }

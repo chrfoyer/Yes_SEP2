@@ -55,7 +55,7 @@ public interface Model
 
     void addTransaction(Transaction transaction);
 
-    void removeUser(User user);
+    void removeUser(User user) throws SQLException;
 
     void updateUserInfo(User oldUser, User newUser);
 
