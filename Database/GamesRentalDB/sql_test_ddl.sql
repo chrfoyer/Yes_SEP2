@@ -9,16 +9,16 @@ DROP TABLE IF EXISTS games CASCADE;
 CREATE TABLE IF NOT EXISTS games
 (
     id           SERIAL PRIMARY KEY,
-    name         varchar(60) NOT NULL,
-    producer     varchar(40) NOT NULL,
-    console      varchar(15) NOT NULL,
-    rented       boolean     NOT NULL,
-    days_left    int         NOT NULL,
-    review_count int         NOT NULL,
-    review_sum   int         NOT NULL,
-    review_avg   float       NOT NULL,
+    name         VARCHAR(60) NOT NULL,
+    producer     VARCHAR(40) NOT NULL,
+    console      VARCHAR(15) NOT NULL,
+    rented       BOOLEAN     NOT NULL,
+    days_left    INT         NOT NULL,
+    review_count INT         NOT NULL,
+    review_sum   INT         NOT NULL,
+    review_avg   FLOAT       NOT NULL,
     esrb         VARCHAR(5)  NOT NULL,
-    date_added   date        NOT NULL
+    date_added   DATE        NOT NULL
 );
 
 INSERT INTO games
@@ -26,32 +26,33 @@ INSERT INTO games
 VALUES ('Minecraft', 'Mojang', 'PC', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE),
        ('Rooster and Gall', 'Duty Toot', 'Xbox', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE),
        ('Call of Duty', 'Activision', 'Xbox', FALSE, 0, 0, 0, 3.0, 'T', CURRENT_DATE),
-    ('Call of Duty', 'Activision', 'PC', FALSE, 0, 0, 0, 3.0, 'T', CURRENT_DATE),
-        ('Call of Duty', 'Activision', 'PlayStation', FALSE, 0, 0, 0, 3.0, 'T', CURRENT_DATE),
-        ('DOOM', 'id Software','PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
-       ('Apex Legends', 'Respawn Entertainment','PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
-       ('Apex Legends', 'Respawn Entertainment','Xbox', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
-       ('Apex Legends', 'Respawn Entertainment','PlayStation', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
-       ('Valheim','Iron Gate AB', 'PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE);
+       ('Call of Duty', 'Activision', 'PC', FALSE, 0, 0, 0, 3.0, 'T', CURRENT_DATE),
+       ('Call of Duty', 'Activision', 'PlayStation', FALSE, 0, 0, 0, 3.0, 'T', CURRENT_DATE),
+       ('DOOM', 'id Software', 'PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
+       ('Apex Legends', 'Respawn Entertainment', 'PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
+       ('Apex Legends', 'Respawn Entertainment', 'Xbox', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
+       ('Apex Legends', 'Respawn Entertainment', 'PlayStation', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
+       ('Valheim', 'Iron Gate AB', 'PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE);
 
-CREATE DOMAIN email AS varchar(40) CHECK (VALUE LIKE '%@%');
-CREATE DOMAIN passwordDom AS varchar(30); /* Here in case we want to change the rules */
-CREATE DOMAIN bDay AS date CHECK (EXTRACT(YEAR FROM AGE(VALUE)) >= 13);
+CREATE DOMAIN email AS VARCHAR(40) CHECK (VALUE LIKE '%@%');
+CREATE DOMAIN passwordDom AS VARCHAR(256); /* Here in case we want to change the rules */
+CREATE DOMAIN bDay AS DATE CHECK (EXTRACT(YEAR FROM AGE(VALUE)) >= 13);
 
 DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE IF NOT EXISTS users
 (
-    username         varchar(30) PRIMARY KEY,
+    username         VARCHAR(30) PRIMARY KEY,
     password         passwordDom NOT NULL,
-    is_admin         boolean,
+    is_admin         BOOLEAN,
     email            email,
-    address          varchar(100),
-    name             varchar(30),
+    address          VARCHAR(100),
+    name             VARCHAR(30),
     bDay             bDay,
-    has_subscription boolean,
-    balance          int,
-    age              int
+    has_subscription BOOLEAN,
+    balance          INT,
+    age              INT,
+    salt             VARCHAR
 );
 
 /*  -- DEPRECATED --
@@ -71,13 +72,13 @@ CREATE TABLE IF NOT EXISTS reviews
 
 
  */
- DROP TABLE IF EXISTS transactions CASCADE ;
+DROP TABLE IF EXISTS transactions CASCADE;
 CREATE TABLE transactions
 (
     id       SERIAL PRIMARY KEY,
-    username varchar(30) NOT NULL,
-    action     varchar(50) NOT NULL,
-    date     date,
+    username VARCHAR(30) NOT NULL,
+    action   VARCHAR(50) NOT NULL,
+    date     DATE,
 
     FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
 );
@@ -85,14 +86,14 @@ CREATE TABLE transactions
 CREATE TABLE rentals
 (
     id                    SERIAL PRIMARY KEY,
-    game_id               int         NOT NULL,
-    username              varchar(30) NOT NULL,
-    date_rented           date        NOT NULL,
-    date_returned         date,
-    rental_length_allowed int         NOT NULL,
-    days_left             int,
-    active                boolean     NOT NULL,
-    overdue               boolean /* TODO extract from daysLeft */,
+    game_id               INT         NOT NULL,
+    username              VARCHAR(30) NOT NULL,
+    date_rented           DATE        NOT NULL,
+    date_returned         DATE,
+    rental_length_allowed INT         NOT NULL,
+    days_left             INT,
+    active                BOOLEAN     NOT NULL,
+    overdue               BOOLEAN /* TODO extract from daysLeft */,
 
     FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE,
     FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
@@ -100,8 +101,7 @@ CREATE TABLE rentals
 
 INSERT INTO users
     (username, password)
-VALUES ('admin', 'admin'),
-       ('bob', 'test');
+VALUES ('bob', 'test');
 
 UPDATE users
 SET is_admin= TRUE
@@ -116,7 +116,7 @@ DROP TRIGGER IF EXISTS days_refresh
 
 INSERT INTO transactions
     (username, action, date)
-VALUES ('bob','fucking died', current_date);
+VALUES ('bob', 'fucking died', CURRENT_DATE);
 
 SELECT *
 FROM transactions;
