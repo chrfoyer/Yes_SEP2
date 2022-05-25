@@ -2,7 +2,6 @@ package Model;
 
 import databaseAdapters.*;
 
-import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -34,9 +33,17 @@ public class ModelManager implements Model
         gameDAO = GameImpl.getInstance();
         userDAO = UserImpl.getInstance();
         transactionDAO = TransactionImpl.getInstance();
+
+
+        //we set up the Administrator account when we run for the first time
+        User user = new User("admin", "admin");
+        if (users.size() < 1)
+            userDAO.create(user);
+
         refreshGameList();
         refreshUserList();
         refreshTransactionList();
+
     }
 
     /**
@@ -336,15 +343,16 @@ public class ModelManager implements Model
 
     /**
      * Tries to log in returns true if successfully
+     *
      * @param username String username
      * @param password String password
      * @return boolean depending on success
      */
     @Override
-    public boolean login(String username,String password) throws Exception
+    public boolean login(String username, String password) throws Exception
     {
         System.out.println(username + " logged in");
-        if (users.login(username,password))
+        if (users.login(username, password))
         {
             System.out.println(username + " logged in");
             return true;
@@ -389,10 +397,12 @@ public class ModelManager implements Model
     @Override
     public void removeUser(User user) throws SQLException
     {
-        if (!userDAO.hasRental(user)){
+        if (!userDAO.hasRental(user))
+        {
             userDAO.delete(user);
             refreshUserList();
-        } else {
+        } else
+        {
             throw new IllegalArgumentException("User can not be deleted because they have a rental!");
         }
 
@@ -401,11 +411,10 @@ public class ModelManager implements Model
     //todo remove
 
     /**
-     * @deprecated USE SQL VERSION
-     * Updates the information of the user
-     *
      * @param oldUser The old version of the user
      * @param newUser The new version of the user
+     * @deprecated USE SQL VERSION
+     * Updates the information of the user
      */
     @Override
     public void updateUserInfo(User oldUser, User newUser)
@@ -539,16 +548,17 @@ public class ModelManager implements Model
 
     /**
      * Extends the selected game
+     *
      * @param game Game selected
      * @param user User that makes the extension on allowed time
      * @throws SQLException in case of database errors
      */
     @Override
-    public void extendGame(Game game,User user) throws SQLException
+    public void extendGame(Game game, User user) throws SQLException
     {
-       gameDAO.extend(game);
-       transactionDAO.create(new Transaction(user.getUsername(), "extend"));
-       refreshGameList();
+        gameDAO.extend(game);
+        transactionDAO.create(new Transaction(user.getUsername(), "extend"));
+        refreshGameList();
     }
 
     /**
@@ -591,9 +601,9 @@ public class ModelManager implements Model
         System.out.println(user.getUsername() + " returned " + game.getName() + " on " + game.getConsole());
     }
 
-    public void changePassword(User user,String newPassword) throws SQLException
+    public void changePassword(User user, String newPassword) throws SQLException
     {
-        User storedOnServer=users.findUserInList(user);
+        User storedOnServer = users.findUserInList(user);
         storedOnServer.changePassword(newPassword);
         userDAO.update(storedOnServer);
         refreshUserList();

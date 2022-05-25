@@ -110,6 +110,7 @@ public class UserList implements Serializable
         )
         {
             if (user.getUsername().equals(username)) foundFromList = user;
+            break;
         }
 
 

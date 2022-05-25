@@ -68,11 +68,18 @@ public class User implements Serializable
     public User(String username, String password)
     {
         this.username = username;
-        this.password = password;
+        salt=PasswordEncryptor.getNewSalt();
+        try
+        {
+            this.password = PasswordEncryptor.getEncryptedPassword(password,salt);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         this.email = null;
         this.address = null;
         this.name = null;
-        this.bday = null;
+        this.bday = LocalDate.of(1990, 1, 1);
         this.age = 21;
         hasSubscription = false;
         if (username.equals("admin") && password.equals("admin"))

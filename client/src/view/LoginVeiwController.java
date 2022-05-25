@@ -65,8 +65,6 @@ public class LoginVeiwController extends ViewController
                     getViewHandler().openView("AdminView.fxml");
                     getViewModelFactory().getAdminViewModel().reset();
                 }
-
-
             } else
             {
                 getViewHandler().openView("UserProfileView.fxml");
