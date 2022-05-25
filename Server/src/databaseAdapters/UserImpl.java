@@ -206,7 +206,7 @@ public class UserImpl implements UserDAO
             }
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE users " + "SET password = ?, " + "email = ?, " + "name = ?, "
-                            + "bday = ?, " + "has_subscription = ?, " + "balance = ? "
+                            + "bday = ?, " + "has_subscription = ?, " + "balance = ?, "+"salt = ?"
                             + "WHERE username = ?;");
             statement.setString(1, user.getPassword());
             statement.setString(2, user.getEmail());
@@ -214,7 +214,9 @@ public class UserImpl implements UserDAO
             statement.setDate(4, date);
             statement.setBoolean(5, user.hasSubscription());
             statement.setInt(6, user.getBalance());
-            statement.setString(7, user.getUsername());
+            statement.setString(7, user.getSalt());
+
+            statement.setString(8, user.getUsername());
 
             statement.executeUpdate();
             statement.close();

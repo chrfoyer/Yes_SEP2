@@ -1,7 +1,10 @@
 package view;
 
-import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import mediator.CurrentlyLoggedUser;
 import viewmodel.SimpleGameViewModel;
 import viewmodel.UserProfileViewModel;
@@ -183,5 +186,37 @@ public class UserProfileController extends ViewController
                         + "\nChristian \t" + "315200@viauc.dk"
                         + "\nMartin \t" + "315201@viauc.dk");
         Optional<ButtonType> option = alert.showAndWait();
+    }
+
+    public void changePassword()
+    {
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Set new Password");
+        dialog.setHeaderText("Use this pop-up to change your password!");
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        PasswordField pwd = new PasswordField();
+        HBox content = new HBox();
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setSpacing(10);
+        content.getChildren().addAll(new Label("Enter your password in the following field:"), pwd);
+        dialog.getDialogPane().setContent(content);
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == ButtonType.OK) {
+                return pwd.getText();
+            }
+            return null;
+        });
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(s -> viewModel.changePassword(s));
+
+
+        Alert alert=new Alert(Alert.AlertType.INFORMATION,"You have changed your password!\n" +
+                "Please log in again using your new credentials!");
+        alert.showAndWait();
+        getViewModelFactory().getLoginViewModel().reset();
+        CurrentlyLoggedUser.logout();
+        getViewHandler().openView("LoginView.fxml");
     }
 }

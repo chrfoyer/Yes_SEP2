@@ -103,7 +103,7 @@ public class UserList implements Serializable
      * @param password String password
      * @return boolean depending on if login was successful
      */
-    public boolean login(String username, String password)
+    public boolean login(String username, String password) throws Exception
     {
         User foundFromList = null;
         for (User user : users
@@ -114,18 +114,12 @@ public class UserList implements Serializable
 
 
         if (foundFromList == null) throw new IllegalArgumentException("User does not exist on server");
+        String calculatedHash="";
 
-        try
-        {
-            String calculatedHash = PasswordEncryptor.getEncryptedPassword(password, foundFromList.getSalt());
+            calculatedHash = PasswordEncryptor.getEncryptedPassword(password, foundFromList.getSalt());
             System.out.println(calculatedHash);
             if (calculatedHash.equals(foundFromList.getPassword())) return true;
             throw new IllegalArgumentException("Password does not match stored credentials");
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return false;
     }
 
     /**

@@ -2,6 +2,7 @@ package Model;
 
 import databaseAdapters.*;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -340,7 +341,7 @@ public class ModelManager implements Model
      * @return boolean depending on success
      */
     @Override
-    public boolean login(String username,String password)
+    public boolean login(String username,String password) throws Exception
     {
         System.out.println(username + " logged in");
         if (users.login(username,password))
@@ -588,6 +589,14 @@ public class ModelManager implements Model
         refreshTransactionList();
         gameDAO.returnGame(game);
         System.out.println(user.getUsername() + " returned " + game.getName() + " on " + game.getConsole());
+    }
+
+    public void changePassword(User user,String newPassword) throws SQLException
+    {
+        User storedOnServer=users.findUserInList(user);
+        storedOnServer.changePassword(newPassword);
+        userDAO.update(storedOnServer);
+        refreshUserList();
     }
 
 }

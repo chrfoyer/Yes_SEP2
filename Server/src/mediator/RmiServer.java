@@ -168,7 +168,7 @@ public class RmiServer implements RemoteModel
      * @throws RemoteException Thrown when issues occur with the remote model
      */
     @Override
-    public boolean login(String username, String password) throws RemoteException
+    public boolean login(String username, String password) throws Exception
     {
         return model.login(username, password);
     }
@@ -391,6 +391,12 @@ public class RmiServer implements RemoteModel
     public void extendGame(Game game, User user) throws RemoteException, SQLException
     {
         model.extendGame(game, user);
+    }
+
+    @Override
+    public void changePassword(User user, String newPassword) throws RemoteException,SQLException
+    {
+        model.changePassword(user, newPassword);
     }
 
     /**
