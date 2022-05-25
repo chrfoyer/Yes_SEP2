@@ -37,11 +37,15 @@ public class ModelManager implements Model
 
         //we set up the Administrator account when we run for the first time
         User user = new User("admin", "admin");
+        // TODO: 2022. 05. 25. When we delete bob from ddl we have to decrease the initial size
+        refreshUserList();
         if (users.size() < 1)
+        {
             userDAO.create(user);
+            refreshUserList();
+        }
 
         refreshGameList();
-        refreshUserList();
         refreshTransactionList();
 
     }
@@ -457,7 +461,9 @@ public class ModelManager implements Model
     @Override
     public void updateUserWithSQL(User user) throws SQLException
     {
-        userDAO.update(users.findUserInList(user));
+        //todo is this needed
+        //users.findUserInList()
+        userDAO.update(user);
         refreshUserList();
     }
 

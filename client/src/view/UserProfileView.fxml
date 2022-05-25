@@ -57,12 +57,12 @@
                                             <children>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="104.0" text="Change Password" onAction="#changePassword" textAlignment="CENTER" wrapText="true" />
+                                          <Button mnemonicParsing="false" onAction="#changePassword" prefHeight="46.0" prefWidth="104.0" text="Change Password" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                                      <Button mnemonicParsing="false" onAction="#contactAdmin" text="Contact&#10;" textAlignment="CENTER">
+                                                      <Button mnemonicParsing="false" onAction="#contactAdmin" prefHeight="44.0" prefWidth="88.0" text="Contact&#10;" textAlignment="CENTER">
                                                           <font>
                                                               <Font size="14.0" />
                                                           </font>
@@ -71,7 +71,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                                        <Button mnemonicParsing="false" onAction="#payment" text="Payment">
+                                                        <Button mnemonicParsing="false" onAction="#payment" prefHeight="45.0" prefWidth="97.0" text="Payment">
                                                             <font>
                                                                 <Font size="14.0" />
                                                             </font>

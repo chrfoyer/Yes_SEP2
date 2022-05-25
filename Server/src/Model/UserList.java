@@ -99,6 +99,7 @@ public class UserList implements Serializable
 
     /**
      * User login with encryption
+     *
      * @param username String username
      * @param password String password
      * @return boolean depending on if login was successful
@@ -109,18 +110,20 @@ public class UserList implements Serializable
         for (User user : users
         )
         {
-            if (user.getUsername().equals(username)) foundFromList = user;
-            break;
+            if (user.getUsername().equals(username))
+            {
+                foundFromList = user;
+                break;
+            }
         }
 
-
         if (foundFromList == null) throw new IllegalArgumentException("User does not exist on server");
-        String calculatedHash="";
+        String calculatedHash = "";
 
-            calculatedHash = PasswordEncryptor.getEncryptedPassword(password, foundFromList.getSalt());
-            System.out.println(calculatedHash);
-            if (calculatedHash.equals(foundFromList.getPassword())) return true;
-            throw new IllegalArgumentException("Password does not match stored credentials");
+        calculatedHash = PasswordEncryptor.getEncryptedPassword(password, foundFromList.getSalt());
+        System.out.println(calculatedHash);
+        if (calculatedHash.equals(foundFromList.getPassword())) return true;
+        throw new IllegalArgumentException("Password does not match stored credentials");
     }
 
     /**
