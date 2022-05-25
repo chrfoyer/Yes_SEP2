@@ -5,6 +5,7 @@ import Model.User;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.function.ToDoubleBiFunction;
 
 /**
  * Class that implements the CRUD functionality of the UserDAO
@@ -229,35 +230,56 @@ public class UserImpl implements UserDAO
         try (Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement(
-                    "DELETE FROM games " + "WHERE username = ? ");
+                    "DELETE FROM users " + "WHERE username = ?");
             statement.setString(1, user.getUsername());
             statement.executeUpdate();
             statement.close();
+        } catch(Exception e){
+            e.printStackTrace();
         }
     }
 
+    //TODO  fix statement
     @Override
     public boolean hasRental(User user) throws SQLException
     {
-        try (Connection connection = getConnection())
+        try
         {
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery("SELECT COUNT(*) " + "FROM rentals " + "Where username = '" + user.getUsername() + "';");
-
-            while (rs.next())
+            int count = 0;
+            try (Connection connection = getConnection())
             {
-                //get count of rentals
-                int count = rs.getInt("count");
-                if (count != 0)
+                PreparedStatement st = connection.prepareStatement(
+                        "SELECT COUNT(*) " +
+                                "FROM rentals " +
+                                "WHERE username = ? " +
+                                "AND active = TRUE;");
+           /* ResultSet rs = st.executeQuery("SELECT active(*) " +
+                    "FROM rentals " +
+                    "WHERE username = '" + user.getUsername() + "'");
+*/
+                st.setString(1, user.getUsername());
+                System.out.println(st.toString());
+                ResultSet rs = st.executeQuery();
+                while (rs.next())
                 {
+                    // get count of rentals
+                    count = rs.getInt("count");
+                /*
+                String active = rs.getString("active");
+                if (active.equals("true")){
                     return true;
                 }
+                 */
+                }
+                rs.close();
+                st.close();
+                return count != 0;
             }
         }
-            return false;
-
-
-
-
+        catch   (Exception e) {
+            e.printStackTrace();
         }
+return false;
+
+    }
 }
