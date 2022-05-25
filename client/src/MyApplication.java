@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
@@ -20,6 +21,7 @@ public class MyApplication extends Application
 {
     /**
      * Starts the GUI and creates server connection
+     *
      * @param primaryStage Stage
      */
     public void start(Stage primaryStage)
@@ -27,14 +29,24 @@ public class MyApplication extends Application
         try
         {
             RemoteModel server = null;
+            String ip = "localhost";
+
+            TextInputDialog inputDialog = new TextInputDialog("localhost");
+            inputDialog.setContentText("IP Address: ");
+            inputDialog.setHeaderText("Please enter the IP address of the server you wish to connect to!\n" +
+                    "You can also just press enter to connect to localhost!");
+
+            inputDialog.showAndWait();
+            ip = inputDialog.getEditor().getText();
+
             try
             {
-                server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Games");
+                server = (RemoteModel) Naming.lookup("rmi://" + ip + ":1099/Games");
             } catch (Exception ex)
             {
                 ex.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR,
-                        "Server connection not detected, please restart server");
+                        "Server connection not detected!\nInvalid ip address provided or server not running, please restart!");
                 Platform.runLater(alert::showAndWait);
             }
             // The model is now responsible for creating the client object

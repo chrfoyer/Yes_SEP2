@@ -358,6 +358,12 @@ public class GameImpl implements GameDAO
         }
     }
 
+    /**
+     * Finds rental information in the relation, changes rental length allowed
+     * a maximum of 2 extensions are allowed in the system
+     * @param game Game to extend on
+     * @throws SQLException in case of database errors
+     */
     @Override public void extend(Game game) throws SQLException {
         int holder = 0;
         PreparedStatement statement1=null;

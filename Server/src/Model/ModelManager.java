@@ -536,6 +536,12 @@ public class ModelManager implements Model
         return gameDAO.getRentedGamesByUser(user);
     }
 
+    /**
+     * Extends the selected game
+     * @param game Game selected
+     * @param user User that makes the extension on allowed time
+     * @throws SQLException in case of database errors
+     */
     @Override
     public void extendGame(Game game,User user) throws SQLException
     {
