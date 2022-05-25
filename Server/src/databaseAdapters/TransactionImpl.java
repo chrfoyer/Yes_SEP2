@@ -68,11 +68,10 @@ public class TransactionImpl implements TransactionDAO
      * Inserts the transaction into the database and returns it.
      *
      * @param transaction The transaction to insert
-     * @return The inserted transaction
      * @throws SQLException Thrown when the connection with the database cannot be established
      */
     @Override
-    public Transaction create(Transaction transaction) throws SQLException
+    public void create(Transaction transaction) throws SQLException
     {
         Transaction createdTransaction = null;
         try (Connection connection = getConnection())
@@ -93,7 +92,6 @@ public class TransactionImpl implements TransactionDAO
         {
             e.printStackTrace();
         }
-        return createdTransaction;
     }
 
     /**

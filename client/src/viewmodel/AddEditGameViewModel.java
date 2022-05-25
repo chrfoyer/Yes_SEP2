@@ -25,7 +25,7 @@ public class AddEditGameViewModel
     private final StringProperty error;
 
     /**
-     * constructer creating view model and setting the remote model to model
+     * constructor creating view model and setting the remote model to model
      * @param model what the model will be set to
      */
     public AddEditGameViewModel(RemoteModel model)

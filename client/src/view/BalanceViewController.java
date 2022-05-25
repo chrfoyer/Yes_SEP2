@@ -47,8 +47,6 @@ public class BalanceViewController extends ViewController
         {
             try
             {
-                //Desktop.getDesktop().browse(
-                //    new URL("https://www.youtube.com/watch?v=UX0sbhIy9MA").toURI());
                 System.out.println("Funds");
                 Platform.runLater(() -> viewModel.addFunds());
             } catch (Exception e)

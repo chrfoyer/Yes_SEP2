@@ -97,42 +97,6 @@ public class UserImpl implements UserDAO
         return createdUser;
     }
 
-  /*
-  @Override public User readByUsername() throws SQLException
-  {
-    User readUser = null;
-    try (Connection connection = getConnection())
-    {
-      Statement st = connection.createStatement();
-      ResultSet rs = st.executeQuery(
-          "SELECT * " + "FROM users " + "ORDER BY id DESC " + "LIMIT 1");
-
-      while (rs.next())
-      {
-        //username, password, email, address, name, bday, has_subscription, balance,age
-        System.out.println("Id: " + rs.getString("id"));
-        String user = rs.getString("username");
-        String password = rs.getString("password");
-        boolean isAdmin = rs.getBoolean("is_admin");
-        String email = rs.getString("email");
-        String address = rs.getString("address");
-        String name = rs.getString("name");
-        Date bday = rs.getDate("bday");
-        boolean has_subscription = rs.getBoolean("has_subscription");
-        int balance = rs.getInt("has_subscription");
-        int age = rs.getInt("age");
-
-        readUser = new User(age, user, password, isAdmin, email, address, name,
-            bday.toLocalDate(), has_subscription, balance);
-
-      }
-      rs.close();
-      st.close();
-    }
-    return readUser;
-  }
-   */
-
     /**
      * Finds an user in the database based on the username (the primary key)
      *
