@@ -24,8 +24,6 @@ public class UserEditViewController extends ViewController
     public TextField username;
     @FXML
     public TextField password;
-    @FXML
-    public TextField confirmPassword;
 
     public UserEditViewModel viewModel;
     public Label error;
@@ -46,8 +44,6 @@ public class UserEditViewController extends ViewController
         email.textProperty().bindBidirectional(viewModel.getEmailProperty());
         username.textProperty().bindBidirectional(viewModel.getUsernameProperty());
         password.textProperty().bindBidirectional(viewModel.getPasswordProperty());
-        confirmPassword.textProperty()
-                .bindBidirectional(viewModel.getConfirmProperty());
         error.textProperty().bind(viewModel.getErrorLabel());
         balance.textProperty().bind(viewModel.getBalanceLabel());
         fineRefundAmount.textProperty()

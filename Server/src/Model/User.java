@@ -1,5 +1,7 @@
 package Model;
 
+import mediator.PasswordEncryptor;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
@@ -22,6 +24,7 @@ public class User implements Serializable
     private String address;
     private String name;
     private LocalDate bday;
+    private String salt;
     private boolean hasSubscription;
     private int balance;
 
@@ -41,7 +44,7 @@ public class User implements Serializable
      */
     public User(int age, String username, String password, boolean isAdmin,
                 String email, String address, String name, LocalDate bday,
-                boolean hasSubscription, int balance)
+                boolean hasSubscription, int balance, String salt)
     {
         this.age = age;
         this.username = username;
@@ -53,6 +56,7 @@ public class User implements Serializable
         this.bday = bday;
         this.hasSubscription = hasSubscription;
         this.balance = balance;
+        this.salt = salt;
     }
 
     /**
@@ -64,11 +68,18 @@ public class User implements Serializable
     public User(String username, String password)
     {
         this.username = username;
-        this.password = password;
+        salt=PasswordEncryptor.getNewSalt();
+        try
+        {
+            this.password = PasswordEncryptor.getEncryptedPassword(password,salt);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         this.email = null;
         this.address = null;
         this.name = null;
-        this.bday = null;
+        this.bday = LocalDate.of(1990, 1, 1);
         this.age = 21;
         hasSubscription = false;
         if (username.equals("admin") && password.equals("admin"))
@@ -90,7 +101,7 @@ public class User implements Serializable
      * @param bday     birthday to be assigned to user
      */
     public User(String username, String password, String email, String address,
-                String name, LocalDate bday)
+                String name, LocalDate bday,String salt)
     {
         this.username = username;
         this.password = password;
@@ -102,6 +113,7 @@ public class User implements Serializable
         hasSubscription = false;
         balance = 30;
         age = Period.between(LocalDate.now(), bday).getYears();
+        this.salt=salt;
     }
 
     /**
@@ -132,16 +144,6 @@ public class User implements Serializable
     public String getPassword()
     {
         return password;
-    }
-
-    /**
-     * sets user's password
-     *
-     * @param password what user's password will be set to
-     */
-    public void setPassword(String password)
-    {
-        this.password = password;
     }
 
     /**
@@ -321,5 +323,22 @@ public class User implements Serializable
         }
         User user = (User) obj;
         return (user.getUsername().equals(this.getUsername()));
+    }
+
+    public String getSalt()
+    {
+        return salt;
+    }
+
+    public void changePassword(String newPassword)
+    {
+        try
+        {
+            salt = PasswordEncryptor.getNewSalt();
+            password = PasswordEncryptor.getEncryptedPassword(newPassword, salt);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

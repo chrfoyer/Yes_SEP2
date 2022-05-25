@@ -1,10 +1,12 @@
 package viewmodel;
 
 import Model.Game;
+import Model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TextInputDialog;
 import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
@@ -173,4 +175,14 @@ public class UserProfileViewModel
         return rentedGames;
     }
 
+    public void changePassword(String newPassword)
+    {
+        try
+        {
+            model.changePassword(CurrentlyLoggedUser.getLoggedInUser(),newPassword);
+        } catch (Exception e)
+        {
+            errorLabel.set(e.getMessage());
+        }
+    }
 }

@@ -5,9 +5,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import mediator.PasswordEncryptor;
 import mediator.RemoteModel;
 
-import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -164,8 +164,15 @@ public class SignupViewModel
             if (addressProperty.get().equals(""))
                 throw new IllegalArgumentException("Address field is empty !");
 
-            User user = new User(usernameProperty.get(), passwordProperty.get(),
-                    emailProperty.get(), addressProperty.get(), nameProperty.get(), dob);
+
+            //creating user with encryption
+
+            String salt = PasswordEncryptor.getNewSalt();
+            String encryptedPass = PasswordEncryptor.getEncryptedPassword(passwordProperty.get(), salt);
+
+            User user = new User(usernameProperty.get(), encryptedPass, emailProperty.get(), addressProperty.get(), nameProperty.get(), dob, salt);
+
+
             model.signup(user);
             return true;
         } catch (Exception e)

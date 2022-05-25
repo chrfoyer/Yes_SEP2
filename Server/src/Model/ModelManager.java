@@ -33,9 +33,21 @@ public class ModelManager implements Model
         gameDAO = GameImpl.getInstance();
         userDAO = UserImpl.getInstance();
         transactionDAO = TransactionImpl.getInstance();
-        refreshGameList();
+
+
+        //we set up the Administrator account when we run for the first time
+        User user = new User("admin", "admin");
+        // TODO: 2022. 05. 25. When we delete bob from ddl we have to decrease the initial size
         refreshUserList();
+        if (users.size() < 1)
+        {
+            userDAO.create(user);
+            refreshUserList();
+        }
+
+        refreshGameList();
         refreshTransactionList();
+
     }
 
     /**
@@ -334,22 +346,23 @@ public class ModelManager implements Model
     }
 
     /**
-     * Tries to log-in and returns true if it is successful
+     * Tries to log in returns true if successfully
      *
-     * @param user The user to log-in
-     * @return The boolean representing the success of the log-in
+     * @param username String username
+     * @param password String password
+     * @return boolean depending on success
      */
     @Override
-    public boolean login(User user)
+    public boolean login(String username, String password) throws Exception
     {
-        System.out.println(user.getUsername() + " logged in");
-        if (users.login(user))
+        System.out.println(username + " logged in");
+        if (users.login(username, password))
         {
-            System.out.println(user.getUsername() + " logged in");
+            System.out.println(username + " logged in");
             return true;
         } else
         {
-            System.out.println(user.getUsername() + " failed to log in");
+            System.out.println(username + " failed to log in");
             return false;
         }
     }
@@ -388,10 +401,12 @@ public class ModelManager implements Model
     @Override
     public void removeUser(User user) throws SQLException
     {
-        if (!userDAO.hasRental(user)){
+        if (!userDAO.hasRental(user))
+        {
             userDAO.delete(user);
             refreshUserList();
-        } else {
+        } else
+        {
             throw new IllegalArgumentException("User can not be deleted because they have a rental!");
         }
 
@@ -400,11 +415,10 @@ public class ModelManager implements Model
     //todo remove
 
     /**
-     * @deprecated USE SQL VERSION
-     * Updates the information of the user
-     *
      * @param oldUser The old version of the user
      * @param newUser The new version of the user
+     * @deprecated USE SQL VERSION
+     * Updates the information of the user
      */
     @Override
     public void updateUserInfo(User oldUser, User newUser)
@@ -447,7 +461,9 @@ public class ModelManager implements Model
     @Override
     public void updateUserWithSQL(User user) throws SQLException
     {
-        userDAO.update(users.findUserInList(user));
+        //todo is this needed
+        //users.findUserInList()
+        userDAO.update(user);
         refreshUserList();
     }
 
@@ -538,16 +554,17 @@ public class ModelManager implements Model
 
     /**
      * Extends the selected game
+     *
      * @param game Game selected
      * @param user User that makes the extension on allowed time
      * @throws SQLException in case of database errors
      */
     @Override
-    public void extendGame(Game game,User user) throws SQLException
+    public void extendGame(Game game, User user) throws SQLException
     {
-       gameDAO.extend(game);
-       transactionDAO.create(new Transaction(user.getUsername(), "extend"));
-       refreshGameList();
+        gameDAO.extend(game);
+        transactionDAO.create(new Transaction(user.getUsername(), "extend"));
+        refreshGameList();
     }
 
     /**
@@ -588,6 +605,14 @@ public class ModelManager implements Model
         refreshTransactionList();
         gameDAO.returnGame(game);
         System.out.println(user.getUsername() + " returned " + game.getName() + " on " + game.getConsole());
+    }
+
+    public void changePassword(User user, String newPassword) throws SQLException
+    {
+        User storedOnServer = users.findUserInList(user);
+        storedOnServer.changePassword(newPassword);
+        userDAO.update(storedOnServer);
+        refreshUserList();
     }
 
 }

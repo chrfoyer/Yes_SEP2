@@ -78,8 +78,8 @@ public class UserImpl implements UserDAO
         {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO users"
-                            + "(username, password, email, address, name, bday, has_subscription, balance, is_admin)"
-                            + "VALUES (?, ?, ?, ?, ?," + " ?, ?, ?, ?);");
+                            + "(username, password, email, address, name, bday, has_subscription, balance, is_admin, salt)"
+                            + "VALUES (?, ?, ?, ?, ?," + " ?, ?, ?, ?, ?);");
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getEmail());
@@ -89,6 +89,7 @@ public class UserImpl implements UserDAO
             statement.setBoolean(7, user.hasSubscription());
             statement.setInt(8, user.getBalance());
             statement.setBoolean(9, user.isAdmin());
+            statement.setString(10,user.getSalt());
 
             statement.executeUpdate();
             statement.close();
@@ -130,9 +131,10 @@ public class UserImpl implements UserDAO
                 boolean has_subscription = rs.getBoolean("has_subscription");
                 int balance = rs.getInt("balance");
                 int age = rs.getInt("age");
+                String salt=rs.getString("salt");
 
                 readUser = new User(age, user, password, isAdmin, email, address, name,
-                        bday.toLocalDate(), has_subscription, balance);
+                        bday.toLocalDate(), has_subscription, balance,salt);
 
             }
             rs.close();
@@ -170,13 +172,14 @@ public class UserImpl implements UserDAO
                 boolean has_subscription = rs.getBoolean("has_subscription");
                 int balance = rs.getInt("balance");
                 int age = rs.getInt("age");
+                String salt=rs.getString("salt");
 
                 LocalDate bday = null;
                 if (dateSQL != null) bday = dateSQL.toLocalDate();
 
                 userArrayList.add(
                         new User(age, user, password, isAdmin, email, address, name,
-                                bday, has_subscription, balance));
+                                bday, has_subscription, balance,salt));
 
             }
             rs.close();
@@ -203,7 +206,7 @@ public class UserImpl implements UserDAO
             }
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE users " + "SET password = ?, " + "email = ?, " + "name = ?, "
-                            + "bday = ?, " + "has_subscription = ?, " + "balance = ? "
+                            + "bday = ?, " + "has_subscription = ?, " + "balance = ?, "+"salt = ?"
                             + "WHERE username = ?;");
             statement.setString(1, user.getPassword());
             statement.setString(2, user.getEmail());
@@ -211,7 +214,9 @@ public class UserImpl implements UserDAO
             statement.setDate(4, date);
             statement.setBoolean(5, user.hasSubscription());
             statement.setInt(6, user.getBalance());
-            statement.setString(7, user.getUsername());
+            statement.setString(7, user.getSalt());
+
+            statement.setString(8, user.getUsername());
 
             statement.executeUpdate();
             statement.close();
