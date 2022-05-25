@@ -12,11 +12,11 @@ CREATE TABLE IF NOT EXISTS games
     name         varchar(60) NOT NULL,
     producer     varchar(40) NOT NULL,
     console      varchar(15) NOT NULL,
-    rented       boolean     NOT NULL, /* TODO obtain boolean with trigger?*/
-    days_left    int         NOT NULL, /* TODO respect normalization by moving to rental */
+    rented       boolean     NOT NULL,
+    days_left    int         NOT NULL,
     review_count int         NOT NULL,
     review_sum   int         NOT NULL,
-    review_avg   float       NOT NULL, /* TODO obtain through trigger aggregating game */
+    review_avg   float       NOT NULL,
     esrb         VARCHAR(5)  NOT NULL,
     date_added   date        NOT NULL
 );
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS users
     name             varchar(30),
     bDay             bDay,
     has_subscription boolean,
-    balance          int, /* TODO Plz change */
-    age              int /* TODO extract value using date diff */
+    balance          int,
+    age              int
 );
 
 /*  -- DEPRECATED --
@@ -91,7 +91,7 @@ CREATE TABLE rentals
     date_returned         date,
     rental_length_allowed int         NOT NULL,
     days_left             int,
-    active                boolean     NOT NULL /* TODO extract value using trigger */,
+    active                boolean     NOT NULL,
     overdue               boolean /* TODO extract from daysLeft */,
 
     FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE,
