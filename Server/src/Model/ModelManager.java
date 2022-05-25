@@ -537,10 +537,10 @@ public class ModelManager implements Model
     }
 
     @Override
-    public void extendGame(Game game) throws SQLException
+    public void extendGame(Game game,User user) throws SQLException
     {
        gameDAO.extend(game);
-       transactionDAO.create(new Transaction("user", "extend"));
+       transactionDAO.create(new Transaction(user.getUsername(), "extend"));
        refreshGameList();
     }
 

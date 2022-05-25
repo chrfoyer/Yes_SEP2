@@ -149,7 +149,7 @@ public class UserProfileViewModel
         {
             try
             {
-                model.extendGame(game.getGame());
+                model.extendGame(game.getGame(),CurrentlyLoggedUser.getLoggedInUser());
                 reset();
             } catch (Exception e)
             {

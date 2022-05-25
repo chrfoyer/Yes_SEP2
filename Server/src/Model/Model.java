@@ -77,5 +77,5 @@ public interface Model
 
     ArrayList<Game> getGamesRentedByUser(User user) throws SQLException;
 
-    void extendGame(Game game) throws SQLException;
+    void extendGame(Game game,User user) throws SQLException;
 }

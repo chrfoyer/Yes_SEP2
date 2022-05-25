@@ -387,9 +387,9 @@ public class RmiServer implements RemoteModel
     }
 
     @Override
-    public void extendGame(Game game) throws RemoteException, SQLException
+    public void extendGame(Game game,User user) throws RemoteException, SQLException
     {
-        model.extendGame(game);
+        model.extendGame(game,user);
     }
 
     /**

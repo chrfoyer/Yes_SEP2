@@ -65,6 +65,6 @@ public interface RemoteModel extends Remote
 
     void returnGame(Game game, User user) throws RemoteException, SQLException;
 
-    void extendGame(Game game) throws RemoteException, SQLException;
+    void extendGame(Game game,User user) throws RemoteException, SQLException;
 
 }

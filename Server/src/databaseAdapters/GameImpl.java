@@ -360,20 +360,25 @@ public class GameImpl implements GameDAO
 
     @Override public void extend(Game game) throws SQLException {
         int holder = 0;
+        PreparedStatement statement1=null;
+        PreparedStatement statement2=null;
+        ResultSet rs=null;
         try (Connection connection = getConnection()) {
-            PreparedStatement statement1 = connection.prepareStatement(
+             statement1 = connection.prepareStatement(
                     "SELECT rental_length_allowed " +
                             "FROM rentals " +
                             "WHERE game_id = ? " +
                             "AND active = TRUE; "
             );
             statement1.setInt(1, game.getId());
-            ResultSet rs = statement1.executeQuery();
+            rs = statement1.executeQuery();
             while (rs.next()) {
                 holder = rs.getInt("rental_length_allowed");
             }
+            if(holder>20)
+                throw new IllegalStateException("Game can be renewed only 2 times!");
             holder += 5;
-            PreparedStatement statement2 = connection.prepareStatement(
+             statement2 = connection.prepareStatement(
                     "UPDATE rentals " +
                             "SET rental_length_allowed = ? " +
                             "WHERE game_id = ? " +
@@ -382,8 +387,15 @@ public class GameImpl implements GameDAO
             statement2.setInt(1, holder);
             statement2.setInt(2, game.getId());
             statement2.executeUpdate();
+        }
+        finally
+        {
+            //we close the open connections if we got an error
+            if (statement1 != null)
             statement1.close();
+            if (statement2 != null)
             statement2.close();
+            if (rs!=null)
             rs.close();
         }
     }
