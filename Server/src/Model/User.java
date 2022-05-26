@@ -82,7 +82,7 @@ public class User implements Serializable
         this.bday = LocalDate.of(1990, 1, 1);
         this.age = 21;
         hasSubscription = false;
-        if (username.equals("admin") && password.equals("admin"))
+        if (username.equals("admin"))
         {
             isAdmin = true;
             hasSubscription = true;
@@ -104,7 +104,13 @@ public class User implements Serializable
                 String name, LocalDate bday,String salt)
     {
         this.username = username;
-        this.password = password;
+        try
+        {
+            this.password = PasswordEncryptor.getEncryptedPassword(password,salt);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         this.email = email;
         this.address = address;
         this.name = name;

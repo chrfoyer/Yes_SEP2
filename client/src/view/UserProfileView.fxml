@@ -91,6 +91,9 @@
                                         <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="436.0">
                                             <children>
                                                 <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="427.0">
+                                                    <placeholder>
+                                                        <Label text="No games rented out!"/>
+                                                    </placeholder>
                                                     <columns>
                                                         <TableColumn fx:id="nameColumn" prefWidth="274.0" text="Game" />
                                                         <TableColumn fx:id="timeColumn" prefWidth="143.0" text="Time left" />

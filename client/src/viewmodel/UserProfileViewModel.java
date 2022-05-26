@@ -1,16 +1,13 @@
 package viewmodel;
 
 import Model.Game;
-import Model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TextInputDialog;
 import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
-import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -151,7 +148,7 @@ public class UserProfileViewModel
         {
             try
             {
-                model.extendGame(game.getGame(),CurrentlyLoggedUser.getLoggedInUser());
+                model.extendGame(game.getGame(), CurrentlyLoggedUser.getLoggedInUser());
                 reset();
             } catch (Exception e)
             {
@@ -175,14 +172,18 @@ public class UserProfileViewModel
         return rentedGames;
     }
 
-    public void changePassword(String newPassword)
+    public boolean changePassword(String newPassword)
     {
         try
         {
-            model.changePassword(CurrentlyLoggedUser.getLoggedInUser(),newPassword);
+            if (newPassword.length() < 7)
+                throw new IllegalArgumentException("Password has to be at least 7 characters!");
+            model.changePassword(CurrentlyLoggedUser.getLoggedInUser(), newPassword);
+            return true;
         } catch (Exception e)
         {
             errorLabel.set(e.getMessage());
         }
+        return false;
     }
 }

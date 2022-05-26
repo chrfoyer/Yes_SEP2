@@ -199,7 +199,7 @@ public class UserProfileController extends ViewController
         HBox content = new HBox();
         content.setAlignment(Pos.CENTER_LEFT);
         content.setSpacing(10);
-        content.getChildren().addAll(new Label("Enter your password in the following field:"), pwd);
+        content.getChildren().addAll(new Label("Enter your new password in the following field:"), pwd);
         dialog.getDialogPane().setContent(content);
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == ButtonType.OK) {
@@ -209,14 +209,19 @@ public class UserProfileController extends ViewController
         });
 
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(s -> viewModel.changePassword(s));
-
-
-        Alert alert=new Alert(Alert.AlertType.INFORMATION,"You have changed your password!\n" +
-                "Please log in again using your new credentials!");
-        alert.showAndWait();
-        getViewModelFactory().getLoginViewModel().reset();
-        CurrentlyLoggedUser.logout();
-        getViewHandler().openView("LoginView.fxml");
+        if(result.isPresent())
+        {
+            if (viewModel.changePassword(result.get()))
+            {
+                //we managed to change password
+                Alert alert=new Alert(Alert.AlertType.INFORMATION,"You have changed your password!\n" +
+                        "Please log in again using your new credentials!");
+                alert.showAndWait();
+                getViewModelFactory().getLoginViewModel().reset();
+                CurrentlyLoggedUser.logout();
+                getViewHandler().openView("LoginView.fxml");
+            }
+            //else we do nothing
+        }
     }
 }

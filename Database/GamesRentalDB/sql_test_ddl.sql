@@ -55,23 +55,6 @@ CREATE TABLE IF NOT EXISTS users
     salt             VARCHAR
 );
 
-/*  -- DEPRECATED --
-
-CREATE DOMAIN reviewValue AS int CHECK (VALUE BETWEEN 1 AND 5);
-
-CREATE TABLE IF NOT EXISTS reviews
-(
-    id       SERIAL PRIMARY KEY,
-    gameId   int         NOT NULL,
-    username varchar(30) NOT NULL,
-    value    reviewValue NOT NULL,
-
-    FOREIGN KEY (gameId) REFERENCES games (id),
-    FOREIGN KEY (username) REFERENCES users (username)
-);
-
-
- */
 DROP TABLE IF EXISTS transactions CASCADE;
 CREATE TABLE transactions
 (
@@ -99,32 +82,12 @@ CREATE TABLE rentals
     FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
 );
 
-INSERT INTO users
-    (username, password)
-VALUES ('bob', 'test');
-
-UPDATE users
-SET is_admin= TRUE
-WHERE username = 'admin';
-
 DROP FUNCTION IF EXISTS calculate_ages() CASCADE;
 DROP TRIGGER IF EXISTS age_check
     ON users;
 DROP FUNCTION IF EXISTS days_left() CASCADE;
 DROP TRIGGER IF EXISTS days_refresh
     ON rentals;
-
-INSERT INTO transactions
-    (username, action, date)
-VALUES ('bob', 'fucking died', CURRENT_DATE);
-
-SELECT *
-FROM transactions;
-
-SELECT *
-FROM transactions
-ORDER BY id DESC
-LIMIT 1;
 
 CREATE FUNCTION calculate_ages()
     RETURNS TRIGGER

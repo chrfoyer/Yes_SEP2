@@ -80,7 +80,7 @@ public class UserEditViewController extends ViewController
     public void fine_refund()
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Are you sure you want to revoke this user's subscription?");
+                "Are you sure you want to change this users balance?");
         Optional<ButtonType> option = alert.showAndWait();
         if (option.get() == ButtonType.OK)
         {
