@@ -172,6 +172,11 @@ public class UserProfileViewModel
         return rentedGames;
     }
 
+    /**
+     * Changes user password
+     * @param newPassword the password we want to change to
+     * @return boolean whether the change was successful
+     */
     public boolean changePassword(String newPassword)
     {
         try

@@ -9,23 +9,24 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("ALL")
 class UserListTest
 {
 
-    private UserList userList = new UserList();
+    private final UserList userList = new UserList();
 
-    private LocalDate bday1 = LocalDate.of(1980, 1, 1);
-    private LocalDate bday2 = LocalDate.of(1995, 2, 2);
-    private LocalDate bday11 = LocalDate.of(1996, 2, 2);
-    private LocalDate bday12 = LocalDate.of(1997, 3, 2);
-    private LocalDate bday13 = LocalDate.of(1998, 4, 2);
+    private final LocalDate bday1 = LocalDate.of(1980, 1, 1);
+    private final LocalDate bday2 = LocalDate.of(1995, 2, 2);
+    private final LocalDate bday11 = LocalDate.of(1996, 2, 2);
+    private final LocalDate bday12 = LocalDate.of(1997, 3, 2);
+    private final LocalDate bday13 = LocalDate.of(1998, 4, 2);
     private String salt=PasswordEncryptor.getNewSalt();
 
-    private User user1 = new User("test1", "1234567", "adsf@", "asfsadf", "test1", bday1,salt);
-    private User user2 = new User("test2", "1234567", "adsf@", "asfsadf", "test2", bday2,salt);
-    private User user3 = new User("test11", "1234567", "adsf@", "asfsadf", "test11", bday11,salt);
-    private User user4 = new User("test12", "1234567", "adsf@", "asfsadf", "test12", bday12,salt);
-    private User user5 = new User("test13", "1234567", "adsf@", "asfsadf", "test13", bday13,salt);
+    private final User user1 = new User("test1", "1234567", "adsf@", "asfsadf", "test1", bday1,salt);
+    private final User user2 = new User("test2", "1234567", "adsf@", "asfsadf", "test2", bday2,salt);
+    private final User user3 = new User("test11", "1234567", "adsf@", "asfsadf", "test11", bday11,salt);
+    private final User user4 = new User("test12", "1234567", "adsf@", "asfsadf", "test12", bday12,salt);
+    private final User user5 = new User("test13", "1234567", "adsf@", "asfsadf", "test13", bday13,salt);
 
     @BeforeEach
     void setUp() throws SQLException

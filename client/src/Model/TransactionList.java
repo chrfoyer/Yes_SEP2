@@ -49,7 +49,7 @@ public class TransactionList implements Serializable
 
     /**
      * @param list The transaction list object containing the transactions
-     * @deprecated Creates the xml file to write the transactions and then appends them in
+     * Creates the xml file to write the transactions and then appends them in
      */
     public static void writeTransactions(TransactionList list)
     {
@@ -60,18 +60,20 @@ public class TransactionList implements Serializable
             PrintWriter out = new PrintWriter(file);
 
             StringBuilder xml = new StringBuilder();
-            xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"" + "standalone=\"no\"?>\n");
+            xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n");
             ArrayList<Transaction> transactions = list.getList();
+            xml.append("<TransactionList>");
             for (int i = 0; i < list.getSize(); i++)
             {
                 xml.append("\n<Transaction>");
-                xml.append("\n    <Amount>").append(transactions.get(i).getId()).append("</Amount>");
+                xml.append("\n    <ID>").append(transactions.get(i).getId()).append("</ID>");
                 xml.append("\n    <User>").append(transactions.get(i).getUser()).append("</User>");
                 xml.append("\n    <Type>").append(transactions.get(i).getAction()).append("</Type>");
                 xml.append("\n    <Date>").append(transactions.get(i).getDate()).append("</Date>");
 
                 xml.append("\n</Transaction>");
             }
+            xml.append("\n</TransactionList>");
             out.println(xml);
             out.close();
 

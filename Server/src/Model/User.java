@@ -41,6 +41,7 @@ public class User implements Serializable
      * @param bday            The date of birth of the user
      * @param hasSubscription Shows whether the user has an active subscription and can rent games
      * @param balance         The balance of money that the user has
+     * @param salt            salt used for password encryption
      */
     public User(int age, String username, String password, boolean isAdmin,
                 String email, String address, String name, LocalDate bday,
@@ -68,10 +69,10 @@ public class User implements Serializable
     public User(String username, String password)
     {
         this.username = username;
-        salt=PasswordEncryptor.getNewSalt();
+        salt = PasswordEncryptor.getNewSalt();
         try
         {
-            this.password = PasswordEncryptor.getEncryptedPassword(password,salt);
+            this.password = PasswordEncryptor.getEncryptedPassword(password, salt);
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -99,14 +100,15 @@ public class User implements Serializable
      * @param address  address to be assigned to user
      * @param name     name to be assigned to user
      * @param bday     birthday to be assigned to user
+     * @param salt     salt used for password encryption
      */
     public User(String username, String password, String email, String address,
-                String name, LocalDate bday,String salt)
+                String name, LocalDate bday, String salt)
     {
         this.username = username;
         try
         {
-            this.password = PasswordEncryptor.getEncryptedPassword(password,salt);
+            this.password = PasswordEncryptor.getEncryptedPassword(password, salt);
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -119,7 +121,7 @@ public class User implements Serializable
         hasSubscription = false;
         balance = 30;
         age = Period.between(LocalDate.now(), bday).getYears();
-        this.salt=salt;
+        this.salt = salt;
     }
 
     /**
@@ -331,11 +333,20 @@ public class User implements Serializable
         return (user.getUsername().equals(this.getUsername()));
     }
 
+    /**
+     * Gets salt from user
+     * @return String salt
+     */
     public String getSalt()
     {
         return salt;
     }
 
+    /**
+     * Generates new secure user password
+     * also generates new salt
+     * @param newPassword the new password we generate from
+     */
     public void changePassword(String newPassword)
     {
         try

@@ -188,6 +188,9 @@ public class UserProfileController extends ViewController
         Optional<ButtonType> option = alert.showAndWait();
     }
 
+    /**
+     * Changes user passwords, also checks password requirements
+     */
     public void changePassword()
     {
         Dialog<String> dialog = new Dialog<>();

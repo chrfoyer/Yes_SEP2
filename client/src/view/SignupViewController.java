@@ -76,6 +76,10 @@ public class SignupViewController extends ViewController
         getViewHandler().openView("LoginView.fxml");
         getViewModelFactory().getSignupViewModel().reset();
     }
+
+    /**
+     * Calls signup when pressing enter
+     */
     public void onEnter()
     {
         this.signup();

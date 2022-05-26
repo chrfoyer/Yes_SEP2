@@ -1,8 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"standalone="no"?>
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<TransactionList>
 <Transaction>
-    <Amount>0.0</Amount>
-    <User>user</User>
-    <Type>Rent</Type>
-    <Date>2022-05-10</Date>
+    <ID>1.0</ID>
+    <User>Bob</User>
+    <Type>Changed balance by: -100</Type>
+    <Date>2022-05-26</Date>
 </Transaction>
+<Transaction>
+    <ID>2.0</ID>
+    <User>Bob</User>
+    <Type>Changed balance by: 100</Type>
+    <Date>2022-05-26</Date>
+</Transaction>
+<Transaction>
+    <ID>3.0</ID>
+    <User>boomer</User>
+    <Type>Payed subscription</Type>
+    <Date>2022-05-26</Date>
+</Transaction>
+<Transaction>
+    <ID>4.0</ID>
+    <User>boomer</User>
+    <Type>Rented DOOM</Type>
+    <Date>2022-05-26</Date>
+</Transaction>
+<Transaction>
+    <ID>5.0</ID>
+    <User>boomer</User>
+    <Type>extend</Type>
+    <Date>2022-05-26</Date>
+</Transaction>
+<Transaction>
+    <ID>6.0</ID>
+    <User>boomer</User>
+    <Type>extend</Type>
+    <Date>2022-05-26</Date>
+</Transaction>
+<Transaction>
+    <ID>7.0</ID>
+    <User>boomer</User>
+    <Type>Returned DOOM</Type>
+    <Date>2022-05-26</Date>
+</Transaction>
+</TransactionList>

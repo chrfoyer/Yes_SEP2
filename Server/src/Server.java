@@ -1,5 +1,7 @@
+import Model.TransactionList;
 import mediator.RmiServer;
 
+import java.rmi.RemoteException;
 import java.util.Scanner;
 
 /**
@@ -26,19 +28,34 @@ public class Server
             server = new RmiServer();
         } catch (Exception e)
         {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            return;
         }
         Scanner input = new Scanner(System.in);
         while (running)
         {
+            System.out.println("Press [1] to create a XML file of the transactions!");
             System.out.println("Press [0] to close the server");
+
             int given = input.nextInt();
-            if (given == 0)
+            switch (given)
             {
-                running = false;
-            } else
-            {
-                System.out.println("Input not recognized. Please try again");
+                case 0:
+                    running = false;
+                    break;
+                case 1:
+                    try
+                    {
+                        TransactionList.writeTransactions(server.getTransactionList());
+                        System.out.println("Transactions.XML created!");
+                    } catch (RemoteException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    System.out.println("Input not recognized. Please try again");
+                    break;
             }
         }
         System.out.println("See you soon!");

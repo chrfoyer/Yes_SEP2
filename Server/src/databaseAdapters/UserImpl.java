@@ -263,7 +263,7 @@ public class UserImpl implements UserDAO
                     "WHERE username = '" + user.getUsername() + "'");
 */
                 st.setString(1, user.getUsername());
-                System.out.println(st.toString());
+                System.out.println(st);
                 ResultSet rs = st.executeQuery();
                 while (rs.next())
                 {

@@ -6,6 +6,7 @@ import java.util.Scanner;
 /**
  * Kill me please
  */
+@SuppressWarnings("JavaDoc")
 public class ClientTest
 {
     public static void main(String[] args)

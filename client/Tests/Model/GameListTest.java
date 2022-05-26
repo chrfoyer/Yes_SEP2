@@ -8,10 +8,11 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@SuppressWarnings("JavaDoc")
 class GameListTest
 {
-    private GameList gameList = new GameList();
-    private GameList emptyList = new GameList();
+    private final GameList gameList = new GameList();
+    private final GameList emptyList = new GameList();
 
     GameListTest() throws SQLException
     {

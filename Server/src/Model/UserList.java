@@ -103,6 +103,7 @@ public class UserList implements Serializable
      * @param username String username
      * @param password String password
      * @return boolean depending on if login was successful
+     * @throws Exception if something goes wrong with password encryption
      */
     public boolean login(String username, String password) throws Exception
     {

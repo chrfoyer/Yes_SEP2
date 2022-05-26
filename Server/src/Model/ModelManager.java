@@ -51,13 +51,12 @@ public class ModelManager implements Model
 
 
         //we set up the Administrator account when we run for the first time
-        // TODO: 2022. 05. 25. When we delete bob from ddl we have to decrease the initial size
         refreshUserList();
         if (users.size()==0)
         {
             System.out.println("First run detected, creating test users,and administrator");
             User admin = new User("admin", "admin");
-            User bob=new User("Bob","test","bob@steffen.com","yes no maybe?","Bob the builder", LocalDate.of(1990,1,1), PasswordEncryptor.getNewSalt());
+            User bob=new User("bob","test","bob@steffen.com","yes no maybe?","Bob the builder", LocalDate.of(1990,1,1), PasswordEncryptor.getNewSalt());
             User young=new User("Zoomer","fellowkids","bob@steffen.com","yolo Street 10","Jacklin", LocalDate.of(2008,4,20), PasswordEncryptor.getNewSalt());
             User oldMan=new User("boomer","back","older@facebook.com","Emil Møllers gade 20","Herning XYZ", LocalDate.of(1950,5,10), PasswordEncryptor.getNewSalt());
             User jesus=new User("jesus","messiah","son@of.god","Jerusalem","Jesus Christ", LocalDate.of(0,0,0), PasswordEncryptor.getNewSalt());
@@ -85,11 +84,6 @@ public class ModelManager implements Model
     public void setGames(GameList games)
     {
         this.games = games;
-    }
-
-    public void setUsers(UserList users)
-    {
-        this.users = users;
     }
 
     /**
@@ -382,7 +376,6 @@ public class ModelManager implements Model
     @Override
     public boolean login(String username, String password) throws Exception
     {
-        System.out.println(username + " logged in");
         if (users.login(username, password))
         {
             System.out.println(username + " logged in");
