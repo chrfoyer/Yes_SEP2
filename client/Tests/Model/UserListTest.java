@@ -19,7 +19,7 @@ class UserListTest
     private LocalDate bday11 = LocalDate.of(1996, 2, 2);
     private LocalDate bday12 = LocalDate.of(1997, 3, 2);
     private LocalDate bday13 = LocalDate.of(1998, 4, 2);
-    private String salt="";
+    private String salt=PasswordEncryptor.getNewSalt();
 
     private User user1 = new User("test1", "1234567", "adsf@", "asfsadf", "test1", bday1,salt);
     private User user2 = new User("test2", "1234567", "adsf@", "asfsadf", "test2", bday2,salt);

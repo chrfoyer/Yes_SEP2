@@ -6,6 +6,7 @@ import mediator.PasswordEncryptor;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Implements the methods listed in the Model interface
@@ -29,6 +30,18 @@ public class ModelManager implements Model
      */
     public ModelManager() throws SQLException
     {
+        Scanner input=new Scanner(System.in);
+        if (DBKey.username.equals(""))
+        {
+            System.out.println("Please specify the username for the Database!");
+            //we may hardcode this during testing
+            DBKey.setUsername(input.nextLine());
+
+            System.out.println("Please specify the password for the Database!");
+            //we may hardcode this during testing
+            DBKey.setPassword(input.nextLine());
+        }
+
         this.games = new GameList();
         this.users = new UserList();
         this.transactions = TransactionList.getInstance();
@@ -44,15 +57,17 @@ public class ModelManager implements Model
         {
             System.out.println("First run detected, creating test users,and administrator");
             User admin = new User("admin", "admin");
-            userDAO.create(admin);
-
             User bob=new User("Bob","test","bob@steffen.com","yes no maybe?","Bob the builder", LocalDate.of(1990,1,1), PasswordEncryptor.getNewSalt());
             User young=new User("Zoomer","fellowkids","bob@steffen.com","yolo Street 10","Jacklin", LocalDate.of(2008,4,20), PasswordEncryptor.getNewSalt());
-            User oldMan=new User("boomer","back","older@facebook.com","Emil Møllers gade 20","Herning XYZ", LocalDate.of(1980,5,10), PasswordEncryptor.getNewSalt());
+            User oldMan=new User("boomer","back","older@facebook.com","Emil Møllers gade 20","Herning XYZ", LocalDate.of(1950,5,10), PasswordEncryptor.getNewSalt());
+            User jesus=new User("jesus","messiah","son@of.god","Jerusalem","Jesus Christ", LocalDate.of(0,0,0), PasswordEncryptor.getNewSalt());
 
+
+            userDAO.create(admin);
             userDAO.create(bob);
             userDAO.create(young);
             userDAO.create(oldMan);
+            userDAO.create(jesus);
 
             refreshUserList();
         }

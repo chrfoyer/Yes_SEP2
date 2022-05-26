@@ -107,7 +107,7 @@ class GameListTest
         gameList.removeGame(new Game("Cod3", "Infinity Ward", "PC", "M"));
         gameList.removeGame(new Game("Cod4", "Infinity Ward", "PC", "M"));
         gameList.removeGame(new Game("Cod5", "Infinity Ward", "PC", "M"));
-        assertDoesNotThrow(() -> gameList.removeGame(new Game("Cod6", "PC", "Infinity Ward", "M")));
+        assertDoesNotThrow(() -> gameList.removeGame(new Game("Cod6", "Infinity Ward", "PC", "M")));
     }
 
 }
