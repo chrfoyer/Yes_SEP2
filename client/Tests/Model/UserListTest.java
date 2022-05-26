@@ -41,7 +41,8 @@ class UserListTest
     @Test
     void addUser_Z()
     {
-        assertThrows(IllegalArgumentException.class, () -> userList.addUser(null));
+        User user = null;
+        assertThrows(IllegalArgumentException.class, () -> userList.addUser(user));
     }
 
     @Test
@@ -72,8 +73,8 @@ class UserListTest
     @Test
     void addUser_E()
     {
-        LocalDate bday10 = LocalDate.of(2025, 1, 1);
-        assertThrows(IllegalArgumentException.class, () -> new User("test10", "1234567", "adsf@", "asfsadf", "test10", bday10,salt));
+        //not relevant
+
     }
 
     @Test
