@@ -54,19 +54,37 @@ public class ModelManager implements Model
         refreshUserList();
         if (users.size() == 0)
         {
-            System.out.println("First run detected, creating test users,and administrator");
-            User admin = new User("admin", "admin");
-            User bob = new User("bob", "test", "bob@steffen.com", "yes no maybe?", "Bob the builder", LocalDate.of(1990, 1, 1), PasswordEncryptor.getNewSalt());
-            User young = new User("zoomer", "fellowkids", "asd@gmail.com", "yolo Street 10", "Jacklin", LocalDate.of(2008, 4, 20), PasswordEncryptor.getNewSalt());
-            User oldMan = new User("boomer", "back", "older@facebook.com", "Emil Møllers gade 20", "Herning XYZ", LocalDate.of(1950, 5, 10), PasswordEncryptor.getNewSalt());
-            User jesus = new User("jesus", "messiah", "son@of.god", "Jerusalem", "Jesus Christ", LocalDate.of(0, 1, 1), PasswordEncryptor.getNewSalt());
+
+            //we give same salt to all test users
+            //this is not something we would use in production but for these automatic set up accounts its fine
+            String salt = PasswordEncryptor.getNewSalt();
+            try
+            {
+                System.out.println("First run detected, creating test users,and administrator");
+                User admin = new User("admin", "admin");
+                User bob = new User("bob", PasswordEncryptor.getEncryptedPassword("test", salt), "bob@steffen.com", "yes no maybe?",
+                        "Bob the builder", LocalDate.of(1990, 1, 1), salt);
+
+                User young = new User("zoomer", PasswordEncryptor.getEncryptedPassword("fellowkids", salt), "asd@gmail.com", "yolo Street 10",
+                        "Jacklin", LocalDate.of(2008, 4, 20), salt);
+
+                User oldMan = new User("boomer", PasswordEncryptor.getEncryptedPassword("back", salt), "older@facebook.com", "Emil Møllers gade 20",
+                        "Herning XYZ", LocalDate.of(1950, 5, 10), salt);
+
+                User jesus = new User("jesus", PasswordEncryptor.getEncryptedPassword("messiah", salt), "son@of.god", "Jerusalem",
+                        "Jesus Christ", LocalDate.of(0, 1, 1), salt);
 
 
-            userDAO.create(admin);
-            userDAO.create(bob);
-            userDAO.create(young);
-            userDAO.create(oldMan);
-            userDAO.create(jesus);
+                userDAO.create(admin);
+                userDAO.create(bob);
+                userDAO.create(young);
+                userDAO.create(oldMan);
+                userDAO.create(jesus);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
 
             refreshUserList();
         }
@@ -629,7 +647,8 @@ public class ModelManager implements Model
 
     /**
      * Changes password for user
-     * @param user user that starts password change
+     *
+     * @param user        user that starts password change
      * @param newPassword new password we want to switch to
      * @throws SQLException in case database errors
      */
