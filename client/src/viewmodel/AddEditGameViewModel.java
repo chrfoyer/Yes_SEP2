@@ -9,6 +9,7 @@ import mediator.RemoteModel;
 
 /**
  * class that handles the logic for the Add Edit View controller
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -26,6 +27,7 @@ public class AddEditGameViewModel
 
     /**
      * constructor creating view model and setting the remote model to model
+     *
      * @param model what the model will be set to
      */
     public AddEditGameViewModel(RemoteModel model)
@@ -75,6 +77,7 @@ public class AddEditGameViewModel
 
     /**
      * method for getting the SimpleGameViewModel of the selected game
+     *
      * @return SimpleGameViewModel of selected game
      */
     public SimpleGameViewModel getSelectedGameProperty()
@@ -84,6 +87,7 @@ public class AddEditGameViewModel
 
     /**
      * method for setting the selected game property
+     *
      * @param selectedGameViewModel The simple game view model of the selected game
      */
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel)
@@ -93,6 +97,7 @@ public class AddEditGameViewModel
 
     /**
      * method for getting the name of the game
+     *
      * @return String game name
      */
     public String getName()
@@ -102,6 +107,7 @@ public class AddEditGameViewModel
 
     /**
      * method for setting the game's name
+     *
      * @param name what to set game name to
      */
     public void setName(String name)
@@ -111,6 +117,7 @@ public class AddEditGameViewModel
 
     /**
      * method for getting name property
+     *
      * @return StringProperty name
      */
     public StringProperty nameProperty()
@@ -120,6 +127,7 @@ public class AddEditGameViewModel
 
     /**
      * method for getting the game's console property
+     *
      * @return StringProperty console
      */
     public StringProperty consoleProperty()
@@ -129,6 +137,7 @@ public class AddEditGameViewModel
 
     /**
      * method for getting the game's producer property
+     *
      * @return StringProperty producer
      */
     public StringProperty producerProperty()
@@ -138,6 +147,7 @@ public class AddEditGameViewModel
 
     /**
      * method for getting the game's esrb property
+     *
      * @return StringProperty esrb
      */
     public StringProperty esrbProperty()
@@ -147,6 +157,7 @@ public class AddEditGameViewModel
 
     /**
      * method for getting the error property
+     *
      * @return StringProperty error
      */
     public StringProperty errorProperty()
@@ -156,6 +167,7 @@ public class AddEditGameViewModel
 
     /**
      * method for setting the game's esrb
+     *
      * @param esrb to assign to the game
      */
     public void setEsrb(String esrb)
@@ -165,6 +177,7 @@ public class AddEditGameViewModel
 
     /**
      * method for setting the games console
+     *
      * @param console to assign to the game
      */
     public void setConsole(String console)
@@ -197,7 +210,7 @@ public class AddEditGameViewModel
     {
         try
         {
-            if(rented.get())throw new IllegalArgumentException("You cannot edit a rented game!");
+            if (rented.get()) throw new IllegalArgumentException("You cannot edit a rented game!");
 
             if (name.get().equals("") || producer.get().equals(""))
                 throw new IllegalArgumentException("Name and producer cant be empty");

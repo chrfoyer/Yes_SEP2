@@ -12,6 +12,7 @@ import java.time.Period;
 
 /**
  * class that handles the logic for the UserEdit View
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -198,7 +199,7 @@ public class UserEditViewModel
      *
      * @return the user
      */
-    public SimpleUserViewModel getUser()
+    public SimpleUserViewModel getUserProperty()
     {
         return selectedUserProperty.get();
     }

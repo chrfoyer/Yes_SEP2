@@ -3,8 +3,6 @@ package view;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import mediator.CurrentlyLoggedUser;
 import viewmodel.SimpleGameViewModel;
 import viewmodel.UserProfileViewModel;
@@ -109,20 +107,8 @@ public class UserProfileController extends ViewController
                 "Leave your review by choosing the button!", oneStar, twoStar,
                 threeStar, fourStar, fiveStar);
         Optional<ButtonType> reviewChoice = reviewAlert.showAndWait();
-        switch (reviewChoice.get().getText())
-        {
-            case "1":
-                return 1;
-            case "2":
-                return 2;
-            case "3":
-                return 3;
-            case "4":
-                return 4;
-            case "5":
-                return 5;
-        }
-        return 0;
+
+        return reviewChoice.map(buttonType -> Integer.parseInt(buttonType.getText())).orElse(0);
     }
 
     /**
@@ -205,19 +191,20 @@ public class UserProfileController extends ViewController
         content.getChildren().addAll(new Label("Enter your new password in the following field:"), pwd);
         dialog.getDialogPane().setContent(content);
         dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == ButtonType.OK) {
+            if (dialogButton == ButtonType.OK)
+            {
                 return pwd.getText();
             }
             return null;
         });
 
         Optional<String> result = dialog.showAndWait();
-        if(result.isPresent())
+        if (result.isPresent())
         {
             if (viewModel.changePassword(result.get()))
             {
                 //we managed to change password
-                Alert alert=new Alert(Alert.AlertType.INFORMATION,"You have changed your password!\n" +
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have changed your password!\n" +
                         "Please log in again using your new credentials!");
                 alert.showAndWait();
                 getViewModelFactory().getLoginViewModel().reset();

@@ -7,6 +7,7 @@ public class Main
 {
     /**
      * Starts the client application
+     *
      * @param args console arguments note: unused
      */
     public static void main(String[] args)

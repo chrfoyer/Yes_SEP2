@@ -10,12 +10,11 @@ import javafx.collections.ObservableList;
 import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.function.ToDoubleBiFunction;
 
 /**
  * class that handles the logic for the UserList View
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -46,7 +45,7 @@ public class UserListViewModel
     public void reset()
     {
         fillTable();
-      //  error.set("");
+        //  error.set("");
         //// TODO: 24/05/2022 how to reset error label? when i reset it in method then the error is never shown when i delete a user who has a active rental.
     }
 
@@ -112,7 +111,6 @@ public class UserListViewModel
 
     /**
      * Removes the selected user.
-     *
      */
     public void removeUser()
     {

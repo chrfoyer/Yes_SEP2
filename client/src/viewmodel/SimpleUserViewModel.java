@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 /**
  * class that holds a User object and relevant properties to display information
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */

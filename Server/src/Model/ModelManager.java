@@ -30,7 +30,7 @@ public class ModelManager implements Model
      */
     public ModelManager() throws SQLException
     {
-        Scanner input=new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         if (DBKey.username.equals(""))
         {
             System.out.println("Please specify the username for the Database!");
@@ -52,14 +52,14 @@ public class ModelManager implements Model
 
         //we set up the Administrator account when we run for the first time
         refreshUserList();
-        if (users.size()==0)
+        if (users.size() == 0)
         {
             System.out.println("First run detected, creating test users,and administrator");
             User admin = new User("admin", "admin");
-            User bob=new User("bob","test","bob@steffen.com","yes no maybe?","Bob the builder", LocalDate.of(1990,1,1), PasswordEncryptor.getNewSalt());
-            User young=new User("Zoomer","fellowkids","bob@steffen.com","yolo Street 10","Jacklin", LocalDate.of(2008,4,20), PasswordEncryptor.getNewSalt());
-            User oldMan=new User("boomer","back","older@facebook.com","Emil Møllers gade 20","Herning XYZ", LocalDate.of(1950,5,10), PasswordEncryptor.getNewSalt());
-            User jesus=new User("jesus","messiah","son@of.god","Jerusalem","Jesus Christ", LocalDate.of(0,1,1), PasswordEncryptor.getNewSalt());
+            User bob = new User("bob", "test", "bob@steffen.com", "yes no maybe?", "Bob the builder", LocalDate.of(1990, 1, 1), PasswordEncryptor.getNewSalt());
+            User young = new User("zoomer", "fellowkids", "asd@gmail.com", "yolo Street 10", "Jacklin", LocalDate.of(2008, 4, 20), PasswordEncryptor.getNewSalt());
+            User oldMan = new User("boomer", "back", "older@facebook.com", "Emil Møllers gade 20", "Herning XYZ", LocalDate.of(1950, 5, 10), PasswordEncryptor.getNewSalt());
+            User jesus = new User("jesus", "messiah", "son@of.god", "Jerusalem", "Jesus Christ", LocalDate.of(0, 1, 1), PasswordEncryptor.getNewSalt());
 
 
             userDAO.create(admin);
@@ -583,7 +583,7 @@ public class ModelManager implements Model
     public void extendGame(Game game, User user) throws SQLException
     {
         gameDAO.extend(game);
-        transactionDAO.create(new Transaction(user.getUsername(), "extend"));
+        transactionDAO.create(new Transaction(user.getUsername(), "Extended " + game.getName()));
         refreshGameList();
     }
 
@@ -627,6 +627,12 @@ public class ModelManager implements Model
         System.out.println(user.getUsername() + " returned " + game.getName() + " on " + game.getConsole());
     }
 
+    /**
+     * Changes password for user
+     * @param user user that starts password change
+     * @param newPassword new password we want to switch to
+     * @throws SQLException in case database errors
+     */
     public void changePassword(User user, String newPassword) throws SQLException
     {
         User storedOnServer = users.findUserInList(user);

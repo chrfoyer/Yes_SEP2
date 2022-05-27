@@ -31,7 +31,7 @@ public interface RemoteModel extends Remote
 
     void signup(User user) throws RemoteException, SQLException;
 
-    boolean login(String username,String password) throws Exception;
+    boolean login(String username, String password) throws Exception;
 
     UserList getUserList() throws RemoteException;
 
@@ -65,8 +65,8 @@ public interface RemoteModel extends Remote
 
     void returnGame(Game game, User user) throws RemoteException, SQLException;
 
-    void extendGame(Game game,User user) throws RemoteException, SQLException;
+    void extendGame(Game game, User user) throws RemoteException, SQLException;
 
-    void changePassword(User user,String newPassword)throws RemoteException, SQLException;
+    void changePassword(User user, String newPassword) throws RemoteException, SQLException;
 
 }

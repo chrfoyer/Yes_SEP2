@@ -174,6 +174,7 @@ public class UserProfileViewModel
 
     /**
      * Changes user password
+     *
      * @param newPassword the password we want to change to
      * @return boolean whether the change was successful
      */

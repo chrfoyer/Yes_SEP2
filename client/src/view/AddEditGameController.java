@@ -1,6 +1,5 @@
 package view;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import viewmodel.AddEditGameViewModel;
 
@@ -8,6 +7,7 @@ import java.util.Optional;
 
 /**
  * controller for the AddEditGame
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */

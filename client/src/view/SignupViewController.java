@@ -1,6 +1,5 @@
 package view;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -9,6 +8,7 @@ import viewmodel.SignupViewModel;
 
 /**
  * controller for the Signup View
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -59,7 +59,7 @@ public class SignupViewController extends ViewController
     {
         if (viewModel.signup())
         {
-            Alert alert=new Alert(Alert.AlertType.INFORMATION,"Welcome to the system!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Welcome to the system!");
             alert.setHeaderText("Successful signup");
             alert.showAndWait();
             getViewHandler().openView("LoginView.fxml");

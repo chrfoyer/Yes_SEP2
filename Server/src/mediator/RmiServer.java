@@ -394,7 +394,7 @@ public class RmiServer implements RemoteModel
     }
 
     @Override
-    public void changePassword(User user, String newPassword) throws RemoteException,SQLException
+    public void changePassword(User user, String newPassword) throws RemoteException, SQLException
     {
         model.changePassword(user, newPassword);
     }

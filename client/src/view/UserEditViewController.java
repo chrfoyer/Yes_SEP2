@@ -1,6 +1,5 @@
 package view;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import viewmodel.UserEditViewModel;

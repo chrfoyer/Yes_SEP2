@@ -8,7 +8,6 @@ import mediator.RemoteModel;
  *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
- *
  */
 public class ViewModelFactory
 {

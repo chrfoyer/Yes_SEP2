@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 /**
  * class that holds a Transaction object and relevant properties to display information
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -23,6 +24,7 @@ public class SimpleTransactionViewModel
 
     /**
      * Constructor for creating the ViewModel
+     *
      * @param transaction Transaction to get the information from
      */
     public SimpleTransactionViewModel(Transaction transaction)
@@ -36,6 +38,7 @@ public class SimpleTransactionViewModel
 
     /**
      * Gets the user from the transaction
+     *
      * @return String User
      */
     public String getUser()
@@ -46,6 +49,7 @@ public class SimpleTransactionViewModel
 
     /**
      * Gets the user from the transaction
+     *
      * @return StringProperty User
      */
     public StringProperty userProperty()
@@ -55,6 +59,7 @@ public class SimpleTransactionViewModel
 
     /**
      * Gets the type from the transaction
+     *
      * @return StringProperty type
      */
     public StringProperty typeProperty()
@@ -64,6 +69,7 @@ public class SimpleTransactionViewModel
 
     /**
      * Gets the date from the transaction
+     *
      * @return LocalDate date
      */
     public ObjectProperty<LocalDate> dateProperty()

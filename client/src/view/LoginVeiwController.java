@@ -11,6 +11,7 @@ import java.util.Optional;
 
 /**
  * controller for the Login View
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */

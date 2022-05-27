@@ -23,7 +23,8 @@ public class GameInfoViewModel
     private final StringProperty review;
 
     /**
-     *constructor for Game Info view model
+     * constructor for Game Info view model
+     *
      * @param model to asssign to the remotemodel
      */
     public GameInfoViewModel(RemoteModel model)
@@ -71,6 +72,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the selectedGameProperty
+     *
      * @return SimpleGameViewModel selectedGameProperty
      */
     public SimpleGameViewModel getSelectedGameProperty()
@@ -80,6 +82,7 @@ public class GameInfoViewModel
 
     /**
      * setter for the selectedGameProperty
+     *
      * @param selectedGameViewModel viewmodel to assign to selectedGameProperty
      */
     public void setSelectedGameProperty(SimpleGameViewModel selectedGameViewModel)
@@ -89,6 +92,7 @@ public class GameInfoViewModel
 
     /**
      * getter for selectedGameProperty
+     *
      * @return An object property containing the selected game view model
      */
     public ObjectProperty<SimpleGameViewModel> selectedGamePropertyProperty()
@@ -98,6 +102,7 @@ public class GameInfoViewModel
 
     /**
      * getter for game's name
+     *
      * @return game's name
      */
     public String getName()
@@ -107,6 +112,7 @@ public class GameInfoViewModel
 
     /**
      * setter for the game's name
+     *
      * @param name name to assign to game
      */
     public void setName(String name)
@@ -116,6 +122,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the name StringProperty of game
+     *
      * @return StringProperty name
      */
     public StringProperty nameProperty()
@@ -125,6 +132,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the time left on a rental
+     *
      * @return time left on a rental
      */
     public Integer getTimeLeft()
@@ -134,6 +142,7 @@ public class GameInfoViewModel
 
     /**
      * setter for the time left on a game rental
+     *
      * @param timeLeft time left on a game rental
      */
     public void setTimeLeft(Integer timeLeft)
@@ -143,6 +152,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the object property of time left on a rental
+     *
      * @return time left object property
      */
     public ObjectProperty<Integer> timeLeftProperty()
@@ -152,6 +162,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the console the game is played on
+     *
      * @return console the game is played on
      */
     public String getConsole()
@@ -161,6 +172,7 @@ public class GameInfoViewModel
 
     /**
      * setter for the game's console
+     *
      * @param console console to assign to the game
      */
     public void setConsole(String console)
@@ -170,6 +182,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the StringProperty console of the game
+     *
      * @return console
      */
     public StringProperty consoleProperty()
@@ -179,6 +192,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the producer of a game
+     *
      * @return producer of the game
      */
     public String getProducer()
@@ -188,6 +202,7 @@ public class GameInfoViewModel
 
     /**
      * setter for the producer of a game
+     *
      * @param producer to assign to a game
      */
     public void setProducer(String producer)
@@ -197,6 +212,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the StringProperty producer of a game
+     *
      * @return producer
      */
     public StringProperty producerProperty()
@@ -206,6 +222,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the ESRB of a game
+     *
      * @return ESRB of a game
      */
     public String getEsrb()
@@ -215,6 +232,7 @@ public class GameInfoViewModel
 
     /**
      * setter for the ESRB of a game
+     *
      * @param esrb esrb to be assigned to game
      */
     public void setEsrb(String esrb)
@@ -224,6 +242,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the StringProperty esrbProperty
+     *
      * @return esrb
      */
     public StringProperty esrbProperty()
@@ -233,6 +252,7 @@ public class GameInfoViewModel
 
     /**
      * getter for the StringProperty review of a game
+     *
      * @return review
      */
     public StringProperty reviewProperty()
@@ -242,6 +262,7 @@ public class GameInfoViewModel
 
     /**
      * method for checking if a game is rented
+     *
      * @return true or false depending on if a game is rented or not
      */
     public Boolean getRented()
@@ -251,6 +272,7 @@ public class GameInfoViewModel
 
     /**
      * setter for a game's rent status
+     *
      * @param rented status to be assigned to a game
      */
     public void setRented(Boolean rented)
@@ -260,6 +282,7 @@ public class GameInfoViewModel
 
     /**
      * gets the object property of the boolean for rentedProperty
+     *
      * @return rentedProperty
      */
     public ObjectProperty<Boolean> rentedProperty()
@@ -269,6 +292,7 @@ public class GameInfoViewModel
 
     /**
      * gets the error
+     *
      * @return error
      */
     public String getError()
@@ -278,6 +302,7 @@ public class GameInfoViewModel
 
     /**
      * sets the error
+     *
      * @param error to assign to error
      */
     public void setError(String error)
@@ -287,6 +312,7 @@ public class GameInfoViewModel
 
     /**
      * gets the errorProperty
+     *
      * @return error
      */
     public StringProperty errorProperty()

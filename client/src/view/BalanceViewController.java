@@ -1,7 +1,6 @@
 package view;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -11,6 +10,7 @@ import java.util.Optional;
 
 /**
  * controller for the BalanceView
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */

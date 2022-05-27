@@ -7,6 +7,7 @@ import viewmodel.ViewModelFactory;
 
 /**
  * class that handles swapping from view to view
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */

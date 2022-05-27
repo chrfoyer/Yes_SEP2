@@ -7,18 +7,32 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity"
       prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;"
-      xmlns="http://javafx.com/javafx/17" fx:controller="view.AdminViewController">
+      xmlns="http://javafx.com/javafx/11.0.1" fx:controller="view.AdminViewController">
     <children>
         <HBox alignment="CENTER_RIGHT" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label style="-fx-font-weight: bold;" text="Admin" textFill="#c1c1c1">
-                    <font>
-                        <Font size="36.0"/>
-                    </font>
-                    <padding>
-                        <Insets right="120.0"/>
-                    </padding>
-                </Label>
+                <VBox alignment="CENTER" prefHeight="84.0" prefWidth="175.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#openUserGuide" text="Open user guide">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_RIGHT" prefHeight="84.0" prefWidth="354.0">
+                    <children>
+                        <Label prefHeight="53.0" prefWidth="338.0" style="-fx-font-weight: bold;" text="      Admin"
+                               textFill="#c1c1c1">
+                            <font>
+                                <Font size="36.0"/>
+                            </font>
+                            <padding>
+                                <Insets right="120.0"/>
+                            </padding>
+                        </Label>
+                    </children>
+                </VBox>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
                         <Button mnemonicParsing="false" onAction="#logout" text="Log out">

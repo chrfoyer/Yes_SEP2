@@ -124,9 +124,9 @@ public class BrowseViewModel
      * Search through the available games using the parameters and set the observable list of game view models
      * accordingly.
      *
-     * @param name A part of the name one is searching for
+     * @param name    A part of the name one is searching for
      * @param console The selected console
-     * @param esrb The selected age restricted rating
+     * @param esrb    The selected age restricted rating
      */
     public void search(String name, String console, String esrb)
     {
@@ -135,7 +135,8 @@ public class BrowseViewModel
             data.clear();
             ArrayList<Game> searchHolder = model.searchGames(name, console, esrb);
             ArrayList<SimpleGameViewModel> searchViewModelHolder = new ArrayList<>();
-            for (Game game : searchHolder) {
+            for (Game game : searchHolder)
+            {
                 searchViewModelHolder.add(new SimpleGameViewModel(game));
             }
             Platform.runLater(() -> data.addAll(searchViewModelHolder));

@@ -1,6 +1,5 @@
 package view;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -9,10 +8,13 @@ import javafx.scene.control.TextField;
 import mediator.CurrentlyLoggedUser;
 import viewmodel.AdminViewModel;
 
+import java.awt.*;
+import java.net.URL;
 import java.util.Optional;
 
 /**
  * controller for the AdminView
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -61,6 +63,7 @@ public class AdminViewController extends ViewController
     @FXML
     public void manageUsers()
     {
+        getViewModelFactory().getUserListViewModel().reset();
         getViewHandler().openView("UserListView.fxml");
     }
 
@@ -70,6 +73,7 @@ public class AdminViewController extends ViewController
     @FXML
     public void transactions()
     {
+        getViewModelFactory().getTransactionViewModel().reset();
         getViewHandler().openView("TransactionsView.fxml");
     }
 
@@ -95,6 +99,20 @@ public class AdminViewController extends ViewController
         {
             getViewHandler().openView("LoginView.fxml");
             CurrentlyLoggedUser.logout();
+        }
+    }
+
+    /**
+     * Opens the UserGuide PDF - For the administrator
+     */
+    public void openUserGuide()
+    {
+        try
+        {
+            Desktop.getDesktop().browse(new URL("https:drive.google.com/file/d/1kl7ANzFQBW0GWxv9C2QIvV74X8jhZge9/view?usp=sharing").toURI());
+        } catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }

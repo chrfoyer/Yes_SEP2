@@ -10,6 +10,7 @@ import mediator.RemoteModel;
 
 /**
  * class that handles the logic for the TransactionView
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */

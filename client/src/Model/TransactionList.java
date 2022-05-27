@@ -49,7 +49,7 @@ public class TransactionList implements Serializable
 
     /**
      * @param list The transaction list object containing the transactions
-     * Creates the xml file to write the transactions and then appends them in
+     *             Creates the xml file to write the transactions and then appends them in
      */
     public static void writeTransactions(TransactionList list)
     {

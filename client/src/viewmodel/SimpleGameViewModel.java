@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 /**
  * class that holds a game object, and relevant properties to display information\
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -27,6 +28,7 @@ public class SimpleGameViewModel
 
     /**
      * constructor taking in a Game class
+     *
      * @param game Game that will be displayed
      */
     public SimpleGameViewModel(Game game)
@@ -44,6 +46,7 @@ public class SimpleGameViewModel
 
     /**
      * Getter for the name
+     *
      * @return StringProperty name
      */
     public StringProperty getNameProperty()
@@ -53,6 +56,7 @@ public class SimpleGameViewModel
 
     /**
      * Getter for the Time remaining
+     *
      * @return int timeLeft
      */
     public ObjectProperty<Integer> getTimeProperty()
@@ -62,6 +66,7 @@ public class SimpleGameViewModel
 
     /**
      * Getter for the rental boolean
+     *
      * @return boolean name
      */
     public ObjectProperty<Boolean> getRentedProperty()
@@ -71,6 +76,7 @@ public class SimpleGameViewModel
 
     /**
      * Getter for the rental boolean in string form
+     *
      * @return StringProperty Yes or No
      */
     public StringProperty getRentedStringProperty()
@@ -86,6 +92,7 @@ public class SimpleGameViewModel
 
     /**
      * Getter for the esrb field
+     *
      * @return StringProperty esrb
      */
     public StringProperty getEsrbProperty()
@@ -95,6 +102,7 @@ public class SimpleGameViewModel
 
     /**
      * Getter for the producer field
+     *
      * @return StringProperty
      */
     public StringProperty getProducer()
@@ -104,6 +112,7 @@ public class SimpleGameViewModel
 
     /**
      * Getter for the console field
+     *
      * @return StringProperty
      */
     public StringProperty getConsole()
@@ -113,6 +122,7 @@ public class SimpleGameViewModel
 
     /**
      * Getter for the Game included
+     *
      * @return Game
      */
     public Game getGame()
@@ -122,6 +132,7 @@ public class SimpleGameViewModel
 
     /**
      * Getter for the date when the was added to the system
+     *
      * @return LocalDate
      */
     public ObjectProperty<LocalDate> getDateAdded()
@@ -131,6 +142,7 @@ public class SimpleGameViewModel
 
     /**
      * Gets the average rating of the game
+     *
      * @return float 1.0 - 5.0
      */
     public ObjectProperty<Float> getReview()

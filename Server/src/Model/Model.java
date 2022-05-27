@@ -1,6 +1,5 @@
 package Model;
 
-import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -48,7 +47,7 @@ public interface Model
 
     void signup(User user) throws SQLException;
 
-    boolean login(String username,String password) throws Exception;
+    boolean login(String username, String password) throws Exception;
 
     UserList getUserList();
 
@@ -78,7 +77,7 @@ public interface Model
 
     ArrayList<Game> getGamesRentedByUser(User user) throws SQLException;
 
-    void extendGame(Game game,User user) throws SQLException;
+    void extendGame(Game game, User user) throws SQLException;
 
-    void changePassword(User user,String newPassword) throws SQLException;
+    void changePassword(User user, String newPassword) throws SQLException;
 }

@@ -1,6 +1,5 @@
 package view;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import viewmodel.SimpleUserViewModel;
@@ -62,20 +61,26 @@ public class UserListViewController extends ViewController
 
     /**
      * logic for remove button, removing a user
+     *
      * @throws RemoteException Thrown when an error occurs
      */
     @FXML
     public void remove() throws RemoteException
     {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Are you sure you want to delete this user? ->" +editViewModel.getUser());
-        Optional<ButtonType> option = alert.showAndWait();
-        if (option.get() == ButtonType.OK)
+        if (editViewModel.getUserProperty() != null)
         {
-            viewModel.setSelectedUser(editViewModel.getUser());
-            viewModel.removeUser();
-            viewModel.reset();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to delete this user? -> " + editViewModel.getUserProperty().getUser().getUsername());
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK)
+            {
+                viewModel.setSelectedUser(editViewModel.getUserProperty());
+                viewModel.removeUser();
+                viewModel.reset();
+            }
         }
+
+
     }
 
     /**
@@ -85,8 +90,13 @@ public class UserListViewController extends ViewController
     public void edit()
     {
         // Must use the selected user
-        getViewModelFactory().getUserEditViewModel().reset();
-        getViewHandler().openView("UserEditView.fxml");
+
+        if (editViewModel.getUserProperty() != null)
+        {
+            getViewModelFactory().getUserEditViewModel().reset();
+            getViewHandler().openView("UserEditView.fxml");
+        }
+
     }
 
     /**

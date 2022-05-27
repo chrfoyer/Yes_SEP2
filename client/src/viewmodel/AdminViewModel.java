@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 /**
  * class that handles the logic for the Admin view controller
+ *
  * @author Chris, Martin, Levente, Kruno
  * @version 0.4 19/5/22
  */
@@ -49,6 +50,7 @@ public class AdminViewModel
 
     /**
      * getter for total games
+     *
      * @return totalGames
      */
     public StringProperty getTotalGames()
@@ -58,6 +60,7 @@ public class AdminViewModel
 
     /**
      * getter for rented games
+     *
      * @return rentedGames
      */
     public StringProperty getRentedGames()
@@ -67,6 +70,7 @@ public class AdminViewModel
 
     /**
      * getter for recent game
+     *
      * @return recentGame
      */
     public StringProperty getRecentGame()
@@ -76,6 +80,7 @@ public class AdminViewModel
 
     /**
      * getter for error label
+     *
      * @return errorLabel
      */
     public StringProperty getErrorLabel()

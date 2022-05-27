@@ -6,10 +6,6 @@ import javafx.beans.property.StringProperty;
 import mediator.CurrentlyLoggedUser;
 import mediator.RemoteModel;
 
-import java.awt.*;
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-
 /**
  * class that handles the logic for the balance view controller
  */

@@ -335,6 +335,7 @@ public class User implements Serializable
 
     /**
      * Gets salt from user
+     *
      * @return String salt
      */
     public String getSalt()
@@ -345,6 +346,7 @@ public class User implements Serializable
     /**
      * Generates new secure user password
      * also generates new salt
+     *
      * @param newPassword the new password we generate from
      */
     public void changePassword(String newPassword)

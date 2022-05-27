@@ -80,7 +80,6 @@ public class RmiClient
 
     /**
      * Method to rent a given name
-     *
      */
     public void rentGame()
     {

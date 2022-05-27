@@ -8,7 +8,6 @@ import viewmodel.BrowseViewModel;
 import viewmodel.GameInfoViewModel;
 import viewmodel.SimpleGameViewModel;
 
-import java.rmi.RemoteException;
 import java.util.Optional;
 
 
