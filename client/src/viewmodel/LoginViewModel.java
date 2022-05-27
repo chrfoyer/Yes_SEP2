@@ -79,7 +79,6 @@ public class LoginViewModel
 
             if (model.login(getUsernameProperty().get(), getPasswordProperty().get()))
             {
-                //todo security fix
                 CurrentlyLoggedUser.login(
                         new User(getUsernameProperty().get(), getPasswordProperty().get()));
                 return true;

@@ -109,7 +109,7 @@ public class AdminViewController extends ViewController
     {
         try
         {
-            Desktop.getDesktop().browse(new URL("https:drive.google.com/file/d/1kl7ANzFQBW0GWxv9C2QIvV74X8jhZge9/view?usp=sharing").toURI());
+            Desktop.getDesktop().browse(new URL("https://drive.google.com/file/d/1n1sHWZCAo53Oily3upvdi04wl-ERPTG2/view?usp=sharing").toURI());
         } catch (Exception e)
         {
             e.printStackTrace();
