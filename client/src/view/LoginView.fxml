@@ -8,6 +8,7 @@
       prefHeight="400.0" prefWidth="600.0"
       style="-fx-border-color: #999999; -fx-border-width: 7;"
       xmlns="http://javafx.com/javafx/17"
+      userData="Login"
       fx:controller="view.LoginVeiwController">
     <children>
         <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0"

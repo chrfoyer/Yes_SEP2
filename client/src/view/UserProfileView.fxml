@@ -7,7 +7,9 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity"
       prefHeight="456.0" prefWidth="645.0" style="-fx-border-color: #999999; -fx-border-width: 7;"
-      xmlns="http://javafx.com/javafx/11.0.1" fx:controller="view.UserProfileController">
+      xmlns="http://javafx.com/javafx/11.0.1"
+      userData="Your Profile"
+      fx:controller="view.UserProfileController">
     <children>
         <HBox alignment="CENTER_RIGHT" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>

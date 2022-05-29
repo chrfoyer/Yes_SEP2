@@ -7,7 +7,9 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity"
       prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;"
-      xmlns="http://javafx.com/javafx/17" fx:controller="view.BrowseViewController">
+      xmlns="http://javafx.com/javafx/17"
+      userData="Game Catalog"
+      fx:controller="view.BrowseViewController">
     <children>
         <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
