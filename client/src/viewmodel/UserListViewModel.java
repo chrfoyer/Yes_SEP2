@@ -45,8 +45,7 @@ public class UserListViewModel
     public void reset()
     {
         fillTable();
-        //  error.set("");
-        // TODO: 24/05/2022 how to reset error label? when i reset it in method then the error is never shown when i delete a user who has a active rental.
+        error.set("");
     }
 
     /**
@@ -110,6 +109,16 @@ public class UserListViewModel
     }
 
     /**
+     * Sets the error property
+     *
+     * @param error The string to set the property to
+     */
+    public void setError(String error)
+    {
+        this.error.set(error);
+    }
+
+    /**
      * Removes the selected user.
      */
     public void removeUser()
@@ -122,6 +131,7 @@ public class UserListViewModel
             }
 
             model.removeUser(selectedUser.get().getUser());
+            fillTable();
         } catch (Exception ex)
         {
             error.set(ex.getMessage());

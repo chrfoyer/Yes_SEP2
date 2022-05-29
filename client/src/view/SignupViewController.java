@@ -34,7 +34,6 @@ public class SignupViewController extends ViewController
     @Override
     protected void init()
     {
-        dob.setShowWeekNumbers(true);
         viewModel = getViewModelFactory().getSignupViewModel();
         fullName.textProperty().bindBidirectional(viewModel.getNameProperty());
         address.textProperty().bindBidirectional(viewModel.getAddressProperty());
@@ -44,8 +43,8 @@ public class SignupViewController extends ViewController
         confirmPassword.textProperty()
                 .bindBidirectional(viewModel.getConfirmProperty());
         error.textProperty().bind(viewModel.getErrorLabel());
-        reset();
         dob.valueProperty().bindBidirectional(viewModel.getDobProperty());
+        reset();
     }
 
     /**
@@ -54,6 +53,7 @@ public class SignupViewController extends ViewController
     public void reset()
     {
         viewModel.reset();
+        dob.setValue(null);
     }
 
     /**
@@ -96,14 +96,17 @@ public class SignupViewController extends ViewController
     public void takeDate()
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dateString  = dob.getEditor().getText();
+        String dateString = dob.getEditor().getText();
         try
         {
             LocalDate date = LocalDate.parse(dateString, formatter);
             dob.setValue(date);
-        }
-        catch (Exception e) {
-            viewModel.setErrorLabel("Please rewrite the date");
+        } catch (Exception e)
+        {
+            if (!dob.getEditor().getText().isEmpty())
+            {
+                viewModel.setErrorLabel("Please rewrite the date");
+            }
         }
     }
 

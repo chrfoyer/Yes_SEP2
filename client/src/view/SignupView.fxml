@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;" xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1"
-      userData="Sign Up"
-      fx:controller="view.SignupViewController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;"
+      userData="Sign Up" xmlns="http://javafx.com/javafx/17" fx:controller="view.SignupViewController">
     <children>
         <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
@@ -39,7 +38,11 @@
                                         <Font size="18.0"/>
                                     </font>
                                 </Label>
-                                <DatePicker fx:id="dob" onMouseClicked="#takeDate" prefHeight="26.0" prefWidth="152.0"/>
+                                <DatePicker fx:id="dob" onMouseClicked="#takeDate" prefHeight="26.0" prefWidth="149.0">
+                                    <HBox.margin>
+                                        <Insets bottom="1.5"/>
+                                    </HBox.margin>
+                                </DatePicker>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
