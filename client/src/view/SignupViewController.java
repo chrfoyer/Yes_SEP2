@@ -101,6 +101,7 @@ public class SignupViewController extends ViewController
         {
             LocalDate date = LocalDate.parse(dateString, formatter);
             dob.setValue(date);
+            viewModel.setErrorLabel("");
         } catch (Exception e)
         {
             if (!dob.getEditor().getText().isEmpty())
