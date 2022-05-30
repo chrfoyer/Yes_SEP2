@@ -98,14 +98,16 @@ public class SignupViewController extends ViewController
         String dateString = dob.getEditor().getText();
         try
         {
-            LocalDate date = LocalDate.parse(dateString);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate date = LocalDate.parse(dateString, formatter);
             dob.setValue(date);
             viewModel.setErrorLabel("");
         } catch (Exception e)
         {
             if (!dob.getEditor().getText().isEmpty())
             {
-                viewModel.setErrorLabel("Please rewrite the date");
+                // Does not respect the local
+                // viewModel.setErrorLabel("Please rewrite the date");
             }
         }
     }
