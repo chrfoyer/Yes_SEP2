@@ -94,13 +94,13 @@ public class User implements Serializable
     /**
      * constructor for a user who is not an admin
      *
-     * @param username          username to be assigned to user
+     * @param username username to be assigned to user
      * @param password password to be assigned to user
-     * @param email             email to be assigned to user
-     * @param address           address to be assigned to user
-     * @param name              name to be assigned to user
-     * @param bday              birthday to be assigned to user
-     * @param salt              salt used for password encryption
+     * @param email    email to be assigned to user
+     * @param address  address to be assigned to user
+     * @param name     name to be assigned to user
+     * @param bday     birthday to be assigned to user
+     * @param salt     salt used for password encryption
      */
     public User(String username, String password, String email, String address,
                 String name, LocalDate bday, String salt)

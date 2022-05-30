@@ -2,9 +2,9 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import mediator.CurrentlyLoggedUser;
 import viewmodel.SimpleGameViewModel;
