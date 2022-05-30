@@ -47,7 +47,6 @@ public class BalanceViewController extends ViewController
         {
             try
             {
-                System.out.println("Funds");
                 Platform.runLater(() -> viewModel.addFunds());
             } catch (Exception e)
             {

@@ -95,11 +95,10 @@ public class SignupViewController extends ViewController
      */
     public void takeDate()
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dateString = dob.getEditor().getText();
         try
         {
-            LocalDate date = LocalDate.parse(dateString, formatter);
+            LocalDate date = LocalDate.parse(dateString);
             dob.setValue(date);
             viewModel.setErrorLabel("");
         } catch (Exception e)
