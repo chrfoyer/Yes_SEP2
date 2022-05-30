@@ -32,11 +32,8 @@ public class AddEditGameController extends ViewController
         gameName.textProperty().bindBidirectional(viewModel.nameProperty());
         producer.textProperty().bindBidirectional(viewModel.producerProperty());
         error.textProperty().bind(viewModel.errorProperty());
-
         console.getItems().addAll("PC", "Xbox", "PlayStation");
         esrb.getItems().addAll("E", "E10+", "T", "M", "AO");
-        console.setValue(viewModel.consoleProperty().get());
-        esrb.setValue(viewModel.esrbProperty().get());
         reset();
     }
 
@@ -46,6 +43,8 @@ public class AddEditGameController extends ViewController
     public void reset()
     {
         viewModel.reset();
+        console.setValue(viewModel.consoleProperty().get());
+        esrb.setValue(viewModel.esrbProperty().get());
         title.setText(
                 viewModel.getSelectedGameProperty() != null ? "Edit Game" : "Add Game");
     }

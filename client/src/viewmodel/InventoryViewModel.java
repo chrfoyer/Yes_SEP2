@@ -45,6 +45,7 @@ public class InventoryViewModel
      */
     public void reset()
     {
+        errorLabel.set("");
         fillTable();
     }
 
@@ -124,5 +125,15 @@ public class InventoryViewModel
     public StringProperty getError()
     {
         return errorLabel;
+    }
+
+    /**
+     * Setter for error label
+     *
+     * @param errorLabel The string to put in the error label
+     */
+    public void setErrorLabel(String errorLabel)
+    {
+        this.errorLabel.set(errorLabel);
     }
 }

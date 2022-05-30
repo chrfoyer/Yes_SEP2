@@ -7,23 +7,35 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity"
       prefHeight="456.0" prefWidth="645.0" style="-fx-border-color: #999999; -fx-border-width: 7;"
-      xmlns="http://javafx.com/javafx/11.0.1" fx:controller="view.UserProfileController">
+      xmlns="http://javafx.com/javafx/11.0.1"
+      userData="Your Profile"
+      fx:controller="view.UserProfileController">
     <children>
         <HBox alignment="CENTER_RIGHT" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>
-                <Label style="-fx-font-weight: bold;" text="Profile" textFill="#c1c1c1">
-                    <font>
-                        <Font size="36.0"/>
-                    </font>
-                    <padding>
-                        <Insets right="120.0"/>
-                    </padding>
-                </Label>
-                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="86.0" prefWidth="144.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Open manual" onAction="#openManual">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="86.0" prefWidth="438.0">
+               <children>
+                  <Label prefHeight="54.0" prefWidth="115.0" style="-fx-font-weight: bold;" text="Profile" textAlignment="CENTER" textFill="#c1c1c1">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+                <VBox alignment="CENTER" prefHeight="86.0" prefWidth="115.0">
                     <children>
                         <Button mnemonicParsing="false" onAction="#logout" text="Log out">
                             <font>
-                                <Font size="14.0"/>
+                                <Font size="14.0" />
                             </font>
                         </Button>
                     </children>

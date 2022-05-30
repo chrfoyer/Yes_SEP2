@@ -6,7 +6,9 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity"
       prefHeight="413.0" prefWidth="852.0" style="-fx-border-color: #999999; -fx-border-width: 7;"
-      xmlns="http://javafx.com/javafx/17" fx:controller="view.InventoryViewController">
+      xmlns="http://javafx.com/javafx/17"
+      userData="Inventory Management"
+      fx:controller="view.InventoryViewController">
     <children>
         <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
             <children>

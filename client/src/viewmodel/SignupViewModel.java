@@ -118,6 +118,17 @@ public class SignupViewModel
         return errorLabel;
     }
 
+
+    /**
+     * Setter for property
+     *
+     * @param errorLabel The string to pass in
+     */
+    public void setErrorLabel(String errorLabel)
+    {
+        this.errorLabel.set(errorLabel);
+    }
+
     /**
      * Getter for property
      *

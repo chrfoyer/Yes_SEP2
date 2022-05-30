@@ -6,6 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import viewmodel.SignupViewModel;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * controller for the Signup View
  *
@@ -40,8 +43,8 @@ public class SignupViewController extends ViewController
         confirmPassword.textProperty()
                 .bindBidirectional(viewModel.getConfirmProperty());
         error.textProperty().bind(viewModel.getErrorLabel());
-        reset();
         dob.valueProperty().bindBidirectional(viewModel.getDobProperty());
+        reset();
     }
 
     /**
@@ -50,6 +53,7 @@ public class SignupViewController extends ViewController
     public void reset()
     {
         viewModel.reset();
+        dob.setValue(null);
     }
 
     /**
@@ -57,6 +61,7 @@ public class SignupViewController extends ViewController
      */
     public void signup()
     {
+        takeDate();
         if (viewModel.signup())
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Welcome to the system!");
@@ -83,6 +88,27 @@ public class SignupViewController extends ViewController
     public void onEnter()
     {
         this.signup();
+    }
+
+    /**
+     * Makes the date picker show the date that is written in the text field
+     */
+    public void takeDate()
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dateString = dob.getEditor().getText();
+        try
+        {
+            LocalDate date = LocalDate.parse(dateString, formatter);
+            dob.setValue(date);
+            viewModel.setErrorLabel("");
+        } catch (Exception e)
+        {
+            if (!dob.getEditor().getText().isEmpty())
+            {
+                viewModel.setErrorLabel("Please rewrite the date");
+            }
+        }
     }
 
 }

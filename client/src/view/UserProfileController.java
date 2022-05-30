@@ -1,12 +1,17 @@
 package view;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import mediator.CurrentlyLoggedUser;
 import viewmodel.SimpleGameViewModel;
 import viewmodel.UserProfileViewModel;
 
+import java.awt.*;
+import java.net.URL;
 import java.util.Optional;
 
 /**
@@ -212,6 +217,23 @@ public class UserProfileController extends ViewController
                 getViewHandler().openView("LoginView.fxml");
             }
             //else we do nothing
+        }
+    }
+
+    /**
+     * Button for opening the manual PDF file
+     * https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button
+     *
+     * @param actionEvent
+     */
+    public void openManual(ActionEvent actionEvent)
+    {
+        try
+        {
+            Desktop.getDesktop().browse(new URL("https://drive.google.com/file/d/1Q1aUMcAXcWK_gk7EnfbLu30uuuMs4ZSo/view?usp=sharing").toURI());
+        } catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }

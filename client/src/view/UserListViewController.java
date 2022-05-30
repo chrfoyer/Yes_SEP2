@@ -76,8 +76,10 @@ public class UserListViewController extends ViewController
             {
                 viewModel.setSelectedUser(editViewModel.getUserProperty());
                 viewModel.removeUser();
-                viewModel.reset();
             }
+        } else
+        {
+            viewModel.setError("You must select the user you wish to remove!");
         }
 
 

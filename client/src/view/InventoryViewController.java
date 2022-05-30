@@ -61,7 +61,6 @@ public class InventoryViewController extends ViewController
         error.textProperty().bind(viewModel.getError());
         table.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldV, newV) -> gameViewModel.setSelectedGameProperty(newV));
-        reset();
     }
 
     /**
@@ -71,7 +70,6 @@ public class InventoryViewController extends ViewController
     {
         table.getSelectionModel().clearSelection();
         viewModel.reset();
-        gameViewModel.reset();
     }
 
     /**
@@ -102,15 +100,21 @@ public class InventoryViewController extends ViewController
     @FXML
     public void remove()
     {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Are you sure you want to delete the game? -> "
-                        + gameViewModel.getSelectedGameProperty().getGame().getName());
-        Optional<ButtonType> option = alert.showAndWait();
-        if (option.get() == ButtonType.OK)
+        if (gameViewModel.getSelectedGameProperty() != null)
         {
-            viewModel.setSelectedGameProperty(
-                    gameViewModel.getSelectedGameProperty());
-            viewModel.removeGame();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to delete the game? -> "
+                            + gameViewModel.getSelectedGameProperty().getGame().getName());
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK)
+            {
+                viewModel.setSelectedGameProperty(
+                        gameViewModel.getSelectedGameProperty());
+                viewModel.removeGame();
+            }
+        } else
+        {
+            viewModel.setErrorLabel("You must select a game to remove!");
         }
     }
 }
