@@ -230,7 +230,7 @@ public class UserProfileController extends ViewController
     {
         try
         {
-            Desktop.getDesktop().browse(new URL("https://drive.google.com/file/d/1Q1aUMcAXcWK_gk7EnfbLu30uuuMs4ZSo/view?usp=sharing").toURI());
+            Desktop.getDesktop().browse(new URL("https://drive.google.com/file/d/12Q33L3xKOdp5FCNF3IkR7SuD6oaFQfBg/view?usp=sharing").toURI());
         } catch (Exception e)
         {
             e.printStackTrace();
