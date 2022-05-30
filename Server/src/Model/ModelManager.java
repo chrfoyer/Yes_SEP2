@@ -499,8 +499,6 @@ public class ModelManager implements Model
     @Override
     public void updateUserWithSQL(User user) throws SQLException
     {
-        //todo is this needed
-        //users.findUserInList()
         userDAO.update(user);
         refreshUserList();
     }

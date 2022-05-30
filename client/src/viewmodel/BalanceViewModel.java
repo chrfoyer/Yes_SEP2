@@ -115,6 +115,8 @@ public class BalanceViewModel
         {
             try
             {
+                if (CurrentlyLoggedUser.getLoggedInUser().hasSubscription())
+                    throw new IllegalStateException("Cant pay for subscription while you have one!");
                 model.payForSubscription(CurrentlyLoggedUser.getLoggedInUser());
                 CurrentlyLoggedUser.updateInfoWithServer();
                 reset();
