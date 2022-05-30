@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity"
+      prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #999999; -fx-border-width: 7;"
+      userData="Sign Up" xmlns="http://javafx.com/javafx/17" fx:controller="view.SignupViewController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
+            <children>
+                <Label style="-fx-font-weight: bold;" text="Sign Up" textFill="#c1c1c1">
+                    <font>
+                        <Font size="36.0"/>
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="286.0" prefWidth="600.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="282.0" prefWidth="311.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="311.0">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="105.0" text="Full name">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="fullName"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="106.0" text="Dob">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Label>
+                                <DatePicker fx:id="dob" onMouseClicked="#takeDate" prefHeight="26.0" prefWidth="149.0">
+                                    <HBox.margin>
+                                        <Insets bottom="1.5"/>
+                                    </HBox.margin>
+                                </DatePicker>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="106.0" text="Address">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="address" onMouseClicked="#takeDate"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="106.0" text="Email">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="email"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="106.0" text="Username">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Label>
+                                <TextField fx:id="username"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="106.0" text="Password">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="password"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="311.0">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="106.0" text="Confirm pass.">
+                                    <font>
+                                        <Font size="17.5"/>
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="confirmPassword" onAction="#onEnter"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="64.0" prefWidth="256.0" spacing="30.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#cancel" text="Cancel">
+                                    <font>
+                                        <Font size="24.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#signup" text="Sign up">
+                                    <font>
+                                        <Font size="24.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #B8F0FF;">
+            <children>
+                <Label fx:id="error" style="-fx-font-weight: bold;" text="ERROR" textFill="RED"/>
+            </children>
+        </HBox>
+    </children>
+</VBox>
