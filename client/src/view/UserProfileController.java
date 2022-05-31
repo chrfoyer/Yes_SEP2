@@ -224,9 +224,8 @@ public class UserProfileController extends ViewController
      * Button for opening the manual PDF file
      * https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button
      *
-     * @param actionEvent
      */
-    public void openManual(ActionEvent actionEvent)
+    public void openManual()
     {
         try
         {

@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 import mediator.CurrentlyLoggedUser;
@@ -9,6 +10,7 @@ import view.ViewHandler;
 import viewmodel.ViewModelFactory;
 
 import java.rmi.Naming;
+import java.util.Optional;
 
 
 /**
@@ -31,20 +33,23 @@ public class MyApplication extends Application
             RemoteModel server = null;
             String ip = "localhost";
 
-            TextInputDialog inputDialog = new TextInputDialog("localhost");
+            TextInputDialog inputDialog = new TextInputDialog("");
             inputDialog.setContentText("IP Address: ");
             inputDialog.setHeaderText("Please enter the IP address of the server you wish to connect to!\n" +
-                    "You can also just press enter to connect to localhost!");
+                    "You can also just enter 'localhost' to connect to your computer!");
 
             inputDialog.showAndWait();
-            ip = inputDialog.getEditor().getText();
-
             try
             {
+                ip = inputDialog.getEditor().getText();
+                if (ip.equals(""))
+                {
+                    throw new IllegalStateException("No ip address defined!");
+                }
                 server = (RemoteModel) Naming.lookup("rmi://" + ip + ":1099/Games");
             } catch (Exception ex)
             {
-                ex.printStackTrace();
+                System.err.println(ex.getMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR,
                         "Server connection not detected!\nInvalid ip address provided or server not running, please restart!");
                 Platform.runLater(alert::showAndWait);

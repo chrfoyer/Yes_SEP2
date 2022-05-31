@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.Scanner;
 
 /**
- * Kill me please
+ * @deprecated class used to connect to the server in the early stages of the project
  */
 @SuppressWarnings("JavaDoc")
 public class ClientTest
