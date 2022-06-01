@@ -33,6 +33,7 @@ VALUES ('Minecraft', 'Mojang', 'PC', FALSE, 0, 0, 0, 3.0, 'E', CURRENT_DATE),
        ('Apex Legends', 'Respawn Entertainment', 'Xbox', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
        ('Apex Legends', 'Respawn Entertainment', 'PlayStation', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
        ('Valheim', 'Iron Gate AB', 'PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
+       ('Valheim', 'Iron Gate AB', 'PC', FALSE, 0, 0, 0, 3.0, 'M', CURRENT_DATE),
        ('SEP2 Suffering Protocol: The Ballad of Misery', 'Group 3Y: yes', 'PC', FALSE, 0, 0, 0,  100, 'E', '4-20-2022');
 
 CREATE DOMAIN email AS VARCHAR(40) CHECK (VALUE LIKE '%@%');
